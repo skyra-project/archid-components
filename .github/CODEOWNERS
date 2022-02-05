@@ -1,0 +1,25 @@
+# Kyra & Favna
+/src/ @favna @kyranet
+/tests/ @favna @kyranet
+/tsconfig.base.json @favna @kyranet
+/tsconfig.eslint.json @favna @kyranet
+
+# Just Kyra
+/LICENSE @kyranet
+
+# Just Favna
+/.docker/ @favna
+/.github/ @favna
+/.devcontainer/ @favna
+/.vscode/ @favna
+/scripts/ @favna
+/.all-contributorsrc @favna
+/.eslintrc.json @favna
+/.gitignore @favna
+/.gqlconfig @favna
+/.prettierrc @favna
+/jest.config.ts @favna
+
+# Tyler & Kyra
+/services @Tylertron1998 @kyranet
+

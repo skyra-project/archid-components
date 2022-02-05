@@ -1,0 +1,49 @@
+{
+  "name": "archid-components",
+  "version": "0.0.0",
+  "description": "A collection of shared utilities for the ArchId Network",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "postinstall": "is-ci || husky install",
+    "update": "yarn upgrade-interactive"
+  },
+  "contributors": [
+    "Antonio Román <kyradiscord@gmail.com>",
+    "Jeroen Claassens <support@favware.tech>"
+  ],
+  "keywords": [
+    "discord",
+    "skyra"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skyra-project/archid-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/skyra-project/archid-components/issues"
+  },
+  "homepage": "https://skyra.pw",
+  "devDependencies": {
+    "@commitlint/cli": "^16.1.0",
+    "@commitlint/config-angular": "^16.0.0",
+    "conventional-changelog-cli": "^2.2.2",
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1",
+    "turbo": "1.1.2"
+  },
+  "engines": {
+    "node": ">=16.9.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "prettier": "@sapphire/prettier-config",
+  "eslintConfig": {
+    "extends": "@sapphire"
+  },
+  "packageManager": "yarn@3.1.1"
+}

@@ -1,0 +1,8 @@
+{
+	"root": true,
+	"extends": "@sapphire",
+	"parserOptions": {
+		"project": "./tsconfig.eslint.json"
+	},
+	"ignorePatterns": ["**/dist/*"]
+}
