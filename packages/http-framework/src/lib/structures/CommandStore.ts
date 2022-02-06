@@ -1,4 +1,5 @@
 import { Store } from '@sapphire/pieces';
+import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import { APIApplicationCommandInteraction, APIInteractionResponse, ApplicationCommandType } from 'discord-api-types/v9';
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../api/HttpCodes';
@@ -7,18 +8,17 @@ import { Command } from './Command';
 
 export class CommandStore extends Store<Command> {
 	public constructor() {
-		super(Command, { name: 'commands' });
+		super(Command as any, { name: 'commands' });
 	}
 
-	public async runApplicationCommand(reply: FastifyReply, interaction: APIApplicationCommandInteraction): Promise<FastifyReply> {
+	public async runApplicationCommand(reply: FastifyReply, interaction: CommandInteraction): Promise<FastifyReply> {
+		const command = this.get(interaction.data.name);
+		if (!command) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown command name' });
+
+		const method = this.routeCommandMethodName(command, interaction.data);
+		if (!method) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown subcommand name' });
+
 		try {
-			// ...
-			const command = this.get(interaction.data.name);
-			if (!command) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown command name' });
-
-			const method = this.routeCommandMethodName(command, interaction);
-			if (!method) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown subcommand name' });
-
 			const response = await this.runCommandMethod(command, method, interaction);
 			return reply.status(HttpCodes.OK).send(response);
 		} catch (error) {
@@ -32,29 +32,37 @@ export class CommandStore extends Store<Command> {
 		}
 	}
 
+	public async runApplicationCommandAutoComplete(
+		reply: FastifyReply,
+		interaction: APIApplicationCommandAutocompleteInteraction
+	): Promise<FastifyReply> {
+		if (interaction.data?.name) return this.runApplicationCommand(reply, interaction as CommandInteraction);
+		return reply.status(HttpCodes.UnprocessableEntity).send({ message: 'Could not process the request' });
+	}
+
 	private runCommandMethod(
 		command: Command,
 		method: string,
-		interaction: APIApplicationCommandInteraction
+		interaction: CommandInteraction
 	): PromiseLike<APIInteractionResponse> | APIInteractionResponse {
 		return Reflect.apply(Reflect.get(command, method), command, [interaction, this.createArguments(interaction.data)]);
 	}
 
-	private routeCommandMethodName(command: Command, interaction: APIApplicationCommandInteraction): string | null {
-		switch (interaction.data.type) {
+	private routeCommandMethodName(command: Command, data: CommandInteractionData): string | null {
+		switch (data.type) {
 			case ApplicationCommandType.ChatInput: {
 				// eslint-disable-next-line @typescript-eslint/dot-notation
-				return command['routeChatInputInteraction'](interaction.data);
+				return command['routeChatInputInteraction'](data);
 			}
 			case ApplicationCommandType.User:
 			case ApplicationCommandType.Message: {
 				// eslint-disable-next-line @typescript-eslint/dot-notation
-				return command['routeContextMenuInteraction'](interaction.data);
+				return command['routeContextMenuInteraction'](data);
 			}
 		}
 	}
 
-	private createArguments(data: APIApplicationCommandInteraction['data']) {
+	private createArguments(data: CommandInteractionData) {
 		switch (data.type) {
 			case ApplicationCommandType.ChatInput:
 				return transformInteraction(data.resolved ?? {}, data.options ?? []);
@@ -67,3 +75,10 @@ export class CommandStore extends Store<Command> {
 		}
 	}
 }
+
+type CommandInteraction =
+	| APIApplicationCommandInteraction
+	| (APIApplicationCommandAutocompleteInteraction & {
+			data: NonNullable<APIApplicationCommandAutocompleteInteraction['data']> & { name: string };
+	  });
+type CommandInteractionData = CommandInteraction['data'];

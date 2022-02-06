@@ -12,13 +12,13 @@ export function makeChatInputCommand<T extends Omit<RESTPostAPIApplicationComman
 	return { type: ApplicationCommandType.ChatInput, ...data };
 }
 
-export function makeRegisterSubCommandGroup<T extends Omit<APIApplicationCommandSubcommandGroupOption, 'type'>>(
+export function makeSubCommandGroupBody<T extends Omit<APIApplicationCommandSubcommandGroupOption, 'type'>>(
 	data: T
 ): T & { type: ApplicationCommandOptionType.SubcommandGroup } {
 	return { type: ApplicationCommandOptionType.SubcommandGroup, ...data };
 }
 
-export function makeRegisterSubCommand<T extends Omit<APIApplicationCommandSubcommandOption, 'type'>>(
+export function makeSubCommandBody<T extends Omit<APIApplicationCommandSubcommandOption, 'type'>>(
 	data: T
 ): T & { type: ApplicationCommandOptionType.Subcommand } {
 	return { type: ApplicationCommandOptionType.Subcommand, ...data };

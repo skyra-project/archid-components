@@ -8,7 +8,7 @@ import {
 import { chatInputCommandRegistry, contextMenuCommandRegistry } from '../interactions';
 import { getMethod } from '../interactions/shared/link';
 
-export class Command extends Piece {
+export abstract class Command extends Piece {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();
 	private contextMenuRouter = new Collection<string, string>();
 	public override onLoad() {

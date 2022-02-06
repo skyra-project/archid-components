@@ -4,15 +4,24 @@ import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest }
 import { Buffer } from 'node:buffer';
 import tweetnacl from 'tweetnacl';
 import { HttpCodes } from './api/HttpCodes';
+import type { IIdParser } from './components/IIdParser';
+import { StringIdParser } from './components/StringIdParser';
 import { CommandStore } from './structures/CommandStore';
+import { MessageComponentHandlerStore } from './structures/MessageComponentHandlerStore';
 
 export class Client {
 	public server!: FastifyInstance;
 	#discordPublicKey: Buffer;
 
-	public constructor(options: ClientOptions) {
-		this.#discordPublicKey = Buffer.from(options.discordPublicKey, 'hex');
+	public constructor(options: ClientOptions = {}) {
+		const discordPublicKey = options.discordPublicKey ?? process.env.DISCORD_PUBLIC_KEY;
+		if (!discordPublicKey) throw new Error('The discordPublicKey cannot be empty');
+
+		this.#discordPublicKey = Buffer.from(discordPublicKey, 'hex');
 		container.stores.register(new CommandStore());
+		container.stores.register(new MessageComponentHandlerStore());
+		container.idParser ??= new StringIdParser();
+		container.client = this;
 	}
 
 	/**
@@ -28,7 +37,7 @@ export class Client {
 	 */
 	public async listen(options: ListenOptions) {
 		this.server = Fastify(options.serverOptions);
-		this.server.post(options.postPath ?? '/', this.handleHttpMessage.bind(this));
+		this.server.post(options.postPath ?? process.env.HTTP_POST_PATH ?? '/', this.handleHttpMessage.bind(this));
 
 		await this.server.listen(options.port);
 	}
@@ -46,11 +55,9 @@ export class Client {
 			case InteractionType.ApplicationCommand:
 				return container.stores.get('commands').runApplicationCommand(reply, interaction);
 			case InteractionType.ApplicationCommandAutocomplete:
-				// TODO: Implement
-				return reply.status(HttpCodes.NotImplemented).send({ message: 'Not implemented' });
+				return container.stores.get('commands').runApplicationCommandAutoComplete(reply, interaction);
 			case InteractionType.MessageComponent:
-				// TODO: Implement
-				return reply.status(HttpCodes.NotImplemented).send({ message: 'Not implemented' });
+				return container.stores.get('message-component-handlers').runHandler(reply, interaction);
 			default:
 				return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown interaction type' });
 		}
@@ -92,8 +99,9 @@ export interface ClientOptions {
 	/**
 	 * The public key from Discord, available under "General Information" after opening an application from
 	 * [Discord's applications](https://discord.com/developers/applications).
+	 * @default process.env.DISCORD_PUBLIC_KEY
 	 */
-	discordPublicKey: string;
+	discordPublicKey?: string;
 }
 
 export interface ListenOptions {
@@ -104,6 +112,7 @@ export interface ListenOptions {
 
 	/**
 	 * The path the HTTP server will listen to.
+	 * @default process.env.HTTP_POST_PATH ?? '/'
 	 */
 	postPath?: `/${string}`;
 
@@ -121,5 +130,11 @@ interface VerifyDiscordInteractionResponse {
 declare module '@sapphire/pieces' {
 	export interface StoreRegistryEntries {
 		commands: CommandStore;
+		'message-component-handlers': MessageComponentHandlerStore;
+	}
+
+	export interface Container {
+		client: Client;
+		idParser: IIdParser;
 	}
 }

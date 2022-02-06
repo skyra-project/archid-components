@@ -1,8 +1,9 @@
 import {
+	type APIApplicationCommandOption,
+	type APIApplicationCommandSubcommandOption,
 	ApplicationCommandOptionType,
 	ApplicationCommandType,
 	type APIApplicationCommandSubcommandGroupOption,
-	type APIApplicationCommandSubcommandOption,
 	type RESTPostAPIChatInputApplicationCommandsJSONBody
 } from 'discord-api-types/v9';
 import type { Command } from '../../structures/Command';
@@ -15,7 +16,7 @@ export function RegisterCommand(data: RESTPostAPIChatInputApplicationCommandsJSO
 	};
 }
 
-export function RegisterSubCommandGroup(data: APIApplicationCommandSubcommandGroupOption) {
+export function RegisterSubCommandGroup(data: APIApplicationCommandOption) {
 	return function decorate(target: Command, method: string) {
 		const existing = chatInputCommandRegistry.ensure(target.constructor as typeof Command, () => ({
 			type: ApplicationCommandType.ChatInput,
