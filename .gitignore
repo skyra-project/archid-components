@@ -1,37 +1,42 @@
-# Packages
+# Ignore a blackhole and the folder for development
 node_modules/
-
-# Log files
-logs/
-*.log
-npm-debug.log*
-
-# Runtime data
-pids
-*.pid
-*.seed
-
-# Env
-.env
-
-# Dist
-dist/
-
-# Miscellaneous
-.tmp/
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
+.vs/
 .idea/
-.DS_Store
-.turbo
-tsconfig.tsbuildinfo
+*.iml
 
-# yarn
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Yarn files
+.yarn/install-state.gz
+.yarn/build-state.yml
+
+# Build Artifacts
+dist/
+build/
+docs/
+test_out/
+.swc/
+*.tsbuildinfo
+*.zip
+*.tar
+*.tar.xz
+*.tar.gz
+*.7z
+*.rar
+
+# Ignore heapsnapshot and log files
+*.heapsnapshot
+*.log
+coverage/
+docs/
+
+# Ignore package locks
+package-lock.json
+
+# Ignore Turbo caching
+.turbo

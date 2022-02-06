@@ -1,4 +1,4 @@
-import { type APIInteraction, InteractionResponseType, InteractionType } from 'discord-api-types/v9';
+import { InteractionResponseType, InteractionType, type APIInteraction } from 'discord-api-types/v9';
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { Buffer } from 'node:buffer';
 import tweetnacl from 'tweetnacl';
@@ -39,6 +39,7 @@ export class Client {
 		const body = timestampHeader + JSON.stringify(request.body);
 
 		const isVerified = tweetnacl.sign.detached.verify(
+			//
 			Buffer.from(body),
 			Buffer.from(signatureHeader, 'hex'),
 			this.#discordPublicKey
