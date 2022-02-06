@@ -1,3 +1,6 @@
+// Copyright © 2020 - The Sapphire Community and its contributors | MIT
+// Source: https://github.com/sapphiredev/plugins/blob/a6471129ddab96146987a1dafa90f0576de8e2f2/packages/api/src/lib/structures/http/HttpCodes.ts
+
 export const enum HttpCodes {
 	/**
 	 * Standard response for successful HTTP requests. The actual response will
