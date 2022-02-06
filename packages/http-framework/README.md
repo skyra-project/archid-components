@@ -31,7 +31,8 @@ export class UserCommand extends Command {
 You can also register subcommands via decorators:
 
 ```typescript
-import { Command, RegisterCommand } from '@skyra/http-framework';
+import { type ArgumentsOf, Command, RegisterCommand, RegisterSubCommandGroup, makeSubCommandBody } from '@skyra/http-framework';
+import { type APIApplicationCommandInteraction, type APIInteractionResponse, ApplicationCommandOptionType } from 'discord-api-types/v9';
 
 @RegisterCommand({ name: 'math', description: 'Does some maths.' })
 export class UserCommand extends Command {
