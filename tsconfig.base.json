@@ -2,6 +2,6 @@
 	"extends": "@sapphire/ts-config/extra-strict",
 	"compilerOptions": {
 		"target": "ESNext",
-		"removeComments": true
+		"module": "ESNext"
 	}
 }

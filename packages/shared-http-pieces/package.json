@@ -1,7 +1,7 @@
 {
-	"name": "@skyra/http-framework",
+	"name": "@skyra/shared-http-pieces",
 	"version": "0.0.1",
-	"description": "The framework for ArchId Network's HTTP-only bots",
+	"description": "The common pieces for ArchId Network's HTTP-only bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/index.js",
@@ -13,27 +13,22 @@
 	},
 	"sideEffects": false,
 	"scripts": {
-		"build": "tsup && tsc -b src",
-		"watch": "tsup --watch --onSuccess \"tsc -b src\"",
+		"build": "tsc -b src",
+		"watch": "tsc -b src --watch",
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {
-		"@discordjs/collection": "^0.5.0",
-		"@discordjs/rest": "^0.3.0",
-		"@sapphire/pieces": "^3.2.0",
+		"@discordjs/builders": "^0.12.0",
+		"@skyra/http-framework": "workspace:^",
 		"discord-api-types": "*",
-		"fastify": "^3.27.1",
-		"tweetnacl": "^1.0.3"
-	},
-	"devDependencies": {
-		"@types/node-fetch": "^2.5.12"
+		"tslib": "^2.3.1"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/skyra-project/archid-components.git",
-		"directory": "packages/http-framework"
+		"directory": "packages/shared-http-pieces"
 	},
 	"files": [
 		"dist",

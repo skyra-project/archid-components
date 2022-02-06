@@ -604,6 +604,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@discordjs/builders@npm:^0.12.0":
+  version: 0.12.0
+  resolution: "@discordjs/builders@npm:0.12.0"
+  dependencies:
+    "@sindresorhus/is": ^4.3.0
+    discord-api-types: ^0.26.1
+    ts-mixer: ^6.0.0
+    tslib: ^2.3.1
+    zod: ^3.11.6
+  checksum: 3c4ef256371121938d5d75571e19f0697b1575dd9fb31a7ca47337d00a1ec45b2c1ce19a1261650a5f6393ac4116f8ed9e82120ce5de534be562dde919a2a6d7
+  languageName: node
+  linkType: hard
+
 "@discordjs/collection@npm:^0.3.2":
   version: 0.3.2
   resolution: "@discordjs/collection@npm:0.3.2"
@@ -1077,6 +1090,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sindresorhus/is@npm:^4.3.0":
+  version: 4.4.0
+  resolution: "@sindresorhus/is@npm:4.4.0"
+  checksum: 1d2471a75e03ce2182c3a3d014d027addeaeae1a7a2adfdb03c91cce17900b207e493db012e35ffa21808c563ce3b8e2e7c24646b3d5c27467e08bef8b0e16f0
+  languageName: node
+  linkType: hard
+
 "@sinonjs/commons@npm:^1.7.0":
   version: 1.8.3
   resolution: "@sinonjs/commons@npm:1.8.3"
@@ -1095,17 +1115,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@skyra/http-framework@workspace:packages/http-framework":
+"@skyra/http-framework@workspace:^, @skyra/http-framework@workspace:packages/http-framework":
   version: 0.0.0-use.local
   resolution: "@skyra/http-framework@workspace:packages/http-framework"
   dependencies:
     "@discordjs/collection": ^0.5.0
     "@discordjs/rest": ^0.3.0
     "@sapphire/pieces": ^3.2.0
+    "@types/node-fetch": ^2.5.12
     discord-api-types: "*"
     fastify: ^3.27.1
-    tslib: ^2.3.1
     tweetnacl: ^1.0.3
+  languageName: unknown
+  linkType: soft
+
+"@skyra/shared-http-pieces@workspace:packages/shared-http-pieces":
+  version: 0.0.0-use.local
+  resolution: "@skyra/shared-http-pieces@workspace:packages/shared-http-pieces"
+  dependencies:
+    "@discordjs/builders": ^0.12.0
+    "@skyra/http-framework": "workspace:^"
+    discord-api-types: "*"
+    tslib: ^2.3.1
   languageName: unknown
   linkType: soft
 
@@ -1386,6 +1417,16 @@ __metadata:
   version: 1.2.2
   resolution: "@types/minimist@npm:1.2.2"
   checksum: b8da83c66eb4aac0440e64674b19564d9d86c80ae273144db9681e5eeff66f238ade9515f5006ffbfa955ceff8b89ad2bd8ec577d7caee74ba101431fb07045d
+  languageName: node
+  linkType: hard
+
+"@types/node-fetch@npm:^2.5.12":
+  version: 2.5.12
+  resolution: "@types/node-fetch@npm:2.5.12"
+  dependencies:
+    "@types/node": "*"
+    form-data: ^3.0.0
+  checksum: ad63c85ba6a9477b8e057ec8682257738130d98e8ece4e31141789bd99df9d9147985cc8bc0cb5c8983ed5aa6bb95d46df23d1e055f4ad5cf8b82fc69cf626c7
   languageName: node
   linkType: hard
 
@@ -3521,6 +3562,17 @@ __metadata:
   version: 3.2.5
   resolution: "flatted@npm:3.2.5"
   checksum: 3c436e9695ccca29620b4be5671dd72e5dd0a7500e0856611b7ca9bd8169f177f408c3b9abfa78dfe1493ee2d873e2c119080a8a9bee4e1a186a9e60ca6c89f1
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "form-data@npm:3.0.1"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: b019e8d35c8afc14a2bd8a7a92fa4f525a4726b6d5a9740e8d2623c30e308fbb58dc8469f90415a856698933c8479b01646a9dff33c87cc4e76d72aedbbf860d
   languageName: node
   linkType: hard
 
@@ -6840,6 +6892,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ts-mixer@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "ts-mixer@npm:6.0.0"
+  checksum: 791a513c9ca318a979928f5265fd6029858fa21595153a9386063c11239a6b1c352db1e277c19f0544d017a67cf78d120a7438b86b2c828b1115eb607538eff8
+  languageName: node
+  linkType: hard
+
 "ts-node@npm:^10.4.0":
   version: 10.4.0
   resolution: "ts-node@npm:10.4.0"
@@ -7415,5 +7474,12 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.11.6":
+  version: 3.11.6
+  resolution: "zod@npm:3.11.6"
+  checksum: 044ac416450f179a0c88240f27849d2886c777cebade42df10e5f04125b0265cec82d9bd741a7dcb11796b2ea88b32c86be7d36932a4bed6af57002560359db1
   languageName: node
   linkType: hard
