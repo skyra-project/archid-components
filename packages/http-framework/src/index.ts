@@ -1,4 +1,18 @@
-export { container } from '@sapphire/pieces';
+export {
+	AliasPiece,
+	AliasPieceOptions,
+	AliasStore,
+	container,
+	LoaderError,
+	MissingExportsError,
+	Piece,
+	PieceContext,
+	PieceOptions,
+	Store,
+	StoreOptions,
+	StoreRegistry,
+	StoreRegistryEntries
+} from '@sapphire/pieces';
 export * from './lib/api/HttpCodes';
 export * from './lib/Client';
 export * from './lib/components/IIdParser';

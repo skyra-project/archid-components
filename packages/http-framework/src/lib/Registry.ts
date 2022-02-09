@@ -9,6 +9,7 @@ import {
 	type RESTPutAPIApplicationGuildCommandsResult,
 	Routes
 } from 'discord-api-types/v9';
+import type { LoadOptions } from './Client';
 import { chatInputCommandRegistry, contextMenuCommandRegistry, restrictedGuildIdRegistry } from './interactions';
 import { filterUndefined, flattenIterableOfArrays, guardUndefined } from './utils/generators';
 
@@ -57,8 +58,14 @@ export class Registry {
 
 	/**
 	 * Loads all the commands.
+	 * @param options The load options.
 	 */
-	public async load() {
+	public async load(options: LoadOptions = {}) {
+		// Register the user directory if not null:
+		if (options.baseUserDirectory !== null) {
+			container.stores.registerPath(options.baseUserDirectory);
+		}
+
 		await container.stores.load();
 	}
 

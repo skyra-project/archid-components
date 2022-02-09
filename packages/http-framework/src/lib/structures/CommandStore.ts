@@ -1,6 +1,6 @@
 import { Store } from '@sapphire/pieces';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
-import { APIApplicationCommandInteraction, APIInteractionResponse, ApplicationCommandType } from 'discord-api-types/v9';
+import { APIInteractionResponse, ApplicationCommandType } from 'discord-api-types/v9';
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../api/HttpCodes';
 import { transformInteraction } from '../interactions';
@@ -11,7 +11,7 @@ export class CommandStore extends Store<Command> {
 		super(Command as any, { name: 'commands' });
 	}
 
-	public async runApplicationCommand(reply: FastifyReply, interaction: CommandInteraction): Promise<FastifyReply> {
+	public async runApplicationCommand(reply: FastifyReply, interaction: Command.Interaction): Promise<FastifyReply> {
 		const command = this.get(interaction.data.name);
 		if (!command) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown command name' });
 
@@ -36,19 +36,19 @@ export class CommandStore extends Store<Command> {
 		reply: FastifyReply,
 		interaction: APIApplicationCommandAutocompleteInteraction
 	): Promise<FastifyReply> {
-		if (interaction.data?.name) return this.runApplicationCommand(reply, interaction as CommandInteraction);
+		if (interaction.data?.name) return this.runApplicationCommand(reply, interaction as Command.Interaction);
 		return reply.status(HttpCodes.UnprocessableEntity).send({ message: 'Could not process the request' });
 	}
 
 	private runCommandMethod(
 		command: Command,
 		method: string,
-		interaction: CommandInteraction
+		interaction: Command.Interaction
 	): PromiseLike<APIInteractionResponse> | APIInteractionResponse {
 		return Reflect.apply(Reflect.get(command, method), command, [interaction, this.createArguments(interaction.data)]);
 	}
 
-	private routeCommandMethodName(command: Command, data: CommandInteractionData): string | null {
+	private routeCommandMethodName(command: Command, data: Command.InteractionData): string | null {
 		switch (data.type) {
 			case ApplicationCommandType.ChatInput: {
 				// eslint-disable-next-line @typescript-eslint/dot-notation
@@ -62,7 +62,7 @@ export class CommandStore extends Store<Command> {
 		}
 	}
 
-	private createArguments(data: CommandInteractionData) {
+	private createArguments(data: Command.InteractionData) {
 		switch (data.type) {
 			case ApplicationCommandType.ChatInput:
 				return transformInteraction(data.resolved ?? {}, data.options ?? []);
@@ -75,10 +75,3 @@ export class CommandStore extends Store<Command> {
 		}
 	}
 }
-
-type CommandInteraction =
-	| APIApplicationCommandInteraction
-	| (APIApplicationCommandAutocompleteInteraction & {
-			data: NonNullable<APIApplicationCommandAutocompleteInteraction['data']> & { name: string };
-	  });
-type CommandInteractionData = CommandInteraction['data'];

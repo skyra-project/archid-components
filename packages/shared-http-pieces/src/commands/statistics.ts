@@ -1,19 +1,16 @@
 import { Embed, time, TimestampStyles } from '@discordjs/builders';
 import { Command, RegisterCommand } from '@skyra/http-framework';
-import { InteractionResponseType, MessageFlags, type APIInteractionResponse } from 'discord-api-types/v9';
+import { MessageFlags } from 'discord-api-types/v9';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 
 @RegisterCommand({ name: 'statistics', description: 'Check my statistics.' })
 export class UserCommand extends Command {
-	public chatInputRun(): APIInteractionResponse {
+	public chatInputRun(): Command.Response {
 		const embed = new Embed()
 			.addField({ name: 'Uptime', value: this.uptimeStatistics })
 			.addField({ name: 'Server Usage', value: this.usageStatistics });
 
-		return {
-			type: InteractionResponseType.ChannelMessageWithSource,
-			data: { embeds: [embed], flags: MessageFlags.Ephemeral }
-		};
+		return this.message({ embeds: [embed], flags: MessageFlags.Ephemeral });
 	}
 
 	private get uptimeStatistics() {

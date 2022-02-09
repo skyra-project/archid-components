@@ -26,8 +26,14 @@ export class Client {
 
 	/**
 	 * Loads all the commands.
+	 * @param options The load options.
 	 */
-	public async load() {
+	public async load(options: LoadOptions = {}) {
+		// Register the user directory if not null:
+		if (options.baseUserDirectory !== null) {
+			container.stores.registerPath(options.baseUserDirectory);
+		}
+
 		await container.stores.load();
 	}
 
@@ -102,6 +108,15 @@ export interface ClientOptions {
 	 * @default process.env.DISCORD_PUBLIC_KEY
 	 */
 	discordPublicKey?: string;
+}
+
+export interface LoadOptions {
+	/**
+	 * The base user directory, if set to `null`, the library will not call {@link StoreRegistry.registerPath},
+	 * meaning that you will need to manually set each folder for each store. Please read the aforementioned method's
+	 * documentation for more information.
+	 */
+	baseUserDirectory?: string | null;
 }
 
 export interface ListenOptions {
