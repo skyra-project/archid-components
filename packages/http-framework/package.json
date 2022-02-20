@@ -24,11 +24,11 @@
 		"@discordjs/rest": "^0.3.0",
 		"@sapphire/pieces": "^3.2.0",
 		"discord-api-types": "*",
-		"fastify": "^3.27.1",
+		"fastify": "^3.27.2",
 		"tweetnacl": "^1.0.3"
 	},
 	"devDependencies": {
-		"@types/node-fetch": "^2.5.12"
+		"@types/node-fetch": "^2.6.1"
 	},
 	"repository": {
 		"type": "git",
