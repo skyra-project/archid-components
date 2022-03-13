@@ -21,7 +21,7 @@
 	},
 	"dependencies": {
 		"@discordjs/builders": "^0.12.0",
-		"@skyra/http-framework": "workspace:^",
+		"@skyra/http-framework": "*",
 		"discord-api-types": "*",
 		"tslib": "^2.3.1"
 	},

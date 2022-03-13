@@ -2105,7 +2105,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@skyra/http-framework@workspace:^, @skyra/http-framework@workspace:packages/http-framework":
+"@skyra/http-framework@*, @skyra/http-framework@workspace:packages/http-framework":
   version: 0.0.0-use.local
   resolution: "@skyra/http-framework@workspace:packages/http-framework"
   dependencies:
@@ -2124,7 +2124,7 @@ __metadata:
   resolution: "@skyra/shared-http-pieces@workspace:packages/shared-http-pieces"
   dependencies:
     "@discordjs/builders": ^0.12.0
-    "@skyra/http-framework": "workspace:^"
+    "@skyra/http-framework": "*"
     discord-api-types: "*"
     tslib: ^2.3.1
   languageName: unknown
