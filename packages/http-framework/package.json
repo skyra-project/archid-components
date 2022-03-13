@@ -24,7 +24,7 @@
 		"@discordjs/rest": "^0.3.0",
 		"@sapphire/pieces": "^3.2.0",
 		"discord-api-types": "*",
-		"fastify": "^3.27.2",
+		"fastify": "^3.27.4",
 		"tweetnacl": "^1.0.3"
 	},
 	"devDependencies": {
