@@ -1,0 +1,35 @@
+{
+	"packages": ["packages/*"],
+	"version": "independent",
+	"npmClient": "yarn",
+	"useWorkspaces": true,
+	"command": {
+		"publish": {
+			"conventionalCommits": true,
+			"push": true,
+			"ignoreChanges": [
+				"**/*.md",
+				"**/tests/**",
+				"**/dist/**",
+				"**/build/**",
+				"**/.turbo/**",
+				"**/.gitignore",
+				"**/tsup.config.ts",
+				"**/jest.config.ts",
+				"**/*.d.ts",
+				"**/packages/http-framework/**/tsconfig.json",
+				"**/packages/shared-gateway-pieces/**/tsconfig.json",
+				"**/packages/shared-http-pieces/**/tsconfig.json",
+				"**/packages/**/tsconfig.eslint.json"
+			],
+			"registry": "https://registry.npmjs.org/"
+		},
+		"version": {
+			"allowBranch": "main",
+			"conventionalCommits": true,
+			"push": true,
+			"createRelease": "github",
+			"message": "chore(release): publish"
+		}
+	}
+}
