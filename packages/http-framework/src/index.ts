@@ -1,6 +1,6 @@
 export {
 	AliasPiece,
-	AliasPieceOptions,
+	type AliasPieceOptions,
 	AliasStore,
 	container,
 	LoaderError,
