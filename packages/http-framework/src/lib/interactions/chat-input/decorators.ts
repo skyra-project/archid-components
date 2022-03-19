@@ -4,7 +4,8 @@ import {
 	ApplicationCommandType,
 	type APIApplicationCommandOption,
 	type APIApplicationCommandSubcommandGroupOption,
-	type APIApplicationCommandSubcommandOption
+	type APIApplicationCommandSubcommandOption,
+	type RESTPostAPIChatInputApplicationCommandsJSONBody
 } from 'discord-api-types/v9';
 import type { Command } from '../../structures/Command';
 import { normalizeChatInputCommand } from '../../utils/normalizeInput';
@@ -13,6 +14,7 @@ import { chatInputCommandRegistry } from './shared';
 
 export function RegisterCommand(
 	command:
+		| RESTPostAPIChatInputApplicationCommandsJSONBody
 		| SlashCommandBuilder
 		| SlashCommandSubcommandsOnlyBuilder
 		| SlashCommandOptionsOnlyBuilder
