@@ -1,18 +1,34 @@
+import type { SlashCommandBuilder, SlashCommandOptionsOnlyBuilder, SlashCommandSubcommandsOnlyBuilder } from '@discordjs/builders';
 import {
-	type APIApplicationCommandOption,
-	type APIApplicationCommandSubcommandOption,
 	ApplicationCommandOptionType,
 	ApplicationCommandType,
+	type APIApplicationCommandOption,
 	type APIApplicationCommandSubcommandGroupOption,
-	type RESTPostAPIChatInputApplicationCommandsJSONBody
+	type APIApplicationCommandSubcommandOption
 } from 'discord-api-types/v9';
 import type { Command } from '../../structures/Command';
+import { normalizeChatInputCommand } from '../../utils/normalizeInput';
 import { link } from '../shared/link';
 import { chatInputCommandRegistry } from './shared';
 
-export function RegisterCommand(data: RESTPostAPIChatInputApplicationCommandsJSONBody) {
+export function RegisterCommand(
+	command:
+		| SlashCommandBuilder
+		| SlashCommandSubcommandsOnlyBuilder
+		| SlashCommandOptionsOnlyBuilder
+		| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>
+		| ((
+				builder: SlashCommandBuilder
+		  ) =>
+				| SlashCommandBuilder
+				| SlashCommandSubcommandsOnlyBuilder
+				| SlashCommandOptionsOnlyBuilder
+				| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>)
+) {
+	const builtData = normalizeChatInputCommand(command);
+
 	return function decorate(target: typeof Command) {
-		chatInputCommandRegistry.set(target, { type: ApplicationCommandType.ChatInput, ...chatInputCommandRegistry.get(target), ...data });
+		chatInputCommandRegistry.set(target, { type: ApplicationCommandType.ChatInput, ...chatInputCommandRegistry.get(target), ...builtData });
 	};
 }
 
