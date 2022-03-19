@@ -400,7 +400,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:^16.2.1":
+"@commitlint/cli@npm:^16.2.3":
   version: 16.2.3
   resolution: "@commitlint/cli@npm:16.2.3"
   dependencies:
@@ -2113,7 +2113,7 @@ __metadata:
     "@discordjs/rest": ^0.3.0
     "@sapphire/pieces": ^3.3.0
     "@types/node-fetch": ^2.6.1
-    discord-api-types: "*"
+    discord-api-types: ^0.26.1
     fastify: ^3.27.4
     tweetnacl: ^1.0.3
   languageName: unknown
@@ -2125,7 +2125,7 @@ __metadata:
   dependencies:
     "@discordjs/builders": ^0.12.0
     "@skyra/http-framework": ^0.0.5
-    discord-api-types: "*"
+    discord-api-types: ^0.26.1
     tslib: ^2.3.1
   languageName: unknown
   linkType: soft
@@ -2836,7 +2836,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "archid-components@workspace:."
   dependencies:
-    "@commitlint/cli": ^16.2.1
+    "@commitlint/cli": ^16.2.3
     "@commitlint/config-conventional": ^16.2.1
     "@favware/npm-deprecate": ^1.0.4
     "@sapphire/eslint-config": ^4.3.0
@@ -4156,13 +4156,6 @@ __metadata:
   dependencies:
     path-type: ^4.0.0
   checksum: fa05e18324510d7283f55862f3161c6759a3f2f8dbce491a2fc14c8324c498286c54282c1f0e933cb930da8419b30679389499b919122952a4f8592362ef4615
-  languageName: node
-  linkType: hard
-
-"discord-api-types@npm:*":
-  version: 0.29.0
-  resolution: "discord-api-types@npm:0.29.0"
-  checksum: 1ca74693b4e9c611c3de17f604714425d81d537ee81669d040a8c37fb23fb634a6918dd7d21056ccb90a3f4741bc2750509f6c8dd922bf2b3ed544d18bd0f32a
   languageName: node
   linkType: hard
 
