@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.6](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.5...@skyra/shared-http-pieces@0.0.6) (2022-03-19)
+
+### Bug Fixes
+
+-   debump dapi-types due to cross-dependecy versions ([5e9b3c2](https://github.com/skyra-project/archid-components/commit/5e9b3c25857a99826d837396bf044e96fae998b3))
+
 ## [0.0.5](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.4...@skyra/shared-http-pieces@0.0.5) (2022-03-19)
 
 **Note:** Version bump only for package @skyra/shared-http-pieces

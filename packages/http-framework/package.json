@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/http-framework",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "The framework for ArchId Network's HTTP-only bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
