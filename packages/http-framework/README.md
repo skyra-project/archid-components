@@ -4,7 +4,12 @@ Some stuff to fill in later.
 
 ## TODO
 
-- Support for reloading and unloading commands
+-   Support for reloading and unloading commands
+-   Logging integration similar to @sapphire/plugin-logger.
+    -   Log levels
+    -   Colorette powered Colours
+    -   Timestamps
+    -   Logging similar to framework (registering commands, errors, successes, etc)
 
 ## Usage
 
