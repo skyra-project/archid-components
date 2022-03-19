@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.3...@skyra/http-framework@0.0.4) (2022-03-19)
+
+### Bug Fixes
+
+-   **framework:** allow more types for `RestrictGuildIds` ([3f66b18](https://github.com/skyra-project/archid-components/commit/3f66b188deafcfa184389f4f86907ece6ebc0c5c))
+
 ## [0.0.3](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.2...@skyra/http-framework@0.0.3) (2022-03-19)
 
 ### Bug Fixes
