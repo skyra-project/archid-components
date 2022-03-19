@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.7](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.6...@skyra/http-framework@0.0.7) (2022-03-19)
+
+### Bug Fixes
+
+-   add non-builder support back to `RegisterCommand` ([0802748](https://github.com/skyra-project/archid-components/commit/0802748aafb19641f5dac4a2f135953cf06547cc))
+
+### Features
+
+-   allow builders for registry decorators ([f2479f2](https://github.com/skyra-project/archid-components/commit/f2479f216b5f85e3a64638f2b7fccc7abd7f7067))
+
 ## [0.0.6](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.5...@skyra/http-framework@0.0.6) (2022-03-19)
 
 ### Bug Fixes

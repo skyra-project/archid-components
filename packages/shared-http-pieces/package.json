@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/shared-http-pieces",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "The common pieces for ArchId Network's HTTP-only bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
@@ -21,7 +21,7 @@
 	},
 	"dependencies": {
 		"@discordjs/builders": "^0.12.0",
-		"@skyra/http-framework": "^0.0.6",
+		"@skyra/http-framework": "^0.0.7",
 		"discord-api-types": "^0.26.1",
 		"tslib": "^2.3.1"
 	},
