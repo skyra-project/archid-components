@@ -142,6 +142,12 @@ export interface ListenOptions {
 	serverOptions?: Parameters<typeof Fastify>[0];
 }
 
+export namespace Client {
+	export type Options = import('./Client').ClientOptions;
+	export type LoadOptions = import('./Client').LoadOptions;
+	export type ListenOptions = import('./Client').ListenOptions;
+}
+
 interface VerifyDiscordInteractionResponse {
 	statusCode: HttpCodes;
 	message: string;

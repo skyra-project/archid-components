@@ -141,3 +141,7 @@ export interface RegistryOptions extends Partial<RESTOptions>, Pick<RequestData,
 	 */
 	token?: string;
 }
+
+export namespace Registry {
+	export type Options = RegistryOptions;
+}
