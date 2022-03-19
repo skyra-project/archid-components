@@ -2,16 +2,16 @@ import { Collection } from '@discordjs/collection';
 import { Piece } from '@sapphire/pieces';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import {
-	type APIApplicationCommandAutocompleteResponse,
-	type APIApplicationCommandInteraction,
-	type APICommandAutocompleteInteractionResponseCallbackData,
-	type APIInteractionResponse,
-	type APIInteractionResponseCallbackData,
-	type APIInteractionResponseChannelMessageWithSource,
 	ApplicationCommandOptionType,
 	InteractionResponseType,
+	type APIApplicationCommandAutocompleteResponse,
+	type APIApplicationCommandInteraction,
 	type APIChatInputApplicationCommandInteractionData,
-	type APIContextMenuInteractionData
+	type APICommandAutocompleteInteractionResponseCallbackData,
+	type APIContextMenuInteractionData,
+	type APIInteractionResponse,
+	type APIInteractionResponseCallbackData,
+	type APIInteractionResponseChannelMessageWithSource
 } from 'discord-api-types/v9';
 import { chatInputCommandRegistry, contextMenuCommandRegistry } from '../interactions';
 import { getMethod } from '../interactions/shared/link';
@@ -19,6 +19,7 @@ import { getMethod } from '../interactions/shared/link';
 export abstract class Command extends Piece {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();
 	private contextMenuRouter = new Collection<string, string>();
+
 	public override onLoad() {
 		this.populateChatInputRouter();
 		this.populateContextMenuRouter();
