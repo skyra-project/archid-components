@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.4...@skyra/http-framework@0.0.5) (2022-03-19)
+
+### Bug Fixes
+
+-   allow configuring `authPrefix` for `Registry` ([127ab08](https://github.com/skyra-project/archid-components/commit/127ab08051e9285d9ca96269246822d18f41589e))
+
+### Features
+
+-   add namespace exports for Client and Registry ([7d6addb](https://github.com/skyra-project/archid-components/commit/7d6addbd99c195fd8394228befb4d13715402d01))
+
 ## [0.0.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.3...@skyra/http-framework@0.0.4) (2022-03-19)
 
 ### Bug Fixes
