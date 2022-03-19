@@ -45,7 +45,7 @@ export class Client {
 		this.server = Fastify(options.serverOptions);
 		this.server.post(options.postPath ?? process.env.HTTP_POST_PATH ?? '/', this.handleHttpMessage.bind(this));
 
-		await this.server.listen(options.port);
+		await this.server.listen(options.port, options.address);
 	}
 
 	protected async handleHttpMessage(request: FastifyRequest, reply: FastifyReply): Promise<FastifyReply> {
@@ -123,7 +123,12 @@ export interface ListenOptions {
 	/**
 	 * The port at which the server will listen for requests.
 	 */
-	port: number;
+	port: number | string;
+
+	/**
+	 * The address at which the server will be started.
+	 */
+	address?: string;
 
 	/**
 	 * The path the HTTP server will listen to.
