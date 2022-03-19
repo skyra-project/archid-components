@@ -1,17 +1,17 @@
 export {
 	AliasPiece,
-	type AliasPieceOptions,
 	AliasStore,
 	container,
 	LoaderError,
 	MissingExportsError,
 	Piece,
-	PieceContext,
-	PieceOptions,
 	Store,
-	StoreOptions,
 	StoreRegistry,
-	StoreRegistryEntries
+	type AliasPieceOptions,
+	type PieceContext,
+	type PieceOptions,
+	type StoreOptions,
+	type StoreRegistryEntries
 } from '@sapphire/pieces';
 export * from './lib/api/HttpCodes';
 export * from './lib/Client';
