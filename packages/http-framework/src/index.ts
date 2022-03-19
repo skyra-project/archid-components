@@ -23,3 +23,4 @@ export * from './lib/structures/Command';
 export * from './lib/structures/CommandStore';
 export * from './lib/structures/MessageComponentHandler';
 export * from './lib/structures/MessageComponentHandlerStore';
+export * from './lib/utils/response-helpers';
