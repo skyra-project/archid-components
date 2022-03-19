@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.1...@skyra/http-framework@0.0.2) (2022-03-19)
+
+### Bug Fixes
+
+-   **exports:** import AliasPieceOptions as a type ([#17](https://github.com/skyra-project/archid-components/issues/17)) ([586fb51](https://github.com/skyra-project/archid-components/commit/586fb51e604a547dc2dd0c0524c4427172fa408d))
+
 ## 0.0.1 (2022-03-13)
 
 ### Features
