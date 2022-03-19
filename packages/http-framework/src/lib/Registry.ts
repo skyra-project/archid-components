@@ -1,25 +1,29 @@
 import { Collection } from '@discordjs/collection';
-import { REST, type RESTOptions } from '@discordjs/rest';
+import { REST, type RequestData, type RESTOptions } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import {
+	Routes,
 	type RESTPostAPIApplicationCommandsJSONBody,
 	type RESTPutAPIApplicationCommandsJSONBody,
 	type RESTPutAPIApplicationCommandsResult,
 	type RESTPutAPIApplicationGuildCommandsJSONBody,
-	type RESTPutAPIApplicationGuildCommandsResult,
-	Routes
+	type RESTPutAPIApplicationGuildCommandsResult
 } from 'discord-api-types/v9';
 import type { LoadOptions } from './Client';
 import { chatInputCommandRegistry, contextMenuCommandRegistry, restrictedGuildIdRegistry } from './interactions';
 import { filterUndefined, flattenIterableOfArrays, guardUndefined } from './utils/generators';
 
 export class Registry {
+	#authPrefix: RequestData['authPrefix'] = 'Bot';
+
 	public readonly clientId: string;
 	public readonly rest: REST;
 
-	public constructor({ clientId, token, ...options }: RegistryOptions) {
+	public constructor({ clientId, token, authPrefix, ...options }: RegistryOptions) {
 		token ??= process.env.DISCORD_TOKEN;
 		if (!token) throw new Error('A token must be set');
+
+		this.#authPrefix = authPrefix ?? this.#authPrefix;
 
 		this.clientId = clientId ?? process.env.DISCORD_CLIENT_ID ?? Buffer.from(token.split('.')[0], 'base64').toString();
 		this.rest = new REST(options).setToken(token);
@@ -75,7 +79,10 @@ export class Registry {
 	 */
 	public registerGlobalCommands() {
 		const body: RESTPutAPIApplicationCommandsJSONBody = this.globalCommands;
-		return this.rest.put(Routes.applicationCommands(this.clientId), { body }) as Promise<RESTPutAPIApplicationCommandsResult>;
+		return this.rest.put(Routes.applicationCommands(this.clientId), {
+			body,
+			authPrefix: this.#authPrefix
+		}) as Promise<RESTPutAPIApplicationCommandsResult>;
 	}
 
 	/**
@@ -85,7 +92,10 @@ export class Registry {
 	 */
 	public registerGlobalCommandsInGuild(guildId: string) {
 		const body: RESTPutAPIApplicationGuildCommandsJSONBody = this.globalCommands;
-		return this.rest.put(Routes.applicationGuildCommands(this.clientId, guildId), { body }) as Promise<RESTPutAPIApplicationGuildCommandsResult>;
+		return this.rest.put(Routes.applicationGuildCommands(this.clientId, guildId), {
+			body,
+			authPrefix: this.#authPrefix
+		}) as Promise<RESTPutAPIApplicationGuildCommandsResult>;
 	}
 
 	/**
@@ -95,18 +105,22 @@ export class Registry {
 	 */
 	public registerAllCommandsInGuild(guildId: string) {
 		const body: RESTPutAPIApplicationGuildCommandsJSONBody = this.allCommands;
-		return this.rest.put(Routes.applicationGuildCommands(this.clientId, guildId), { body }) as Promise<RESTPutAPIApplicationGuildCommandsResult>;
+		return this.rest.put(Routes.applicationGuildCommands(this.clientId, guildId), {
+			body,
+			authPrefix: this.#authPrefix
+		}) as Promise<RESTPutAPIApplicationGuildCommandsResult>;
 	}
 
 	/**
 	 * Registers all the guild-restricted commands in their respective guilds.
 	 * @returns The settled promises from all the guild command registrations.
 	 */
-	public registerGuildRestrictedCommands() {
+	public registerGuildRestrictedCommands(): Promise<PromiseSettledResult<RESTPutAPIApplicationGuildCommandsResult>[]> {
 		const promises = this.guildCommands.map((commands, guildId) => {
 			const body: RESTPutAPIApplicationGuildCommandsJSONBody = commands;
 			return this.rest.put(Routes.applicationGuildCommands(this.clientId, guildId), {
-				body
+				body,
+				authPrefix: this.#authPrefix
 			}) as Promise<RESTPutAPIApplicationGuildCommandsResult>;
 		});
 
@@ -114,7 +128,7 @@ export class Registry {
 	}
 }
 
-export interface RegistryOptions extends Partial<RESTOptions> {
+export interface RegistryOptions extends Partial<RESTOptions>, Pick<RequestData, 'authPrefix'> {
 	/**
 	 * The ID of the client.
 	 * @default process.env.DISCORD_CLIENT_ID ?? Buffer.from(token.split('.')[0], 'base64').toString()
