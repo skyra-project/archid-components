@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.2...@skyra/http-framework@0.0.3) (2022-03-19)
+
+### Bug Fixes
+
+-   mark interface re-exports as type only exports ([0d77f15](https://github.com/skyra-project/archid-components/commit/0d77f15396e0eca07d0f7ce71045437f26c3c91c))
+
+### Features
+
+-   **client:** allow configuring fastify address and allow string type for port ([354253f](https://github.com/skyra-project/archid-components/commit/354253f51a79e6cacffe1065e1d04e347d86bae0))
+
 ## [0.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.1...@skyra/http-framework@0.0.2) (2022-03-19)
 
 ### Bug Fixes
