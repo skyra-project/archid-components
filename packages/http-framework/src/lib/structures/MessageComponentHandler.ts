@@ -1,4 +1,5 @@
 import { Piece } from '@sapphire/pieces';
+import type { Awaitable } from '@sapphire/utilities';
 import {
 	InteractionResponseType,
 	type APIInteractionResponse,
@@ -12,7 +13,7 @@ export abstract class MessageComponentHandler extends Piece {
 	public abstract run(
 		interaction: APIMessageComponentInteraction,
 		customIdValue: unknown
-	): MessageComponentHandler.AwaitableResponse | MessageComponentHandler.AwaitableResponseWithCallback;
+	): MessageComponentHandler.Response | MessageComponentHandler.ResponseWithCallback;
 
 	/**
 	 * Responds to the interaction with a message.
@@ -32,14 +33,14 @@ export abstract class MessageComponentHandler extends Piece {
 }
 
 export namespace MessageComponentHandler {
-	export type Response = APIInteractionResponse;
-	export type ResponseAsync = PromiseLike<Response>;
-	export type AwaitableResponse = Response | ResponseAsync;
-	export interface AwaitableResponseWithCallback {
-		response: AwaitableResponse;
+	export type Response = Awaitable<APIInteractionResponse>;
+
+	export interface ResponseWithCallback {
+		response: Response;
 		callback: () => PromiseLike<void> | void;
 	}
 
 	export type Interaction = APIMessageComponentInteraction;
+
 	export type InteractionData = Interaction['data'];
 }

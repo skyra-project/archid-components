@@ -5,8 +5,8 @@ import { HttpCodes } from '../..';
 import { MessageComponentHandler } from './MessageComponentHandler';
 
 function hasCallback(
-	response: MessageComponentHandler.AwaitableResponse | MessageComponentHandler.AwaitableResponseWithCallback
-): response is MessageComponentHandler.AwaitableResponseWithCallback {
+	response: MessageComponentHandler.Response | MessageComponentHandler.ResponseWithCallback
+): response is MessageComponentHandler.ResponseWithCallback {
 	return Reflect.has(response, 'callback');
 }
 
