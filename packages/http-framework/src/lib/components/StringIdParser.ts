@@ -5,7 +5,17 @@ export class StringIdParser implements IIdParser {
 		if (customId.length === 0) return null;
 
 		const index = customId.indexOf('.');
-		if (index !== -1) return { name: customId, content: null };
-		return { name: customId.slice(0, index), content: customId.slice(index + 1) };
+
+		if (index === -1) {
+			return { name: customId, content: null };
+		}
+
+		return {
+			name: customId.slice(0, index),
+			content: customId
+				.slice(index + 1)
+				.split('.')
+				.map((contentEntry) => contentEntry || null)
+		};
 	}
 }
