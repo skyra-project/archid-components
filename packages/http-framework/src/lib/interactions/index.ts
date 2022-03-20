@@ -1,6 +1,5 @@
 export * from './chat-input/decorators';
 export * from './chat-input/shared';
-export * from './chat-input/util';
 export * from './context-menu/decorators';
 export * from './context-menu/shared';
 export * from './context-menu/util';

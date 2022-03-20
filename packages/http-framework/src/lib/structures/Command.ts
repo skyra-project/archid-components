@@ -29,7 +29,14 @@ export abstract class Command extends Piece {
 		this.populateContextMenuRouter();
 	}
 
-	protected abstract chatInputRun(interaction: APIApplicationCommandInteraction, args: unknown): Awaitable<APIInteractionResponse>;
+	/**
+	 * Responds to the chat input command for this command
+	 * @param _interaction The interaction to be routed.
+	 * @param _args The parsed arguments for this autocomplete interaction.
+	 */
+	protected chatInputRun(_interaction: APIApplicationCommandInteraction, _args: unknown): Awaitable<APIInteractionResponse> {
+		return { type: InteractionResponseType.ChannelMessageWithSource, data: {} };
+	}
 
 	/**
 	 * Responds to an auto completable option for this command
