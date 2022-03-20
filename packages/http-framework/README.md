@@ -21,14 +21,18 @@ The Command is a piece that runs for all chat input and context-menu interaction
 
 ```typescript
 import { Command, RegisterCommand } from '@skyra/http-framework';
+import { SlashCommandBuilder } from '@discordjs/builders';
 
-@RegisterCommand({ name: 'ping', description: 'Runs a network connection test with me.' })
+@RegisterCommand((builder) =>
+	builder //
+		.setName('ping')
+		.setDescription('Runs a network connection test with me')
+)
 export class UserCommand extends Command {
 	public chatInputRun(interaction: APIApplicationCommandInteraction): APIInteractionResponse {
-		return {
-			type: InteractionResponseType.ChannelMessageWithSource,
-			data: { content: 'Pong!' }
-		};
+		return this.message({
+			content: `Pong!`
+		});
 	}
 }
 ```
@@ -39,26 +43,42 @@ You can also register subcommands via decorators:
 import { type ArgumentsOf, Command, RegisterCommand, RegisterSubCommandGroup, makeSubCommandBody } from '@skyra/http-framework';
 import { type APIApplicationCommandInteraction, type APIInteractionResponse, ApplicationCommandOptionType } from 'discord-api-types/v9';
 
-@RegisterCommand({ name: 'math', description: 'Does some maths.' })
+@RegisterCommand(
+	new SlashCommandBuilder() //
+		.setName('math')
+		.setDescription('Does some maths.')
+)
 export class UserCommand extends Command {
-	@RegisterSubCommandGroup(addBody);
-	public add(interaction: APIApplicationCommandInteraction, { first, second }: ArgumentsOf<typeof addBody>): APIInteractionResponse {
-		return {
-			type: InteractionResponseType.ChannelMessageWithSource,
-			data: { content: `The result is: ${first + second}` }
-		};
+	@RegisterSubCommandGroup(buildSubcommandBuilders('add', 'Adds the first number to the second number'));
+	public add(interaction: APIApplicationCommandInteraction, { first, second }: Args): APIInteractionResponse {
+		return this.message({
+			content: `The result is: ${first + second}`
+		});
 	}
 }
 
-const addBody = makeSubCommandBody({
-	type: ApplicationCommandOptionType.Subcommand,
-	name: 'add',
-	description: 'Adds two numbers.',
-	options: [
-		{ type: ApplicationCommandOptionType.Number, name: 'first', description: 'The first number.' },
-		{ type: ApplicationCommandOptionType.Number, name: 'second', description: 'The second number.' }
-	]
-});
+function buildSubcommandBuilders(name: string, description: string) {
+	return new SlashCommandSubcommandBuilder() //
+		.setName(name)
+		.setDescription(description)
+		.addNumberOption((builder) =>
+			builder //
+				.setName('first')
+				.setDescription('The first number.')
+				.setRequired(true)
+		)
+		.addNumberOption((builder) =>
+			builder //
+				.setName('second')
+				.setDescription('The second number.')
+				.setRequired(true)
+		);
+}
+
+interface Args {
+	first: number;
+	second: number;
+}
 ```
 
 ### Client

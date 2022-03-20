@@ -7,10 +7,15 @@ import {
 	ContextMenuCommandBuilder,
 	SlashCommandBuilder,
 	SlashCommandOptionsOnlyBuilder,
+	SlashCommandSubcommandBuilder,
+	SlashCommandSubcommandGroupBuilder,
 	SlashCommandSubcommandsOnlyBuilder
 } from '@discordjs/builders';
 import { isFunction } from '@sapphire/utilities';
 import {
+	APIApplicationCommandSubcommandGroupOption,
+	APIApplicationCommandSubcommandOption,
+	ApplicationCommandOptionType,
 	ApplicationCommandType,
 	type RESTPostAPIChatInputApplicationCommandsJSONBody,
 	type RESTPostAPIContextMenuApplicationCommandsJSONBody
@@ -23,8 +28,14 @@ function isBuilder(
 	| SlashCommandBuilder
 	| SlashCommandSubcommandsOnlyBuilder
 	| SlashCommandOptionsOnlyBuilder
+	| SlashCommandSubcommandBuilder
+	| SlashCommandSubcommandGroupBuilder
 	| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'> {
-	return command instanceof SlashCommandBuilder;
+	return (
+		command instanceof SlashCommandBuilder ||
+		command instanceof SlashCommandSubcommandBuilder ||
+		command instanceof SlashCommandSubcommandGroupBuilder
+	);
 }
 
 export function normalizeChatInputCommand(
@@ -55,13 +66,73 @@ export function normalizeChatInputCommand(
 		return json;
 	}
 
-	const finalObject = {
+	const finalObject: RESTPostAPIChatInputApplicationCommandsJSONBody = {
 		description: command.description,
 		name: command.name,
 		default_permission: command.default_permission,
 		type: ApplicationCommandType.ChatInput,
 		options: command.options
-	} as RESTPostAPIChatInputApplicationCommandsJSONBody;
+	};
+
+	return finalObject;
+}
+
+export function normalizeChatInputSubCommandGroup(
+	subCommandGroup:
+		| APIApplicationCommandSubcommandGroupOption
+		| SlashCommandSubcommandGroupBuilder
+		| ((builder: SlashCommandSubcommandGroupBuilder) => SlashCommandSubcommandGroupBuilder)
+): APIApplicationCommandSubcommandGroupOption {
+	if (isFunction(subCommandGroup)) {
+		const builder = new SlashCommandSubcommandGroupBuilder();
+		subCommandGroup(builder);
+		const json = builder.toJSON() as APIApplicationCommandSubcommandGroupOption;
+
+		return json;
+	}
+
+	if (isBuilder(subCommandGroup)) {
+		const json = subCommandGroup.toJSON() as APIApplicationCommandSubcommandGroupOption;
+		return json;
+	}
+
+	const finalObject: APIApplicationCommandSubcommandGroupOption = {
+		name: subCommandGroup.name,
+		description: subCommandGroup.description,
+		type: ApplicationCommandOptionType.SubcommandGroup,
+		options: subCommandGroup.options,
+		required: subCommandGroup.required
+	};
+
+	return finalObject;
+}
+
+export function normalizeChatInputSubCommand(
+	subCommand:
+		| APIApplicationCommandSubcommandOption
+		| SlashCommandSubcommandBuilder
+		| ((builder: SlashCommandSubcommandBuilder) => SlashCommandSubcommandBuilder)
+): APIApplicationCommandSubcommandOption {
+	if (isFunction(subCommand)) {
+		const builder = new SlashCommandSubcommandBuilder();
+		subCommand(builder);
+		const json = builder.toJSON() as APIApplicationCommandSubcommandOption;
+
+		return json;
+	}
+
+	if (isBuilder(subCommand)) {
+		const json = subCommand.toJSON() as APIApplicationCommandSubcommandOption;
+		return json;
+	}
+
+	const finalObject: APIApplicationCommandSubcommandOption = {
+		description: subCommand.description,
+		name: subCommand.name,
+		options: subCommand.options,
+		type: ApplicationCommandOptionType.Subcommand,
+		required: subCommand.required
+	};
 
 	return finalObject;
 }
