@@ -55,6 +55,13 @@ export class UserCommand extends Command {
 			content: `The result is: ${first + second}`
 		});
 	}
+
+	@RegisterSubCommandGroup(buildSubcommandBuilders('subtract', 'Subtracts the second number from the first number'));
+	public subtract(interaction: APIApplicationCommandInteraction, { first, second }: Args): APIInteractionResponse {
+		return this.message({
+			content: `The result is: ${first - second}`
+		});
+	}
 }
 
 function buildSubcommandBuilders(name: string, description: string) {
