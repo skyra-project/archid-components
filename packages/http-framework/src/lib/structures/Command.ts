@@ -2,7 +2,9 @@ import { Collection } from '@discordjs/collection';
 import { Piece } from '@sapphire/pieces';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import {
+	APISelectMenuOption,
 	ApplicationCommandOptionType,
+	ComponentType,
 	InteractionResponseType,
 	type APIApplicationCommandAutocompleteResponse,
 	type APIApplicationCommandInteraction,
@@ -39,6 +41,35 @@ export abstract class Command extends Piece {
 	 */
 	protected message(data: APIInteractionResponseCallbackData): APIInteractionResponseChannelMessageWithSource {
 		return { type: InteractionResponseType.ChannelMessageWithSource, data };
+	}
+
+	/**
+	 * Responds to the interaction with a message holding a Select Menu component.
+	 * @param customId The Custom ID to attach to the Select Menu
+	 * @param selectMenuOptions The options to show in the Select Menu
+	 * @param data The data to be sent.
+	 */
+	protected selectMenuMessage(
+		customId: string,
+		selectMenuOptions: APISelectMenuOption[],
+		data: APIInteractionResponseCallbackData
+	): APIInteractionResponseChannelMessageWithSource {
+		return this.message({
+			components: [
+				{
+					type: ComponentType.ActionRow,
+					components: [
+						{
+							type: ComponentType.SelectMenu,
+							custom_id: customId,
+							options: selectMenuOptions
+						}
+					]
+				},
+				...(data.components ?? [])
+			],
+			...data
+		});
 	}
 
 	protected routeChatInputInteraction(data: APIChatInputApplicationCommandInteractionData): string | null {
