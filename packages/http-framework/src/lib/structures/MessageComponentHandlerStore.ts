@@ -4,6 +4,12 @@ import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../..';
 import { MessageComponentHandler } from './MessageComponentHandler';
 
+function hasCallback(
+	response: MessageComponentHandler.AwaitableResponse | MessageComponentHandler.AwaitableResponseWithCallback
+): response is MessageComponentHandler.AwaitableResponseWithCallback {
+	return Reflect.has(response, 'callback');
+}
+
 export class MessageComponentHandlerStore extends Store<MessageComponentHandler> {
 	public constructor() {
 		super(MessageComponentHandler as any, { name: 'message-component-handlers' });
@@ -18,6 +24,15 @@ export class MessageComponentHandlerStore extends Store<MessageComponentHandler>
 
 		try {
 			const response = await handler.run(interaction, parsed.content);
+
+			if (hasCallback(response)) {
+				const fastifyReply = reply.status(HttpCodes.OK).send(response.response);
+
+				await response.callback();
+
+				return fastifyReply;
+			}
+
 			return reply.status(HttpCodes.OK).send(response);
 		} catch (error) {
 			if (typeof error === 'string') {
