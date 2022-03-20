@@ -4,6 +4,7 @@ import {
 	type APIInteractionResponse,
 	type APIInteractionResponseCallbackData,
 	type APIInteractionResponseChannelMessageWithSource,
+	type APIInteractionResponseUpdateMessage,
 	type APIMessageComponentInteraction
 } from 'discord-api-types/v9';
 
@@ -16,6 +17,14 @@ export abstract class MessageComponentHandler extends Piece {
 	 */
 	protected message(data: APIInteractionResponseCallbackData): APIInteractionResponseChannelMessageWithSource {
 		return { type: InteractionResponseType.ChannelMessageWithSource, data };
+	}
+
+	/**
+	 * Responds to the interaction with a message.
+	 * @param data The data to be sent.
+	 */
+	protected updateMessage(data: APIInteractionResponseCallbackData): APIInteractionResponseUpdateMessage {
+		return { type: InteractionResponseType.UpdateMessage, data };
 	}
 }
 
