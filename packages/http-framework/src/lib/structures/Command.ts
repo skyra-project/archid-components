@@ -1,7 +1,9 @@
 import { Collection } from '@discordjs/collection';
 import { Piece } from '@sapphire/pieces';
+import type { Awaitable } from '@sapphire/utilities';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import {
+	APIApplicationCommandInteractionDataOption,
 	APISelectMenuOption,
 	ApplicationCommandOptionType,
 	ComponentType,
@@ -25,6 +27,23 @@ export abstract class Command extends Piece {
 	public override onLoad() {
 		this.populateChatInputRouter();
 		this.populateContextMenuRouter();
+	}
+
+	protected abstract chatInputRun(interaction: APIApplicationCommandInteraction, args: unknown): Awaitable<APIInteractionResponse>;
+
+	/**
+	 * Responds to an auto completable option for this command
+	 * @param _interaction The interaction to be routed.
+	 * @param _focusedArgument The focused argument, this can be used in case multiple arguments in this command use autocomplete.
+	 * @param _args The parsed arguments for this autocomplete interaction.
+	 * @returns The response to the autocomplete interaction.
+	 */
+	protected autocompleteRun(
+		_interaction: APIApplicationCommandAutocompleteInteraction,
+		_focusedArgument: APIApplicationCommandInteractionDataOption | undefined,
+		_args: unknown
+	): Awaitable<APIApplicationCommandAutocompleteResponse> {
+		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data: {} };
 	}
 
 	/**
@@ -147,14 +166,9 @@ export abstract class Command extends Piece {
 }
 
 export namespace Command {
-	export type Response = APIInteractionResponse;
-	export type ResponseAsync = PromiseLike<Response>;
-	export type AwaitableResponse = Response | ResponseAsync;
+	export type Response = Awaitable<APIInteractionResponse>;
 
-	export type Interaction =
-		| APIApplicationCommandInteraction
-		| (APIApplicationCommandAutocompleteInteraction & {
-				data: NonNullable<APIApplicationCommandAutocompleteInteraction['data']> & { name: string };
-		  });
+	export type Interaction = import('discord-api-types/v9').APIApplicationCommandInteraction;
+
 	export type InteractionData = Interaction['data'];
 }

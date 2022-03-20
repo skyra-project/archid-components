@@ -36,8 +36,26 @@ export class CommandStore extends Store<Command> {
 		reply: FastifyReply,
 		interaction: APIApplicationCommandAutocompleteInteraction
 	): Promise<FastifyReply> {
-		if (interaction.data?.name) return this.runApplicationCommand(reply, interaction as Command.Interaction);
-		return reply.status(HttpCodes.UnprocessableEntity).send({ message: 'Could not process the request' });
+		if (!interaction.data?.name) return reply.status(HttpCodes.NotImplemented).send({ message: 'Missing command name' });
+
+		const command = this.get(interaction.data.name);
+		if (!command) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown command name' });
+
+		try {
+			const focusedArgument = interaction.data.options?.find((option) => Reflect.get(option, 'focused'));
+
+			// eslint-disable-next-line @typescript-eslint/dot-notation
+			const response = await command['autocompleteRun'](interaction, focusedArgument, this.createArguments(interaction.data));
+			return reply.status(HttpCodes.OK).send(response);
+		} catch (error) {
+			if (typeof error === 'string') {
+				return reply.status(HttpCodes.OK).send({ content: error });
+			}
+
+			// Log error
+
+			return reply.status(HttpCodes.InternalServerError).send({ message: 'Received an internal error' });
+		}
 	}
 
 	private runCommandMethod(

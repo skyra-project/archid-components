@@ -2080,6 +2080,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/utilities@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "@sapphire/utilities@npm:3.6.0"
+  checksum: bb46f3590f8e609ca1aa492d2347a99fe79e75768a6592f47b4915dcdc93e0d933026d3ad4e872d75d84ba45a3afe27c940149f11931b299e8dc228b5f7e87ab
+  languageName: node
+  linkType: hard
+
 "@sindresorhus/is@npm:^4.3.0":
   version: 4.6.0
   resolution: "@sindresorhus/is@npm:4.6.0"
@@ -2113,6 +2120,7 @@ __metadata:
     "@discordjs/collection": ^0.5.0
     "@discordjs/rest": ^0.3.0
     "@sapphire/pieces": ^3.3.0
+    "@sapphire/utilities": ^3.6.0
     "@types/node-fetch": ^2.6.1
     discord-api-types: ^0.26.1
     fastify: ^3.27.4
