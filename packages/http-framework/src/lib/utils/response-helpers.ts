@@ -15,8 +15,8 @@ export function channelMessageWithSourceResponse({
 	content,
 	ephemeral = false,
 	users = [],
-	components = [],
-	embeds = [],
+	components = undefined,
+	embeds = undefined,
 	extraData
 }: ResponseParameters): APIInteractionResponseChannelMessageWithSource {
 	return {
@@ -36,8 +36,8 @@ export function updateMessageResponse({
 	content,
 	ephemeral = false,
 	users = [],
-	components = [],
-	embeds = [],
+	components = undefined,
+	embeds = undefined,
 	extraData
 }: ResponseParameters): APIInteractionResponseUpdateMessage {
 	return {
