@@ -14,16 +14,16 @@ import { chatInputCommandRegistry, contextMenuCommandRegistry, restrictedGuildId
 import { filterUndefined, flattenIterableOfArrays, guardUndefined } from './utils/generators';
 
 export class Registry {
-	#authPrefix: RequestData['authPrefix'] = 'Bot';
-
 	public readonly clientId: string;
 	public readonly rest: REST;
+
+	private authPrefix: RequestData['authPrefix'] = 'Bot';
 
 	public constructor({ clientId, token, authPrefix, ...options }: RegistryOptions) {
 		token ??= process.env.DISCORD_TOKEN;
 		if (!token) throw new Error('A token must be set');
 
-		this.#authPrefix = authPrefix ?? this.#authPrefix;
+		this.authPrefix = authPrefix ?? 'Bot';
 
 		this.clientId = clientId ?? process.env.DISCORD_CLIENT_ID ?? Buffer.from(token.split('.')[0], 'base64').toString();
 		this.rest = new REST(options).setToken(token);
@@ -81,7 +81,7 @@ export class Registry {
 		const body: RESTPutAPIApplicationCommandsJSONBody = this.globalCommands;
 		return this.rest.put(Routes.applicationCommands(this.clientId), {
 			body,
-			authPrefix: this.#authPrefix
+			authPrefix: this.authPrefix
 		}) as Promise<RESTPutAPIApplicationCommandsResult>;
 	}
 
@@ -94,7 +94,7 @@ export class Registry {
 		const body: RESTPutAPIApplicationGuildCommandsJSONBody = this.globalCommands;
 		return this.rest.put(Routes.applicationGuildCommands(this.clientId, guildId), {
 			body,
-			authPrefix: this.#authPrefix
+			authPrefix: this.authPrefix
 		}) as Promise<RESTPutAPIApplicationGuildCommandsResult>;
 	}
 
@@ -107,7 +107,7 @@ export class Registry {
 		const body: RESTPutAPIApplicationGuildCommandsJSONBody = this.allCommands;
 		return this.rest.put(Routes.applicationGuildCommands(this.clientId, guildId), {
 			body,
-			authPrefix: this.#authPrefix
+			authPrefix: this.authPrefix
 		}) as Promise<RESTPutAPIApplicationGuildCommandsResult>;
 	}
 
@@ -120,7 +120,7 @@ export class Registry {
 			const body: RESTPutAPIApplicationGuildCommandsJSONBody = commands;
 			return this.rest.put(Routes.applicationGuildCommands(this.clientId, guildId), {
 				body,
-				authPrefix: this.#authPrefix
+				authPrefix: this.authPrefix
 			}) as Promise<RESTPutAPIApplicationGuildCommandsResult>;
 		});
 
