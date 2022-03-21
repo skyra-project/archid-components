@@ -16,7 +16,7 @@ export class UserCommand extends Command {
 		bold(hyperlink('Teryl (Tools)', ''))
 	].join(' • ');
 
-	public chatInputRun(): Command.Response {
+	public override chatInputRun(): Command.Response {
 		const content = `You can invite me anytime by opening my user card. You can also invite my teammates clicking the links below!\n\n${this.urls}`;
 		return this.message({ content, flags: MessageFlags.Ephemeral });
 	}

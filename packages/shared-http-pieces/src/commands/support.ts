@@ -6,7 +6,7 @@ import { MessageFlags } from 'discord-api-types/v9';
 export class UserCommand extends Command {
 	private readonly url = bold(hyperlink('Skyra Lounge', 'https://discord.gg/6gakFR2'));
 
-	public chatInputRun(): Command.Response {
+	public override chatInputRun(): Command.Response {
 		const content = `Ran into a problem? Need some help? Want to meet my creators? You can join ${this.url}!`;
 		return this.message({ content, flags: MessageFlags.Ephemeral });
 	}

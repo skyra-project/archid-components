@@ -10,7 +10,7 @@ export class UserCommand extends Command {
 		bold(hyperlink('Paypal', 'https://donate.skyra.pw/paypal'))
 	].join(' •  ');
 
-	public chatInputRun(): Command.Response {
+	public override chatInputRun(): Command.Response {
 		const content = `Here you have the links to help with my development!\n\n${this.urls}`;
 		return this.message({ content, flags: MessageFlags.Ephemeral });
 	}

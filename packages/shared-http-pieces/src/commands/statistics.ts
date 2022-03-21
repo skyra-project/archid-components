@@ -5,7 +5,7 @@ import { cpus, uptime, type CpuInfo } from 'node:os';
 
 @RegisterCommand({ name: 'statistics', description: 'Check my statistics.' })
 export class UserCommand extends Command {
-	public chatInputRun(): Command.Response {
+	public override chatInputRun(): Command.Response {
 		const embed = new Embed()
 			.addField({ name: 'Uptime', value: this.uptimeStatistics })
 			.addField({ name: 'Server Usage', value: this.usageStatistics });
