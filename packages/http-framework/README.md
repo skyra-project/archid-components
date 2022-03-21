@@ -21,7 +21,7 @@ The Command is a piece that runs for all chat input and context-menu interaction
 
 ```typescript
 import { Command, RegisterCommand } from '@skyra/http-framework';
-import { SlashCommandBuilder } from '@discordjs/builders';
+import type { APIApplicationCommandInteraction, APIInteractionResponse } from 'discord-api-types/v9';
 
 @RegisterCommand((builder) =>
 	builder //
@@ -40,23 +40,23 @@ export class UserCommand extends Command {
 You can also register subcommands via decorators:
 
 ```typescript
-import { type ArgumentsOf, Command, RegisterCommand, RegisterSubCommandGroup, makeSubCommandBody } from '@skyra/http-framework';
-import { type APIApplicationCommandInteraction, type APIInteractionResponse, ApplicationCommandOptionType } from 'discord-api-types/v9';
+import { Command, RegisterCommand, RegisterSubCommand } from '@skyra/http-framework';
+import type { APIApplicationCommandInteraction, APIInteractionResponse } from 'discord-api-types/v9';
 
-@RegisterCommand(
-	new SlashCommandBuilder() //
+@RegisterCommand((builder) =>
+	builder //
 		.setName('math')
 		.setDescription('Does some maths.')
 )
 export class UserCommand extends Command {
-	@RegisterSubCommandGroup(buildSubcommandBuilders('add', 'Adds the first number to the second number'));
+	@RegisterSubCommand(buildSubcommandBuilders('add', 'Adds the first number to the second number'));
 	public add(interaction: APIApplicationCommandInteraction, { first, second }: Args): APIInteractionResponse {
 		return this.message({
 			content: `The result is: ${first + second}`
 		});
 	}
 
-	@RegisterSubCommandGroup(buildSubcommandBuilders('subtract', 'Subtracts the second number from the first number'));
+	@RegisterSubCommand(buildSubcommandBuilders('subtract', 'Subtracts the second number from the first number'));
 	public subtract(interaction: APIApplicationCommandInteraction, { first, second }: Args): APIInteractionResponse {
 		return this.message({
 			content: `The result is: ${first - second}`
