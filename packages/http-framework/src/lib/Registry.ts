@@ -17,7 +17,7 @@ export class Registry {
 	public readonly clientId: string;
 	public readonly rest: REST;
 
-	private authPrefix: RequestData['authPrefix'] = 'Bot';
+	private authPrefix: RequestData['authPrefix'];
 
 	public constructor({ clientId, token, authPrefix, ...options }: RegistryOptions) {
 		token ??= process.env.DISCORD_TOKEN;
