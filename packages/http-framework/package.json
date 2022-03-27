@@ -24,7 +24,7 @@
 		"@discordjs/collection": "^0.5.0",
 		"@discordjs/rest": "^0.3.0",
 		"@sapphire/pieces": "^3.3.0",
-		"@sapphire/utilities": "^3.6.0",
+		"@sapphire/utilities": "^3.6.1",
 		"discord-api-types": "^0.26.1",
 		"fastify": "^3.27.4",
 		"tweetnacl": "^1.0.3"
