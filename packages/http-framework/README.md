@@ -21,7 +21,7 @@ The Command is a piece that runs for all chat input and context-menu interaction
 
 ```typescript
 import { Command, RegisterCommand } from '@skyra/http-framework';
-import type { APIApplicationCommandInteraction, APIInteractionResponse } from 'discord-api-types/v9';
+import type { Command.Interaction, Command.Response } from 'discord-api-types/v9';
 
 @RegisterCommand((builder) =>
 	builder //
@@ -29,9 +29,9 @@ import type { APIApplicationCommandInteraction, APIInteractionResponse } from 'd
 		.setDescription('Runs a network connection test with me')
 )
 export class UserCommand extends Command {
-	public chatInputRun(interaction: APIApplicationCommandInteraction): APIInteractionResponse {
+	public override chatInputRun(interaction: Command.Interaction): Command.Response {
 		return this.message({
-			content: `Pong!`
+			content: 'Pong!'
 		});
 	}
 }
@@ -41,7 +41,7 @@ You can also register subcommands via decorators:
 
 ```typescript
 import { Command, RegisterCommand, RegisterSubCommand } from '@skyra/http-framework';
-import type { APIApplicationCommandInteraction, APIInteractionResponse } from 'discord-api-types/v9';
+import type { Command.Interaction, Command.Response } from 'discord-api-types/v9';
 
 @RegisterCommand((builder) =>
 	builder //
@@ -49,15 +49,15 @@ import type { APIApplicationCommandInteraction, APIInteractionResponse } from 'd
 		.setDescription('Does some maths.')
 )
 export class UserCommand extends Command {
-	@RegisterSubCommand(buildSubcommandBuilders('add', 'Adds the first number to the second number'));
-	public add(interaction: APIApplicationCommandInteraction, { first, second }: Args): APIInteractionResponse {
+	@RegisterSubCommand(buildSubcommandBuilders('add', 'Adds the first number to the second number'))
+	public add(interaction: Command.Interaction, { first, second }: Args): Command.Response {
 		return this.message({
 			content: `The result is: ${first + second}`
 		});
 	}
 
-	@RegisterSubCommand(buildSubcommandBuilders('subtract', 'Subtracts the second number from the first number'));
-	public subtract(interaction: APIApplicationCommandInteraction, { first, second }: Args): APIInteractionResponse {
+	@RegisterSubCommand(buildSubcommandBuilders('subtract', 'Subtracts the second number from the first number'))
+	public subtract(interaction: Command.Interaction, { first, second }: Args): Command.Response {
 		return this.message({
 			content: `The result is: ${first - second}`
 		});
