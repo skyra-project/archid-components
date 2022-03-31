@@ -13,6 +13,7 @@
 	},
 	"sideEffects": false,
 	"scripts": {
+		"test": "jest",
 		"build": "tsup && tsc -b src",
 		"watch": "tsup --watch --onSuccess \"tsc -b src\"",
 		"watch:types": "tsc -b src -w",
