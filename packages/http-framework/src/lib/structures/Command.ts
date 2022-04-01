@@ -67,6 +67,13 @@ export abstract class Command extends Piece {
 	}
 
 	/**
+	 * Responds to the interaction with an empty autocomplete result.
+	 */
+	protected autocompleteNoResults(): APIApplicationCommandAutocompleteResponse {
+		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data: { choices: [] } };
+	}
+
+	/**
 	 * Responds to the interaction with a message.
 	 * @param data The data to be sent.
 	 */
