@@ -1,39 +1,132 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { ApplicationCommandOptionType, ApplicationCommandType, RESTPostAPIChatInputApplicationCommandsJSONBody } from 'discord-api-types/v9';
-import { chatInputCommandRegistry, Command, RegisterCommand, RegisterSubCommand } from '../src';
+import { ContextMenuCommandBuilder, SlashCommandBuilder } from '@discordjs/builders';
+import {
+	ApplicationCommandOptionType,
+	ApplicationCommandType,
+	type RESTPostAPIChatInputApplicationCommandsJSONBody,
+	type RESTPostAPIContextMenuApplicationCommandsJSONBody
+} from 'discord-api-types/v9';
+import {
+	chatInputCommandRegistry,
+	Command,
+	contextMenuCommandRegistry,
+	RegisterCommand,
+	RegisterMessageCommand,
+	RegisterSubCommand,
+	RegisterUserCommand
+} from '../src';
 import { buildSubcommand } from './util/util';
 
 describe('User Context Menu Command', () => {
-	// Should be straightforward because there are no subcommands and no options
+	afterEach(() => contextMenuCommandRegistry.clear());
 
 	test('GIVEN new instance of ContextMenuCommandBuilder THEN returns expected body', () => {
-		// Use "new ContextMenuCommandBuilder()" to create a new instance of SlashCommandBuilder
-		// Then expect the body
+		class UserCommand extends Command {
+			@RegisterUserCommand(new ContextMenuCommandBuilder().setName('name').setType(ApplicationCommandType.User))
+			public userName(): Command.Response {
+				return this.message({ content: 'Pong!' });
+			}
+		}
+
+		const entries = contextMenuCommandRegistry.get(UserCommand);
+		expect(entries).toBeDefined();
+		expect(entries).toHaveLength(1);
+		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
+			default_permission: undefined,
+			name: 'name',
+			type: ApplicationCommandType.User
+		});
 	});
 
 	test('GIVEN ContextMenuCommandBuilder callback THEN returns expected body', () => {
-		// Use (builder) => builder.setName(...) etc
+		class UserCommand extends Command {
+			@RegisterUserCommand((builder) => builder.setName('name').setType(ApplicationCommandType.User))
+			public userName(): Command.Response {
+				return this.message({ content: 'Pong!' });
+			}
+		}
+
+		const entries = contextMenuCommandRegistry.get(UserCommand);
+		expect(entries).toBeDefined();
+		expect(entries).toHaveLength(1);
+		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
+			default_permission: undefined,
+			name: 'name',
+			type: ApplicationCommandType.User
+		});
 	});
 
 	test('GIVEN command with raw object THEN returns expected body', () => {
-		// Just a JSON object
+		class UserCommand extends Command {
+			@RegisterUserCommand({ name: 'name' })
+			public userName(): Command.Response {
+				return this.message({ content: 'Pong!' });
+			}
+		}
+
+		const entries = contextMenuCommandRegistry.get(UserCommand);
+		expect(entries).toBeDefined();
+		expect(entries).toHaveLength(1);
+		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
+			name: 'name',
+			type: ApplicationCommandType.User
+		});
 	});
 });
 
 describe('Message Context Menu Command', () => {
-	// Should be straightforward because there are no subcommands and no options
+	afterEach(() => contextMenuCommandRegistry.clear());
 
 	test('GIVEN new instance of ContextMenuCommandBuilder THEN returns expected body', () => {
-		// Use "new ContextMenuCommandBuilder()" to create a new instance of SlashCommandBuilder
-		// Then expect the body
+		class UserCommand extends Command {
+			@RegisterMessageCommand(new ContextMenuCommandBuilder().setName('quote').setType(ApplicationCommandType.Message))
+			public userName(): Command.Response {
+				return this.message({ content: 'Some content' });
+			}
+		}
+
+		const entries = contextMenuCommandRegistry.get(UserCommand);
+		expect(entries).toBeDefined();
+		expect(entries).toHaveLength(1);
+		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
+			default_permission: undefined,
+			name: 'quote',
+			type: ApplicationCommandType.Message
+		});
 	});
 
 	test('GIVEN ContextMenuCommandBuilder callback THEN returns expected body', () => {
-		// Use (builder) => builder.setName(...) etc
+		class UserCommand extends Command {
+			@RegisterMessageCommand((builder) => builder.setName('quote').setType(ApplicationCommandType.Message))
+			public userName(): Command.Response {
+				return this.message({ content: 'Pong!' });
+			}
+		}
+
+		const entries = contextMenuCommandRegistry.get(UserCommand);
+		expect(entries).toBeDefined();
+		expect(entries).toHaveLength(1);
+		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
+			default_permission: undefined,
+			name: 'quote',
+			type: ApplicationCommandType.Message
+		});
 	});
 
 	test('GIVEN command with raw object THEN returns expected body', () => {
-		// Just a JSON object
+		class UserCommand extends Command {
+			@RegisterMessageCommand({ name: 'quote' })
+			public userName(): Command.Response {
+				return this.message({ content: 'Pong!' });
+			}
+		}
+
+		const entries = contextMenuCommandRegistry.get(UserCommand);
+		expect(entries).toBeDefined();
+		expect(entries).toHaveLength(1);
+		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
+			name: 'quote',
+			type: ApplicationCommandType.Message
+		});
 	});
 });
 
