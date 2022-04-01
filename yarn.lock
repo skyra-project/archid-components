@@ -2024,7 +2024,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/eslint-config@npm:^4.3.2":
+"@sapphire/eslint-config@npm:^4.3.3":
   version: 4.3.3
   resolution: "@sapphire/eslint-config@npm:4.3.3"
   dependencies:
@@ -2059,7 +2059,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/prettier-config@npm:^1.4.1":
+"@sapphire/prettier-config@npm:^1.4.2":
   version: 1.4.2
   resolution: "@sapphire/prettier-config@npm:1.4.2"
   dependencies:
@@ -2075,7 +2075,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/ts-config@npm:^3.3.3":
+"@sapphire/ts-config@npm:^3.3.4":
   version: 3.3.4
   resolution: "@sapphire/ts-config@npm:3.3.4"
   dependencies:
@@ -2085,7 +2085,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/utilities@npm:^3.0.1, @sapphire/utilities@npm:^3.4.0, @sapphire/utilities@npm:^3.6.1":
+"@sapphire/utilities@npm:^3.0.1, @sapphire/utilities@npm:^3.4.0, @sapphire/utilities@npm:^3.6.2":
   version: 3.6.2
   resolution: "@sapphire/utilities@npm:3.6.2"
   checksum: 71210753b446f3f2835dd9d28fb10767f4c6f005b465eea179082d9f2c071acb7dcd2aebdf7c4974b26aad3ab2374a1dd168a66371b06bd65f248bbca4a90cda
@@ -2125,7 +2125,7 @@ __metadata:
     "@discordjs/collection": ^0.5.0
     "@discordjs/rest": 0.4.0-dev.1648515278-ac4bc3a
     "@sapphire/pieces": ^3.3.0
-    "@sapphire/utilities": ^3.6.1
+    "@sapphire/utilities": ^3.6.2
     "@types/node-fetch": ^2.6.1
     discord-api-types: ^0.29.0
     fastify: ^3.27.4
@@ -2235,7 +2235,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.2.160":
+"@swc/core@npm:^1.2.162":
   version: 1.2.162
   resolution: "@swc/core@npm:1.2.162"
   dependencies:
@@ -2443,7 +2443,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=12, @types/node@npm:^17.0.21":
+"@types/node@npm:*, @types/node@npm:>=12, @types/node@npm:^17.0.23":
   version: 17.0.23
   resolution: "@types/node@npm:17.0.23"
   checksum: a3517554737cbb042e76c30d0e5482192ac4d9bea0eeb086e2622d9cabf460a0eb52a696b99fcd18e7fcc93c96db6cc7ae507f6608f256ef0b5c1d8c87a5a470
@@ -2503,7 +2503,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.16.0, @typescript-eslint/eslint-plugin@npm:^5.17.0":
+"@typescript-eslint/eslint-plugin@npm:^5.17.0":
   version: 5.17.0
   resolution: "@typescript-eslint/eslint-plugin@npm:5.17.0"
   dependencies:
@@ -2526,7 +2526,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.16.0, @typescript-eslint/parser@npm:^5.17.0":
+"@typescript-eslint/parser@npm:^5.17.0":
   version: 5.17.0
   resolution: "@typescript-eslint/parser@npm:5.17.0"
   dependencies:
@@ -2853,15 +2853,15 @@ __metadata:
     "@commitlint/cli": ^16.2.3
     "@commitlint/config-conventional": ^16.2.1
     "@favware/npm-deprecate": ^1.0.4
-    "@sapphire/eslint-config": ^4.3.2
-    "@sapphire/prettier-config": ^1.4.1
-    "@sapphire/ts-config": ^3.3.3
-    "@swc/core": ^1.2.160
+    "@sapphire/eslint-config": ^4.3.3
+    "@sapphire/prettier-config": ^1.4.2
+    "@sapphire/ts-config": ^3.3.4
+    "@swc/core": ^1.2.162
     "@types/jest": ^27.4.1
-    "@types/node": ^17.0.21
+    "@types/node": ^17.0.23
     "@types/ws": ^8.5.3
-    "@typescript-eslint/eslint-plugin": ^5.16.0
-    "@typescript-eslint/parser": ^5.16.0
+    "@typescript-eslint/eslint-plugin": ^5.17.0
+    "@typescript-eslint/parser": ^5.17.0
     cz-conventional-changelog: ^3.3.0
     eslint: ^8.12.0
     eslint-config-prettier: ^8.5.0
@@ -2875,7 +2875,7 @@ __metadata:
     prettier: ^2.6.1
     pretty-quick: ^3.1.3
     ts-jest: ^27.1.4
-    tsup: ^5.12.1
+    tsup: ^5.12.2
     turbo: ^1.1.10
     typescript: ^4.6.3
   languageName: unknown
@@ -10183,7 +10183,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^5.12.1":
+"tsup@npm:^5.12.2":
   version: 5.12.2
   resolution: "tsup@npm:5.12.2"
   dependencies:
