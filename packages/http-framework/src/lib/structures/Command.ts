@@ -10,6 +10,7 @@ import {
 	InteractionResponseType,
 	type APIApplicationCommandAutocompleteResponse,
 	type APIApplicationCommandInteraction,
+	type APIApplicationCommandInteractionDataBasicOption,
 	type APIChatInputApplicationCommandInteractionData,
 	type APICommandAutocompleteInteractionResponseCallbackData,
 	type APIContextMenuInteractionData,
@@ -47,8 +48,8 @@ export abstract class Command extends Piece {
 	 */
 	protected autocompleteRun(
 		_interaction: APIApplicationCommandAutocompleteInteraction,
-		_focusedArgument: APIApplicationCommandInteractionDataOption | undefined,
-		_args: unknown
+		_args: unknown,
+		_context: CommandAutoCompleteContext
 	): Awaitable<APIApplicationCommandAutocompleteResponse> {
 		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data: {} };
 	}
@@ -172,8 +173,16 @@ export abstract class Command extends Piece {
 	}
 }
 
+export interface CommandAutoCompleteContext {
+	focusedArgument?: APIApplicationCommandInteractionDataOption | APIApplicationCommandInteractionDataBasicOption;
+	subCommandGroupName?: string;
+	subCommandName?: string;
+}
+
 export namespace Command {
 	export type Response = Awaitable<APIInteractionResponse>;
+
+	export type AutoCompleteContext = CommandAutoCompleteContext;
 
 	export type Interaction = import('discord-api-types/v10').APIApplicationCommandInteraction;
 

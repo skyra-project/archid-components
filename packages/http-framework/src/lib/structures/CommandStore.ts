@@ -1,6 +1,12 @@
 import { Store } from '@sapphire/pieces';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
-import { APIInteractionResponse, ApplicationCommandType } from 'discord-api-types/v10';
+import {
+	ApplicationCommandOptionType,
+	ApplicationCommandType,
+	type APIApplicationCommandInteractionDataSubcommandGroupOption,
+	type APIApplicationCommandInteractionDataSubcommandOption,
+	type APIInteractionResponse
+} from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../api/HttpCodes';
 import { transformInteraction } from '../interactions';
@@ -42,10 +48,12 @@ export class CommandStore extends Store<Command> {
 		if (!command) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown command name' });
 
 		try {
-			const focusedArgument = interaction.data.options?.find((option) => Reflect.get(option, 'focused'));
-
 			// eslint-disable-next-line @typescript-eslint/dot-notation
-			const response = await command['autocompleteRun'](interaction, focusedArgument, this.createArguments(interaction.data));
+			const response = await command['autocompleteRun'](
+				interaction,
+				this.createArguments(interaction.data),
+				this.createAutoCompleteContext(interaction)
+			);
 			return reply.status(HttpCodes.OK).send(response);
 		} catch (error) {
 			if (typeof error === 'string') {
@@ -56,6 +64,30 @@ export class CommandStore extends Store<Command> {
 
 			return reply.status(HttpCodes.InternalServerError).send({ message: 'Received an internal error' });
 		}
+	}
+
+	private createAutoCompleteContext(interaction: APIApplicationCommandAutocompleteInteraction): Command.AutoCompleteContext {
+		const firstOptionIsSubcommand = interaction.data.options?.[0]?.type === ApplicationCommandOptionType.Subcommand;
+
+		if (firstOptionIsSubcommand) {
+			const subCommand = (interaction.data.options as APIApplicationCommandInteractionDataSubcommandOption[] | undefined)?.[0];
+			const focusedArgument = subCommand?.options?.find((option) => Reflect.get(option, 'focused'));
+
+			return { focusedArgument, subCommandName: subCommand?.name };
+		}
+
+		const firstOptionIsSubcommandGroup = interaction.data.options?.[0]?.type === ApplicationCommandOptionType.SubcommandGroup;
+
+		if (firstOptionIsSubcommandGroup) {
+			const subCommandGroup = (interaction.data.options as APIApplicationCommandInteractionDataSubcommandGroupOption[] | undefined)?.[0];
+			// const subCommand = subCommandGroup?.optionsAPIApplicationCommandInteractionDataSubcommandGroupOption
+			// TODO(favna): Check how we can determine the current subcommand. Idk what structure Discord returns yet
+			return { focusedArgument: undefined, subCommandGroupName: subCommandGroup?.name, subCommandName: undefined };
+		}
+
+		const focusedArgument = interaction.data.options?.find((option) => Reflect.get(option, 'focused'));
+
+		return { focusedArgument };
 	}
 
 	private runCommandMethod(
