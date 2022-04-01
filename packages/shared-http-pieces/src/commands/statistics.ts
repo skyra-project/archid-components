@@ -1,6 +1,6 @@
 import { Embed, time, TimestampStyles } from '@discordjs/builders';
 import { Command, RegisterCommand } from '@skyra/http-framework';
-import { MessageFlags } from 'discord-api-types/v9';
+import { MessageFlags } from 'discord-api-types/v10';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 
 @RegisterCommand({ name: 'statistics', description: 'Check my statistics.' })

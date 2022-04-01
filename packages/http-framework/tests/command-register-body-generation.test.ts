@@ -4,7 +4,7 @@ import {
 	ApplicationCommandType,
 	type RESTPostAPIChatInputApplicationCommandsJSONBody,
 	type RESTPostAPIContextMenuApplicationCommandsJSONBody
-} from 'discord-api-types/v9';
+} from 'discord-api-types/v10';
 import {
 	chatInputCommandRegistry,
 	Command,
@@ -366,28 +366,19 @@ describe('Chat Input Commands', () => {
 						option //
 							.setName('query')
 							.setDescription('A string')
-							.setChoices([
-								['foo', 'foo'],
-								['bar', 'bar']
-							])
+							.setChoices({ name: 'foo', value: 'foo' }, { name: 'bar', value: 'bar' })
 					)
 					.addNumberOption((option) =>
 						option //
 							.setName('query')
 							.setDescription('A number')
-							.setChoices([
-								['half', 0.5],
-								['quarter', 0.25]
-							])
+							.setChoices({ name: 'half', value: 0.5 }, { name: 'quarter', value: 0.25 })
 					)
 					.addIntegerOption((option) =>
 						option //
 							.setName('query')
 							.setDescription('An integer')
-							.setChoices([
-								['one', 1],
-								['life', 42]
-							])
+							.setChoices({ name: 'one', value: 1 }, { name: 'life', value: 42 })
 					)
 			)
 			class UserCommand extends Command {

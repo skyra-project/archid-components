@@ -2,13 +2,13 @@ import { Collection } from '@discordjs/collection';
 import { REST, type RequestData, type RESTOptions } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import {
-	Routes,
-	type RESTPostAPIApplicationCommandsJSONBody,
-	type RESTPutAPIApplicationCommandsJSONBody,
-	type RESTPutAPIApplicationCommandsResult,
-	type RESTPutAPIApplicationGuildCommandsJSONBody,
-	type RESTPutAPIApplicationGuildCommandsResult
-} from 'discord-api-types/v9';
+    Routes,
+    type RESTPostAPIApplicationCommandsJSONBody,
+    type RESTPutAPIApplicationCommandsJSONBody,
+    type RESTPutAPIApplicationCommandsResult,
+    type RESTPutAPIApplicationGuildCommandsJSONBody,
+    type RESTPutAPIApplicationGuildCommandsResult
+} from 'discord-api-types/v10';
 import type { LoadOptions } from './Client';
 import { chatInputCommandRegistry, contextMenuCommandRegistry, restrictedGuildIdRegistry } from './interactions';
 import { filterUndefined, flattenIterableOfArrays, guardUndefined } from './utils/generators';

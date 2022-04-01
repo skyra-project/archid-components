@@ -12,7 +12,7 @@ import {
 	type APIApplicationCommandSubcommandGroupOption,
 	type APIApplicationCommandSubcommandOption,
 	type RESTPostAPIChatInputApplicationCommandsJSONBody
-} from 'discord-api-types/v9';
+} from 'discord-api-types/v10';
 import type { Command } from '../../structures/Command';
 import { normalizeChatInputCommand, normalizeChatInputSubCommand, normalizeChatInputSubCommandGroup } from '../../utils/normalizeInput';
 import { link } from '../shared/link';

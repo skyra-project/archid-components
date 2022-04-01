@@ -1,5 +1,5 @@
 import { Store } from '@sapphire/pieces';
-import type { APIMessageComponentInteraction } from 'discord-api-types/v9';
+import type { APIMessageComponentInteraction } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../..';
 import { MessageComponentHandler } from './MessageComponentHandler';

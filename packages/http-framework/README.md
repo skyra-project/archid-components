@@ -21,7 +21,7 @@ The Command is a piece that runs for all chat input and context-menu interaction
 
 ```typescript
 import { Command, RegisterCommand } from '@skyra/http-framework';
-import type { Command.Interaction, Command.Response } from 'discord-api-types/v9';
+import type { Command.Interaction, Command.Response } from 'discord-api-types/v10';
 
 @RegisterCommand((builder) =>
 	builder //
@@ -41,7 +41,7 @@ You can also register subcommands via decorators:
 
 ```typescript
 import { Command, RegisterCommand, RegisterSubCommand } from '@skyra/http-framework';
-import type { Command.Interaction, Command.Response } from 'discord-api-types/v9';
+import type { Command.Interaction, Command.Response } from 'discord-api-types/v10';
 
 @RegisterCommand((builder) =>
 	builder //

@@ -1,13 +1,13 @@
 import { Piece } from '@sapphire/pieces';
 import type { Awaitable } from '@sapphire/utilities';
 import {
-	InteractionResponseType,
-	type APIInteractionResponse,
-	type APIInteractionResponseCallbackData,
-	type APIInteractionResponseChannelMessageWithSource,
-	type APIInteractionResponseUpdateMessage,
-	type APIMessageComponentInteraction
-} from 'discord-api-types/v9';
+    InteractionResponseType,
+    type APIInteractionResponse,
+    type APIInteractionResponseCallbackData,
+    type APIInteractionResponseChannelMessageWithSource,
+    type APIInteractionResponseUpdateMessage,
+    type APIMessageComponentInteraction
+} from 'discord-api-types/v10';
 
 export abstract class MessageComponentHandler extends Piece {
 	public abstract run(

@@ -19,7 +19,7 @@ import {
 	ApplicationCommandType,
 	type RESTPostAPIChatInputApplicationCommandsJSONBody,
 	type RESTPostAPIContextMenuApplicationCommandsJSONBody
-} from 'discord-api-types/v9';
+} from 'discord-api-types/v10';
 import type { ContextMenuOptions } from '../interactions/context-menu/shared';
 
 function isBuilder(

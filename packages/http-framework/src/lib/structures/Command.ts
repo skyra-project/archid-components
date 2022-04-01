@@ -3,20 +3,20 @@ import { Piece } from '@sapphire/pieces';
 import type { Awaitable } from '@sapphire/utilities';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import {
-	APIApplicationCommandInteractionDataOption,
-	APISelectMenuOption,
-	ApplicationCommandOptionType,
-	ComponentType,
-	InteractionResponseType,
-	type APIApplicationCommandAutocompleteResponse,
-	type APIApplicationCommandInteraction,
-	type APIChatInputApplicationCommandInteractionData,
-	type APICommandAutocompleteInteractionResponseCallbackData,
-	type APIContextMenuInteractionData,
-	type APIInteractionResponse,
-	type APIInteractionResponseCallbackData,
-	type APIInteractionResponseChannelMessageWithSource
-} from 'discord-api-types/v9';
+    APIApplicationCommandInteractionDataOption,
+    APISelectMenuOption,
+    ApplicationCommandOptionType,
+    ComponentType,
+    InteractionResponseType,
+    type APIApplicationCommandAutocompleteResponse,
+    type APIApplicationCommandInteraction,
+    type APIChatInputApplicationCommandInteractionData,
+    type APICommandAutocompleteInteractionResponseCallbackData,
+    type APIContextMenuInteractionData,
+    type APIInteractionResponse,
+    type APIInteractionResponseCallbackData,
+    type APIInteractionResponseChannelMessageWithSource
+} from 'discord-api-types/v10';
 import { chatInputCommandRegistry, contextMenuCommandRegistry } from '../interactions';
 import { getMethod } from '../interactions/shared/link';
 
@@ -175,7 +175,7 @@ export abstract class Command extends Piece {
 export namespace Command {
 	export type Response = Awaitable<APIInteractionResponse>;
 
-	export type Interaction = import('discord-api-types/v9').APIApplicationCommandInteraction;
+	export type Interaction = import('discord-api-types/v10').APIApplicationCommandInteraction;
 
 	export type InteractionData = Interaction['data'];
 }

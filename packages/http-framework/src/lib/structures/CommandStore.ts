@@ -1,6 +1,6 @@
 import { Store } from '@sapphire/pieces';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
-import { APIInteractionResponse, ApplicationCommandType } from 'discord-api-types/v9';
+import { APIInteractionResponse, ApplicationCommandType } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../api/HttpCodes';
 import { transformInteraction } from '../interactions';
