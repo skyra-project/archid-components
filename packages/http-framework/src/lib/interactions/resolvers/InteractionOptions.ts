@@ -11,15 +11,15 @@
 // - Refactored Subcommand[Group] handling to not create an array clone.
 
 import {
-    ApplicationCommandOptionType,
-    type APIApplicationCommandInteractionDataMentionableOption,
-    type APIApplicationCommandInteractionDataOption,
-    type APIChatInputApplicationCommandInteractionDataResolved,
-    type APIInteractionDataResolvedChannel,
-    type APIInteractionDataResolvedGuildMember,
-    type APIRole,
-    type APIUser,
-    type RESTPostAPIApplicationCommandsJSONBody
+	ApplicationCommandOptionType,
+	type APIApplicationCommandInteractionDataMentionableOption,
+	type APIApplicationCommandInteractionDataOption,
+	type APIChatInputApplicationCommandInteractionDataResolved,
+	type APIInteractionDataResolvedChannel,
+	type APIInteractionDataResolvedGuildMember,
+	type APIRole,
+	type APIUser,
+	type RESTPostAPIApplicationCommandsJSONBody
 } from 'discord-api-types/v10';
 import type { ArgumentsOf } from './ArgumentsOf';
 
