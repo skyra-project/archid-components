@@ -12,40 +12,114 @@
 
 import {
 	ApplicationCommandOptionType,
+	type APIApplicationCommandInteractionDataBasicOption,
 	type APIApplicationCommandInteractionDataMentionableOption,
 	type APIApplicationCommandInteractionDataOption,
+	type APIApplicationCommandInteractionDataSubcommandGroupOption,
+	type APIApplicationCommandInteractionDataSubcommandOption,
 	type APIChatInputApplicationCommandInteractionDataResolved,
 	type APIInteractionDataResolvedChannel,
 	type APIInteractionDataResolvedGuildMember,
 	type APIRole,
-	type APIUser,
-	type RESTPostAPIApplicationCommandsJSONBody
+	type APIUser
 } from 'discord-api-types/v10';
-import type { ArgumentsOf } from './ArgumentsOf';
+import type { NonNullObject } from '../shared/link';
 
-export function transformInteraction<T extends RESTPostAPIApplicationCommandsJSONBody>(
+export function transformInteraction<T extends NonNullObject>(
 	resolved: APIChatInputApplicationCommandInteractionDataResolved,
 	options: readonly APIApplicationCommandInteractionDataOption[]
-): ArgumentsOf<T> {
-	const opts: any = {};
+): InteractionArguments<T> {
+	const extracted = extractTopLevelOptions(options);
+	return {
+		subCommand: extracted.subCommand?.name ?? null,
+		subCommandGroup: extracted.subCommandGroup?.name ?? null,
+		...(transformArguments(resolved, extracted.options) as T)
+	};
+}
 
-	for (const top of options) {
-		if (top.type === ApplicationCommandOptionType.Subcommand || top.type === ApplicationCommandOptionType.SubcommandGroup) {
-			opts[top.name] = transformInteraction(resolved, top.options ?? []);
-		} else if (top.type === ApplicationCommandOptionType.User) {
-			opts[top.name] = { user: resolved.users?.[top.value], member: resolved.members?.[top.value] ?? null } as TransformedArguments.User;
-		} else if (top.type === ApplicationCommandOptionType.Channel) {
-			opts[top.name] = resolved.channels?.[top.value] as TransformedArguments.Channel;
-		} else if (top.type === ApplicationCommandOptionType.Role) {
-			opts[top.name] = resolved.roles?.[top.value] as TransformedArguments.Role;
-		} else if (top.type === ApplicationCommandOptionType.Mentionable) {
-			opts[top.name] = transformMentionable(resolved, top);
-		} else {
-			opts[top.name] = top.value;
-		}
+export type InteractionArguments<T extends NonNullObject> = T & {
+	subCommand: string | null;
+	subCommandGroup: string | null;
+};
+
+export function transformAutocompleteInteraction<T extends NonNullObject>(
+	resolved: APIChatInputApplicationCommandInteractionDataResolved,
+	options: readonly APIApplicationCommandInteractionDataOption[]
+): AutocompleteInteractionArguments<T> {
+	const extracted = extractTopLevelOptions(options);
+	const focused = extracted.options.find((option) => (option as any).focused);
+	return {
+		subCommand: extracted.subCommand?.name ?? null,
+		subCommandGroup: extracted.subCommandGroup?.name ?? null,
+		focused: typeof focused === 'undefined' ? null : (transformArgument(resolved, focused) as TransformedArguments.AutocompleteFocused),
+		...(transformArguments(resolved, extracted.options) as T)
+	};
+}
+
+export type AutocompleteInteractionArguments<T extends NonNullObject> = InteractionArguments<T> & {
+	focused: TransformedArguments.AutocompleteFocused | null;
+};
+
+export function extractTopLevelOptions(options: readonly APIApplicationCommandInteractionDataOption[]): ExtractedOptions {
+	const [firstOption] = options;
+	if (firstOption.type === ApplicationCommandOptionType.SubcommandGroup) {
+		const subCommand = firstOption.options[0];
+		return {
+			subCommandGroup: firstOption,
+			subCommand,
+			options: subCommand.options ?? []
+		};
 	}
 
-	return opts;
+	if (firstOption.type === ApplicationCommandOptionType.Subcommand) {
+		return {
+			subCommandGroup: null,
+			subCommand: firstOption,
+			options: firstOption.options ?? []
+		};
+	}
+
+	return {
+		subCommandGroup: null,
+		subCommand: null,
+		options: options as readonly APIApplicationCommandInteractionDataBasicOption[]
+	};
+}
+
+export interface ExtractedOptions {
+	subCommandGroup: APIApplicationCommandInteractionDataSubcommandGroupOption | null;
+	subCommand: APIApplicationCommandInteractionDataSubcommandOption | null;
+	options: readonly APIApplicationCommandInteractionDataBasicOption[];
+}
+
+function transformArguments(
+	resolved: APIChatInputApplicationCommandInteractionDataResolved,
+	options: readonly APIApplicationCommandInteractionDataBasicOption[]
+): NonNullObject {
+	return Object.fromEntries(options.map((option) => [option.name, transformArgument(resolved, option)]));
+}
+
+function transformArgument(
+	resolved: APIChatInputApplicationCommandInteractionDataResolved,
+	option: APIApplicationCommandInteractionDataBasicOption
+): TransformedArguments.Any {
+	if (option.type === ApplicationCommandOptionType.User) {
+		return { user: resolved.users?.[option.value], member: resolved.members?.[option.value] ?? null } as TransformedArguments.User;
+	}
+
+	if (option.type === ApplicationCommandOptionType.Channel) {
+		return resolved.channels?.[option.value] as TransformedArguments.Channel;
+	}
+
+	if (option.type === ApplicationCommandOptionType.Role) {
+		return resolved.roles?.[option.value] as TransformedArguments.Role;
+	}
+
+	if (option.type === ApplicationCommandOptionType.Mentionable) {
+		return transformMentionable(resolved, option);
+	}
+
+	return option.value;
 }
 
 function transformMentionable(
@@ -80,4 +154,8 @@ export namespace TransformedArguments {
 		| { id: string; channel: Channel }
 		| { id: string; role: Role }
 		| { id: string };
+
+	export type AutocompleteFocused = number | string;
+
+	export type Any = User | Channel | Role | Mentionable | number | string | boolean;
 }

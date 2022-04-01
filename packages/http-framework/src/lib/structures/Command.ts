@@ -3,23 +3,23 @@ import { Piece } from '@sapphire/pieces';
 import type { Awaitable } from '@sapphire/utilities';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import {
-	APIApplicationCommandInteractionDataOption,
-	APISelectMenuOption,
 	ApplicationCommandOptionType,
 	ComponentType,
 	InteractionResponseType,
 	type APIApplicationCommandAutocompleteResponse,
 	type APIApplicationCommandInteraction,
 	type APIApplicationCommandInteractionDataBasicOption,
+	type APIApplicationCommandInteractionDataOption,
 	type APIChatInputApplicationCommandInteractionData,
 	type APICommandAutocompleteInteractionResponseCallbackData,
 	type APIContextMenuInteractionData,
 	type APIInteractionResponse,
 	type APIInteractionResponseCallbackData,
-	type APIInteractionResponseChannelMessageWithSource
+	type APIInteractionResponseChannelMessageWithSource,
+	type APISelectMenuOption
 } from 'discord-api-types/v10';
 import { chatInputCommandRegistry, contextMenuCommandRegistry } from '../interactions';
-import { getMethod } from '../interactions/shared/link';
+import { getMethod, NonNullObject } from '../interactions/shared/link';
 
 export abstract class Command extends Piece {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();
@@ -32,24 +32,29 @@ export abstract class Command extends Piece {
 
 	/**
 	 * Responds to the chat input command for this command
-	 * @param _interaction The interaction to be routed.
-	 * @param _args The parsed arguments for this autocomplete interaction.
+	 * @param interaction The interaction to be routed.
+	 * @param args The parsed arguments for this autocomplete interaction.
 	 */
+	protected chatInputRun(interaction: APIApplicationCommandInteraction, args: NonNullObject): Awaitable<APIInteractionResponse>;
 	protected chatInputRun(_interaction: APIApplicationCommandInteraction, _args: unknown): Awaitable<APIInteractionResponse> {
 		return { type: InteractionResponseType.ChannelMessageWithSource, data: {} };
 	}
 
 	/**
 	 * Responds to an auto completable option for this command
-	 * @param _interaction The interaction to be routed.
-	 * @param _focusedArgument The focused argument, this can be used in case multiple arguments in this command use autocomplete.
-	 * @param _args The parsed arguments for this autocomplete interaction.
+	 * @param interaction The interaction to be routed.
+	 * @param focusedArgument The focused argument, this can be used in case multiple arguments in this command use autocomplete.
+	 * @param args The parsed arguments for this autocomplete interaction.
 	 * @returns The response to the autocomplete interaction.
 	 */
 	protected autocompleteRun(
+		interaction: APIApplicationCommandAutocompleteInteraction,
+		args: unknown
+	): Awaitable<APIApplicationCommandAutocompleteResponse>;
+
+	protected autocompleteRun(
 		_interaction: APIApplicationCommandAutocompleteInteraction,
-		_args: unknown,
-		_context: CommandAutoCompleteContext
+		_args: unknown
 	): Awaitable<APIApplicationCommandAutocompleteResponse> {
 		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data: {} };
 	}
