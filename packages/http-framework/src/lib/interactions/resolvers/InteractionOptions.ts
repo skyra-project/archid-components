@@ -10,6 +10,7 @@
 // - Adapted code to use discord-api-types rather than discord.js.
 // - Refactored Subcommand[Group] handling to not create an array clone.
 
+import type { NonNullObject } from '@sapphire/utilities';
 import {
 	ApplicationCommandOptionType,
 	type APIApplicationCommandInteractionDataBasicOption,
@@ -23,7 +24,6 @@ import {
 	type APIRole,
 	type APIUser
 } from 'discord-api-types/v10';
-import type { NonNullObject } from '../shared/link';
 
 export function transformInteraction<T extends NonNullObject>(
 	resolved: APIChatInputApplicationCommandInteractionDataResolved,

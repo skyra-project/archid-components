@@ -1,6 +1,6 @@
 import { Collection } from '@discordjs/collection';
 import { Piece } from '@sapphire/pieces';
-import type { Awaitable } from '@sapphire/utilities';
+import type { Awaitable, NonNullObject } from '@sapphire/utilities';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import {
 	ApplicationCommandOptionType,
@@ -18,8 +18,8 @@ import {
 	type APIInteractionResponseChannelMessageWithSource,
 	type APISelectMenuOption
 } from 'discord-api-types/v10';
-import { chatInputCommandRegistry, contextMenuCommandRegistry } from '../interactions';
-import { getMethod, NonNullObject } from '../interactions/shared/link';
+import { chatInputCommandRegistry, contextMenuCommandRegistry, type AutocompleteInteractionArguments } from '../interactions';
+import { getMethod } from '../interactions/shared/link';
 
 export abstract class Command extends Piece {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();
@@ -43,18 +43,17 @@ export abstract class Command extends Piece {
 	/**
 	 * Responds to an auto completable option for this command
 	 * @param interaction The interaction to be routed.
-	 * @param focusedArgument The focused argument, this can be used in case multiple arguments in this command use autocomplete.
 	 * @param args The parsed arguments for this autocomplete interaction.
 	 * @returns The response to the autocomplete interaction.
 	 */
 	protected autocompleteRun(
 		interaction: APIApplicationCommandAutocompleteInteraction,
-		args: unknown
+		args: AutocompleteInteractionArguments<NonNullObject>
 	): Awaitable<APIApplicationCommandAutocompleteResponse>;
 
 	protected autocompleteRun(
 		_interaction: APIApplicationCommandAutocompleteInteraction,
-		_args: unknown
+		_args: AutocompleteInteractionArguments<NonNullObject>
 	): Awaitable<APIApplicationCommandAutocompleteResponse> {
 		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data: {} };
 	}
