@@ -1,15 +1,3 @@
-// Copyright © 2021 - Noel Buechler | GNU Affero General Public License v3.0
-// Source: https://github.com/Naval-Base/yuudachi/blob/8069ae9afa47bed711511021b96a5ac691ca07f4/src/interactions/InteractionOptions.ts
-//
-// Changes:
-// - Added a namespace named `TransformedArguments`.
-// - Added a local method named `transformMentionable`.
-// - Added support for resolving `ApplicationCommandOptionType.Mentionable`.
-// - Added return casts.
-// - Adapted code to work with HTTP-only interactions.
-// - Adapted code to use discord-api-types rather than discord.js.
-// - Refactored Subcommand[Group] handling to not create an array clone.
-
 import type { NonNullObject } from '@sapphire/utilities';
 import {
 	ApplicationCommandOptionType,

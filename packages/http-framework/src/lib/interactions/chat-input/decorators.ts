@@ -6,9 +6,9 @@ import type {
 	SlashCommandSubcommandsOnlyBuilder
 } from '@discordjs/builders';
 import {
-	APIApplicationCommandOption,
 	ApplicationCommandOptionType,
 	ApplicationCommandType,
+	type APIApplicationCommandOption,
 	type APIApplicationCommandSubcommandGroupOption,
 	type APIApplicationCommandSubcommandOption,
 	type RESTPostAPIChatInputApplicationCommandsJSONBody
