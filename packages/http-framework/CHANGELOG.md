@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.8](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.7...@skyra/http-framework@0.0.8) (2022-04-02)
+
+### Bug Fixes
+
+-   default `embeds` and `components` to undefined instead of empty arrays ([416bfb1](https://github.com/skyra-project/archid-components/commit/416bfb19b65df5a6a602671829ed63e211aaf113))
+-   resolved loads of bugs, setup tests, update deps, and general refactors ([#23](https://github.com/skyra-project/archid-components/issues/23)) ([d63f756](https://github.com/skyra-project/archid-components/commit/d63f7569cc81a33e7fbbec8af9673624936a833c))
+-   split custom id content every dot ([296f25a](https://github.com/skyra-project/archid-components/commit/296f25ab9802a7b383445eabf0699f9ad7f49df9))
+
+### Features
+
+-   add builder support to subcommand(group) decorators ([c4b257f](https://github.com/skyra-project/archid-components/commit/c4b257ff7b4401a23691244bc70524276bd27297))
+-   add proper autocomplete support ([17c0e58](https://github.com/skyra-project/archid-components/commit/17c0e58eed7bd8e2bedd937ab9dd764f1c366453))
+-   allow callback for `MessageComponentHandler` return value ([0973b3a](https://github.com/skyra-project/archid-components/commit/0973b3aa6d7037a039e59f71b01adb5ab0ea378b))
+-   **MessageComponentHandler:** add `updateMessage` ([bf149ef](https://github.com/skyra-project/archid-components/commit/bf149efecd5ed84a2b64f02010817a2ea21ad2a9))
+
 ## [0.0.7](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.6...@skyra/http-framework@0.0.7) (2022-03-19)
 
 ### Bug Fixes
