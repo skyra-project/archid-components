@@ -48,7 +48,7 @@ export abstract class Command extends Piece {
 	 */
 	protected autocompleteRun(
 		interaction: APIApplicationCommandAutocompleteInteraction,
-		args: AutocompleteInteractionArguments<NonNullObject>
+		args: AutocompleteInteractionArguments<any>
 	): Awaitable<APIApplicationCommandAutocompleteResponse>;
 
 	protected autocompleteRun(
