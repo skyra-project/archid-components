@@ -38,7 +38,14 @@ export function transformInteraction<T extends NonNullObject>(
 }
 
 export type InteractionArguments<T extends NonNullObject> = T & {
+	/**
+	 * The name of the subcommand that was used by the user, if any.
+	 */
 	subCommand: string | null;
+
+	/**
+	 * The name of the subcommand group that was used by the user, if any.
+	 */
 	subCommandGroup: string | null;
 };
 
@@ -51,13 +58,16 @@ export function transformAutocompleteInteraction<T extends NonNullObject>(
 	return {
 		subCommand: extracted.subCommand?.name ?? null,
 		subCommandGroup: extracted.subCommandGroup?.name ?? null,
-		focused: typeof focused === 'undefined' ? null : (transformArgument(resolved, focused) as TransformedArguments.AutocompleteFocused),
+		focused: typeof focused === 'undefined' ? null : (focused.name as keyof T),
 		...(transformArguments(resolved, extracted.options) as T)
 	};
 }
 
 export type AutocompleteInteractionArguments<T extends NonNullObject> = InteractionArguments<T> & {
-	focused: TransformedArguments.AutocompleteFocused | null;
+	/**
+	 * The name of the argument that is focused, if any.
+	 */
+	focused: keyof T | null;
 };
 
 export function extractTopLevelOptions(options: readonly APIApplicationCommandInteractionDataOption[]): ExtractedOptions {
@@ -154,8 +164,6 @@ export namespace TransformedArguments {
 		| { id: string; channel: Channel }
 		| { id: string; role: Role }
 		| { id: string };
-
-	export type AutocompleteFocused = number | string;
 
 	export type Any = User | Channel | Role | Mentionable | number | string | boolean;
 }
