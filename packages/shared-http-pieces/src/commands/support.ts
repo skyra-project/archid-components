@@ -1,6 +1,6 @@
 import { bold, hyperlink } from '@discordjs/builders';
 import { Command, RegisterCommand } from '@skyra/http-framework';
-import { MessageFlags } from 'discord-api-types/v9';
+import { MessageFlags } from 'discord-api-types/v10';
 
 @RegisterCommand({ name: 'support', description: 'Get an invite link to my support server.' })
 export class UserCommand extends Command {

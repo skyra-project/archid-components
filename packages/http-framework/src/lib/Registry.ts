@@ -8,7 +8,7 @@ import {
 	type RESTPutAPIApplicationCommandsResult,
 	type RESTPutAPIApplicationGuildCommandsJSONBody,
 	type RESTPutAPIApplicationGuildCommandsResult
-} from 'discord-api-types/v9';
+} from 'discord-api-types/v10';
 import type { LoadOptions } from './Client';
 import { chatInputCommandRegistry, contextMenuCommandRegistry, restrictedGuildIdRegistry } from './interactions';
 import { filterUndefined, flattenIterableOfArrays, guardUndefined } from './utils/generators';

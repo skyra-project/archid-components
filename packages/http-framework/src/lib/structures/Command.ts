@@ -1,23 +1,24 @@
 import { Collection } from '@discordjs/collection';
 import { Piece } from '@sapphire/pieces';
-import type { Awaitable } from '@sapphire/utilities';
+import type { Awaitable, NonNullObject } from '@sapphire/utilities';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import {
-	APIApplicationCommandInteractionDataOption,
-	APISelectMenuOption,
 	ApplicationCommandOptionType,
 	ComponentType,
 	InteractionResponseType,
 	type APIApplicationCommandAutocompleteResponse,
 	type APIApplicationCommandInteraction,
+	type APIApplicationCommandInteractionDataBasicOption,
+	type APIApplicationCommandInteractionDataOption,
 	type APIChatInputApplicationCommandInteractionData,
 	type APICommandAutocompleteInteractionResponseCallbackData,
 	type APIContextMenuInteractionData,
 	type APIInteractionResponse,
 	type APIInteractionResponseCallbackData,
-	type APIInteractionResponseChannelMessageWithSource
-} from 'discord-api-types/v9';
-import { chatInputCommandRegistry, contextMenuCommandRegistry } from '../interactions';
+	type APIInteractionResponseChannelMessageWithSource,
+	type APISelectMenuOption
+} from 'discord-api-types/v10';
+import { chatInputCommandRegistry, contextMenuCommandRegistry, type AutocompleteInteractionArguments } from '../interactions';
 import { getMethod } from '../interactions/shared/link';
 
 export abstract class Command extends Piece {
@@ -31,24 +32,28 @@ export abstract class Command extends Piece {
 
 	/**
 	 * Responds to the chat input command for this command
-	 * @param _interaction The interaction to be routed.
-	 * @param _args The parsed arguments for this autocomplete interaction.
+	 * @param interaction The interaction to be routed.
+	 * @param args The parsed arguments for this autocomplete interaction.
 	 */
+	protected chatInputRun(interaction: APIApplicationCommandInteraction, args: NonNullObject): Awaitable<APIInteractionResponse>;
 	protected chatInputRun(_interaction: APIApplicationCommandInteraction, _args: unknown): Awaitable<APIInteractionResponse> {
 		return { type: InteractionResponseType.ChannelMessageWithSource, data: {} };
 	}
 
 	/**
 	 * Responds to an auto completable option for this command
-	 * @param _interaction The interaction to be routed.
-	 * @param _focusedArgument The focused argument, this can be used in case multiple arguments in this command use autocomplete.
-	 * @param _args The parsed arguments for this autocomplete interaction.
+	 * @param interaction The interaction to be routed.
+	 * @param args The parsed arguments for this autocomplete interaction.
 	 * @returns The response to the autocomplete interaction.
 	 */
 	protected autocompleteRun(
+		interaction: APIApplicationCommandAutocompleteInteraction,
+		args: AutocompleteInteractionArguments<NonNullObject>
+	): Awaitable<APIApplicationCommandAutocompleteResponse>;
+
+	protected autocompleteRun(
 		_interaction: APIApplicationCommandAutocompleteInteraction,
-		_focusedArgument: APIApplicationCommandInteractionDataOption | undefined,
-		_args: unknown
+		_args: AutocompleteInteractionArguments<NonNullObject>
 	): Awaitable<APIApplicationCommandAutocompleteResponse> {
 		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data: {} };
 	}
@@ -59,6 +64,13 @@ export abstract class Command extends Piece {
 	 */
 	protected autocomplete(data: APICommandAutocompleteInteractionResponseCallbackData): APIApplicationCommandAutocompleteResponse {
 		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data };
+	}
+
+	/**
+	 * Responds to the interaction with an empty autocomplete result.
+	 */
+	protected autocompleteNoResults(): APIApplicationCommandAutocompleteResponse {
+		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data: { choices: [] } };
 	}
 
 	/**
@@ -172,10 +184,18 @@ export abstract class Command extends Piece {
 	}
 }
 
+export interface CommandAutoCompleteContext {
+	focusedArgument?: APIApplicationCommandInteractionDataOption | APIApplicationCommandInteractionDataBasicOption;
+	subCommandGroupName?: string;
+	subCommandName?: string;
+}
+
 export namespace Command {
 	export type Response = Awaitable<APIInteractionResponse>;
 
-	export type Interaction = import('discord-api-types/v9').APIApplicationCommandInteraction;
+	export type AutoCompleteContext = CommandAutoCompleteContext;
+
+	export type Interaction = import('discord-api-types/v10').APIApplicationCommandInteraction;
 
 	export type InteractionData = Interaction['data'];
 }

@@ -1,16 +1,17 @@
-import { Embed, time, TimestampStyles } from '@discordjs/builders';
+import { time, TimestampStyles, UnsafeEmbedBuilder } from '@discordjs/builders';
 import { Command, RegisterCommand } from '@skyra/http-framework';
-import { MessageFlags } from 'discord-api-types/v9';
+import { MessageFlags } from 'discord-api-types/v10';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 
 @RegisterCommand({ name: 'statistics', description: 'Check my statistics.' })
 export class UserCommand extends Command {
 	public override chatInputRun(): Command.Response {
-		const embed = new Embed()
-			.addField({ name: 'Uptime', value: this.uptimeStatistics })
-			.addField({ name: 'Server Usage', value: this.usageStatistics });
+		const embed = new UnsafeEmbedBuilder().addFields(
+			{ name: 'Uptime', value: this.uptimeStatistics },
+			{ name: 'Server Usage', value: this.usageStatistics }
+		);
 
-		return this.message({ embeds: [embed], flags: MessageFlags.Ephemeral });
+		return this.message({ embeds: [embed.toJSON()], flags: MessageFlags.Ephemeral });
 	}
 
 	private get uptimeStatistics() {

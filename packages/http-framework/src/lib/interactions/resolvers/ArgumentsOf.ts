@@ -7,7 +7,7 @@
 // - Adapted code to use `TransformedArguments`.
 // - Updated code for latest `discord-api-types`.
 
-import type { APIApplicationCommandOption, ApplicationCommandOptionType, RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types/v9';
+import type { APIApplicationCommandOption, ApplicationCommandOptionType, RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types/v10';
 import type { TransformedArguments } from './InteractionOptions';
 
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;

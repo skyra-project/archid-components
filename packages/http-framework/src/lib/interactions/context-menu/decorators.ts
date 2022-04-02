@@ -1,5 +1,5 @@
 import type { ContextMenuCommandBuilder } from '@discordjs/builders';
-import { ApplicationCommandType } from 'discord-api-types/v9';
+import { ApplicationCommandType } from 'discord-api-types/v10';
 import type { Command } from '../../structures/Command';
 import { normalizeContextMenuCommand } from '../../utils/normalizeInput';
 import { link } from '../shared/link';

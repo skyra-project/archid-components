@@ -1,5 +1,5 @@
 import { container } from '@sapphire/pieces';
-import { InteractionResponseType, InteractionType, type APIInteraction } from 'discord-api-types/v9';
+import { InteractionResponseType, InteractionType, type APIInteraction } from 'discord-api-types/v10';
 import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from 'fastify';
 import { Buffer } from 'node:buffer';
 import tweetnacl from 'tweetnacl';

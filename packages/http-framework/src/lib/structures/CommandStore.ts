@@ -1,9 +1,9 @@
 import { Store } from '@sapphire/pieces';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
-import { APIInteractionResponse, ApplicationCommandType } from 'discord-api-types/v9';
+import { ApplicationCommandType, type APIInteractionResponse } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../api/HttpCodes';
-import { transformInteraction } from '../interactions';
+import { transformAutocompleteInteraction, transformInteraction } from '../interactions';
 import { Command } from './Command';
 
 export class CommandStore extends Store<Command> {
@@ -42,10 +42,11 @@ export class CommandStore extends Store<Command> {
 		if (!command) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown command name' });
 
 		try {
-			const focusedArgument = interaction.data.options?.find((option) => Reflect.get(option, 'focused'));
-
 			// eslint-disable-next-line @typescript-eslint/dot-notation
-			const response = await command['autocompleteRun'](interaction, focusedArgument, this.createArguments(interaction.data));
+			const response = await command['autocompleteRun'](
+				interaction,
+				transformAutocompleteInteraction(interaction.data.resolved ?? {}, interaction.data.options)
+			);
 			return reply.status(HttpCodes.OK).send(response);
 		} catch (error) {
 			if (typeof error === 'string') {
@@ -53,7 +54,6 @@ export class CommandStore extends Store<Command> {
 			}
 
 			// Log error
-
 			return reply.status(HttpCodes.InternalServerError).send({ message: 'Received an internal error' });
 		}
 	}
