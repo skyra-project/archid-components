@@ -80,7 +80,7 @@ describe('InteractionOptions', () => {
 			expect(given).toStrictEqual({
 				subCommandGroup: null,
 				subCommand: null,
-				focused: 'Hello World',
+				focused: 'name',
 				name: 'Hello World',
 				times: 5
 			});
@@ -101,7 +101,7 @@ describe('InteractionOptions', () => {
 			expect(given).toStrictEqual({
 				subCommandGroup: null,
 				subCommand: 'repeat',
-				focused: 5,
+				focused: 'times',
 				name: 'Hello World',
 				times: 5
 			});
@@ -127,7 +127,7 @@ describe('InteractionOptions', () => {
 			expect(given).toStrictEqual({
 				subCommandGroup: 'utilities',
 				subCommand: 'repeat',
-				focused: 5,
+				focused: 'times',
 				name: 'Hello World',
 				times: 5
 			});
