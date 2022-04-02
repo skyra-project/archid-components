@@ -4,6 +4,7 @@ import { ApplicationCommandType, type APIInteractionResponse } from 'discord-api
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../api/HttpCodes';
 import { transformAutocompleteInteraction, transformInteraction } from '../interactions';
+import { handleError, runner } from '../interactions/utils/util';
 import { Command } from './Command';
 
 export class CommandStore extends Store<Command> {
@@ -18,21 +19,11 @@ export class CommandStore extends Store<Command> {
 		const method = this.routeCommandMethodName(command, interaction.data);
 		if (!method) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown subcommand name' });
 
-		try {
-			const response = await this.runCommandMethod(command, method, interaction);
-			return reply.status(HttpCodes.OK).send(response);
-		} catch (error) {
-			if (typeof error === 'string') {
-				return reply.status(HttpCodes.OK).send({ content: error });
-			}
-
-			// Log error
-
-			return reply.status(HttpCodes.InternalServerError).send({ message: 'Received an internal error' });
-		}
+		const cb = () => this.runCommandMethod(command, method, interaction);
+		return runner(reply, interaction as any, cb);
 	}
 
-	public async runApplicationCommandAutoComplete(
+	public async runApplicationCommandAutocomplete(
 		reply: FastifyReply,
 		interaction: APIApplicationCommandAutocompleteInteraction
 	): Promise<FastifyReply> {
@@ -49,12 +40,7 @@ export class CommandStore extends Store<Command> {
 			);
 			return reply.status(HttpCodes.OK).send(response);
 		} catch (error) {
-			if (typeof error === 'string') {
-				return reply.status(HttpCodes.OK).send({ content: error });
-			}
-
-			// Log error
-			return reply.status(HttpCodes.InternalServerError).send({ message: 'Received an internal error' });
+			return handleError(reply, error);
 		}
 	}
 
