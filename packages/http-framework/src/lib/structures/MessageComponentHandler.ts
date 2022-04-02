@@ -13,7 +13,7 @@ export abstract class MessageComponentHandler extends Piece {
 	public abstract run(
 		interaction: APIMessageComponentInteraction,
 		customIdValue: unknown
-	): MessageComponentHandler.Response | MessageComponentHandler.ResponseWithCallback;
+	): Awaitable<MessageComponentHandler.Response | MessageComponentHandler.ResponseWithCallback>;
 
 	/**
 	 * Responds to the interaction with a message.
@@ -35,10 +35,10 @@ export abstract class MessageComponentHandler extends Piece {
 export namespace MessageComponentHandler {
 	export type Response = Awaitable<APIInteractionResponse>;
 
-	export interface ResponseWithCallback {
+	export type ResponseWithCallback = Awaitable<{
 		response: Response;
 		callback: () => PromiseLike<void> | void;
-	}
+	}>;
 
 	export type Interaction = APIMessageComponentInteraction;
 
