@@ -9,7 +9,7 @@ import { HttpCodes } from './api/HttpCodes';
 import type { IIdParser } from './components/IIdParser';
 import { StringIdParser } from './components/StringIdParser';
 import { CommandStore } from './structures/CommandStore';
-import { MessageComponentHandlerStore } from './structures/MessageComponentHandlerStore';
+import { InteractionHandlerStore } from './structures/InteractionHandlerStore';
 
 export class Client extends EventEmitter {
 	public server!: FastifyInstance;
@@ -27,7 +27,7 @@ export class Client extends EventEmitter {
 
 		this.#discordPublicKey = Buffer.from(discordPublicKey, 'hex');
 		container.stores.register(new CommandStore());
-		container.stores.register(new MessageComponentHandlerStore());
+		container.stores.register(new InteractionHandlerStore());
 		container.idParser ??= new StringIdParser();
 		container.client = this;
 	}
@@ -175,7 +175,7 @@ interface VerifyDiscordInteractionResponse {
 declare module '@sapphire/pieces' {
 	export interface StoreRegistryEntries {
 		commands: CommandStore;
-		'message-component-handlers': MessageComponentHandlerStore;
+		'message-component-handlers': InteractionHandlerStore;
 	}
 
 	export interface Container {

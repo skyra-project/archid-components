@@ -13,13 +13,12 @@ import {
 	type APIInteractionResponseCallbackData,
 	type APIInteractionResponseChannelMessageWithSource,
 	type APIInteractionResponseDeferredChannelMessageWithSource,
-	type APIInteractionResponseUpdateMessage,
 	type APIModalInteractionResponse,
 	type APISelectMenuOption
 } from 'discord-api-types/v10';
 import { chatInputCommandRegistry, contextMenuCommandRegistry, type AutocompleteInteractionArguments } from '../interactions';
 import { getMethod } from '../interactions/shared/link';
-import type { AsyncCommandResponse, CommandGeneratorResponse, CommandResponse } from '../interactions/utils/util';
+import type { AsyncInteractionHandlerResponse, InteractionHandlerGeneratorResponse, InteractionHandlerResponse } from '../interactions/utils/util';
 
 export abstract class Command extends Piece {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();
@@ -36,7 +35,7 @@ export abstract class Command extends Piece {
 	 * @param args The parsed arguments for this autocomplete interaction.
 	 */
 	protected chatInputRun(interaction: APIApplicationCommandInteraction, args: NonNullObject): Command.Response;
-	protected chatInputRun(_interaction: APIApplicationCommandInteraction, _args: unknown): Command.Response {
+	protected chatInputRun(): Command.Response {
 		return { type: InteractionResponseType.ChannelMessageWithSource, data: {} };
 	}
 
@@ -51,10 +50,7 @@ export abstract class Command extends Piece {
 		args: AutocompleteInteractionArguments<any>
 	): Command.AutocompleteResponse;
 
-	protected autocompleteRun(
-		_interaction: APIApplicationCommandAutocompleteInteraction,
-		_args: AutocompleteInteractionArguments<NonNullObject>
-	): Command.AutocompleteResponse {
+	protected autocompleteRun(): Command.AutocompleteResponse {
 		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data: {} };
 	}
 
@@ -81,12 +77,12 @@ export abstract class Command extends Piece {
 		return { type: InteractionResponseType.ChannelMessageWithSource, data };
 	}
 
+	/**
+	 * ACK an interaction and edit a response later. The user sees a loading state.
+	 * @param data The data to be sent, if any.
+	 */
 	protected defer(data?: APIInteractionResponseDeferredChannelMessageWithSource['data']): APIInteractionResponseDeferredChannelMessageWithSource {
 		return { type: InteractionResponseType.DeferredChannelMessageWithSource, data };
-	}
-
-	protected update(data?: APIInteractionResponseUpdateMessage['data']): APIInteractionResponseUpdateMessage {
-		return { type: InteractionResponseType.UpdateMessage, data };
 	}
 
 	/**
@@ -201,16 +197,15 @@ export abstract class Command extends Piece {
 }
 
 export namespace Command {
-	export type Response = CommandResponse;
-	export type AsyncResponse = AsyncCommandResponse;
-	export type GeneratorResponse = CommandGeneratorResponse;
+	export type Response = InteractionHandlerResponse;
+	export type AsyncResponse = AsyncInteractionHandlerResponse;
+	export type GeneratorResponse = InteractionHandlerGeneratorResponse;
 
 	export type AutocompleteResponse = Awaitable<APIApplicationCommandAutocompleteResponse>;
 	export type AsyncAutocompleteResponse = PromiseLike<APIApplicationCommandAutocompleteResponse>;
 
 	export type Interaction = import('discord-api-types/v10').APIApplicationCommandInteraction;
+	export type InteractionData = Interaction['data'];
 
 	export type AutocompleteInteraction = import('discord-api-types/v10').APIApplicationCommandAutocompleteInteraction;
-
-	export type InteractionData = Interaction['data'];
 }

@@ -21,15 +21,15 @@ import { HttpCodes } from '../../api/HttpCodes';
  * after execution.
  * @param reply The HTTP request we can reply to.
  * @param interaction The received interaction from Discord.
- * @param cb A callback with the command call result.
+ * @param cb A callback with the interaction handler call result.
  * @returns The reply object.
  */
 export async function runner<Type extends InteractionType, Data>(
 	reply: FastifyReply,
 	interaction: APIBaseInteraction<Type, Data>,
-	cb: () => CommandResponse
+	cb: () => InteractionHandlerResponse
 ): Promise<FastifyReply> {
-	let result: CommandResponse;
+	let result: InteractionHandlerResponse;
 	try {
 		result = await cb();
 	} catch (error) {
@@ -106,7 +106,7 @@ export type PatchMessageOptions = APIInteractionResponse & { files?: RawFile[] }
 async function handleGenerator<Type extends InteractionType, Data>(
 	reply: FastifyReply,
 	interaction: APIBaseInteraction<Type, Data>,
-	generator: CommandGeneratorResponse
+	generator: InteractionHandlerGeneratorResponse
 ): Promise<FastifyReply> {
 	let result = await generator.next();
 
@@ -174,8 +174,8 @@ export type AsyncInteractionGenerator = AsyncGenerator<
 	RESTPatchAPIInteractionOriginalResponseResult | null
 >;
 
-export type CommandInteractionResponse = APIInteractionResponse;
-export type CommandGeneratorResponse = SyncInteractionGenerator | AsyncInteractionGenerator;
+export type InteractionHandlerInteractionResponse = APIInteractionResponse;
+export type InteractionHandlerGeneratorResponse = SyncInteractionGenerator | AsyncInteractionGenerator;
 
-export type CommandResponse = Awaitable<CommandInteractionResponse | CommandGeneratorResponse>;
-export type AsyncCommandResponse = PromiseLike<CommandInteractionResponse | CommandGeneratorResponse>;
+export type InteractionHandlerResponse = Awaitable<APIInteractionResponse | InteractionHandlerGeneratorResponse>;
+export type AsyncInteractionHandlerResponse = PromiseLike<APIInteractionResponse | InteractionHandlerGeneratorResponse>;
