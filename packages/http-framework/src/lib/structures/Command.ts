@@ -89,6 +89,10 @@ export abstract class Command extends Piece {
 		return { type: InteractionResponseType.UpdateMessage, data };
 	}
 
+	/**
+	 * Responds to the interaction with a popup modal.
+	 * @param data The data to be sent.
+	 */
 	protected modal(data: APIModalInteractionResponse['data']): APIModalInteractionResponse {
 		return { type: InteractionResponseType.Modal, data };
 	}
