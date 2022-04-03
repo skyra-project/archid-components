@@ -8,6 +8,16 @@ import { extractTopLevelOptions, transformAutocompleteInteraction, transformInte
 
 describe('InteractionOptions', () => {
 	describe('transformInteraction', () => {
+		test('GIVEN no options THEN returns empty data', () => {
+			const options: APIApplicationCommandInteractionDataBasicOption[] = [];
+			const given = transformInteraction({}, options);
+
+			expect(given).toStrictEqual({
+				subCommandGroup: null,
+				subCommand: null
+			});
+		});
+
 		test('GIVEN top-level options THEN returns all data correctly', () => {
 			const options: APIApplicationCommandInteractionDataBasicOption[] = [
 				{ type: ApplicationCommandOptionType.String, name: 'name', value: 'Hello World' },
@@ -70,6 +80,17 @@ describe('InteractionOptions', () => {
 	});
 
 	describe('transformAutocompleteInteraction', () => {
+		test('GIVEN no options THEN returns empty data', () => {
+			const options: APIApplicationCommandInteractionDataBasicOption[] = [];
+			const given = transformAutocompleteInteraction({}, options);
+
+			expect(given).toStrictEqual({
+				subCommandGroup: null,
+				subCommand: null,
+				focused: null
+			});
+		});
+
 		test('GIVEN top-level options THEN returns all data correctly', () => {
 			const options: APIApplicationCommandInteractionDataBasicOption[] = [
 				{ type: ApplicationCommandOptionType.String, name: 'name', value: 'Hello World', focused: true },
@@ -135,6 +156,17 @@ describe('InteractionOptions', () => {
 	});
 
 	describe('extractTopLevelOptions', () => {
+		test('GIVEN no options THEN returns empty data', () => {
+			const options: APIApplicationCommandInteractionDataBasicOption[] = [];
+			const given = extractTopLevelOptions(options);
+
+			expect(given).toStrictEqual({
+				subCommandGroup: null,
+				subCommand: null,
+				options
+			});
+		});
+
 		test('GIVEN top-level options THEN returns SCG and SC null', () => {
 			const options: APIApplicationCommandInteractionDataBasicOption[] = [
 				{ type: ApplicationCommandOptionType.String, name: 'name', value: 'Hello World' },

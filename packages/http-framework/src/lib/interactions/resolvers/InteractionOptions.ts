@@ -59,22 +59,24 @@ export type AutocompleteInteractionArguments<T extends NonNullObject> = Interact
 };
 
 export function extractTopLevelOptions(options: readonly APIApplicationCommandInteractionDataOption[]): ExtractedOptions {
-	const [firstOption] = options;
-	if (firstOption.type === ApplicationCommandOptionType.SubcommandGroup) {
-		const subCommand = firstOption.options[0];
-		return {
-			subCommandGroup: firstOption,
-			subCommand,
-			options: subCommand.options ?? []
-		};
-	}
+	if (options.length) {
+		const [firstOption] = options;
+		if (firstOption.type === ApplicationCommandOptionType.SubcommandGroup) {
+			const subCommand = firstOption.options[0];
+			return {
+				subCommandGroup: firstOption,
+				subCommand,
+				options: subCommand.options ?? []
+			};
+		}
 
-	if (firstOption.type === ApplicationCommandOptionType.Subcommand) {
-		return {
-			subCommandGroup: null,
-			subCommand: firstOption,
-			options: firstOption.options ?? []
-		};
+		if (firstOption.type === ApplicationCommandOptionType.Subcommand) {
+			return {
+				subCommandGroup: null,
+				subCommand: firstOption,
+				options: firstOption.options ?? []
+			};
+		}
 	}
 
 	return {
