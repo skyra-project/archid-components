@@ -1,7 +1,9 @@
+import { REST, type RESTOptions } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { InteractionResponseType, InteractionType, type APIInteraction } from 'discord-api-types/v10';
 import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from 'fastify';
 import { Buffer } from 'node:buffer';
+import { EventEmitter } from 'node:events';
 import tweetnacl from 'tweetnacl';
 import { HttpCodes } from './api/HttpCodes';
 import type { IIdParser } from './components/IIdParser';
@@ -9,13 +11,19 @@ import { StringIdParser } from './components/StringIdParser';
 import { CommandStore } from './structures/CommandStore';
 import { MessageComponentHandlerStore } from './structures/MessageComponentHandlerStore';
 
-export class Client {
+export class Client extends EventEmitter {
 	public server!: FastifyInstance;
 	#discordPublicKey: Buffer;
 
 	public constructor(options: ClientOptions = {}) {
+		super({ captureRejections: true });
+
 		const discordPublicKey = options.discordPublicKey ?? process.env.DISCORD_PUBLIC_KEY;
 		if (!discordPublicKey) throw new Error('The discordPublicKey cannot be empty');
+
+		container.rest = new REST(options.restOptions);
+		const discordToken = options.discordToken ?? process.env.DISCORD_TOKEN;
+		if (discordToken) container.rest.setToken(discordToken);
 
 		this.#discordPublicKey = Buffer.from(discordPublicKey, 'hex');
 		container.stores.register(new CommandStore());
@@ -61,7 +69,7 @@ export class Client {
 			case InteractionType.ApplicationCommand:
 				return container.stores.get('commands').runApplicationCommand(reply, interaction);
 			case InteractionType.ApplicationCommandAutocomplete:
-				return container.stores.get('commands').runApplicationCommandAutoComplete(reply, interaction);
+				return container.stores.get('commands').runApplicationCommandAutocomplete(reply, interaction);
 			case InteractionType.MessageComponent:
 				return container.stores.get('message-component-handlers').runHandler(reply, interaction);
 			default:
@@ -108,6 +116,17 @@ export interface ClientOptions {
 	 * @default process.env.DISCORD_PUBLIC_KEY
 	 */
 	discordPublicKey?: string;
+
+	/**
+	 * The Discord token used for authenticating requests when updating interaction responses.
+	 * @default process.env.DISCORD_TOKEN
+	 */
+	discordToken?: string;
+
+	/**
+	 * The options to be passed to the underlying REST library.
+	 */
+	restOptions?: Partial<RESTOptions>;
 }
 
 export interface LoadOptions {
@@ -162,5 +181,6 @@ declare module '@sapphire/pieces' {
 	export interface Container {
 		client: Client;
 		idParser: IIdParser;
+		rest: REST;
 	}
 }

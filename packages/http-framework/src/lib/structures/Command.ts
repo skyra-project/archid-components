@@ -8,18 +8,17 @@ import {
 	InteractionResponseType,
 	type APIApplicationCommandAutocompleteResponse,
 	type APIApplicationCommandInteraction,
-	type APIApplicationCommandInteractionDataBasicOption,
-	type APIApplicationCommandInteractionDataOption,
 	type APIChatInputApplicationCommandInteractionData,
-	type APICommandAutocompleteInteractionResponseCallbackData,
 	type APIContextMenuInteractionData,
-	type APIInteractionResponse,
 	type APIInteractionResponseCallbackData,
 	type APIInteractionResponseChannelMessageWithSource,
+	type APIInteractionResponseDeferredChannelMessageWithSource,
+	type APIInteractionResponseUpdateMessage,
 	type APISelectMenuOption
 } from 'discord-api-types/v10';
 import { chatInputCommandRegistry, contextMenuCommandRegistry, type AutocompleteInteractionArguments } from '../interactions';
 import { getMethod } from '../interactions/shared/link';
+import type { CommandGeneratorResponse, CommandResponse } from '../interactions/utils/util';
 
 export abstract class Command extends Piece {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();
@@ -35,8 +34,8 @@ export abstract class Command extends Piece {
 	 * @param interaction The interaction to be routed.
 	 * @param args The parsed arguments for this autocomplete interaction.
 	 */
-	protected chatInputRun(interaction: APIApplicationCommandInteraction, args: NonNullObject): Awaitable<APIInteractionResponse>;
-	protected chatInputRun(_interaction: APIApplicationCommandInteraction, _args: unknown): Awaitable<APIInteractionResponse> {
+	protected chatInputRun(interaction: APIApplicationCommandInteraction, args: NonNullObject): Command.Response;
+	protected chatInputRun(_interaction: APIApplicationCommandInteraction, _args: unknown): Command.Response {
 		return { type: InteractionResponseType.ChannelMessageWithSource, data: {} };
 	}
 
@@ -49,12 +48,12 @@ export abstract class Command extends Piece {
 	protected autocompleteRun(
 		interaction: APIApplicationCommandAutocompleteInteraction,
 		args: AutocompleteInteractionArguments<any>
-	): Awaitable<APIApplicationCommandAutocompleteResponse>;
+	): Command.AutocompleteResponse;
 
 	protected autocompleteRun(
 		_interaction: APIApplicationCommandAutocompleteInteraction,
 		_args: AutocompleteInteractionArguments<NonNullObject>
-	): Awaitable<APIApplicationCommandAutocompleteResponse> {
+	): Command.AutocompleteResponse {
 		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data: {} };
 	}
 
@@ -62,7 +61,7 @@ export abstract class Command extends Piece {
 	 * Responds to the interaction with an autocomplete result.
 	 * @param data The data to be sent.
 	 */
-	protected autocomplete(data: APICommandAutocompleteInteractionResponseCallbackData): APIApplicationCommandAutocompleteResponse {
+	protected autocomplete(data: APIApplicationCommandAutocompleteResponse['data']): APIApplicationCommandAutocompleteResponse {
 		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data };
 	}
 
@@ -70,15 +69,23 @@ export abstract class Command extends Piece {
 	 * Responds to the interaction with an empty autocomplete result.
 	 */
 	protected autocompleteNoResults(): APIApplicationCommandAutocompleteResponse {
-		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data: { choices: [] } };
+		return this.autocomplete({ choices: [] });
 	}
 
 	/**
 	 * Responds to the interaction with a message.
 	 * @param data The data to be sent.
 	 */
-	protected message(data: APIInteractionResponseCallbackData): APIInteractionResponseChannelMessageWithSource {
+	protected message(data: APIInteractionResponseChannelMessageWithSource['data']): APIInteractionResponseChannelMessageWithSource {
 		return { type: InteractionResponseType.ChannelMessageWithSource, data };
+	}
+
+	protected defer(data?: APIInteractionResponseDeferredChannelMessageWithSource['data']): APIInteractionResponseDeferredChannelMessageWithSource {
+		return { type: InteractionResponseType.DeferredChannelMessageWithSource, data };
+	}
+
+	protected update(data?: APIInteractionResponseUpdateMessage['data']): APIInteractionResponseUpdateMessage {
+		return { type: InteractionResponseType.UpdateMessage, data };
 	}
 
 	/**
@@ -184,16 +191,12 @@ export abstract class Command extends Piece {
 	}
 }
 
-export interface CommandAutoCompleteContext {
-	focusedArgument?: APIApplicationCommandInteractionDataOption | APIApplicationCommandInteractionDataBasicOption;
-	subCommandGroupName?: string;
-	subCommandName?: string;
-}
-
 export namespace Command {
-	export type Response = Awaitable<APIInteractionResponse>;
+	export type Response = CommandResponse;
+	export type GeneratorResponse = CommandGeneratorResponse;
 
-	export type AutoCompleteContext = CommandAutoCompleteContext;
+	export type AutocompleteResponse = Awaitable<APIApplicationCommandAutocompleteResponse>;
+	export type AsyncAutocompleteResponse = PromiseLike<APIApplicationCommandAutocompleteResponse>;
 
 	export type Interaction = import('discord-api-types/v10').APIApplicationCommandInteraction;
 
