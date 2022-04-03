@@ -111,7 +111,7 @@ export abstract class Command extends Piece {
 	}
 
 	protected routeChatInputInteraction(data: APIChatInputApplicationCommandInteractionData): string | null {
-		if (!data.options) return 'chatInputRun';
+		if (!data.options?.length) return 'chatInputRun';
 
 		const [firstOption] = data.options;
 		if (firstOption.type === ApplicationCommandOptionType.Subcommand) {
