@@ -175,7 +175,7 @@ interface VerifyDiscordInteractionResponse {
 declare module '@sapphire/pieces' {
 	export interface StoreRegistryEntries {
 		commands: CommandStore;
-		'message-component-handlers': InteractionHandlerStore;
+		'interaction-handlers': InteractionHandlerStore;
 	}
 
 	export interface Container {
