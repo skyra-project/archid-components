@@ -14,11 +14,12 @@ import {
 	type APIInteractionResponseChannelMessageWithSource,
 	type APIInteractionResponseDeferredChannelMessageWithSource,
 	type APIInteractionResponseUpdateMessage,
+	type APIModalInteractionResponse,
 	type APISelectMenuOption
 } from 'discord-api-types/v10';
 import { chatInputCommandRegistry, contextMenuCommandRegistry, type AutocompleteInteractionArguments } from '../interactions';
 import { getMethod } from '../interactions/shared/link';
-import type { CommandGeneratorResponse, CommandResponse } from '../interactions/utils/util';
+import type { AsyncCommandResponse, CommandGeneratorResponse, CommandResponse } from '../interactions/utils/util';
 
 export abstract class Command extends Piece {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();
@@ -86,6 +87,10 @@ export abstract class Command extends Piece {
 
 	protected update(data?: APIInteractionResponseUpdateMessage['data']): APIInteractionResponseUpdateMessage {
 		return { type: InteractionResponseType.UpdateMessage, data };
+	}
+
+	protected modal(data: APIModalInteractionResponse['data']): APIModalInteractionResponse {
+		return { type: InteractionResponseType.Modal, data };
 	}
 
 	/**
@@ -193,6 +198,7 @@ export abstract class Command extends Piece {
 
 export namespace Command {
 	export type Response = CommandResponse;
+	export type AsyncResponse = AsyncCommandResponse;
 	export type GeneratorResponse = CommandGeneratorResponse;
 
 	export type AutocompleteResponse = Awaitable<APIApplicationCommandAutocompleteResponse>;
