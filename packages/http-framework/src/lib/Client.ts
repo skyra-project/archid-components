@@ -71,7 +71,7 @@ export class Client extends EventEmitter {
 			case InteractionType.ApplicationCommandAutocomplete:
 				return container.stores.get('commands').runApplicationCommandAutocomplete(reply, interaction);
 			case InteractionType.MessageComponent:
-				return container.stores.get('message-component-handlers').runHandler(reply, interaction);
+				return container.stores.get('interaction-handlers').runHandler(reply, interaction);
 			default:
 				return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown interaction type' });
 		}
