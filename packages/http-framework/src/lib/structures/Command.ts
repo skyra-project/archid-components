@@ -200,5 +200,7 @@ export namespace Command {
 
 	export type Interaction = import('discord-api-types/v10').APIApplicationCommandInteraction;
 
+	export type AutocompleteInteraction = import('discord-api-types/v10').APIApplicationCommandAutocompleteInteraction;
+
 	export type InteractionData = Interaction['data'];
 }
