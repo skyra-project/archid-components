@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.10](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.9...@skyra/shared-http-pieces@0.0.10) (2022-04-03)
+
+**Note:** Version bump only for package @skyra/shared-http-pieces
+
 ## [0.0.9](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.8...@skyra/shared-http-pieces@0.0.9) (2022-04-02)
 
 **Note:** Version bump only for package @skyra/shared-http-pieces

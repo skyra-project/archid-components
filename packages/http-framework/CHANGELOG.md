@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.10](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.9...@skyra/http-framework@0.0.10) (2022-04-03)
+
+### Bug Fixes
+
+-   fixed generic type for `autocompleteRun` ([#26](https://github.com/skyra-project/archid-components/issues/26)) ([8eee77f](https://github.com/skyra-project/archid-components/commit/8eee77f3677c9a305e5bb90a7f0434be8258f571))
+-   **interactions:** handle empty options ([#33](https://github.com/skyra-project/archid-components/issues/33)) ([ef26e45](https://github.com/skyra-project/archid-components/commit/ef26e459f21c2af59c17834f5ed73184879fcb5a))
+
+### Features
+
+-   add support for response updating in commands ([#28](https://github.com/skyra-project/archid-components/issues/28)) ([0264ff6](https://github.com/skyra-project/archid-components/commit/0264ff687a607f8510861dd95f4a8843cc5355c2))
+
 ## [0.0.9](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.8...@skyra/http-framework@0.0.9) (2022-04-02)
 
 **Note:** Version bump only for package @skyra/http-framework
