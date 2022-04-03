@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.10...@skyra/http-framework@0.1.0) (2022-04-03)
+
+### Features
+
+-   add `Command.AutocompleteInteraction` ([d76ae75](https://github.com/skyra-project/archid-components/commit/d76ae75f2fc9cec951078554da5a1a7896a59580))
+-   add modal and file support ([#34](https://github.com/skyra-project/archid-components/issues/34)) ([4d815fa](https://github.com/skyra-project/archid-components/commit/4d815fa1060b66c478082eb4b5ee13c219244f4e))
+
 ## [0.0.10](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.9...@skyra/http-framework@0.0.10) (2022-04-03)
 
 ### Bug Fixes
