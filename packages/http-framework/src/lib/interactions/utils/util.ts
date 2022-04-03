@@ -5,7 +5,9 @@ import {
 	type APIBaseInteraction,
 	type APIInteractionResponse,
 	type InteractionType,
-	type RESTPatchAPIInteractionOriginalResponseResult
+	type RESTPatchAPIInteractionOriginalResponseResult,
+	type RESTPostAPIInteractionFollowupJSONBody,
+	type RESTPostAPIInteractionFollowupResult
 } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { isGeneratorObject } from 'node:util/types';
@@ -64,7 +66,23 @@ export function handleError(reply: FastifyReply, error: unknown): FastifyReply {
  * @param body The body to be sent in the HTTP call.
  * @returns An API message.
  */
-function patchMessage<Type extends InteractionType, Data>(interaction: APIBaseInteraction<Type, Data>, body: APIInteractionResponse) {
+export function postMessage<Type extends InteractionType, Data>(
+	interaction: APIBaseInteraction<Type, Data>,
+	body: RESTPostAPIInteractionFollowupJSONBody
+) {
+	return container.rest.post(Routes.webhook(interaction.application_id, interaction.token), {
+		body,
+		auth: false
+	}) as Promise<RESTPostAPIInteractionFollowupResult>;
+}
+
+/**
+ * Sends an original interaction message response patch HTTP request.
+ * @param interaction The received interaction from Discord.
+ * @param body The body to be sent in the HTTP call.
+ * @returns An API message.
+ */
+export function patchMessage<Type extends InteractionType, Data>(interaction: APIBaseInteraction<Type, Data>, body: APIInteractionResponse) {
 	return container.rest.patch(Routes.webhookMessage(interaction.application_id, interaction.token), {
 		body,
 		auth: false

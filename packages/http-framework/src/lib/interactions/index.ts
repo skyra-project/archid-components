@@ -5,4 +5,4 @@ export * from './context-menu/shared';
 export * from './context-menu/util';
 export * from './resolvers/InteractionOptions';
 export * from './shared/decorators';
-export { runner } from './utils/util';
+export { patchMessage, postMessage, runner } from './utils/util';
