@@ -1,3 +1,4 @@
+import type { RawFile } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import type { Awaitable } from '@sapphire/utilities';
 import {
@@ -66,15 +67,15 @@ export function handleError(reply: FastifyReply, error: unknown): FastifyReply {
  * @param body The body to be sent in the HTTP call.
  * @returns An API message.
  */
-export function postMessage<Type extends InteractionType, Data>(
-	interaction: APIBaseInteraction<Type, Data>,
-	body: RESTPostAPIInteractionFollowupJSONBody
-) {
+export function postMessage<Type extends InteractionType, Data>(interaction: APIBaseInteraction<Type, Data>, { files, ...body }: PostMessageOptions) {
 	return container.rest.post(Routes.webhook(interaction.application_id, interaction.token), {
 		body,
+		files,
 		auth: false
 	}) as Promise<RESTPostAPIInteractionFollowupResult>;
 }
+
+export type PostMessageOptions = RESTPostAPIInteractionFollowupJSONBody & { files?: RawFile[] };
 
 /**
  * Sends an original interaction message response patch HTTP request.
@@ -82,12 +83,18 @@ export function postMessage<Type extends InteractionType, Data>(
  * @param body The body to be sent in the HTTP call.
  * @returns An API message.
  */
-export function patchMessage<Type extends InteractionType, Data>(interaction: APIBaseInteraction<Type, Data>, body: APIInteractionResponse) {
+export function patchMessage<Type extends InteractionType, Data>(
+	interaction: APIBaseInteraction<Type, Data>,
+	{ files, ...body }: PatchMessageOptions
+) {
 	return container.rest.patch(Routes.webhookMessage(interaction.application_id, interaction.token), {
 		body,
+		files,
 		auth: false
 	}) as Promise<RESTPatchAPIInteractionOriginalResponseResult>;
 }
+
+export type PatchMessageOptions = APIInteractionResponse & { files?: RawFile[] };
 
 /**
  * Handles a generator object from a command call.
@@ -157,17 +164,18 @@ async function handleGenerator<Type extends InteractionType, Data>(
 
 export type SyncInteractionGenerator = Generator<
 	APIInteractionResponse,
-	APIInteractionResponse | undefined,
+	PatchMessageOptions | undefined,
 	RESTPatchAPIInteractionOriginalResponseResult | null
 >;
 
 export type AsyncInteractionGenerator = AsyncGenerator<
 	APIInteractionResponse,
-	APIInteractionResponse | undefined,
+	PatchMessageOptions | undefined,
 	RESTPatchAPIInteractionOriginalResponseResult | null
 >;
 
-export type CommandAwaitableResponse = APIInteractionResponse;
+export type CommandInteractionResponse = APIInteractionResponse;
 export type CommandGeneratorResponse = SyncInteractionGenerator | AsyncInteractionGenerator;
 
-export type CommandResponse = Awaitable<APIInteractionResponse | CommandGeneratorResponse>;
+export type CommandResponse = Awaitable<CommandInteractionResponse | CommandGeneratorResponse>;
+export type AsyncCommandResponse = PromiseLike<CommandInteractionResponse | CommandGeneratorResponse>;
