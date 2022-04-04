@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.1.0...@skyra/http-framework@0.2.0) (2022-04-04)
+
+### Features
+
+-   add file support in responses ([#36](https://github.com/skyra-project/archid-components/issues/36)) ([544407a](https://github.com/skyra-project/archid-components/commit/544407af37a6a7aeaac015019a1cc32d8caf3d75))
+
 # [0.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.0.10...@skyra/http-framework@0.1.0) (2022-04-03)
 
 ### Features
