@@ -1,6 +1,6 @@
 import type { RawFile } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
-import type { Awaitable } from '@sapphire/utilities';
+import type { Awaitable, NonNullObject } from '@sapphire/utilities';
 import {
 	Routes,
 	type APIBaseInteraction,
@@ -13,6 +13,7 @@ import {
 import type { FastifyReply } from 'fastify';
 import { isGeneratorObject } from 'node:util/types';
 import { HttpCodes } from '../../api/HttpCodes';
+import FormData from 'form-data';
 
 /**
  * Runs the callback, handling all possible results (awaitable data or generator),
@@ -36,7 +37,37 @@ export async function runner<Type extends InteractionType, Data>(
 		return handleError(reply, error);
 	}
 
-	return isGeneratorObject(result) ? handleGenerator(reply, interaction, result) : reply.status(HttpCodes.OK).send(result);
+	return isGeneratorObject(result) ? handleGenerator(reply, interaction, result) : handleResponse(reply, result);
+}
+
+function hasFiles(data: NonNullObject): data is { files: RawFile[] } {
+	return Array.isArray((data as any).files) && (data as any).files.length > 0;
+}
+
+/**
+ * Handles a response message. This function must only be called if the HTTP
+ * interaction was not replied to.
+ *
+ * This function has a special case for when `data` has a non-empty `files`
+ * array, where the data is sent as `multipart/form-data` rather than
+ * `application/json`.
+ * @param reply The HTTP request we can reply to.
+ * @param data The data to be sent.
+ * @returns The reply object.
+ */
+export function handleResponse(reply: FastifyReply, data: NonNullObject): FastifyReply {
+	if (hasFiles(data)) {
+		const { files, ...rest } = data;
+		const form = new FormData();
+		for (const [index, file] of files.entries()) {
+			form.append(file.key ?? `files[${index}]`, file.data, file.name);
+		}
+
+		form.append('payload_json', JSON.stringify(rest));
+		return reply.status(HttpCodes.OK).header('content-type', 'multipart/form-data').send(form);
+	}
+
+	return reply.status(HttpCodes.OK).header('content-type', 'application/json').send(data);
 }
 
 /**
@@ -54,7 +85,7 @@ export async function runner<Type extends InteractionType, Data>(
  */
 export function handleError(reply: FastifyReply, error: unknown): FastifyReply {
 	if (typeof error === 'string') {
-		return reply.status(HttpCodes.OK).send({ content: error });
+		return handleResponse(reply, { content: error });
 	}
 
 	container.client.emit('error', error);
@@ -75,7 +106,9 @@ export function postMessage<Type extends InteractionType, Data>(interaction: API
 	}) as Promise<RESTPostAPIInteractionFollowupResult>;
 }
 
-export type PostMessageOptions = RESTPostAPIInteractionFollowupJSONBody & { files?: RawFile[] };
+export type AddFiles<T> = T & { files?: RawFile[] };
+
+export type PostMessageOptions = AddFiles<RESTPostAPIInteractionFollowupJSONBody>;
 
 /**
  * Sends an original interaction message response patch HTTP request.
@@ -85,7 +118,7 @@ export type PostMessageOptions = RESTPostAPIInteractionFollowupJSONBody & { file
  */
 export function patchMessage<Type extends InteractionType, Data>(
 	interaction: APIBaseInteraction<Type, Data>,
-	{ files, ...body }: PatchMessageOptions
+	{ files, ...body }: InteractionResponseWithFiles
 ) {
 	return container.rest.patch(Routes.webhookMessage(interaction.application_id, interaction.token), {
 		body,
@@ -94,7 +127,7 @@ export function patchMessage<Type extends InteractionType, Data>(
 	}) as Promise<RESTPatchAPIInteractionOriginalResponseResult>;
 }
 
-export type PatchMessageOptions = APIInteractionResponse & { files?: RawFile[] };
+export type InteractionResponseWithFiles = AddFiles<APIInteractionResponse>;
 
 /**
  * Handles a generator object from a command call.
@@ -113,14 +146,14 @@ async function handleGenerator<Type extends InteractionType, Data>(
 	// If the method was a generator...
 	if (result.done) {
 		// ... but returned data, then reply the HTTP request and finish execution:
-		if (result.value) return reply.status(HttpCodes.OK).send(result.value);
+		if (result.value) return handleResponse(reply, result.value);
 
 		// ... but did not return data, then throw as this is potentially a bug:
 		return handleError(reply, new Error('The generator returned too early'));
 	}
 
 	// Reply the HTTP request with the first yielded value (likely a defer):
-	await reply.status(HttpCodes.OK).send(result.value);
+	await handleResponse(reply, result.value);
 
 	// At this point, the method is a generator that is still returning more data,
 	// the first call will NOT receive data back, because it's an HTTP response,
@@ -163,19 +196,19 @@ async function handleGenerator<Type extends InteractionType, Data>(
 }
 
 export type SyncInteractionGenerator = Generator<
-	APIInteractionResponse,
-	PatchMessageOptions | undefined,
+	InteractionResponseWithFiles,
+	InteractionResponseWithFiles | undefined,
 	RESTPatchAPIInteractionOriginalResponseResult | null
 >;
 
 export type AsyncInteractionGenerator = AsyncGenerator<
-	APIInteractionResponse,
-	PatchMessageOptions | undefined,
+	InteractionResponseWithFiles,
+	InteractionResponseWithFiles | undefined,
 	RESTPatchAPIInteractionOriginalResponseResult | null
 >;
 
-export type InteractionHandlerInteractionResponse = APIInteractionResponse;
+export type InteractionHandlerInteractionResponse = InteractionResponseWithFiles;
 export type InteractionHandlerGeneratorResponse = SyncInteractionGenerator | AsyncInteractionGenerator;
 
-export type InteractionHandlerResponse = Awaitable<APIInteractionResponse | InteractionHandlerGeneratorResponse>;
-export type AsyncInteractionHandlerResponse = PromiseLike<APIInteractionResponse | InteractionHandlerGeneratorResponse>;
+export type InteractionHandlerResponse = Awaitable<InteractionResponseWithFiles | InteractionHandlerGeneratorResponse>;
+export type AsyncInteractionHandlerResponse = PromiseLike<InteractionResponseWithFiles | InteractionHandlerGeneratorResponse>;
