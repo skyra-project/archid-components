@@ -18,7 +18,12 @@ import {
 } from 'discord-api-types/v10';
 import { chatInputCommandRegistry, contextMenuCommandRegistry, type AutocompleteInteractionArguments } from '../interactions';
 import { getMethod } from '../interactions/shared/link';
-import type { AsyncInteractionHandlerResponse, InteractionHandlerGeneratorResponse, InteractionHandlerResponse } from '../interactions/utils/util';
+import type {
+	AddFiles,
+	AsyncInteractionHandlerResponse,
+	InteractionHandlerGeneratorResponse,
+	InteractionHandlerResponse
+} from '../interactions/utils/util';
 
 export abstract class Command extends Piece {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();
@@ -58,14 +63,14 @@ export abstract class Command extends Piece {
 	 * Responds to the interaction with an autocomplete result.
 	 * @param data The data to be sent.
 	 */
-	protected autocomplete(data: APIApplicationCommandAutocompleteResponse['data']): APIApplicationCommandAutocompleteResponse {
+	protected autocomplete(data: Command.AutocompleteResponseOptions): Command.AutocompleteResponseResult {
 		return { type: InteractionResponseType.ApplicationCommandAutocompleteResult, data };
 	}
 
 	/**
 	 * Responds to the interaction with an empty autocomplete result.
 	 */
-	protected autocompleteNoResults(): APIApplicationCommandAutocompleteResponse {
+	protected autocompleteNoResults(): Command.AutocompleteResponseResult {
 		return this.autocomplete({ choices: [] });
 	}
 
@@ -73,15 +78,16 @@ export abstract class Command extends Piece {
 	 * Responds to the interaction with a message.
 	 * @param data The data to be sent.
 	 */
-	protected message(data: APIInteractionResponseChannelMessageWithSource['data']): APIInteractionResponseChannelMessageWithSource {
-		return { type: InteractionResponseType.ChannelMessageWithSource, data };
+	protected message(data: Command.MessageResponseOptions): Command.MessageResponseResult;
+	protected message({ files, ...data }: Command.MessageResponseOptions): Command.MessageResponseResult {
+		return { type: InteractionResponseType.ChannelMessageWithSource, data, files };
 	}
 
 	/**
 	 * ACK an interaction and edit a response later. The user sees a loading state.
 	 * @param data The data to be sent, if any.
 	 */
-	protected defer(data?: APIInteractionResponseDeferredChannelMessageWithSource['data']): APIInteractionResponseDeferredChannelMessageWithSource {
+	protected defer(data?: Command.DeferResponseOptions): Command.DeferResponseResult {
 		return { type: InteractionResponseType.DeferredChannelMessageWithSource, data };
 	}
 
@@ -89,7 +95,7 @@ export abstract class Command extends Piece {
 	 * Responds to the interaction with a popup modal.
 	 * @param data The data to be sent.
 	 */
-	protected modal(data: APIModalInteractionResponse['data']): APIModalInteractionResponse {
+	protected modal(data: Command.ModalResponseOptions): Command.ModalResponseResult {
 		return { type: InteractionResponseType.Modal, data };
 	}
 
@@ -201,11 +207,21 @@ export namespace Command {
 	export type AsyncResponse = AsyncInteractionHandlerResponse;
 	export type GeneratorResponse = InteractionHandlerGeneratorResponse;
 
-	export type AutocompleteResponse = Awaitable<APIApplicationCommandAutocompleteResponse>;
-	export type AsyncAutocompleteResponse = PromiseLike<APIApplicationCommandAutocompleteResponse>;
+	export type AutocompleteResponse = Awaitable<AutocompleteResponseResult>;
+	export type AsyncAutocompleteResponse = PromiseLike<AutocompleteResponseResult>;
 
 	export type Interaction = import('discord-api-types/v10').APIApplicationCommandInteraction;
 	export type InteractionData = Interaction['data'];
 
 	export type AutocompleteInteraction = import('discord-api-types/v10').APIApplicationCommandAutocompleteInteraction;
+
+	// API types re-exports
+	export type AutocompleteResponseResult = APIApplicationCommandAutocompleteResponse;
+	export type AutocompleteResponseOptions = APIApplicationCommandAutocompleteResponse['data'];
+	export type MessageResponseResult = AddFiles<APIInteractionResponseChannelMessageWithSource>;
+	export type MessageResponseOptions = AddFiles<APIInteractionResponseChannelMessageWithSource['data']>;
+	export type DeferResponseResult = APIInteractionResponseDeferredChannelMessageWithSource;
+	export type DeferResponseOptions = APIInteractionResponseDeferredChannelMessageWithSource['data'];
+	export type ModalResponseOptions = APIModalInteractionResponse['data'];
+	export type ModalResponseResult = APIModalInteractionResponse;
 }

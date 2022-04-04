@@ -4,7 +4,7 @@ import { ApplicationCommandType, type APIInteractionResponse } from 'discord-api
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../api/HttpCodes';
 import { transformAutocompleteInteraction, transformInteraction } from '../interactions';
-import { handleError, runner } from '../interactions/utils/util';
+import { handleError, handleResponse, runner } from '../interactions/utils/util';
 import { Command } from './Command';
 
 export class CommandStore extends Store<Command> {
@@ -38,7 +38,7 @@ export class CommandStore extends Store<Command> {
 				interaction,
 				transformAutocompleteInteraction(interaction.data.resolved ?? {}, interaction.data.options)
 			);
-			return reply.status(HttpCodes.OK).send(response);
+			return handleResponse(reply, response);
 		} catch (error) {
 			return handleError(reply, error);
 		}
