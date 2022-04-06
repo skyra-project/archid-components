@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.2.1...@skyra/http-framework@0.2.2) (2022-04-06)
+
+### Bug Fixes
+
+-   bump discordjs dependencies ([140843d](https://github.com/skyra-project/archid-components/commit/140843dd3c4d38579deb0129e505aa787f98da6b))
+
 ## [0.2.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.2.0...@skyra/http-framework@0.2.1) (2022-04-06)
 
 ### Bug Fixes
