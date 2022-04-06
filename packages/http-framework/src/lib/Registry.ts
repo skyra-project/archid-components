@@ -35,8 +35,8 @@ export class Registry {
 
 	public get globalCommands(): RESTPostAPIApplicationCommandsJSONBody[] {
 		return [
-			...chatInputCommandRegistry.filter((_, command) => !restrictedGuildIdRegistry.has(command)).values(),
-			...flattenIterableOfArrays(contextMenuCommandRegistry.filter((_, command) => !restrictedGuildIdRegistry.has(command)).values())
+			...chatInputCommandRegistry.filter((_, command) => !restrictedGuildIdRegistry.get(command)?.length).values(),
+			...flattenIterableOfArrays(contextMenuCommandRegistry.filter((_, command) => !restrictedGuildIdRegistry.get(command)?.length).values())
 		];
 	}
 
