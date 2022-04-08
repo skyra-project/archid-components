@@ -1,5 +1,6 @@
 name: '*next*'
 package:
+  - '@skyra/env-utilities'
   - '@skyra/http-framework'
   - '@skyra/http-framework-i18n'
   - '@skyra/i18next-backend'
