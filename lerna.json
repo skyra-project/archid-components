@@ -23,6 +23,7 @@
 				"**/packages/i18next-backend/**/tsconfig.json",
 				"**/packages/shared-gateway-pieces/**/tsconfig.json",
 				"**/packages/shared-http-pieces/**/tsconfig.json",
+				"**/packages/start-banner/**/tsconfig.json",
 				"**/packages/**/tsconfig.eslint.json"
 			],
 			"registry": "https://registry.npmjs.org/"

@@ -4,12 +4,12 @@ const config = {
 	preset: 'ts-jest',
 	testEnvironment: 'node',
 	testRunner: 'jest-circus/runner',
-	testMatch: ['<rootDir>/packages/**/tests/**/*.test.ts', '<rootDir>/packages/**/tests/*.test.js'],
-	collectCoverageFrom: ['<rootDir>/packages/http-framework/src/**/*.ts', '<rootDir>/packages/start-banner/src/**/*.ts'],
+	testMatch: ['<rootDir>/tests/**/*.test.ts'],
+	collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
 	setupFilesAfterEnv: ['jest-extended/all'],
 	globals: {
 		'ts-jest': {
-			tsconfig: '<rootDir>/tsconfig.dev.json'
+			tsconfig: '<rootDir>/tests/tsconfig.json'
 		}
 	}
 };
