@@ -1,0 +1,57 @@
+{
+	"name": "@skyra/i18next-backend",
+	"version": "0.0.1",
+	"description": "A filesystem-based backend for i18next",
+	"author": "@skyra",
+	"license": "Apache-2.0",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js"
+	},
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsc -b src",
+		"watch": "tsc -b src --watch",
+		"watch:types": "tsc -b src -w",
+		"lint": "eslint src --ext ts --fix -c ../../package.json",
+		"prepublishOnly": "yarn build"
+	},
+	"dependencies": {
+		"tslib": "^2.3.1"
+	},
+	"devDependencies": {
+		"@types/node": "*",
+		"i18next": "^21.6.14"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/skyra-project/archid-components.git",
+		"directory": "packages/i18next-backend"
+	},
+	"files": [
+		"dist",
+		"!dist/*.tsbuildinfo"
+	],
+	"engines": {
+		"node": ">=16.9.0",
+		"npm": ">=8.0.0"
+	},
+	"keywords": [
+		"discord",
+		"api",
+		"http",
+		"skyra",
+		"typescript",
+		"ts",
+		"yarn"
+	],
+	"bugs": {
+		"url": "https://github.com/skyra-project/archid-components/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
