@@ -1,11 +1,14 @@
 import { Collection } from '@discordjs/collection';
+import type { RawFile } from '@discordjs/rest';
 import { Piece } from '@sapphire/pieces';
 import type { Awaitable, NonNullObject } from '@sapphire/utilities';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import {
+	APIMessage,
 	ApplicationCommandOptionType,
 	ComponentType,
 	InteractionResponseType,
+	Routes,
 	type APIApplicationCommandAutocompleteResponse,
 	type APIApplicationCommandInteraction,
 	type APIChatInputApplicationCommandInteractionData,
@@ -97,6 +100,72 @@ export abstract class Command extends Piece {
 	 */
 	protected modal(data: Command.ModalResponseOptions): Command.ModalResponseResult {
 		return { type: InteractionResponseType.Modal, data };
+	}
+
+	/**
+	 * Edits the initial Interaction response.
+	 *
+	 * When the `content` field is edited, the `mentions` array in the message object will be reconstructed from scratch based on the new content.
+	 * The `allowed_mentions` field of the edit request controls how this happens.
+	 * If there is no explicit `allowed_mentions` in the edit request, the content will be parsed with default allowances,
+	 * that is, without regard to whether or not an `allowed_mentions` was present in the request that originally created the message.
+	 *
+	 * Refer to [Uploading Files](https://discord.com/developers/docs/reference#uploading-files) for details on attachments and
+	 * `multipart/form-data` requests.
+	 * Any provided files will be **appended** to the message.
+	 * To remove or replace files you will have to supply the `attachments` field which specifies the files to retain on the message after edit.
+	 *
+	 * @see {@link https://discord.com/developers/docs/interactions/receiving-and-responding#edit-original-interaction-response}
+	 * @see {@link https://discord.com/developers/docs/resources/webhook#edit-webhook-message}
+	 *
+	 * @param interaction The replied to Interaction of which you want to edit the reply
+	 * @param options The {@link Command.EditReplyOptions} to edit the reply with
+	 * @param message The message to delete, defaults to `'@original'`
+	 * @returns
+	 */
+	protected editReply(
+		interaction: Command.Interaction,
+		options: Command.EditReplyOptions,
+		message: string | APIMessage = '@original'
+	): Promise<APIMessage> {
+		return this.container.rest.patch(
+			Routes.webhookMessage(interaction.application_id, interaction.token, typeof message === 'string' ? message : message.id),
+			{
+				body: {
+					...options.data,
+					type: InteractionResponseType.ChannelMessageWithSource
+				},
+				auth: false,
+				files: options.files,
+				query: options.threadId
+					? new URLSearchParams({
+							thread_id: options.threadId
+					  })
+					: undefined
+			}
+		) as Promise<APIMessage>;
+	}
+
+	/**
+	 * Deletes the initial Interaction response.
+	 * @see {@link https://discord.com/developers/docs/interactions/receiving-and-responding#delete-original-interaction-response}
+	 * @param interaction The replied to Interaction of which you want to delete the reply.
+	 * @param message The message to delete, defaults to `'@original'`
+	 * @param threadId The thread ID to delete the message in
+	 * @returns Returns `204 No Content` on success. Does not support ephemeral follow-ups.
+	 */
+	protected deleteReply(interaction: Command.Interaction, message: string | APIMessage = '@original', threadId?: string): Promise<void> {
+		return this.container.rest.delete(
+			Routes.webhookMessage(interaction.application_id, interaction.token, typeof message === 'string' ? message : message.id),
+			{
+				auth: false,
+				query: threadId
+					? new URLSearchParams({
+							thread_id: threadId
+					  })
+					: undefined
+			}
+		) as Promise<void>;
 	}
 
 	/**
@@ -224,4 +293,10 @@ export namespace Command {
 	export type DeferResponseOptions = APIInteractionResponseDeferredChannelMessageWithSource['data'];
 	export type ModalResponseOptions = APIModalInteractionResponse['data'];
 	export type ModalResponseResult = APIModalInteractionResponse;
+
+	export interface EditReplyOptions {
+		data: Omit<MessageResponseOptions, 'flags' | 'type'>;
+		files?: RawFile[];
+		threadId?: string;
+	}
 }
