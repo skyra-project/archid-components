@@ -27,7 +27,7 @@ export function addFormatters(...formatters: readonly Formatter[]): void {
 	loadedFormatters.push(...formatters);
 }
 
-export async function init(options: InitOptions) {
+export async function init(options?: InitOptions) {
 	await i18next.init({
 		backend: { paths: [...loadedPaths] },
 		ns: [...loadedNamespaces],
@@ -36,7 +36,7 @@ export async function init(options: InitOptions) {
 		interpolation: {
 			escapeValue: false,
 			skipOnVariables: false,
-			...options.interpolation
+			...options?.interpolation
 		},
 		ignoreJSONStructure: false,
 		...options

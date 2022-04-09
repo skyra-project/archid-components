@@ -1,6 +1,7 @@
 import type { BackendModule, InitOptions, ReadCallback, ResourceKey, Services } from 'i18next';
 import { readFileSync, type PathLike } from 'node:fs';
 import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 
 export class Backend implements BackendModule<Backend.Options> {
 	public readonly type = 'backend';
@@ -70,6 +71,7 @@ export class Backend implements BackendModule<Backend.Options> {
 
 	private static resolvePath(language: string, namespace: string, path: PathResolvable) {
 		if (typeof path === 'function') return path(language, namespace);
+		if (typeof path !== 'string') path = fileURLToPath(path);
 		return path.replace(/\{\{(?:lng|ns)\}\}/, (match) => (match === '{{lng}}' ? language : namespace));
 	}
 }
@@ -80,7 +82,7 @@ export namespace Backend {
 	}
 }
 
-export type PathResolvable = string | ((language: string, namespace: string) => PathLike);
+export type PathResolvable = string | URL | ((language: string, namespace: string) => PathLike);
 
 declare module 'i18next' {
 	interface InitOptions {
