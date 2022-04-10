@@ -1,0 +1,54 @@
+{
+	"name": "@skyra/env-utilities",
+	"version": "0.0.1",
+	"description": "Functional utilities for reading and parsing environmental variables",
+	"author": "@skyra",
+	"license": "Apache-2.0",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js"
+	},
+	"sideEffects": false,
+	"scripts": {
+		"test": "eslint src --ext ts -c ../../package.json",
+		"build": "tsup && tsc -b src",
+		"watch": "tsup --watch --onSuccess \"tsc -b src\"",
+		"watch:types": "tsc -b src -w",
+		"lint": "eslint src --ext ts --fix -c ../../package.json",
+		"prepublishOnly": "rollup-type-bundler -v -e dotenv dotenv-cra"
+	},
+	"dependencies": {
+		"dotenv-cra": "^3.0.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/skyra-project/archid-components.git",
+		"directory": "packages/env-utilities"
+	},
+	"files": [
+		"dist",
+		"!dist/*.tsbuildinfo"
+	],
+	"engines": {
+		"node": ">=16.9.0",
+		"npm": ">=8.0.0"
+	},
+	"keywords": [
+		"discord",
+		"api",
+		"http",
+		"skyra",
+		"typescript",
+		"ts",
+		"yarn"
+	],
+	"bugs": {
+		"url": "https://github.com/skyra-project/archid-components/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
