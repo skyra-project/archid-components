@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.2.2...@skyra/http-framework@0.3.0) (2022-04-10)
+
+### Bug Fixes
+
+-   **deps:** update all non-major dependencies ([#42](https://github.com/skyra-project/archid-components/issues/42)) ([37f2bbd](https://github.com/skyra-project/archid-components/commit/37f2bbdcd8f6ec2145fc063f192c506495974d7a))
+
+### Features
+
+-   add editReply and deleteReply ([#41](https://github.com/skyra-project/archid-components/issues/41)) ([2db83c8](https://github.com/skyra-project/archid-components/commit/2db83c8dfbdf2233d2060878fb0f29b2307288d4))
+
 ## [0.2.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.2.1...@skyra/http-framework@0.2.2) (2022-04-06)
 
 ### Bug Fixes
