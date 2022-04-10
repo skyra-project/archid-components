@@ -20,7 +20,7 @@ await i18next.init({
 			// Using a function:
 			(lng, ns) => `/locales/${lng}/${ns}.json`
 		]
-	},
+	}
 	// ... i18next options
-})
+});
 ```

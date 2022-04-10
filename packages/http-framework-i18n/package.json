@@ -17,7 +17,8 @@
 		"watch": "tsc -b src --watch",
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
-		"prepublishOnly": "yarn build"
+		"prepublishOnly": "yarn build",
+		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/http-framework-i18n/*'"
 	},
 	"dependencies": {
 		"@discordjs/collection": "^0.5.0",
