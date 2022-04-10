@@ -13,7 +13,10 @@ import { addFormatters, init, load } from '@skyra/http-framework-i18n';
 await load(new URL('/locales', import.meta.url));
 
 // Add formatters, those will be added in `i18next.services.formatter`:
-addFormatters({ name: 'uppercase', format: (value) => value.toUpperCase() }, { name: 'lowercase', format: (value) => value.toLowerCase() });
+addFormatters(
+	{ name: 'uppercase', format: (value) => value.toUpperCase() }, //
+	{ name: 'lowercase', format: (value) => value.toLowerCase() }
+);
 
 // Initialize backend, may take an object with the options:
 // NOTE: The following properties are defined by the `load` method:
