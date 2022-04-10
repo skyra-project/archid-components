@@ -19,14 +19,13 @@
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepublishOnly": "rollup-type-bundler -v -e dotenv dotenv-cra",
-		"bump": "standard-version",
+		"bump": "standard-version -t @skyra/env-utilities@",
 		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/env-utilities/*'"
 	},
 	"dependencies": {
 		"dotenv-cra": "^3.0.2"
 	},
 	"standard-version": {
-		"tagPrefix": "@skyra/env-utilities@",
 		"skip": {
 			"changelog": true
 		}
