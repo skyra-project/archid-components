@@ -18,7 +18,7 @@
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepublishOnly": "yarn build",
-		"bump": "standard-version -t @skyra/shared-http-pieces@",
+		"bump": "standard-version",
 		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/shared-http-pieces/*'"
 	},
 	"dependencies": {
@@ -28,6 +28,7 @@
 		"tslib": "^2.3.1"
 	},
 	"standard-version": {
+		"tagPrefix": "@skyra/shared-http-pieces@",
 		"skip": {
 			"changelog": true
 		}

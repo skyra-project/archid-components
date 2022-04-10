@@ -18,7 +18,7 @@
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepublishOnly": "yarn build",
-		"bump": "standard-version -t @skyra/http-framework-i18n@",
+		"bump": "standard-version",
 		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/http-framework-i18n/*'"
 	},
 	"dependencies": {
@@ -31,6 +31,7 @@
 		"tslib": "^2.3.1"
 	},
 	"standard-version": {
+		"tagPrefix": "@skyra/http-framework-i18n@",
 		"skip": {
 			"changelog": true
 		}
