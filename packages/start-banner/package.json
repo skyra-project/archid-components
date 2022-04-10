@@ -22,6 +22,12 @@
 		"bump": "standard-version",
 		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/start-banner/*'"
 	},
+	"standard-version": {
+		"tagPrefix": "@skyra/start-banner@",
+		"skip": {
+			"changelog": true
+		}
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/skyra-project/archid-components.git",

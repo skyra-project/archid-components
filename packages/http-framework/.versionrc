@@ -1,6 +1,0 @@
-{
-	"tagPrefix": "@skyra/http-framework@",
-	"skip": {
-		"changelog": true
-	}
-}

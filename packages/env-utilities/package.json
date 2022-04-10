@@ -25,6 +25,12 @@
 	"dependencies": {
 		"dotenv-cra": "^3.0.2"
 	},
+	"standard-version": {
+		"tagPrefix": "@skyra/env-utilities@",
+		"skip": {
+			"changelog": true
+		}
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/skyra-project/archid-components.git",

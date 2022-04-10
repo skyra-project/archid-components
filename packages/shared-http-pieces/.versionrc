@@ -1,6 +1,0 @@
-{
-	"tagPrefix": "@skyra/shared-http-pieces@",
-	"skip": {
-		"changelog": true
-	}
-}

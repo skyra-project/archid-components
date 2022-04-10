@@ -1,6 +1,0 @@
-{
-	"tagPrefix": "@skyra/env-utilities@",
-	"skip": {
-		"changelog": true
-	}
-}

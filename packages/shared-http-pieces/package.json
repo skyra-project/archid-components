@@ -27,6 +27,12 @@
 		"discord-api-types": "^0.29.0",
 		"tslib": "^2.3.1"
 	},
+	"standard-version": {
+		"tagPrefix": "@skyra/shared-http-pieces@",
+		"skip": {
+			"changelog": true
+		}
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/skyra-project/archid-components.git",

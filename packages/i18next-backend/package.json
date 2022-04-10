@@ -28,6 +28,12 @@
 		"@types/node": "*",
 		"i18next": "^21.6.14"
 	},
+	"standard-version": {
+		"tagPrefix": "@skyra/i18next-backend@",
+		"skip": {
+			"changelog": true
+		}
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/skyra-project/archid-components.git",
