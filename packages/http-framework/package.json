@@ -21,13 +21,13 @@
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.13.0-dev.1649160523-402514f",
+		"@discordjs/builders": "0.13.0-dev.1649505810-3c0bbac",
 		"@discordjs/collection": "^0.5.0",
-		"@discordjs/rest": "0.4.0-dev.1649160494-402514f",
+		"@discordjs/rest": "0.4.0-dev.1649505800-3c0bbac",
 		"@sapphire/pieces": "^3.3.1",
 		"@sapphire/utilities": "^3.6.2",
 		"discord-api-types": "^0.29.0",
-		"fastify": "^3.27.4",
+		"fastify": "^3.28.0",
 		"form-data": "^4.0.0",
 		"tweetnacl": "^1.0.3"
 	},
