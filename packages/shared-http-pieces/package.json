@@ -20,7 +20,7 @@
 		"prepublishOnly": "yarn build"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.13.0-dev.1648515278-ac4bc3a",
+		"@discordjs/builders": "0.13.0-dev.1649505810-3c0bbac",
 		"@skyra/http-framework": "^0.2.2",
 		"discord-api-types": "^0.29.0",
 		"tslib": "^2.3.1"
