@@ -1,0 +1,6 @@
+{
+	"tagPrefix": "@skyra/start-banner@",
+	"skip": {
+		"changelog": true
+	}
+}

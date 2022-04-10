@@ -12,6 +12,10 @@
 			"dependsOn": [],
 			"outputs": []
 		},
+		"bump": {
+			"dependsOn": [],
+			"outputs": []
+		},
 		"changelog": {
 			"dependsOn": ["^build"],
 			"outputs": ["CHANGELOG.md"]

@@ -18,11 +18,12 @@
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepublishOnly": "yarn build",
+		"bump": "standard-version",
 		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/shared-http-pieces/*'"
 	},
 	"dependencies": {
 		"@discordjs/builders": "0.13.0-dev.1649505810-3c0bbac",
-		"@skyra/http-framework": "^0.3.0",
+		"@skyra/http-framework": "workspace:^",
 		"discord-api-types": "^0.29.0",
 		"tslib": "^2.3.1"
 	},
