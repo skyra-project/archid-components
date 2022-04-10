@@ -13,7 +13,7 @@
 		"build": "turbo run build",
 		"update": "yarn upgrade-interactive",
 		"prepare": "husky install .github/husky",
-		"bump": "turbo run bump",
+		"bump": "turbo run bump --concurrency=1",
 		"changelog": "turbo run changelog"
 	},
 	"devDependencies": {
