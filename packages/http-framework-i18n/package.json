@@ -1,0 +1,59 @@
+{
+	"name": "@skyra/http-framework-i18n",
+	"version": "0.0.1",
+	"description": "The common pieces for ArchId Network's HTTP-only bots",
+	"author": "@skyra",
+	"license": "Apache-2.0",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js"
+	},
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsc -b src",
+		"watch": "tsc -b src --watch",
+		"watch:types": "tsc -b src -w",
+		"lint": "eslint src --ext ts --fix -c ../../package.json",
+		"prepublishOnly": "yarn build"
+	},
+	"dependencies": {
+		"@discordjs/collection": "^0.5.0",
+		"@sapphire/utilities": "3.6.2",
+		"@skyra/http-framework": "workspace:^",
+		"@skyra/i18next-backend": "workspace:^",
+		"discord-api-types": "^0.29.0",
+		"i18next": "^21.6.14",
+		"tslib": "^2.3.1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/skyra-project/archid-components.git",
+		"directory": "packages/http-framework-i18n"
+	},
+	"files": [
+		"dist",
+		"!dist/*.tsbuildinfo"
+	],
+	"engines": {
+		"node": ">=16.9.0",
+		"npm": ">=8.0.0"
+	},
+	"keywords": [
+		"discord",
+		"api",
+		"http",
+		"skyra",
+		"typescript",
+		"ts",
+		"yarn"
+	],
+	"bugs": {
+		"url": "https://github.com/skyra-project/archid-components/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

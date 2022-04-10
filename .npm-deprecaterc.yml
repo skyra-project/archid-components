@@ -1,6 +1,8 @@
 name: '*next*'
 package:
   - '@skyra/http-framework'
+  - '@skyra/http-framework-i18n'
+  - '@skyra/i18next-backend'
   - '@skyra/shared-http-pieces'
   # TODO: Fix name when package.json is created
   # - '@skyra/shared-gateway-pieces'

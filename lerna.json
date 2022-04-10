@@ -18,6 +18,8 @@
 				"**/jest.config.ts",
 				"**/*.d.ts",
 				"**/packages/http-framework/**/tsconfig.json",
+				"**/packages/http-framework-i18n/**/tsconfig.json",
+				"**/packages/i18next-backend/**/tsconfig.json",
 				"**/packages/shared-gateway-pieces/**/tsconfig.json",
 				"**/packages/shared-http-pieces/**/tsconfig.json",
 				"**/packages/**/tsconfig.eslint.json"
