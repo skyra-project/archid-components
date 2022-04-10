@@ -1,0 +1,6 @@
+{
+	"tagPrefix": "@skyra/i18next-backend@",
+	"skip": {
+		"changelog": true
+	}
+}
