@@ -17,7 +17,8 @@
 		"watch": "tsc -b src --watch",
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
-		"prepublishOnly": "yarn build"
+		"prepublishOnly": "yarn build",
+		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/i18next-backend/*'"
 	},
 	"dependencies": {
 		"tslib": "^2.3.1"

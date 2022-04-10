@@ -14,7 +14,7 @@ await load(new URL('/locales', import.meta.url));
 
 // Add formatters, those will be added in `i18next.services.formatter`:
 addFormatters(
-	{ name: 'uppercase', format: (value) => value.toUpperCase() },
+	{ name: 'uppercase', format: (value) => value.toUpperCase() }, //
 	{ name: 'lowercase', format: (value) => value.toLowerCase() }
 );
 
@@ -46,13 +46,7 @@ export const AddResult = FT<{ left: number; right: number; result: number }>('pa
 ### Consumption
 
 ```typescript
-import {
-	getSupportedLanguageName,
-	getSupportedUserLanguageName,
-	getT,
-	resolveKey,
-	resolveUserKey
-} from '@skyra/http-framework-i18n';
+import { getSupportedLanguageName, getSupportedUserLanguageName, getT, resolveKey, resolveUserKey } from '@skyra/http-framework-i18n';
 
 // Get the name of the supported guild language, falling back to the user's on DMs:
 const guildLanguage = getSupportedLanguageName(interaction);

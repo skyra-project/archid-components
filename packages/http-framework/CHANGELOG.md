@@ -1,7 +1,6 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # [0.3.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.2.2...@skyra/http-framework@0.3.0) (2022-04-10)
 
