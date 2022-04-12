@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/i18next-backend@0.0.5](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@0.0.4...@skyra/i18next-backend@0.0.5) - (2022-04-12)
+
+## Bug Fixes
+
+- **i18next-backend:** Add CJS bundle ([3da6e05](https://github.com/skyra-project/archid-components/commit/3da6e051009a0e23026bf7fd674085f996ca9edf))
+
 # [@skyra/i18next-backend@0.0.4](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@0.0.3...@skyra/i18next-backend@0.0.4) - (2022-04-12)
 
 ## Bug Fixes
