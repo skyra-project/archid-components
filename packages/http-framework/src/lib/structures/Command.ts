@@ -277,12 +277,18 @@ export namespace Command {
 	export type GeneratorResponse = InteractionHandlerGeneratorResponse;
 
 	export type AutocompleteResponse = Awaitable<AutocompleteResponseResult>;
-	export type AsyncAutocompleteResponse = PromiseLike<AutocompleteResponseResult>;
+	export type AsyncAutocompleteResponse = Promise<AutocompleteResponseResult>;
 
 	export type Interaction = import('discord-api-types/v10').APIApplicationCommandInteraction;
 	export type InteractionData = Interaction['data'];
 
 	export type AutocompleteInteraction = import('discord-api-types/v10').APIApplicationCommandAutocompleteInteraction;
+
+	// Piece re-exports
+	export type Context = Piece.Context;
+	export type JSON = Piece.JSON;
+	export type LocationJSON = Piece.LocationJSON;
+	export type Options = Piece.Options;
 
 	// API types re-exports
 	export type AutocompleteResponseResult = APIApplicationCommandAutocompleteResponse;

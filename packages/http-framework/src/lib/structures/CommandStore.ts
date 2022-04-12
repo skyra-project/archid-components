@@ -1,6 +1,6 @@
 import { Store } from '@sapphire/pieces';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
-import { ApplicationCommandType, type APIInteractionResponse } from 'discord-api-types/v10';
+import { ApplicationCommandType } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../api/HttpCodes';
 import { transformAutocompleteInteraction, transformInteraction } from '../interactions';
@@ -44,11 +44,7 @@ export class CommandStore extends Store<Command> {
 		}
 	}
 
-	private runCommandMethod(
-		command: Command,
-		method: string,
-		interaction: Command.Interaction
-	): PromiseLike<APIInteractionResponse> | APIInteractionResponse {
+	private runCommandMethod(command: Command, method: string, interaction: Command.Interaction): Command.Response {
 		return Reflect.apply(Reflect.get(command, method), command, [interaction, this.createArguments(interaction.data)]);
 	}
 

@@ -67,6 +67,12 @@ export namespace InteractionHandler {
 	export type MessageComponentInteraction = import('discord-api-types/v10').APIMessageComponentInteraction;
 	export type MessageComponentInteractionData = MessageComponentInteraction['data'];
 
+	// Piece re-exports
+	export type Context = Piece.Context;
+	export type JSON = Piece.JSON;
+	export type LocationJSON = Piece.LocationJSON;
+	export type Options = Piece.Options;
+
 	// API types re-exports
 	export type MessageResponseResult = AddFiles<APIInteractionResponseChannelMessageWithSource>;
 	export type MessageResponseOptions = AddFiles<APIInteractionResponseChannelMessageWithSource['data']>;
