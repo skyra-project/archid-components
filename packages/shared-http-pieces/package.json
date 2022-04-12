@@ -19,7 +19,7 @@
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepublishOnly": "yarn build",
 		"bump": "standard-version --no-verify",
-		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/shared-http-pieces/*'"
+		"changelog": "git cliff --prepend ./CHANGELOG.md -l -c ./cliff.toml -r ../../ --include-path 'packages/shared-http-pieces/*'"
 	},
 	"dependencies": {
 		"@discordjs/builders": "0.13.0-dev.1649505810-3c0bbac",
