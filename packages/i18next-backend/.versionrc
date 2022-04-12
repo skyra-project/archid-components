@@ -2,5 +2,9 @@
 	"tagPrefix": "@skyra/i18next-backend@",
 	"skip": {
 		"changelog": true
+	},
+	"releaseCommitMessageFormat": "chore(i18next-backend): release @sapphire/i18next-backend@{{currentTag}}",
+	"scripts": {
+		"posttag": "pwsh -NoProfile ../../scripts/post-tag.ps1"
 	}
 }
