@@ -5,18 +5,18 @@ A banner generator utility for your CLI, generates a string to be printed into t
 The full layout is similar to the following:
 
 ```
-################################################################################
-#          #                                                                   #
-#          #                                                                   #
-#   LOGO   #                                NAME                               #
-#          #                                                                   #
-#          #                                                                   #
-################################################################################
-############                                                                   #
-############                               EXTRAS                              #
-############                                                                   #
-############                                                                   #
-################################################################################
+#####################################################################
+#          #                                                        #
+#          #                                                        #
+#   LOGO   #                          NAME                          #
+#          #                                                        #
+#          #                                                        #
+#####################################################################
+############                                                        #
+############                         EXTRAS                         #
+############                                                        #
+############                                                        #
+#####################################################################
 ```
 
 It consists of two sections, "left" and "right". The left section is present only if a non-empty logo is given, otherwise only the right section will be shown. The right section consists of the "name" and "extras" fields, both of which are optional, and if none of them is given, then only the logo will be shown.
