@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.0.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.0.4...@skyra/http-framework-i18n@0.0.5) - (2022-04-12)
+
+## Bug Fixes
+
+- Ensure proper files array for yarn pack ([38214a3](https://github.com/skyra-project/archid-components/commit/38214a3be182369efe076428c425b6aa43e1ee35))
+
+## Refactor
+
+- **http-framework-i18n:** Type enhancements (#46) ([d9ddd0e](https://github.com/skyra-project/archid-components/commit/d9ddd0e974541da4998c116bdfdfa04a62266e54))
+
 # [@skyra/http-framework-i18n@0.0.4]
 (https://github.com/skyra-project/archid-components/tree/@skyra/http-framework-i18n@0.0.4) - (2022-04-12)
 
