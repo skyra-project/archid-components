@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/start-banner",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A banner generator utility for your CLI",
 	"author": "@skyra",
 	"license": "Apache-2.0",
