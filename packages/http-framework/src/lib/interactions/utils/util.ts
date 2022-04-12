@@ -211,4 +211,4 @@ export type InteractionHandlerInteractionResponse = InteractionResponseWithFiles
 export type InteractionHandlerGeneratorResponse = SyncInteractionGenerator | AsyncInteractionGenerator;
 
 export type InteractionHandlerResponse = Awaitable<InteractionResponseWithFiles | InteractionHandlerGeneratorResponse>;
-export type AsyncInteractionHandlerResponse = PromiseLike<InteractionResponseWithFiles | InteractionHandlerGeneratorResponse>;
+export type AsyncInteractionHandlerResponse = Promise<InteractionResponseWithFiles | InteractionHandlerGeneratorResponse>;

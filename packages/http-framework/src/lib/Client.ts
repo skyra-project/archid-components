@@ -118,7 +118,7 @@ export interface ClientOptions {
 	discordPublicKey?: string;
 
 	/**
-	 * The Discord token used for authenticating requests when updating interaction responses.
+	 * The Discord token used for authenticating requests outside of interaction responses.
 	 * @default process.env.DISCORD_TOKEN
 	 */
 	discordToken?: string;
