@@ -45,6 +45,13 @@
 			"login": "favna",
 			"name": "Jeroen Claassens",
 			"profile": "https://favware.tech/"
+		},
+		{
+			"login": "devramsean0",
+			"name": "devramsean0",
+			"avatar_url": "https://avatars.githubusercontent.com/u/81807361?v=4",
+			"profile": "https://github.com/devramsean0",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,
