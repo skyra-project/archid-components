@@ -1,7 +1,7 @@
 import type { DotenvConfigOutput } from 'dotenv';
 import { config, type DotenvCraOptions } from 'dotenv-cra';
 import { fileURLToPath } from 'node:url';
-import { envParseBoolean } from './utils';
+import { envIsDefined, envParseBoolean } from './utils';
 
 export function setup(pathOrOptions?: string | URL | EnvSetupOptions): DotenvConfigOutput {
 	// Unless explicitly defined, set NODE_ENV as development:
@@ -24,7 +24,7 @@ export function setup(pathOrOptions?: string | URL | EnvSetupOptions): DotenvCon
 	}
 
 	return config({
-		debug: envParseBoolean('DOTENV_DEBUG', false),
+		debug: envIsDefined('DOTENV_DEBUG') ? envParseBoolean('DOTENV_DEBUG') : undefined,
 		encoding: process.env.DOTENV_ENCODING,
 		env: process.env.DOTENV_ENV,
 		path: process.env.DOTENV_PATH,
