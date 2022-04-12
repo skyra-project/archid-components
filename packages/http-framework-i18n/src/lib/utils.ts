@@ -2,7 +2,7 @@ import type { NonNullObject } from '@sapphire/utilities';
 import type { APIApplicationCommandInteraction, LocaleString } from 'discord-api-types/v10';
 import type { TOptions, TOptionsBase } from 'i18next';
 import { getT, loadedLocales } from './registry';
-import type { CustomFunctionGet, CustomGet } from './types';
+import type { TypedFT, TypedT } from './types';
 
 export function getSupportedUserLanguageName(interaction: APIApplicationCommandInteraction): LocaleString {
 	if (loadedLocales.has(interaction.locale)) return interaction.locale;
@@ -19,25 +19,25 @@ export function getSupportedLanguageName(interaction: APIApplicationCommandInter
 	return 'en-US';
 }
 
-export function resolveUserKey<K extends string, TReturn>(
+export function resolveUserKey<TReturn>(
 	interaction: APIApplicationCommandInteraction,
-	key: CustomGet<K, TReturn>,
+	key: TypedT<TReturn>,
 	options?: TOptionsBase | string
 ): TReturn;
-export function resolveUserKey<K extends string, TReturn>(
+export function resolveUserKey<TReturn>(
 	interaction: APIApplicationCommandInteraction,
-	key: CustomGet<K, TReturn>,
+	key: TypedT<TReturn>,
 	defaultValue: TReturn,
 	options?: TOptionsBase | string
 ): TReturn;
-export function resolveUserKey<K extends string, TArgs extends NonNullObject, TReturn>(
+export function resolveUserKey<TArgs extends NonNullObject, TReturn>(
 	interaction: APIApplicationCommandInteraction,
-	key: CustomFunctionGet<K, TArgs, TReturn>,
+	key: TypedFT<TArgs, TReturn>,
 	options?: TOptions<TArgs>
 ): TReturn;
-export function resolveUserKey<K extends string, TArgs extends NonNullObject, TReturn>(
+export function resolveUserKey<TArgs extends NonNullObject, TReturn>(
 	interaction: APIApplicationCommandInteraction,
-	key: CustomFunctionGet<K, TArgs, TReturn>,
+	key: TypedFT<TArgs, TReturn>,
 	defaultValue: TReturn,
 	options?: TOptions<TArgs>
 ): TReturn;
@@ -45,25 +45,21 @@ export function resolveUserKey(interaction: APIApplicationCommandInteraction, ..
 	return getT(getSupportedUserLanguageName(interaction))(...args);
 }
 
-export function resolveKey<K extends string, TReturn>(
+export function resolveKey<TReturn>(interaction: APIApplicationCommandInteraction, key: TypedT<TReturn>, options?: TOptionsBase | string): TReturn;
+export function resolveKey<TReturn>(
 	interaction: APIApplicationCommandInteraction,
-	key: CustomGet<K, TReturn>,
-	options?: TOptionsBase | string
-): TReturn;
-export function resolveKey<K extends string, TReturn>(
-	interaction: APIApplicationCommandInteraction,
-	key: CustomGet<K, TReturn>,
+	key: TypedT<TReturn>,
 	defaultValue: TReturn,
 	options?: TOptionsBase | string
 ): TReturn;
-export function resolveKey<K extends string, TArgs extends NonNullObject, TReturn>(
+export function resolveKey<TArgs extends NonNullObject, TReturn>(
 	interaction: APIApplicationCommandInteraction,
-	key: CustomFunctionGet<K, TArgs, TReturn>,
+	key: TypedFT<TArgs, TReturn>,
 	options?: TOptions<TArgs>
 ): TReturn;
-export function resolveKey<K extends string, TArgs extends NonNullObject, TReturn>(
+export function resolveKey<TArgs extends NonNullObject, TReturn>(
 	interaction: APIApplicationCommandInteraction,
-	key: CustomFunctionGet<K, TArgs, TReturn>,
+	key: TypedFT<TArgs, TReturn>,
 	defaultValue: TReturn,
 	options?: TOptions<TArgs>
 ): TReturn;

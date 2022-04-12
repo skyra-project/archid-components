@@ -4,20 +4,16 @@ export * from './lib/types';
 export * from './lib/utils';
 
 import type { NonNullObject } from '@sapphire/utilities';
-import type { CustomFunctionGet, CustomGet } from './lib/types';
+import type { TypedFT, TypedT } from './lib/types';
 
 declare module 'i18next' {
 	export interface TFunction {
 		lng: string;
 		ns?: string;
 
-		<K extends string, TReturn>(key: CustomGet<K, TReturn>, options?: TOptionsBase | string): TReturn;
-		<K extends string, TReturn>(key: CustomGet<K, TReturn>, defaultValue: TReturn, options?: TOptionsBase | string): TReturn;
-		<K extends string, TArgs extends NonNullObject, TReturn>(key: CustomFunctionGet<K, TArgs, TReturn>, options?: TOptions<TArgs>): TReturn;
-		<K extends string, TArgs extends NonNullObject, TReturn>(
-			key: CustomFunctionGet<K, TArgs, TReturn>,
-			defaultValue: TReturn,
-			options?: TOptions<TArgs>
-		): TReturn;
+		<TReturn>(key: TypedT<TReturn>, options?: TOptionsBase | string): TReturn;
+		<TReturn>(key: TypedT<TReturn>, defaultValue: TReturn, options?: TOptionsBase | string): TReturn;
+		<TArgs extends NonNullObject, TReturn>(key: TypedFT<TArgs, TReturn>, options?: TOptions<TArgs>): TReturn;
+		<TArgs extends NonNullObject, TReturn>(key: TypedFT<TArgs, TReturn>, defaultValue: TReturn, options?: TOptions<TArgs>): TReturn;
 	}
 }
