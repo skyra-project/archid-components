@@ -5,6 +5,6 @@
 	},
 	"releaseCommitMessageFormat": "chore(env-utilities): release @sapphire/env-utilities@{{currentTag}}",
 	"scripts": {
-		"posttag": "yarn changelog && git add CHANGELOG.md && git commit --amend --no-edit"
+		"posttag": "pwsh -NoProfile ../../scripts/post-tag.ps1"
 	}
 }
