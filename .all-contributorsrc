@@ -52,6 +52,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/81807361?v=4",
 			"profile": "https://github.com/devramsean0",
 			"contributions": ["code"]
+		},
+		{
+			"login": "renovate-bot",
+			"name": "WhiteSource Renovate",
+			"avatar_url": "https://avatars.githubusercontent.com/u/25180681?v=4",
+			"profile": "https://renovate.whitesourcesoftware.com/",
+			"contributions": ["maintenance"]
 		}
 	],
 	"contributorsPerLine": 7,
