@@ -1,6 +1,6 @@
 $latestTag = $(git describe --tags $(git rev-list --tags --max-count=1))
 
-yarn changelog -t '$latestTag'
+yarn changelog
 
 git add CHANGELOG.md
 git commit --amend --no-edit --no-verify
