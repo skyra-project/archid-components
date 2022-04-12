@@ -20,7 +20,8 @@
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepublishOnly": "yarn build",
 		"bump": "standard-version --no-verify",
-		"changelog": "git cliff --prepend ./CHANGELOG.md -l -c ./cliff.toml -r ../../ --include-path 'packages/i18next-backend/*'"
+		"changelog": "git cliff --prepend ./CHANGELOG.md -l -c ./cliff.toml -r ../../ --include-path 'packages/i18next-backend/*'",
+		"release": "yarn bump && git push --follow-tags origin main && yarn npm publish"
 	},
 	"dependencies": {
 		"tslib": "^2.3.1"
