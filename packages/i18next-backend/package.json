@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/i18next-backend",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A filesystem-based backend for i18next",
 	"author": "@skyra",
 	"license": "Apache-2.0",
