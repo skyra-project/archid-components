@@ -42,8 +42,8 @@
 		"directory": "packages/http-framework"
 	},
 	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
+		"dist/**/*.mjs*",
+		"dist/**/*.d.ts"
 	],
 	"engines": {
 		"node": ">=16.9.0",

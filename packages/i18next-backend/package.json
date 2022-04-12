@@ -34,8 +34,8 @@
 		"directory": "packages/i18next-backend"
 	},
 	"files": [
-		"dist",
-		"!dist/*.tsbuildinfo"
+		"dist/**/*.mjs*",
+		"dist/**/*.d.ts"
 	],
 	"engines": {
 		"node": ">=16.9.0",
