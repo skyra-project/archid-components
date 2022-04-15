@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/env-utilities",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "Functional utilities for reading and parsing environmental variables",
 	"author": "@skyra",
 	"license": "Apache-2.0",

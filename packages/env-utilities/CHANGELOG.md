@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/env-utilities@0.0.6](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@0.0.5...@skyra/env-utilities@0.0.6) - (2022-04-15)
+
+## Bug Fixes
+
+- **env-utilities:** Resolved some typing issues (#49) ([444a7c6](https://github.com/skyra-project/archid-components/commit/444a7c664d9029445c6b67438fa9b1bf3b555a49))
+
 # [@skyra/env-utilities@0.0.5](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@0.0.4...@skyra/env-utilities@0.0.5) - (2022-04-12)
 
 ## Bug Fixes
