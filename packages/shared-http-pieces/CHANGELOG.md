@@ -2,12 +2,6 @@
 
 All notable changes to this project will be documented in this file.
 
-# [@skyra/shared-http-pieces@0.0.16](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.15...@skyra/shared-http-pieces@0.0.16) - (2022-04-12)
-
-## Documentation
-
-- Fix shared-http-pieces changelog ([d3623a7](https://github.com/skyra-project/archid-components/commit/d3623a73b81c30d553a80f586089fc7c81c93032))
-
 # [@skyra/shared-http-pieces@0.0.15](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.14...@skyra/shared-http-pieces@0.0.15) - (2022-04-10)
 
 ## Bug Fixes

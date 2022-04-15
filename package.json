@@ -13,7 +13,8 @@
 		"build": "turbo run build",
 		"update": "yarn upgrade-interactive",
 		"prepare": "husky install .github/husky",
-		"changelog": "turbo run changelog"
+		"changelog": "turbo run changelog",
+		"check-update": "turbo run check-update"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^16.2.3",

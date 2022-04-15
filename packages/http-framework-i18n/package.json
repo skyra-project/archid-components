@@ -20,6 +20,7 @@
 		"prepublishOnly": "yarn build",
 		"bump": "standard-version --no-verify",
 		"changelog": "git cliff --prepend ./CHANGELOG.md -l -c ./cliff.toml -r ../../ --include-path 'packages/http-framework-i18n/*'",
+		"check-update": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/http-framework-i18n/*'",
 		"release": "yarn bump && git push --follow-tags origin main && yarn npm publish"
 	},
 	"dependencies": {

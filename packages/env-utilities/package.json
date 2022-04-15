@@ -21,6 +21,7 @@
 		"prepublishOnly": "rollup-type-bundler -v -e dotenv dotenv-cra",
 		"bump": "standard-version --no-verify",
 		"changelog": "git cliff --prepend ./CHANGELOG.md -l -c ./cliff.toml -r ../../ --include-path 'packages/env-utilities/*'",
+		"check-update": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/env-utilities/*'",
 		"release": "yarn bump && git push --follow-tags origin main && yarn npm publish"
 	},
 	"dependencies": {
