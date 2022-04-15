@@ -13,8 +13,8 @@
 	},
 	"sideEffects": false,
 	"scripts": {
-		"build": "tsc -b src",
-		"watch": "tsc -b src --watch",
+		"build": "tsup && tsc -b src",
+		"watch": "tsup --watch --onSuccess \"tsc -b src\"",
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepublishOnly": "yarn build",
