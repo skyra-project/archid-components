@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.0.6](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.0.5...@skyra/http-framework-i18n@0.0.6) - (2022-04-15)
+
+## Bug Fixes
+
+- **http-framework-i18n:** Use tsup (#50) ([5c6a2b7](https://github.com/skyra-project/archid-components/commit/5c6a2b7968e9a94b39c6b37593be425df45ce458))
+
 # [@skyra/http-framework-i18n@0.0.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.0.4...@skyra/http-framework-i18n@0.0.5) - (2022-04-12)
 
 ## Bug Fixes
