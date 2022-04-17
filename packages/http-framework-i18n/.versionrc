@@ -3,7 +3,7 @@
 	"skip": {
 		"changelog": true
 	},
-	"releaseCommitMessageFormat": "chore(http-framework-i18n): release @sapphire/http-framework-i18n@{{currentTag}}",
+	"releaseCommitMessageFormat": "chore(http-framework-i18n): release @skyra/http-framework-i18n@{{currentTag}}",
 	"scripts": {
 		"posttag": "pwsh -NoProfile ../../scripts/post-tag.ps1"
 	}

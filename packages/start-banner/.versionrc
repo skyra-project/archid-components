@@ -3,7 +3,7 @@
 	"skip": {
 		"changelog": true
 	},
-	"releaseCommitMessageFormat": "chore(start-banner): release @sapphire/start-banner@{{currentTag}}",
+	"releaseCommitMessageFormat": "chore(start-banner): release @skyra/start-banner@{{currentTag}}",
 	"scripts": {
 		"posttag": "pwsh -NoProfile ../../scripts/post-tag.ps1"
 	}
