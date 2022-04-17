@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.3.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.3.0...@skyra/http-framework@0.3.4) - (2022-04-17)
+
+## Bug Fixes
+
+- **deps:** Update all non-major dependencies (#54) ([ca3a6de](https://github.com/skyra-project/archid-components/commit/ca3a6deab66155be44ec679eb0a954297acdd807))
+- Ensure proper files array for yarn pack ([38214a3](https://github.com/skyra-project/archid-components/commit/38214a3be182369efe076428c425b6aa43e1ee35))
+- Fixed export mapping in package.json ([d217c18](https://github.com/skyra-project/archid-components/commit/d217c18ac357fd83c448fc5682857b292e09da60))
+
+## Refactor
+
+- **http-framework:** Minor enhancements and fixes (#45) ([a51da74](https://github.com/skyra-project/archid-components/commit/a51da743601b93f623a194722da8b216732ca6a8))
+
 # [@skyra/http-framework@0.3.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.3.1...@skyra/http-framework@0.3.2) - (2022-04-12)
 
 ## Bug Fixes
