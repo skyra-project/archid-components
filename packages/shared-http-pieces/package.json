@@ -24,7 +24,7 @@
 		"release": "yarn bump && git push --follow-tags origin main && yarn npm publish"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.13.0-dev.1649505810-3c0bbac",
+		"@discordjs/builders": "0.13.0-dev.1649937819-b01f414",
 		"@skyra/http-framework": "workspace:^",
 		"discord-api-types": "^0.29.0",
 		"tslib": "^2.3.1"
