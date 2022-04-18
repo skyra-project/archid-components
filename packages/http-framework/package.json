@@ -25,12 +25,12 @@
 		"release": "yarn bump && git push --follow-tags origin main && yarn npm publish"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.13.0-dev.1649937819-b01f414",
+		"@discordjs/builders": "0.14.0-dev.1650240529-9ef7ffd",
 		"@discordjs/collection": "^0.5.0",
-		"@discordjs/rest": "0.4.0-dev.1649937819-b01f414",
+		"@discordjs/rest": "0.5.0-dev.1650240529-9ef7ffd",
 		"@sapphire/pieces": "^3.3.1",
 		"@sapphire/utilities": "^3.6.2",
-		"discord-api-types": "^0.29.0",
+		"discord-api-types": "^0.31.1",
 		"fastify": "^3.28.0",
 		"form-data": "^4.0.0",
 		"tweetnacl": "^1.0.3"
