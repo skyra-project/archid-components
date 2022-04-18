@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.1.0]
+(https://github.com/skyra-project/archid-components/tree/@skyra/http-framework-i18n@0.1.0) - (2022-04-18)
+
+## Bug Fixes
+
+- Update discordjs dependencies (#55) ([43c9795](https://github.com/skyra-project/archid-components/commit/43c9795c334885ad207e6ae4fd0c9b29da526df8))
+- **http-framework-i18n:** Use tsup (#50) ([5c6a2b7](https://github.com/skyra-project/archid-components/commit/5c6a2b7968e9a94b39c6b37593be425df45ce458))
+- Ensure proper files array for yarn pack ([38214a3](https://github.com/skyra-project/archid-components/commit/38214a3be182369efe076428c425b6aa43e1ee35))
+- Bump i18next dependency ([1117c38](https://github.com/skyra-project/archid-components/commit/1117c38949f9ec238c72c396df0b623a74ec07c6))
+- Fixed export mapping in package.json ([d217c18](https://github.com/skyra-project/archid-components/commit/d217c18ac357fd83c448fc5682857b292e09da60))
+
+## Features
+
+- Added i18n packages (#38) ([a55ef56](https://github.com/skyra-project/archid-components/commit/a55ef562219162879f436d80e8f12acef82dd3ec))
+
+## Refactor
+
+- **http-framework-i18n:** Type enhancements (#46) ([d9ddd0e](https://github.com/skyra-project/archid-components/commit/d9ddd0e974541da4998c116bdfdfa04a62266e54))
+
 # [@skyra/http-framework-i18n@0.0.6](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.0.5...@skyra/http-framework-i18n@0.0.6) - (2022-04-15)
 
 ## Bug Fixes
