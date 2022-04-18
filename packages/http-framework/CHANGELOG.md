@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.3.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.3.4...@skyra/http-framework@0.3.5) - (2022-04-18)
+
+## Bug Fixes
+
+- Update discordjs dependencies (#55) ([43c9795](https://github.com/skyra-project/archid-components/commit/43c9795c334885ad207e6ae4fd0c9b29da526df8))
+
 # [@skyra/http-framework@0.3.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.3.1...@skyra/http-framework@0.3.2) - (2022-04-12)
 
 ## Bug Fixes
