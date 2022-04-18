@@ -18,10 +18,8 @@
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepublishOnly": "yarn build",
-		"bump": "standard-version --no-verify",
-		"changelog": "git cliff --prepend ./CHANGELOG.md -l -c ./cliff.toml -r ../../ --include-path 'packages/shared-http-pieces/*'",
-		"check-update": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/shared-http-pieces/*'",
-		"release": "yarn bump && git push --follow-tags origin main && yarn npm publish"
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
 		"@discordjs/builders": "0.13.0-dev.1649937819-b01f414",

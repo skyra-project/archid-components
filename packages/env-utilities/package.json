@@ -20,10 +20,8 @@
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepublish": "rollup-type-bundler -v -e dotenv dotenv-cra",
-		"bump": "standard-version --no-verify",
-		"changelog": "git cliff --prepend ./CHANGELOG.md -l -c ./cliff.toml -r ../../ --include-path 'packages/env-utilities/*'",
-		"check-update": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/env-utilities/*'",
-		"release": "yarn bump && git push --follow-tags origin main && yarn npm publish"
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
 		"dotenv-cra": "^3.0.2"

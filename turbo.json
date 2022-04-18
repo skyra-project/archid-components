@@ -12,13 +12,9 @@
 			"dependsOn": [],
 			"outputs": []
 		},
-		"changelog": {
-			"dependsOn": ["^build"],
-			"outputs": ["CHANGELOG.md"]
-		},
 		"check-update": {
-			"dependsOn": ["^build"],
-			"outputs": ["CHANGELOG.md"]
+			"dependsOn": [],
+			"outputs": []
 		}
 	}
 }
