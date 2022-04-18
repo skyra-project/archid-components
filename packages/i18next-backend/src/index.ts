@@ -29,12 +29,19 @@ export class Backend implements BackendModule<Backend.Options> {
 			.catch((error) => callback(error as Error, false));
 	}
 
+	private async readPaths(language: string, namespace: string): Promise<ResourceKey> {
+		if (this.paths.length === 1) return Backend.readPath(Backend.resolvePath(language, namespace, this.paths[0]));
+
+		const results = await Promise.allSettled(this.paths.map((path) => Backend.readPath(Backend.resolvePath(language, namespace, path))));
+		return Backend.handleResults(results);
+	}
+
 	private readPathsSync(language: string, namespace: string): ResourceKey {
-		if (this.paths.length === 1) return this.readPathSync(Backend.resolvePath(language, namespace, this.paths[0]));
+		if (this.paths.length === 1) return Backend.readPathSync(Backend.resolvePath(language, namespace, this.paths[0]));
 
 		const results = this.paths.map((path) => {
 			try {
-				return { status: 'fulfilled', value: this.readPathSync(Backend.resolvePath(language, namespace, path)) } as const;
+				return { status: 'fulfilled', value: Backend.readPathSync(Backend.resolvePath(language, namespace, path)) } as const;
 			} catch (error) {
 				return { status: 'rejected', reason: error } as const;
 			}
@@ -42,19 +49,14 @@ export class Backend implements BackendModule<Backend.Options> {
 		return Backend.handleResults(results);
 	}
 
-	private readPathSync(path: PathLike): ResourceKey {
-		return JSON.parse(readFileSync(path, 'utf8'));
-	}
+	public static readonly type = 'backend';
 
-	private async readPaths(language: string, namespace: string): Promise<ResourceKey> {
-		if (this.paths.length === 1) return this.readPath(Backend.resolvePath(language, namespace, this.paths[0]));
-
-		const results = await Promise.allSettled(this.paths.map((path) => this.readPath(Backend.resolvePath(language, namespace, path))));
-		return Backend.handleResults(results);
-	}
-
-	private async readPath(path: PathLike): Promise<ResourceKey> {
+	private static async readPath(path: PathLike): Promise<ResourceKey> {
 		return JSON.parse(await readFile(path, 'utf8'));
+	}
+
+	private static readPathSync(path: PathLike): ResourceKey {
+		return JSON.parse(readFileSync(path, 'utf8'));
 	}
 
 	private static handleResults(results: readonly PromiseSettledResult<ResourceKey>[]) {
