@@ -22,10 +22,10 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.14.0-dev.1650240529-9ef7ffd",
+		"@discordjs/builders": "0.14.0-dev.1650672503-3617093",
 		"@skyra/http-framework": "workspace:^",
 		"discord-api-types": "^0.31.2",
-		"tslib": "^2.3.1"
+		"tslib": "^2.4.0"
 	},
 	"repository": {
 		"type": "git",
