@@ -74,7 +74,7 @@ export class Backend implements BackendModule<Backend.Options> {
 	private static resolvePath(language: string, namespace: string, path: PathResolvable) {
 		if (typeof path === 'function') return path(language, namespace);
 		if (typeof path !== 'string') path = fileURLToPath(path);
-		return path.replace(/\{\{(?:lng|ns)\}\}/, (match) => (match === '{{lng}}' ? language : namespace));
+		return path.replaceAll(/\{\{(?:lng|ns)\}\}/g, (match) => (match === '{{lng}}' ? language : namespace));
 	}
 }
 
