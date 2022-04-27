@@ -67,7 +67,7 @@ export async function load(directory: PathLike) {
 		await loadLocale(join(dir.path, entry.name), '');
 	}
 
-	loadedPaths.add(dir.path);
+	loadedPaths.add(join(dir.path, '{{lng}}', '{{ns}}.json'));
 }
 
 async function loadLocale(directory: string, ns: string) {
