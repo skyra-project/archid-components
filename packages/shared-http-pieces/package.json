@@ -5,11 +5,20 @@
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"imports": {
+		"#lib/*": "./dist/lib/*.js"
+	},
 	"exports": {
-		"import": "./dist/index.mjs",
-		"types": "./dist/index.d.ts"
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./register": {
+			"import": "./dist/register.js",
+			"types": "./dist/register.d.ts"
+		}
 	},
 	"sideEffects": false,
 	"scripts": {
@@ -23,7 +32,9 @@
 	},
 	"dependencies": {
 		"@discordjs/builders": "0.13.0",
+		"@discordjs/collection": "^0.6.0",
 		"@skyra/http-framework": "workspace:^",
+		"@skyra/http-framework-i18n": "workspace:^",
 		"discord-api-types": "^0.31.2",
 		"tslib": "^2.4.0"
 	},
@@ -33,8 +44,9 @@
 		"directory": "packages/shared-http-pieces"
 	},
 	"files": [
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/**/*.js*",
+		"dist/**/*.d.ts",
+		"src/locales/**/*.json"
 	],
 	"engines": {
 		"node": ">=16.9.0",

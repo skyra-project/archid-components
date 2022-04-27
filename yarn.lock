@@ -1195,7 +1195,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@skyra/http-framework-i18n@workspace:packages/http-framework-i18n":
+"@skyra/http-framework-i18n@workspace:^, @skyra/http-framework-i18n@workspace:packages/http-framework-i18n":
   version: 0.0.0-use.local
   resolution: "@skyra/http-framework-i18n@workspace:packages/http-framework-i18n"
   dependencies:
@@ -1242,6 +1242,7 @@ __metadata:
   dependencies:
     "@discordjs/builders": 0.13.0
     "@skyra/http-framework": "workspace:^"
+    "@skyra/http-framework-i18n": "workspace:^"
     discord-api-types: ^0.31.2
     tslib: ^2.4.0
   languageName: unknown
