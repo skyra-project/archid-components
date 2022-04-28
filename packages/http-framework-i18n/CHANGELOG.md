@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.1.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.1...@skyra/http-framework-i18n@0.1.2) - (2022-04-27)
+
+## Bug Fixes
+
+- Resolved i18n loader bugs (#61) ([a7d2806](https://github.com/skyra-project/archid-components/commit/a7d28063c705a3e0cf6111140a63622f4a104055))
+
 # [@skyra/http-framework-i18n@0.1.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.0...@skyra/http-framework-i18n@0.1.1) - (2022-04-24)
 
 ## Bug Fixes
