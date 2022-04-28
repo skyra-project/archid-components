@@ -26,7 +26,7 @@
 		"watch": "tsc -b src --watch",
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
-		"prepublishOnly": "yarn build",
+		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},

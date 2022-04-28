@@ -19,7 +19,7 @@
 		"watch": "tsup --watch --onSuccess \"tsc -b src\"",
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
-		"prepublish": "rollup-type-bundler -v -e dotenv dotenv-cra",
+		"prepack": "rollup-type-bundler -v -e dotenv dotenv-cra",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},
