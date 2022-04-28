@@ -1,5 +1,5 @@
 {
-	"infoName": "information",
+	"infoName": "info",
 	"infoDescription": "Provides information about me, and links for adding the bot and joining the support server",
 	"infoFieldUptimeTitle": "Uptime",
 	"infoFieldUptimeValue": "• **Host**: {{host}}\n• **Client**: {{client}}",

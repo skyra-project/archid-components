@@ -7,9 +7,7 @@
 	"main": "dist/index.js",
 	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
-	"imports": {
-		"#lib/*": "./dist/lib/*.js"
-	},
+	"type": "module",
 	"exports": {
 		".": {
 			"import": "./dist/index.js",

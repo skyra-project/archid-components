@@ -1,6 +1,6 @@
-import { LanguageKeys } from '#lib/i18n/LanguageKeys';
-import { generateLocalizedCommandInformation } from '#lib/i18n/utils';
-import { getInvite, getRepository } from '#lib/information';
+import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
+import { generateLocalizedCommandInformation } from '../lib/i18n/utils.js';
+import { getInvite, getRepository } from '../lib/information.js';
 import { time, TimestampStyles, UnsafeEmbedBuilder } from '@discordjs/builders';
 import { Command, RegisterCommand } from '@skyra/http-framework';
 import { getSupportedUserLanguageName, getT, TFunction } from '@skyra/http-framework-i18n';
