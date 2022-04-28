@@ -11,7 +11,9 @@
 		"import": "./dist/index.mjs",
 		"types": "./dist/index.d.ts"
 	},
-	"sideEffects": false,
+	"sideEffects": [
+		"./dist/register.js"
+	],
 	"scripts": {
 		"test": "jest",
 		"build": "tsup && tsc -b src",
