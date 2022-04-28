@@ -1,1 +1,1 @@
-export * as Commands from './Commands/All.js';
+export * as Commands from '#lib/i18n/LanguageKeys/Commands/All';

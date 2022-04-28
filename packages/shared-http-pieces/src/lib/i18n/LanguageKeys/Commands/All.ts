@@ -1,1 +1,1 @@
-export * as Shared from './Shared.js';
+export * as Shared from '#lib/i18n/LanguageKeys/Commands/Shared';

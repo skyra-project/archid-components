@@ -1,1 +1,1 @@
-export * as LanguageKeys from './LanguageKeys/All.js';
+export * as LanguageKeys from '#lib/i18n/LanguageKeys/All';

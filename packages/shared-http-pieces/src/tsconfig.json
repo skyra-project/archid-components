@@ -5,7 +5,10 @@
 		"baseUrl": ".",
 		"outDir": "../dist",
 		"composite": true,
-		"tsBuildInfoFile": "../dist/.tsbuildinfo"
+		"tsBuildInfoFile": "../dist/.tsbuildinfo",
+		"paths": {
+			"#lib/*": ["lib/*"]
+		}
 	},
 	"include": ["."]
 }

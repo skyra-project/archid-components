@@ -8,6 +8,9 @@
 	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"type": "module",
+	"imports": {
+		"#lib/*": "./dist/lib/*.js"
+	},
 	"exports": {
 		".": {
 			"import": "./dist/index.js",
@@ -18,7 +21,9 @@
 			"types": "./dist/register.d.ts"
 		}
 	},
-	"sideEffects": false,
+	"sideEffects": [
+		"./dist/register.js"
+	],
 	"scripts": {
 		"build": "tsc -b src",
 		"watch": "tsc -b src --watch",
