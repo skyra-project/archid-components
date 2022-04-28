@@ -11,6 +11,9 @@ import { StringIdParser } from './components/StringIdParser';
 import { CommandStore } from './structures/CommandStore';
 import { InteractionHandlerStore } from './structures/InteractionHandlerStore';
 
+container.stores.register(new CommandStore());
+container.stores.register(new InteractionHandlerStore());
+
 export class Client extends EventEmitter {
 	public server!: FastifyInstance;
 	#discordPublicKey: Buffer;
@@ -26,8 +29,6 @@ export class Client extends EventEmitter {
 		if (discordToken) container.rest.setToken(discordToken);
 
 		this.#discordPublicKey = Buffer.from(discordPublicKey, 'hex');
-		container.stores.register(new CommandStore());
-		container.stores.register(new InteractionHandlerStore());
 		container.idParser ??= new StringIdParser();
 		container.client = this;
 	}
