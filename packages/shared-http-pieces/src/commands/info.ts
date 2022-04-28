@@ -1,11 +1,11 @@
-import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
-import { generateLocalizedCommandInformation } from '../lib/i18n/utils.js';
-import { getInvite, getRepository } from '../lib/information.js';
 import { time, TimestampStyles, UnsafeEmbedBuilder } from '@discordjs/builders';
 import { Command, RegisterCommand } from '@skyra/http-framework';
 import { getSupportedUserLanguageName, getT, TFunction } from '@skyra/http-framework-i18n';
 import { ButtonStyle, ComponentType, MessageFlags, type APIEmbedField } from 'discord-api-types/v10';
 import { cpus, uptime, type CpuInfo } from 'node:os';
+import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
+import { generateLocalizedCommandInformation } from '../lib/i18n/utils.js';
+import { getInvite, getRepository } from '../lib/information.js';
 
 @RegisterCommand(generateLocalizedCommandInformation('commands/shared:info'))
 export class UserCommand extends Command {
@@ -39,8 +39,8 @@ export class UserCommand extends Command {
 			name: t(LanguageKeys.Commands.Shared.InfoFieldServerUsageTitle),
 			value: t(LanguageKeys.Commands.Shared.InfoFieldServerUsageValue, {
 				cpu: cpus().map(UserCommand.formatCpuInfo.bind(null)).join(' | '),
-				heapUsed: (usage.heapUsed / 1048576).toLocaleString(t.lng),
-				heapTotal: (usage.heapUsed / 1048576).toLocaleString(t.lng)
+				heapUsed: (usage.heapUsed / 1048576).toLocaleString(t.lng, { maximumFractionDigits: 2 }),
+				heapTotal: (usage.heapUsed / 1048576).toLocaleString(t.lng, { maximumFractionDigits: 2 })
 			})
 		};
 	}
@@ -54,12 +54,14 @@ export class UserCommand extends Command {
 						type: ComponentType.Button,
 						style: ButtonStyle.Link,
 						label: t(LanguageKeys.Commands.Shared.InfoButtonInvite),
+						emoji: { name: '🎉' },
 						url: getInvite()
 					},
 					{
 						type: ComponentType.Button,
 						style: ButtonStyle.Link,
 						label: t(LanguageKeys.Commands.Shared.InfoButtonSupport),
+						emoji: { name: '🆘' },
 						url: 'https://discord.gg/6gakFR2'
 					}
 				]
@@ -71,12 +73,14 @@ export class UserCommand extends Command {
 						type: ComponentType.Button,
 						style: ButtonStyle.Link,
 						label: t(LanguageKeys.Commands.Shared.InfoButtonGitHub),
+						emoji: { id: '950888087188283422', name: 'github2' },
 						url: getRepository()
 					},
 					{
 						type: ComponentType.Button,
 						style: ButtonStyle.Link,
 						label: t(LanguageKeys.Commands.Shared.InfoButtonDonate),
+						emoji: { name: '🧡' },
 						url: 'https://donate.skyra.pw'
 					}
 				]

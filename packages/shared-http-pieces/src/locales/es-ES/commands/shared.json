@@ -4,7 +4,7 @@
 	"infoFieldUptimeTitle": "Tiempo de Funcionamiento",
 	"infoFieldUptimeValue": "• **Servidor**: {{host}}\n• **Cliente**: {{client}}",
 	"infoFieldServerUsageTitle": "Uso del Servidor",
-	"infoFieldServerUsageValue": "• **Uso de CPU**: {{cpu}}\n• **Memoria**: {{heapUsed}} (Total: {{heapTotal}})",
+	"infoFieldServerUsageValue": "• **Uso de CPU**: {{cpu}}\n• **Memoria**: {{heapUsed}}MB (Total: {{heapTotal}}MB)",
 	"infoButtonInvite": "¡Añádeme a tu servidor!",
 	"infoButtonSupport": "Servidor de soporte",
 	"infoButtonGitHub": "Repositorio de GitHub",
