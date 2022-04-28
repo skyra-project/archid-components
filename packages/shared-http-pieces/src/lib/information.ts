@@ -1,5 +1,5 @@
-let repository = 'https://github.com/skyra-project';
-let invite = '';
+let repository = process.env.CLIENT_REPOSITORY ?? 'https://github.com/skyra-project';
+let invite = process.env.CLIENT_INVITE ?? '';
 
 export function setRepository(url: string) {
 	repository = url.startsWith('http') ? url : `https://github.com/skyra-project/${url}`;
@@ -15,13 +15,4 @@ export function setInvite(clientId: string, permissions = '0') {
 
 export function getInvite() {
 	return invite;
-}
-
-export function setInformationFromImportMetaURL(url: URL) {
-	const repository = url.searchParams.get('repository');
-	if (repository) setRepository(repository);
-
-	const clientId = url.searchParams.get('client_id');
-	const permissions = url.searchParams.get('permissions');
-	if (clientId) setInvite(clientId, permissions ?? '0');
 }

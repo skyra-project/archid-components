@@ -1,3 +1,3 @@
-export * from '#lib/i18n/LanguageKeys';
-export * from '#lib/i18n/utils';
-export * from '#lib/information';
+export * from './lib/i18n/LanguageKeys.js';
+export * from './lib/i18n/utils.js';
+export * from './lib/information.js';

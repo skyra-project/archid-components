@@ -9,10 +9,13 @@ The shared commands used for ArchId Network's HTTP-only bots.
 
 ## Usage
 
-You can either register with all the information variables:
+You can either register after setting environment parameters:
 
 ```typescript
-import '@skyra/shared-http-pieces/register?client_id=266624760782258186&permissions=534185897078&repository=skyra';
+process.env.CLIENT_REPOSITORY = 'https://github.com/skyra-project/skyra';
+process.env.CLIENT_INVITE = 'https://discord.com/oauth2/authorize?client_id=266624760782258186&permissions=534185897078&scope=bot%20applications.commands';
+
+import '@skyra/shared-http-pieces/register';
 ```
 
 Or import its utilities as well as registering:
