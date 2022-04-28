@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.3.7](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.3.6...@skyra/http-framework@0.3.7) - (2022-04-28)
+
+## Bug Fixes
+
+- **http-framework:** Fix store registry (#64) ([db57108](https://github.com/skyra-project/archid-components/commit/db57108a198901d7995146006ff339645d37637f))
+
 # [@skyra/http-framework@0.3.6](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.3.5...@skyra/http-framework@0.3.6) - (2022-04-24)
 
 ## Bug Fixes
