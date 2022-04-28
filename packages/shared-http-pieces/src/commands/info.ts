@@ -40,7 +40,7 @@ export class UserCommand extends Command {
 			value: t(LanguageKeys.Commands.Shared.InfoFieldServerUsageValue, {
 				cpu: cpus().map(UserCommand.formatCpuInfo.bind(null)).join(' | '),
 				heapUsed: (usage.heapUsed / 1048576).toLocaleString(t.lng, { maximumFractionDigits: 2 }),
-				heapTotal: (usage.heapUsed / 1048576).toLocaleString(t.lng, { maximumFractionDigits: 2 })
+				heapTotal: (usage.heapTotal / 1048576).toLocaleString(t.lng, { maximumFractionDigits: 2 })
 			})
 		};
 	}
