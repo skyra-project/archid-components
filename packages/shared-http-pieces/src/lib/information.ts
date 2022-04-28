@@ -1,20 +1,20 @@
-let _repository = 'https://github.com/skyra-project';
-let _invite = '';
+let repository = 'https://github.com/skyra-project';
+let invite = '';
 
-export function setRepository(repository: string) {
-	_repository = repository.includes('/') ? repository : `https://github.com/skyra-project/${repository}`;
+export function setRepository(url: string) {
+	repository = url.startsWith('http') ? url : `https://github.com/skyra-project/${url}`;
 }
 
 export function getRepository() {
-	return _repository;
+	return repository;
 }
 
 export function setInvite(clientId: string, permissions = '0') {
-	_invite = `https://discord.com/oauth2/authorize?client_id=${clientId}&permissions=${permissions}&scope=bot%20applications.commands`;
+	invite = `https://discord.com/oauth2/authorize?client_id=${clientId}&permissions=${permissions}&scope=bot%20applications.commands`;
 }
 
 export function getInvite() {
-	return _invite;
+	return invite;
 }
 
 export function setInformationFromImportMetaURL(url: URL) {
