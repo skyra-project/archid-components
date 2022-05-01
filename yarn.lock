@@ -699,6 +699,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fastify/error@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@fastify/error@npm:2.0.0"
+  checksum: ecf0834966b2bfb33ff834e3d55fe4dc04cbe9f822fda6c937b12cce4f162be4f8b0577ee665bc856d7012b1640c12472a1829a22ae38d287342c90b0f33a595
+  languageName: node
+  linkType: hard
+
 "@favware/cliff-jumper@npm:^1.4.0":
   version: 1.4.0
   resolution: "@favware/cliff-jumper@npm:1.4.0"
@@ -1239,7 +1246,7 @@ __metadata:
     "@sapphire/utilities": ^3.6.2
     "@types/node-fetch": ^2.6.1
     discord-api-types: ^0.31.2
-    fastify: ^3.28.0
+    fastify: ^3.29.0
     form-data: ^4.0.0
     tweetnacl: ^1.0.3
   languageName: unknown
@@ -1274,114 +1281,114 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@swc/core-android-arm-eabi@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-android-arm-eabi@npm:1.2.173"
+"@swc/core-android-arm-eabi@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-android-arm-eabi@npm:1.2.174"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-android-arm64@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-android-arm64@npm:1.2.173"
+"@swc/core-android-arm64@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-android-arm64@npm:1.2.174"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-darwin-arm64@npm:1.2.173"
+"@swc/core-darwin-arm64@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-darwin-arm64@npm:1.2.174"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-darwin-x64@npm:1.2.173"
+"@swc/core-darwin-x64@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-darwin-x64@npm:1.2.174"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-freebsd-x64@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-freebsd-x64@npm:1.2.173"
+"@swc/core-freebsd-x64@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-freebsd-x64@npm:1.2.174"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.2.173"
+"@swc/core-linux-arm-gnueabihf@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.2.174"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.2.173"
+"@swc/core-linux-arm64-gnu@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.2.174"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-linux-arm64-musl@npm:1.2.173"
+"@swc/core-linux-arm64-musl@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-linux-arm64-musl@npm:1.2.174"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-linux-x64-gnu@npm:1.2.173"
+"@swc/core-linux-x64-gnu@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-linux-x64-gnu@npm:1.2.174"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-linux-x64-musl@npm:1.2.173"
+"@swc/core-linux-x64-musl@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-linux-x64-musl@npm:1.2.174"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.2.173"
+"@swc/core-win32-arm64-msvc@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.2.174"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.2.173"
+"@swc/core-win32-ia32-msvc@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.2.174"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core-win32-x64-msvc@npm:1.2.173"
+"@swc/core-win32-x64-msvc@npm:1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core-win32-x64-msvc@npm:1.2.174"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.2.173":
-  version: 1.2.173
-  resolution: "@swc/core@npm:1.2.173"
+"@swc/core@npm:^1.2.174":
+  version: 1.2.174
+  resolution: "@swc/core@npm:1.2.174"
   dependencies:
-    "@swc/core-android-arm-eabi": 1.2.173
-    "@swc/core-android-arm64": 1.2.173
-    "@swc/core-darwin-arm64": 1.2.173
-    "@swc/core-darwin-x64": 1.2.173
-    "@swc/core-freebsd-x64": 1.2.173
-    "@swc/core-linux-arm-gnueabihf": 1.2.173
-    "@swc/core-linux-arm64-gnu": 1.2.173
-    "@swc/core-linux-arm64-musl": 1.2.173
-    "@swc/core-linux-x64-gnu": 1.2.173
-    "@swc/core-linux-x64-musl": 1.2.173
-    "@swc/core-win32-arm64-msvc": 1.2.173
-    "@swc/core-win32-ia32-msvc": 1.2.173
-    "@swc/core-win32-x64-msvc": 1.2.173
+    "@swc/core-android-arm-eabi": 1.2.174
+    "@swc/core-android-arm64": 1.2.174
+    "@swc/core-darwin-arm64": 1.2.174
+    "@swc/core-darwin-x64": 1.2.174
+    "@swc/core-freebsd-x64": 1.2.174
+    "@swc/core-linux-arm-gnueabihf": 1.2.174
+    "@swc/core-linux-arm64-gnu": 1.2.174
+    "@swc/core-linux-arm64-musl": 1.2.174
+    "@swc/core-linux-x64-gnu": 1.2.174
+    "@swc/core-linux-x64-musl": 1.2.174
+    "@swc/core-win32-arm64-msvc": 1.2.174
+    "@swc/core-win32-ia32-msvc": 1.2.174
+    "@swc/core-win32-x64-msvc": 1.2.174
   dependenciesMeta:
     "@swc/core-android-arm-eabi":
       optional: true
@@ -1411,7 +1418,7 @@ __metadata:
       optional: true
   bin:
     swcx: run_swcx.js
-  checksum: 12820ebbe2a668872ad60c0be0d0d3ca93539a4068719f3f3d731539505bb2ad145ece80b8666b1b6ef4c56c4e1e22a59b40adf4874f1a8c31f6a47347a00c88
+  checksum: 7692d527d2b017a55a958ab68e574606bc1096f1ce6cd7c7fe5d0713d4b48eba38ca2760c8519b8e61679b3deed54d91a21e1f5ab0bc30731bb98bbeb87c0cc4
   languageName: node
   linkType: hard
 
@@ -1916,12 +1923,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^8.7.0":
-  version: 8.7.0
-  resolution: "acorn@npm:8.7.0"
+"acorn@npm:^8.7.1":
+  version: 8.7.1
+  resolution: "acorn@npm:8.7.1"
   bin:
     acorn: bin/acorn
-  checksum: e0f79409d68923fbf1aa6d4166f3eedc47955320d25c89a20cc822e6ba7c48c5963d5bc657bc242d68f7a4ac9faf96eef033e8f73656da6c640d4219935fdfd0
+  checksum: aca0aabf98826717920ac2583fdcad0a6fbe4e583fdb6e843af2594e907455aeafe30b1e14f1757cd83ce1776773cf8296ffc3a4acf13f0bd3dfebcf1db6ae80
   languageName: node
   linkType: hard
 
@@ -2070,7 +2077,7 @@ __metadata:
     "@sapphire/eslint-config": ^4.3.4
     "@sapphire/prettier-config": ^1.4.3
     "@sapphire/ts-config": ^3.3.4
-    "@swc/core": ^1.2.173
+    "@swc/core": ^1.2.174
     "@types/jest": ^27.4.1
     "@types/node": ^17.0.29
     "@types/ws": ^8.5.3
@@ -2089,7 +2096,7 @@ __metadata:
     pretty-quick: ^3.1.3
     ts-jest: ^27.1.4
     tsup: ^5.12.6
-    turbo: ^1.2.5
+    turbo: ^1.2.6
     typescript: ^4.6.4
   languageName: unknown
   linkType: soft
@@ -3787,22 +3794,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fastify-error@npm:^0.3.0":
-  version: 0.3.1
-  resolution: "fastify-error@npm:0.3.1"
-  checksum: fd6a0f6f87b5e4ab59a4d3d66124bd13830a1cf85cf1987259dfb1175fc6a4bcae68b076ad78f6bb06654f72af133b44813090e9ce5502d2ef56ddcb2b0fa867
-  languageName: node
-  linkType: hard
-
-"fastify@npm:^3.28.0":
-  version: 3.28.0
-  resolution: "fastify@npm:3.28.0"
+"fastify@npm:^3.29.0":
+  version: 3.29.0
+  resolution: "fastify@npm:3.29.0"
   dependencies:
     "@fastify/ajv-compiler": ^1.0.0
+    "@fastify/error": ^2.0.0
     abstract-logging: ^2.0.0
     avvio: ^7.1.2
     fast-json-stringify: ^2.5.2
-    fastify-error: ^0.3.0
     find-my-way: ^4.5.0
     flatstr: ^1.0.12
     light-my-request: ^4.2.0
@@ -3813,7 +3813,7 @@ __metadata:
     secure-json-parse: ^2.0.0
     semver: ^7.3.2
     tiny-lru: ^8.0.1
-  checksum: a91bd13384731e8f90ae2ccab39a79385853cd4870f8144dd83aee18344442be876b495fff49a08f593069e7a4ad23983b12dfc82bee30761d4883cf8ede093c
+  checksum: ed2964035e34843d08c09eee80f5f14bd8cc0ab9b46ac9d146c6821b586a359a93e1354fca4004ac14e37b267afe5bb1ba3ddb555ecf09b74d9b6bf2f9893ba1
   languageName: node
   linkType: hard
 
@@ -7560,106 +7560,114 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-darwin-64@npm:1.2.5"
+"turbo-darwin-64@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-darwin-64@npm:1.2.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-darwin-arm64@npm:1.2.5"
+"turbo-darwin-arm64@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-darwin-arm64@npm:1.2.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-64@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-freebsd-64@npm:1.2.5"
+"turbo-freebsd-64@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-freebsd-64@npm:1.2.6"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-arm64@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-freebsd-arm64@npm:1.2.5"
+"turbo-freebsd-arm64@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-freebsd-arm64@npm:1.2.6"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-32@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-linux-32@npm:1.2.5"
+"turbo-linux-32@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-linux-32@npm:1.2.6"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-linux-64@npm:1.2.5"
+"turbo-linux-64@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-linux-64@npm:1.2.6"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-linux-arm64@npm:1.2.5"
+"turbo-linux-arm64@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-linux-arm64@npm:1.2.6"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-linux-arm@npm:1.2.5"
+"turbo-linux-arm@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-linux-arm@npm:1.2.6"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"turbo-linux-mips64le@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-linux-mips64le@npm:1.2.5"
+"turbo-linux-mips64le@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-linux-mips64le@npm:1.2.6"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
 
-"turbo-linux-ppc64le@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-linux-ppc64le@npm:1.2.5"
+"turbo-linux-ppc64le@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-linux-ppc64le@npm:1.2.6"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
-"turbo-windows-32@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-windows-32@npm:1.2.5"
+"turbo-windows-32@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-windows-32@npm:1.2.6"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.2.5":
-  version: 1.2.5
-  resolution: "turbo-windows-64@npm:1.2.5"
+"turbo-windows-64@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-windows-64@npm:1.2.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo@npm:^1.2.5":
-  version: 1.2.5
-  resolution: "turbo@npm:1.2.5"
+"turbo-windows-arm64@npm:1.2.6":
+  version: 1.2.6
+  resolution: "turbo-windows-arm64@npm:1.2.6"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo@npm:^1.2.6":
+  version: 1.2.6
+  resolution: "turbo@npm:1.2.6"
   dependencies:
-    turbo-darwin-64: 1.2.5
-    turbo-darwin-arm64: 1.2.5
-    turbo-freebsd-64: 1.2.5
-    turbo-freebsd-arm64: 1.2.5
-    turbo-linux-32: 1.2.5
-    turbo-linux-64: 1.2.5
-    turbo-linux-arm: 1.2.5
-    turbo-linux-arm64: 1.2.5
-    turbo-linux-mips64le: 1.2.5
-    turbo-linux-ppc64le: 1.2.5
-    turbo-windows-32: 1.2.5
-    turbo-windows-64: 1.2.5
+    turbo-darwin-64: 1.2.6
+    turbo-darwin-arm64: 1.2.6
+    turbo-freebsd-64: 1.2.6
+    turbo-freebsd-arm64: 1.2.6
+    turbo-linux-32: 1.2.6
+    turbo-linux-64: 1.2.6
+    turbo-linux-arm: 1.2.6
+    turbo-linux-arm64: 1.2.6
+    turbo-linux-mips64le: 1.2.6
+    turbo-linux-ppc64le: 1.2.6
+    turbo-windows-32: 1.2.6
+    turbo-windows-64: 1.2.6
+    turbo-windows-arm64: 1.2.6
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -7685,9 +7693,11 @@ __metadata:
       optional: true
     turbo-windows-64:
       optional: true
+    turbo-windows-arm64:
+      optional: true
   bin:
     turbo: bin/turbo
-  checksum: cba41a5c0e586f47f30e37424a112923fab5b29fda84bf6e28dfd56e981babc3787b3c1ce487bcff1feb828045ea0369f9ec5b32b495778285aa0983d417693c
+  checksum: 67c9311faf14b43ca76ebb9b8a4a6ba00cc92024b2b4093b1afd96154e8f3e708ccdc19d2d431360298c656ebbacc580a2c2e457cc196da6ef2ea8f46070e476
   languageName: node
   linkType: hard
 
