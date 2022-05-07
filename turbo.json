@@ -12,6 +12,10 @@
 			"dependsOn": [],
 			"outputs": []
 		},
+		"bump": {
+			"dependsOn": [],
+			"outputs": []
+		},
 		"check-update": {
 			"dependsOn": [],
 			"outputs": []
