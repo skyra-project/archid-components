@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/i18next-backend@1.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@0.1.2...@skyra/i18next-backend@1.0.0) - (2022-05-07)
+
+## 🚀 Features
+
+- **i18next-backend:** Set package version to 1.0.0 before publish ([c56eebe](https://github.com/skyra-project/archid-components/commit/c56eebe83aa3c9859f02762467401fbca87af3e3))
+
 # [@skyra/i18next-backend@0.1.2](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@0.1.1...@skyra/i18next-backend@0.1.2) - (2022-04-27)
 
 ## Bug Fixes
