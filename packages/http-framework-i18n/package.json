@@ -26,8 +26,8 @@
 		"@sapphire/utilities": "3.6.2",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/i18next-backend": "workspace:^",
-		"discord-api-types": "^0.31.2",
-		"i18next": "^21.7.1",
+		"discord-api-types": "^0.32.1",
+		"i18next": "^21.8.0",
 		"tslib": "^2.4.0"
 	},
 	"repository": {

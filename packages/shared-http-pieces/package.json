@@ -35,7 +35,7 @@
 		"@discordjs/collection": "^0.6.0",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
-		"discord-api-types": "^0.31.2",
+		"discord-api-types": "^0.32.1",
 		"tslib": "^2.4.0"
 	},
 	"repository": {
