@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.4.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.3.7...@skyra/http-framework@0.4.0) - (2022-05-18)
+
+## 🚀 Features
+
+- **hfx:** Add `InteractionHandler.AsyncResponse` (#75) ([bcd2db7](https://github.com/skyra-project/archid-components/commit/bcd2db773ccaffc41143ab30d866db309797f669))
+
 # [@skyra/http-framework@0.3.7](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.3.6...@skyra/http-framework@0.3.7) - (2022-04-28)
 
 ## Bug Fixes
