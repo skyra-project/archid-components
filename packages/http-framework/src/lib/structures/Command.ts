@@ -1,5 +1,5 @@
 import { Collection } from '@discordjs/collection';
-import type { RawFile } from '@discordjs/rest';
+import { makeURLSearchParams, type RawFile } from '@discordjs/rest';
 import { Piece } from '@sapphire/pieces';
 import type { Awaitable, NonNullObject } from '@sapphire/utilities';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
@@ -137,11 +137,7 @@ export abstract class Command extends Piece {
 				},
 				auth: false,
 				files: options.files,
-				query: options.threadId
-					? new URLSearchParams({
-							thread_id: options.threadId
-					  })
-					: undefined
+				query: makeURLSearchParams({ thread_id: options.threadId })
 			}
 		) as Promise<APIMessage>;
 	}
@@ -157,14 +153,7 @@ export abstract class Command extends Piece {
 	protected deleteReply(interaction: Command.Interaction, message: string | APIMessage = '@original', threadId?: string): Promise<void> {
 		return this.container.rest.delete(
 			Routes.webhookMessage(interaction.application_id, interaction.token, typeof message === 'string' ? message : message.id),
-			{
-				auth: false,
-				query: threadId
-					? new URLSearchParams({
-							thread_id: threadId
-					  })
-					: undefined
-			}
+			{ auth: false, query: makeURLSearchParams({ thread_id: threadId }) }
 		) as Promise<void>;
 	}
 

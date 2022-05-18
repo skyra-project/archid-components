@@ -30,8 +30,7 @@ describe('User Context Menu Command', () => {
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
-			default_permission: undefined,
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'name',
 			type: ApplicationCommandType.User
 		});
@@ -48,8 +47,7 @@ describe('User Context Menu Command', () => {
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
-			default_permission: undefined,
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'name',
 			type: ApplicationCommandType.User
 		});
@@ -66,7 +64,7 @@ describe('User Context Menu Command', () => {
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'name',
 			type: ApplicationCommandType.User
 		});
@@ -87,8 +85,7 @@ describe('Message Context Menu Command', () => {
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
-			default_permission: undefined,
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'quote',
 			type: ApplicationCommandType.Message
 		});
@@ -105,8 +102,7 @@ describe('Message Context Menu Command', () => {
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
-			default_permission: undefined,
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'quote',
 			type: ApplicationCommandType.Message
 		});
@@ -123,7 +119,7 @@ describe('Message Context Menu Command', () => {
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'quote',
 			type: ApplicationCommandType.Message
 		});
@@ -143,11 +139,9 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
-				options: undefined,
 				type: ApplicationCommandType.ChatInput
 			});
 		});
@@ -163,12 +157,9 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				description: 'Runs a network connection test with me',
-				description_localizations: undefined,
 				name: 'ping',
-				name_localizations: undefined,
 				options: [],
 				type: ApplicationCommandType.ChatInput
 			});
@@ -183,12 +174,9 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
-				name_localizations: undefined,
 				description: 'Runs a network connection test with me',
-				description_localizations: undefined,
 				options: [],
 				type: ApplicationCommandType.ChatInput
 			});
@@ -217,85 +205,55 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'test',
-				name_localizations: undefined,
 				description: 'Tests all options',
-				description_localizations: undefined,
 				options: [
 					{
 						description: 'A boolean',
-						description_localizations: undefined,
 						name: 'boolean',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.Boolean
 					},
 					{
-						channel_types: undefined,
 						description: 'A channel',
-						description_localizations: undefined,
 						name: 'channel',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.Channel
 					},
 					{
-						autocomplete: undefined,
-						choices: undefined,
 						description: 'An integer',
-						description_localizations: undefined,
-						max_value: undefined,
-						min_value: undefined,
 						name: 'integer',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.Integer
 					},
 					{
 						description: 'A mentionable',
-						description_localizations: undefined,
 						name: 'mentionable',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.Mentionable
 					},
 					{
-						autocomplete: undefined,
-						choices: undefined,
 						description: 'A number',
-						description_localizations: undefined,
-						max_value: undefined,
-						min_value: undefined,
 						name: 'number',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.Number
 					},
 					{
 						description: 'A role',
-						description_localizations: undefined,
 						name: 'role',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.Role
 					},
 					{
-						autocomplete: undefined,
-						choices: undefined,
 						description: 'A string',
-						description_localizations: undefined,
 						name: 'string',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.String
 					},
 					{
 						description: 'A user',
-						description_localizations: undefined,
 						name: 'user',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.User
 					}
@@ -324,20 +282,14 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'tag',
-				name_localizations: undefined,
 				description: 'Send a tag by name or by alias',
-				description_localizations: undefined,
 				options: [
 					{
-						autocomplete: true as any,
-						choices: undefined,
+						autocomplete: true,
 						description: 'The name or alias of the tag to send',
-						description_localizations: undefined,
 						name: 'query',
-						name_localizations: undefined,
 						required: true,
 						type: ApplicationCommandOptionType.String
 					}
@@ -365,20 +317,13 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'tag',
-				name_localizations: undefined,
 				description: 'Send a tag by name or by alias',
-				description_localizations: undefined,
 				options: [
 					{
-						autocomplete: undefined,
-						choices: undefined,
 						description: 'The name or alias of the tag to send',
-						description_localizations: undefined,
 						name: 'query',
-						name_localizations: undefined,
 						required: true,
 						type: ApplicationCommandOptionType.String
 					}
@@ -418,15 +363,11 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'random',
-				name_localizations: undefined,
 				description: 'Does something',
-				description_localizations: undefined,
 				options: [
 					{
-						autocomplete: undefined,
 						choices: [
 							{
 								name: 'foo',
@@ -438,14 +379,11 @@ describe('Chat Input Commands', () => {
 							}
 						],
 						description: 'A string',
-						description_localizations: undefined,
 						name: 'query',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.String
 					},
 					{
-						autocomplete: undefined,
 						choices: [
 							{
 								name: 'half',
@@ -457,16 +395,11 @@ describe('Chat Input Commands', () => {
 							}
 						],
 						description: 'A number',
-						description_localizations: undefined,
-						max_value: undefined,
-						min_value: undefined,
 						name: 'query',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.Number
 					},
 					{
-						autocomplete: undefined,
 						choices: [
 							{
 								name: 'one',
@@ -478,11 +411,7 @@ describe('Chat Input Commands', () => {
 							}
 						],
 						description: 'An integer',
-						description_localizations: undefined,
-						max_value: undefined,
-						min_value: undefined,
 						name: 'query',
-						name_localizations: undefined,
 						required: false,
 						type: ApplicationCommandOptionType.Integer
 					}
@@ -503,8 +432,7 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
 				options: [
@@ -534,8 +462,7 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
 				options: [
@@ -573,12 +500,9 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
-				name_localizations: undefined,
 				description: 'Runs a network connection test with me',
-				description_localizations: undefined,
 				options: [
 					{
 						name: 'network',
@@ -618,12 +542,9 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
-				name_localizations: undefined,
 				description: 'Runs a network connection test with me',
-				description_localizations: undefined,
 				options: [
 					{
 						name: 'network',
@@ -672,12 +593,9 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
-				name_localizations: undefined,
 				description: 'Runs a network connection test with me',
-				description_localizations: undefined,
 				options: [
 					{
 						name: 'discord',
@@ -741,12 +659,9 @@ describe('Chat Input Commands', () => {
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
-				name_localizations: undefined,
 				description: 'Runs a network connection test with me',
-				description_localizations: undefined,
 				options: [
 					{
 						name: 'discord',

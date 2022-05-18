@@ -13,7 +13,7 @@ export class UserCommand extends Command {
 		const t = getT(getSupportedUserLanguageName(interaction));
 		const embed = new UnsafeEmbedBuilder()
 			.setDescription(t(LanguageKeys.Commands.Shared.InfoEmbedDescription))
-			.addFields(this.getUptimeStatistics(t), this.getServerUsageStatistics(t));
+			.addFields([this.getUptimeStatistics(t), this.getServerUsageStatistics(t)]);
 		const components = this.getComponents(t);
 
 		return this.message({ embeds: [embed.toJSON()], components, flags: MessageFlags.Ephemeral });
