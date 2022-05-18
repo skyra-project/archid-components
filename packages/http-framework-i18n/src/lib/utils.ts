@@ -1,16 +1,22 @@
 import type { NonNullObject } from '@sapphire/utilities';
-import type { APIApplicationCommandInteraction, LocaleString } from 'discord-api-types/v10';
-import type { TOptions, TOptionsBase } from 'i18next';
+import type { APIApplicationCommandInteraction, APIMessageComponentInteraction, LocaleString } from 'discord-api-types/v10';
+import type { TFunction, TOptions, TOptionsBase } from 'i18next';
 import { getT, loadedLocales } from './registry';
 import type { TypedFT, TypedT } from './types';
 
-export function getSupportedUserLanguageName(interaction: APIApplicationCommandInteraction): LocaleString {
+export type Interaction = APIApplicationCommandInteraction | APIMessageComponentInteraction;
+
+export function getSupportedUserLanguageName(interaction: Interaction): LocaleString {
 	if (loadedLocales.has(interaction.locale)) return interaction.locale;
 	if (interaction.guild_locale && loadedLocales.has(interaction.guild_locale)) return interaction.guild_locale;
 	return 'en-US';
 }
 
-export function getSupportedLanguageName(interaction: APIApplicationCommandInteraction): LocaleString {
+export function getSupportedUserLanguageT(interaction: Interaction): TFunction {
+	return getT(getSupportedUserLanguageName(interaction));
+}
+
+export function getSupportedLanguageName(interaction: Interaction): LocaleString {
 	if (interaction.guild_id) {
 		if (interaction.guild_locale && loadedLocales.has(interaction.guild_locale)) return interaction.guild_locale;
 	} else if (loadedLocales.has(interaction.locale)) {
@@ -19,50 +25,45 @@ export function getSupportedLanguageName(interaction: APIApplicationCommandInter
 	return 'en-US';
 }
 
-export function resolveUserKey<TReturn>(
-	interaction: APIApplicationCommandInteraction,
-	key: TypedT<TReturn>,
-	options?: TOptionsBase | string
-): TReturn;
-export function resolveUserKey<TReturn>(
-	interaction: APIApplicationCommandInteraction,
-	key: TypedT<TReturn>,
-	defaultValue: TReturn,
-	options?: TOptionsBase | string
-): TReturn;
-export function resolveUserKey<TArgs extends NonNullObject, TReturn>(
-	interaction: APIApplicationCommandInteraction,
-	key: TypedFT<TArgs, TReturn>,
-	options?: TOptions<TArgs>
-): TReturn;
-export function resolveUserKey<TArgs extends NonNullObject, TReturn>(
-	interaction: APIApplicationCommandInteraction,
-	key: TypedFT<TArgs, TReturn>,
-	defaultValue: TReturn,
-	options?: TOptions<TArgs>
-): TReturn;
-export function resolveUserKey(interaction: APIApplicationCommandInteraction, ...args: [any, any, any?]) {
-	return getT(getSupportedUserLanguageName(interaction))(...args);
+export function getSupportedLanguageT(interaction: Interaction): TFunction {
+	return getT(getSupportedLanguageName(interaction));
 }
 
-export function resolveKey<TReturn>(interaction: APIApplicationCommandInteraction, key: TypedT<TReturn>, options?: TOptionsBase | string): TReturn;
-export function resolveKey<TReturn>(
-	interaction: APIApplicationCommandInteraction,
+export function resolveUserKey<TReturn>(interaction: Interaction, key: TypedT<TReturn>, options?: TOptionsBase | string): TReturn;
+export function resolveUserKey<TReturn>(
+	interaction: Interaction,
 	key: TypedT<TReturn>,
 	defaultValue: TReturn,
 	options?: TOptionsBase | string
 ): TReturn;
-export function resolveKey<TArgs extends NonNullObject, TReturn>(
-	interaction: APIApplicationCommandInteraction,
+export function resolveUserKey<TArgs extends NonNullObject, TReturn>(
+	interaction: Interaction,
 	key: TypedFT<TArgs, TReturn>,
 	options?: TOptions<TArgs>
 ): TReturn;
-export function resolveKey<TArgs extends NonNullObject, TReturn>(
-	interaction: APIApplicationCommandInteraction,
+export function resolveUserKey<TArgs extends NonNullObject, TReturn>(
+	interaction: Interaction,
 	key: TypedFT<TArgs, TReturn>,
 	defaultValue: TReturn,
 	options?: TOptions<TArgs>
 ): TReturn;
-export function resolveKey(interaction: APIApplicationCommandInteraction, ...args: [any, any, any?]) {
-	return getT(getSupportedLanguageName(interaction))(...args);
+export function resolveUserKey(interaction: Interaction, ...args: [any, any, any?]) {
+	return getSupportedUserLanguageT(interaction)(...args);
+}
+
+export function resolveKey<TReturn>(interaction: Interaction, key: TypedT<TReturn>, options?: TOptionsBase | string): TReturn;
+export function resolveKey<TReturn>(interaction: Interaction, key: TypedT<TReturn>, defaultValue: TReturn, options?: TOptionsBase | string): TReturn;
+export function resolveKey<TArgs extends NonNullObject, TReturn>(
+	interaction: Interaction,
+	key: TypedFT<TArgs, TReturn>,
+	options?: TOptions<TArgs>
+): TReturn;
+export function resolveKey<TArgs extends NonNullObject, TReturn>(
+	interaction: Interaction,
+	key: TypedFT<TArgs, TReturn>,
+	defaultValue: TReturn,
+	options?: TOptions<TArgs>
+): TReturn;
+export function resolveKey(interaction: Interaction, ...args: [any, any, any?]) {
+	return getSupportedLanguageT(interaction)(...args);
 }
