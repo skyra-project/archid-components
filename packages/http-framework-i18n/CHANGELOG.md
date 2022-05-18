@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.1.3](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.2...@skyra/http-framework-i18n@0.1.3) - (2022-05-18)
+
+## 🏠 Refactor
+
+- **hfx-i18n:** Support more Interaction types, new functions (#74) ([8cec6f4](https://github.com/skyra-project/archid-components/commit/8cec6f4f613d83790f62b727df4969182349ce24))
+
 # [@skyra/http-framework-i18n@0.1.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.1...@skyra/http-framework-i18n@0.1.2) - (2022-04-27)
 
 ## Bug Fixes
