@@ -62,7 +62,7 @@ export abstract class InteractionHandler extends Piece {
 
 export namespace InteractionHandler {
 	export type Response = InteractionHandlerResponse;
-	export type AsyncResponse = PromiseLike<Awaited<Response>>;
+	export type AsyncResponse = Promise<Awaited<Response>>;
 	export type GeneratorResponse = InteractionHandlerGeneratorResponse;
 
 	export type MessageComponentInteraction = import('discord-api-types/v10').APIMessageComponentInteraction;
