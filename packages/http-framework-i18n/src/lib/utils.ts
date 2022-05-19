@@ -1,10 +1,10 @@
 import type { NonNullObject } from '@sapphire/utilities';
-import type { APIApplicationCommandInteraction, APIMessageComponentInteraction, LocaleString } from 'discord-api-types/v10';
+import type { APIInteraction, APIPingInteraction, LocaleString } from 'discord-api-types/v10';
 import type { TFunction, TOptions, TOptionsBase } from 'i18next';
 import { getT, loadedLocales } from './registry';
 import type { TypedFT, TypedT } from './types';
 
-export type Interaction = APIApplicationCommandInteraction | APIMessageComponentInteraction;
+export type Interaction = Exclude<APIInteraction, APIPingInteraction>;
 
 export function getSupportedUserLanguageName(interaction: Interaction): LocaleString {
 	if (loadedLocales.has(interaction.locale)) return interaction.locale;
