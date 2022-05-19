@@ -4,16 +4,20 @@ import type { Awaitable, NonNullObject } from '@sapphire/utilities';
 import {
 	Routes,
 	type APIBaseInteraction,
+	type APIInteraction,
 	type APIInteractionResponse,
+	type APIPingInteraction,
 	type InteractionType,
 	type RESTPatchAPIInteractionOriginalResponseResult,
 	type RESTPostAPIInteractionFollowupJSONBody,
 	type RESTPostAPIInteractionFollowupResult
 } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
+import FormData from 'form-data';
 import { isGeneratorObject } from 'node:util/types';
 import { HttpCodes } from '../../api/HttpCodes';
-import FormData from 'form-data';
+
+export type NonPingInteraction = Exclude<APIInteraction, APIPingInteraction>;
 
 /**
  * Runs the callback, handling all possible results (awaitable data or generator),
@@ -25,11 +29,7 @@ import FormData from 'form-data';
  * @param cb A callback with the interaction handler call result.
  * @returns The reply object.
  */
-export async function runner<Type extends InteractionType, Data>(
-	reply: FastifyReply,
-	interaction: APIBaseInteraction<Type, Data>,
-	cb: () => InteractionHandlerResponse
-): Promise<FastifyReply> {
+export async function runner(reply: FastifyReply, interaction: NonPingInteraction, cb: () => InteractionHandlerResponse): Promise<FastifyReply> {
 	let result: InteractionHandlerResponse;
 	try {
 		result = await cb();
@@ -116,10 +116,7 @@ export type PostMessageOptions = AddFiles<RESTPostAPIInteractionFollowupJSONBody
  * @param body The body to be sent in the HTTP call.
  * @returns An API message.
  */
-export function patchMessage<Type extends InteractionType, Data>(
-	interaction: APIBaseInteraction<Type, Data>,
-	{ files, ...body }: InteractionResponseWithFiles
-) {
+export function patchMessage(interaction: NonPingInteraction, { files, ...body }: InteractionResponseWithFiles) {
 	return container.rest.patch(Routes.webhookMessage(interaction.application_id, interaction.token), {
 		body,
 		files,
@@ -136,9 +133,9 @@ export type InteractionResponseWithFiles = AddFiles<APIInteractionResponse>;
  * @param generator The generator object we use to receive more information from.
  * @returns The reply object.
  */
-async function handleGenerator<Type extends InteractionType, Data>(
+async function handleGenerator(
 	reply: FastifyReply,
-	interaction: APIBaseInteraction<Type, Data>,
+	interaction: NonPingInteraction,
 	generator: InteractionHandlerGeneratorResponse
 ): Promise<FastifyReply> {
 	let result = await generator.next();
