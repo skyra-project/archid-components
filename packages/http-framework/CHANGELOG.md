@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.5.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.4.0...@skyra/http-framework@0.5.0) - (2022-05-19)
+
+## 🐛 Bug Fixes
+
+- **hfx:** Use `Promise` in `IH.AsyncResponse` (#78) ([72b7273](https://github.com/skyra-project/archid-components/commit/72b72731f2d4392ef56960941792e3c4d5d4242b))
+
+## 🚀 Features
+
+- **hfx:** Add `IH.Interaction` and broaden `IH#run` type (#79) ([fbdfba6](https://github.com/skyra-project/archid-components/commit/fbdfba6405548ba07d3818839680ee6a60e6dce8))
+
 # [@skyra/http-framework@0.4.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.3.7...@skyra/http-framework@0.4.0) - (2022-05-18)
 
 ## 🚀 Features
