@@ -78,6 +78,43 @@ All notable changes to this project will be documented in this file.
 
 # [@skyra/shared-http-pieces@0.0.24](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.23...@skyra/shared-http-pieces@0.0.24) - (2022-04-28)
 
+## 🐛 Bug Fixes
+
+- **shared-http-pieces:** Resolved several bugs (#63) ([4c4dea6](https://github.com/skyra-project/archid-components/commit/4c4dea6070e63366e6dcd64733da60198954ee77))
+
+# [@skyra/shared-http-pieces@0.0.23](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.22...@skyra/shared-http-pieces@0.0.23) - (2022-04-28)
+
+## 🏠 Refactor
+
+- **shared-http-pieces:** New `/info` command (#62) ([b3ce014](https://github.com/skyra-project/archid-components/commit/b3ce0142022ed592cd08d2f08e18a651e2328b25))
+
+# [@skyra/shared-http-pieces@0.0.22](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.21...@skyra/shared-http-pieces@0.0.22) - (2022-04-24)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#60) ([326e242](https://github.com/skyra-project/archid-components/commit/326e242c638ad735be8c7746223596fe108e5941))
+
+# [@skyra/shared-http-pieces@0.0.21](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.15...@skyra/shared-http-pieces@0.0.21) - (2022-04-18)
+
+## 🐛 Bug Fixes
+
+- Update discordjs dependencies (#55) ([43c9795](https://github.com/skyra-project/archid-components/commit/43c9795c334885ad207e6ae4fd0c9b29da526df8))
+- **deps:** Update all non-major dependencies (#54) ([ca3a6de](https://github.com/skyra-project/archid-components/commit/ca3a6deab66155be44ec679eb0a954297acdd807))
+- Ensure proper files array for yarn pack ([38214a3](https://github.com/skyra-project/archid-components/commit/38214a3be182369efe076428c425b6aa43e1ee35))
+- Fixed export mapping in package.json ([d217c18](https://github.com/skyra-project/archid-components/commit/d217c18ac357fd83c448fc5682857b292e09da60))
+
+## 📝 Documentation
+
+- Fix shared-http-pieces changelog ([d3623a7](https://github.com/skyra-project/archid-components/commit/d3623a73b81c30d553a80f586089fc7c81c93032))
+
+# [@skyra/shared-http-pieces@0.0.15](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.14...@skyra/shared-http-pieces@0.0.15) - (2022-04-10)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#42) ([37f2bbd](https://github.com/skyra-project/archid-components/commit/37f2bbdcd8f6ec2145fc063f192c506495974d7a))
+
+# [@skyra/shared-http-pieces@0.0.24](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.23...@skyra/shared-http-pieces@0.0.24) - (2022-04-28)
+
 ## Bug Fixes
 
 - **shared-http-pieces:** Resolved several bugs (#63) ([4c4dea6](https://github.com/skyra-project/archid-components/commit/4c4dea6070e63366e6dcd64733da60198954ee77))
