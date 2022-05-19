@@ -1,17 +1,21 @@
 import { Piece } from '@sapphire/pieces';
 import {
 	InteractionResponseType,
+	type APIApplicationCommandAutocompleteInteraction,
+	type APIApplicationCommandInteraction,
+	type APIInteraction,
 	type APIInteractionResponseChannelMessageWithSource,
 	type APIInteractionResponseDeferredChannelMessageWithSource,
 	type APIInteractionResponseDeferredMessageUpdate,
 	type APIInteractionResponseUpdateMessage,
 	type APIMessageComponentInteraction,
-	type APIModalInteractionResponse
+	type APIModalInteractionResponse,
+	type APIPingInteraction
 } from 'discord-api-types/v10';
 import type { AddFiles, InteractionHandlerGeneratorResponse, InteractionHandlerResponse } from '../interactions/utils/util';
 
 export abstract class InteractionHandler extends Piece {
-	public abstract run(interaction: APIMessageComponentInteraction, customIdValue: unknown): InteractionHandler.Response;
+	public abstract run(interaction: InteractionHandler.Interaction, customIdValue: unknown): InteractionHandler.Response;
 
 	/**
 	 * Responds to the interaction with a message.
@@ -65,7 +69,11 @@ export namespace InteractionHandler {
 	export type AsyncResponse = PromiseLike<Awaited<Response>>;
 	export type GeneratorResponse = InteractionHandlerGeneratorResponse;
 
-	export type MessageComponentInteraction = import('discord-api-types/v10').APIMessageComponentInteraction;
+	export type Interaction = Exclude<
+		APIInteraction,
+		APIPingInteraction | APIApplicationCommandInteraction | APIApplicationCommandAutocompleteInteraction
+	>;
+	export type MessageComponentInteraction = APIMessageComponentInteraction;
 	export type MessageComponentInteractionData = MessageComponentInteraction['data'];
 
 	// Piece re-exports
