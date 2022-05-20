@@ -200,8 +200,8 @@ export abstract class Command extends Piece {
 			if (!(possibleGroup instanceof Collection)) return null;
 
 			const [firstSubOption] = firstOption.options;
-			const possible = this.chatInputRouter.get(firstSubOption.name);
-			return typeof possible === 'string' ? possible : null;
+			const possible = possibleGroup.get(firstSubOption.name);
+			return possible ?? null;
 		}
 
 		return 'chatInputRun';
