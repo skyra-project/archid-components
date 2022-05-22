@@ -27,7 +27,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.31",
-		"i18next": "^21.8.2"
+		"i18next": "^21.8.3"
 	},
 	"repository": {
 		"type": "git",
