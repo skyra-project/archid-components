@@ -23,12 +23,12 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.14.0-dev.1652702621-5e9b757",
-		"@discordjs/collection": "0.7.0-dev.1652702622-5e9b757",
-		"@discordjs/rest": "0.5.0-dev.1652702640-5e9b757",
+		"@discordjs/builders": "0.14.0-dev.1653091712-fdeac9d",
+		"@discordjs/collection": "0.7.0-dev.1653091708-fdeac9d",
+		"@discordjs/rest": "0.5.0-dev.1653091732-fdeac9d",
 		"@sapphire/pieces": "^3.3.3",
 		"@sapphire/utilities": "^3.6.2",
-		"discord-api-types": "^0.32.1",
+		"discord-api-types": "^0.33.0",
 		"fastify": "^3.29.0",
 		"form-data": "^4.0.0",
 		"tweetnacl": "^1.0.3"

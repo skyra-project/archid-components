@@ -22,12 +22,12 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/collection": "0.7.0-dev.1652702622-5e9b757",
+		"@discordjs/collection": "0.7.0-dev.1653091708-fdeac9d",
 		"@sapphire/utilities": "3.6.2",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/i18next-backend": "workspace:^",
-		"discord-api-types": "^0.32.1",
-		"i18next": "^21.8.2",
+		"discord-api-types": "^0.33.0",
+		"i18next": "^21.8.3",
 		"tslib": "^2.4.0"
 	},
 	"repository": {
