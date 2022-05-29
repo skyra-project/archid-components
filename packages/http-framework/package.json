@@ -23,9 +23,9 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.14.0-dev.1653091712-fdeac9d",
-		"@discordjs/collection": "0.7.0-dev.1653091708-fdeac9d",
-		"@discordjs/rest": "0.5.0-dev.1653091732-fdeac9d",
+		"@discordjs/builders": "0.14.0-dev.1653480270-68d5169",
+		"@discordjs/collection": "0.7.0-dev.1653480253-68d5169",
+		"@discordjs/rest": "0.5.0-dev.1653480262-68d5169",
 		"@sapphire/pieces": "^3.3.3",
 		"@sapphire/utilities": "^3.6.2",
 		"discord-api-types": "^0.33.0",
