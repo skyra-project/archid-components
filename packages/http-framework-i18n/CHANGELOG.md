@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.1.6](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.5...@skyra/http-framework-i18n@0.1.6) - (2022-06-01)
+
+## 🐛 Bug Fixes
+
+- Lock discord-api-types to 0.33.0 ([5abd7d9](https://github.com/skyra-project/archid-components/commit/5abd7d903233d4f317e95e1de4347a5249ef1538))
+- **deps:** Update all non-major dependencies (#86) ([6d1d18d](https://github.com/skyra-project/archid-components/commit/6d1d18df88f5f8cfca23c7889c9a50396867ae80))
+
 # [@skyra/http-framework-i18n@0.1.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.4...@skyra/http-framework-i18n@0.1.5) - (2022-05-19)
 
 ## 🐛 Bug Fixes
