@@ -140,7 +140,12 @@ async function handleGenerator(
 	interaction: NonPingInteraction,
 	generator: InteractionHandlerGeneratorResponse
 ): Promise<FastifyReply> {
-	let result = await generator.next();
+	let result;
+	try {
+		result = await generator.next();
+	} catch (error) {
+		return handleError(reply, error);
+	}
 
 	// If the method was a generator...
 	if (result.done) {
