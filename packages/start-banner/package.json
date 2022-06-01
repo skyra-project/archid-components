@@ -49,5 +49,10 @@
 	},
 	"publishConfig": {
 		"access": "public"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^1.8.0",
+		"tsup": "^6.0.1",
+		"typescript": "^4.7.2"
 	}
 }
