@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.5.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.5.0...@skyra/http-framework@0.5.1) - (2022-06-01)
+
+## 🐛 Bug Fixes
+
+- Lock discord-api-types to 0.33.0 ([5abd7d9](https://github.com/skyra-project/archid-components/commit/5abd7d903233d4f317e95e1de4347a5249ef1538))
+- **hfx:** Handle errors on first `generator.next()` (#82) ([3a83f69](https://github.com/skyra-project/archid-components/commit/3a83f6917ebc36a7bbcc6c2963a5494e2af2cc16))
+- **hfx:** Resolved update message bugs (#81) ([e057cff](https://github.com/skyra-project/archid-components/commit/e057cff4c75b0a1fe5ae86026b9739679367771f))
+- **deps:** Update all non-major dependencies (#86) ([6d1d18d](https://github.com/skyra-project/archid-components/commit/6d1d18df88f5f8cfca23c7889c9a50396867ae80))
+- **hfx:** Route SC from SCG correctly (#80) ([04da4f7](https://github.com/skyra-project/archid-components/commit/04da4f78e303b6b8104beb357dc8aa30697367d7))
+
 # [@skyra/http-framework@0.5.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.4.0...@skyra/http-framework@0.5.0) - (2022-05-19)
 
 ## 🐛 Bug Fixes
