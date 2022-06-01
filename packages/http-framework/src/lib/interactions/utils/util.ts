@@ -8,6 +8,7 @@ import {
 	type APIInteractionResponse,
 	type APIPingInteraction,
 	type InteractionType,
+	type RESTPatchAPIInteractionOriginalResponseJSONBody,
 	type RESTPatchAPIInteractionOriginalResponseResult,
 	type RESTPostAPIInteractionFollowupJSONBody,
 	type RESTPostAPIInteractionFollowupResult
@@ -116,7 +117,7 @@ export type PostMessageOptions = AddFiles<RESTPostAPIInteractionFollowupJSONBody
  * @param body The body to be sent in the HTTP call.
  * @returns An API message.
  */
-export function patchMessage(interaction: NonPingInteraction, { files, ...body }: InteractionResponseWithFiles) {
+export function patchMessage(interaction: NonPingInteraction, { files, ...body }: InteractionUpdateMessageWithFiles) {
 	return container.rest.patch(Routes.webhookMessage(interaction.application_id, interaction.token), {
 		body,
 		files,
@@ -124,7 +125,8 @@ export function patchMessage(interaction: NonPingInteraction, { files, ...body }
 	}) as Promise<RESTPatchAPIInteractionOriginalResponseResult>;
 }
 
-export type InteractionResponseWithFiles = AddFiles<APIInteractionResponse>;
+export type InteractionResponseWithFiles = AddFiles<APIInteractionResponse | RESTPatchAPIInteractionOriginalResponseJSONBody>;
+export type InteractionUpdateMessageWithFiles = AddFiles<RESTPatchAPIInteractionOriginalResponseJSONBody>;
 
 /**
  * Handles a generator object from a command call.
@@ -194,14 +196,13 @@ async function handleGenerator(
 
 export type SyncInteractionGenerator = Generator<
 	InteractionResponseWithFiles,
-	InteractionResponseWithFiles | undefined,
-	RESTPatchAPIInteractionOriginalResponseResult | null
+	InteractionResponseWithFiles | InteractionUpdateMessageWithFiles | undefined,
+	InteractionResponseWithFiles | InteractionUpdateMessageWithFiles | null
 >;
-
 export type AsyncInteractionGenerator = AsyncGenerator<
 	InteractionResponseWithFiles,
-	InteractionResponseWithFiles | undefined,
-	RESTPatchAPIInteractionOriginalResponseResult | null
+	InteractionResponseWithFiles | InteractionUpdateMessageWithFiles | undefined,
+	InteractionResponseWithFiles | InteractionUpdateMessageWithFiles | null
 >;
 
 export type InteractionHandlerInteractionResponse = InteractionResponseWithFiles;
