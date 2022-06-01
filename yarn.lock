@@ -1272,7 +1272,7 @@ __metadata:
     "@sapphire/utilities": 3.6.2
     "@skyra/http-framework": "workspace:^"
     "@skyra/i18next-backend": "workspace:^"
-    discord-api-types: ^0.33.0
+    discord-api-types: 0.33.0
     i18next: ^21.8.5
     tslib: ^2.4.0
     tsup: ^6.0.1
@@ -1290,7 +1290,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.0
     "@sapphire/pieces": ^3.3.3
     "@sapphire/utilities": ^3.6.2
-    discord-api-types: ^0.33.0
+    discord-api-types: 0.33.0
     fastify: ^3.29.0
     form-data: ^4.0.0
     tsup: ^6.0.1
@@ -1321,7 +1321,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.0
     "@skyra/http-framework": "workspace:^"
     "@skyra/http-framework-i18n": "workspace:^"
-    discord-api-types: ^0.33.0
+    discord-api-types: 0.33.0
     tslib: ^2.4.0
     typescript: ^4.7.2
   languageName: unknown
@@ -3024,6 +3024,13 @@ __metadata:
   dependencies:
     path-type: ^4.0.0
   checksum: fa05e18324510d7283f55862f3161c6759a3f2f8dbce491a2fc14c8324c498286c54282c1f0e933cb930da8419b30679389499b919122952a4f8592362ef4615
+  languageName: node
+  linkType: hard
+
+"discord-api-types@npm:0.33.0":
+  version: 0.33.0
+  resolution: "discord-api-types@npm:0.33.0"
+  checksum: 8ae2c7e36c34e1d250acab18f8d2941be6135b4e08e48f9c0f584b23a59e8b310ec33f78a46e4aa8294639ec0b5703162f1895eb0f446c70559ae4e69cd26b16
   languageName: node
   linkType: hard
 
