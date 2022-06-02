@@ -12,7 +12,7 @@
 		"test": "turbo run test",
 		"build": "turbo run build",
 		"update": "yarn upgrade-interactive",
-		"prepare": "husky install .github/husky",
+		"postinstall": "husky install .github/husky",
 		"check-update": "turbo run check-update"
 	},
 	"devDependencies": {
