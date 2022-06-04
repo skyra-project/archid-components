@@ -18,8 +18,8 @@
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepack": "yarn build",
-		"bump": "node $(yarn bin cj)",
-		"check-update": "node $(yarn bin cj) --dry-run"
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
 		"@discordjs/collection": "0.7.0-dev.1653480253-68d5169",
@@ -27,7 +27,7 @@
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/i18next-backend": "workspace:^",
 		"discord-api-types": "0.33.0",
-		"i18next": "^21.8.5",
+		"i18next": "^21.8.8",
 		"tslib": "^2.4.0"
 	},
 	"repository": {
@@ -59,12 +59,8 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.8.0",
+		"@favware/cliff-jumper": "^1.8.2",
 		"tsup": "^6.0.1",
-		"typescript": "^4.7.2"
-	},
-	"volta": {
-		"node": "18.2.0",
-		"npm": "8.5.3"
+		"typescript": "^4.7.3"
 	}
 }

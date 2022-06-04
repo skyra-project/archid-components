@@ -27,8 +27,8 @@
 		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepack": "yarn build",
-		"bump": "node $(yarn bin cj)",
-		"check-update": "node $(yarn bin cj) --dry-run"
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
 		"@discordjs/builders": "0.14.0-dev.1653480270-68d5169",
@@ -68,11 +68,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.8.0",
-		"typescript": "^4.7.2"
-	},
-	"volta": {
-		"node": "18.2.0",
-		"npm": "8.5.3"
+		"@favware/cliff-jumper": "^1.8.2",
+		"typescript": "^4.7.3"
 	}
 }
