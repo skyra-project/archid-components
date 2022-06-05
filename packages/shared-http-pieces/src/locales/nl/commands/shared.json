@@ -1,1 +1,12 @@
-{}
+{
+	"infoName": "info",
+	"infoDescription": "Geeft informatie over mij, een link om mij toe te voegen en een link voor de support server",
+	"infoFieldUptimeTitle": "Up-time",
+	"infoFieldUptimeValue": "• **Host**: {{host}}\n• **Client**: {{client}}",
+	"infoFieldServerUsageTitle": "Server Gebruik",
+	"infoFieldServerUsageValue": "• **CPU Gebruik**: {{cpu}}\n• **Geheugen**: {{heapUsed}}MB (Totaal: {{heapTotal}}MB)",
+	"infoButtonInvite": "Voeg me toe aan jouw server!",
+	"infoButtonSupport": "Support server",
+	"infoButtonGitHub": "GitHub Repository",
+	"infoButtonDonate": "Doneer"
+}
