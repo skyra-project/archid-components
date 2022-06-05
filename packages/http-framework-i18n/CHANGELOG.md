@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.1.8](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.7...@skyra/http-framework-i18n@0.1.8) - (2022-06-05)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#93) ([37224f3](https://github.com/skyra-project/archid-components/commit/37224f3746e814f442e31a47d62665a3dd834cc8))
+
 # [@skyra/http-framework-i18n@0.1.7](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.6...@skyra/http-framework-i18n@0.1.7) - (2022-06-04)
 
 ## 🐛 Bug Fixes
