@@ -1,11 +1,11 @@
-# `@skyra/shared-http-pieces`
+# `@skyra/shared-http-pieces` [![Crowdin](https://badges.crowdin.net/sharedhttppieces/localized.svg)](https://crowdin.com/project/sharedhttppieces)
 
 The shared commands used for ArchId Network's HTTP-only bots.
 
 ## Setup
 
-- Define `locales/{{lng}}/commands/shared:infoEmbedDescription` as a string. This is the content displayed in `/info`'s embed description.
-- Define the information variables.
+-   Define `locales/{{lng}}/commands/shared:infoEmbedDescription` as a string. This is the content displayed in `/info`'s embed description.
+-   Define the information variables.
 
 ## Usage
 
@@ -13,7 +13,8 @@ You can either register after setting environment parameters:
 
 ```typescript
 process.env.CLIENT_REPOSITORY = 'https://github.com/skyra-project/skyra';
-process.env.CLIENT_INVITE = 'https://discord.com/oauth2/authorize?client_id=266624760782258186&permissions=534185897078&scope=bot%20applications.commands';
+process.env.CLIENT_INVITE =
+	'https://discord.com/oauth2/authorize?client_id=266624760782258186&permissions=534185897078&scope=bot%20applications.commands';
 
 import '@skyra/shared-http-pieces/register';
 ```
