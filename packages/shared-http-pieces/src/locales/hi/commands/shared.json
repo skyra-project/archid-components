@@ -1,1 +1,12 @@
-{}
+{
+	"infoName": "जानकारी",
+	"infoDescription": "मेरे बारे में जानकारी प्रदान करता है, बॉट जोड़ने और सहयोग सर्वर की लिंक प्रदान करता है",
+	"infoFieldUptimeTitle": "उपरिकाल",
+	"infoFieldUptimeValue": "• **होस्ट**: {{host}}\n• **क्लाइंट**: {{client}}",
+	"infoFieldServerUsageTitle": "सर्वर उपयोग",
+	"infoFieldServerUsageValue": "• **CPU उपयोग**: {{cpu}}\n• **मेमोरी**: {{heapUsed}}MB (कुल:{{heapTotal}}MB)",
+	"infoButtonInvite": "मुझे अपने सर्वर में जोड़ें!",
+	"infoButtonSupport": "सहयोग सर्वर",
+	"infoButtonGitHub": "जीथब रिपोजिटरी",
+	"infoButtonDonate": "दान करें"
+}
