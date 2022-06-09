@@ -10,7 +10,7 @@ body = """
     {% if previous %}\
         {% if previous.version %}\
             (https://github.com/skyra-project/archid-components/compare/{{ previous.version }}...{{ version }})\
-        {% else %}
+        {% else %}\
             (https://github.com/skyra-project/archid-components/tree/{{ version }})\
         {% endif %}\
     {% endif %} \
