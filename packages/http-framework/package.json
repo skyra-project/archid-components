@@ -23,13 +23,13 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.15.0-dev.1654430642-7a1095b",
-		"@discordjs/collection": "0.8.0-dev.1654430641-7a1095b",
-		"@discordjs/rest": "0.6.0-dev.1654430647-7a1095b",
+		"@discordjs/builders": "0.16.0-dev.1654949068-96053ba",
+		"@discordjs/collection": "0.8.0-dev.1654949063-96053ba",
+		"@discordjs/rest": "0.6.0-dev.1654949067-96053ba",
 		"@sapphire/pieces": "^3.3.3",
 		"@sapphire/utilities": "^3.6.2",
-		"discord-api-types": "0.33.3",
-		"fastify": "^3.29.0",
+		"discord-api-types": "0.33.5",
+		"fastify": "^4.0.2",
 		"form-data": "^4.0.0",
 		"tweetnacl": "^1.0.3"
 	},
@@ -62,8 +62,8 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.8.2",
-		"tsup": "^6.0.1",
+		"@favware/cliff-jumper": "^1.8.3",
+		"tsup": "^6.1.2",
 		"typescript": "^4.7.3"
 	}
 }
