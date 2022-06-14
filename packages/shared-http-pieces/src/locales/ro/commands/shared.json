@@ -1,1 +1,12 @@
-{}
+{
+	"infoName": "info",
+	"infoDescription": "Oferă informații despre mine și link-uri pentru adăugarea botului și alăturarea serverului de suport",
+	"infoFieldUptimeTitle": "Timp de funcționare",
+	"infoFieldUptimeValue": "• **Host**: {{host}}\n• **Client**: {{client}}",
+	"infoFieldServerUsageTitle": "Utilizarea server-ului",
+	"infoFieldServerUsageValue": "• **Utilizarea procesorului**: {{cpu}}\n• **Memorie**: {{heapUsed}}MB (Total: {{heapTotal}}MB)",
+	"infoButtonInvite": "Adaugă-mă pe serverul tău!",
+	"infoButtonSupport": "Server de asistență",
+	"infoButtonGitHub": "Depozit GitHub",
+	"infoButtonDonate": "Donează"
+}
