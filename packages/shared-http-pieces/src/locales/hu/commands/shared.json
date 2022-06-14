@@ -1,1 +1,12 @@
-{}
+{
+	"infoName": "info",
+	"infoDescription": "Információt ad rólam és linkek ad a bot hozzáadásához és a támogatási szerverhez való csatlakozáshoz",
+	"infoFieldUptimeTitle": "Üzemidő",
+	"infoFieldUptimeValue": "• **Gazda**: {{host}}\n• **Kliens**: {{client}}",
+	"infoFieldServerUsageTitle": "Szerverhasználat",
+	"infoFieldServerUsageValue": "• **Processzor használat**: {{cpu}}\n• **Memória**: {{heapUsed}} MB (Összesen: {{heapTotal}} MB)",
+	"infoButtonInvite": "Adj hozzá a szerveredhez!",
+	"infoButtonSupport": "Támogatási szerver",
+	"infoButtonGitHub": "GitHub Repó",
+	"infoButtonDonate": "Támogatás"
+}
