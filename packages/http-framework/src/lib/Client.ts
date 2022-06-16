@@ -8,6 +8,7 @@ import tweetnacl from 'tweetnacl';
 import { HttpCodes } from './api/HttpCodes';
 import type { IIdParser } from './components/IIdParser';
 import { StringIdParser } from './components/StringIdParser';
+import type { FastifyObjectOptions } from './utils/FastifyObjectOptions';
 import { CommandStore } from './structures/CommandStore';
 import { InteractionHandlerStore } from './structures/InteractionHandlerStore';
 
@@ -50,11 +51,11 @@ export class Client extends EventEmitter {
 	 * Starts the HTTP server, listening for HTTP interactions.
 	 * @param options The listen options.
 	 */
-	public async listen(options: ListenOptions) {
-		this.server = Fastify(options.serverOptions);
-		this.server.post(options.postPath ?? process.env.HTTP_POST_PATH ?? '/', this.handleHttpMessage.bind(this));
+	public async listen({ serverOptions, postPath, port, address, ...listenOptions }: ListenOptions) {
+		this.server = Fastify(serverOptions);
+		this.server.post(postPath ?? process.env.HTTP_POST_PATH ?? '/', this.handleHttpMessage.bind(this));
 
-		await this.server.listen(options.port, options.address);
+		await this.server.listen({ ...listenOptions, port, host: address });
 	}
 
 	protected async handleHttpMessage(request: FastifyRequest, reply: FastifyReply): Promise<FastifyReply> {
@@ -140,11 +141,11 @@ export interface LoadOptions {
 	baseUserDirectory?: string | null;
 }
 
-export interface ListenOptions {
+export interface ListenOptions extends FastifyObjectOptions {
 	/**
 	 * The port at which the server will listen for requests.
 	 */
-	port: number | string;
+	port: number;
 
 	/**
 	 * The address at which the server will be started.

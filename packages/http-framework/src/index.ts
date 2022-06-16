@@ -23,3 +23,4 @@ export * from './lib/structures/Command';
 export * from './lib/structures/CommandStore';
 export * from './lib/structures/InteractionHandler';
 export * from './lib/structures/InteractionHandlerStore';
+export type { FastifyObjectOptions } from './lib/utils/FastifyObjectOptions';
