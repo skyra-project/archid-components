@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.5.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.5.4...@skyra/http-framework@0.5.5) - (2022-06-19)
+
+## 🐛 Bug Fixes
+
+- Debump discord-api-types ([cfc3099](https://github.com/skyra-project/archid-components/commit/cfc309976d74e386ee33b90c9adb68338b67d6b4))
+
 # [@skyra/http-framework@0.5.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.5.3...@skyra/http-framework@0.5.4) - (2022-06-19)
 
 ## 🏠 Refactor
