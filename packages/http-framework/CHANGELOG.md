@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.5.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.5.3...@skyra/http-framework@0.5.4) - (2022-06-19)
+
+## 🏠 Refactor
+
+- Cover fastify deprecated syntax (#105) ([3167d6a](https://github.com/skyra-project/archid-components/commit/3167d6ae5ba75d0755ce876ba80902990d399ba5))
+
+## 🐛 Bug Fixes
+
+- **http-framework:** Bump `@discordjs` dependencies ([00a2f1d](https://github.com/skyra-project/archid-components/commit/00a2f1dff5eaf6d890dbf6ee2ea3171c8d4ceada))
+- **deps:** Update all non-major dependencies (#108) ([dab6744](https://github.com/skyra-project/archid-components/commit/dab67449301dfbffbf81d03a7c6fcd86e452740b))
+- **deps:** Update all non-major dependencies (#102) ([c6b10ec](https://github.com/skyra-project/archid-components/commit/c6b10ec92d14f8ba7874e0fb034d223d6221b6f9))
+
 # [@skyra/http-framework@0.5.3](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.5.2...@skyra/http-framework@0.5.3) - (2022-06-05)
 
 ## 🐛 Bug Fixes
