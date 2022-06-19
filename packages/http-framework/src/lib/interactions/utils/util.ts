@@ -65,7 +65,7 @@ export function handleResponse(reply: FastifyReply, data: NonNullObject): Fastif
 		}
 
 		form.append('payload_json', JSON.stringify(rest));
-		return reply.status(HttpCodes.OK).header('content-type', 'multipart/form-data').send(form);
+		return reply.status(HttpCodes.OK).header('content-type', form.getHeaders()['content-type']).send(form);
 	}
 
 	return reply.status(HttpCodes.OK).header('content-type', 'application/json').send(data);
