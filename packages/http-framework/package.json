@@ -26,7 +26,7 @@
 		"@discordjs/builders": "0.16.0-dev.1655165432-b4e28a8",
 		"@discordjs/collection": "0.8.0-dev.1655165444-b4e28a8",
 		"@discordjs/rest": "0.6.0-dev.1655165427-b4e28a8",
-		"@sapphire/pieces": "^3.3.3",
+		"@sapphire/pieces": "^3.3.4",
 		"@sapphire/utilities": "^3.6.2",
 		"discord-api-types": "0.34.0",
 		"fastify": "^4.0.2",
