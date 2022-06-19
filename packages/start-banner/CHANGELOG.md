@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/start-banner@1.0.1](https://github.com/skyra-project/archid-components/compare/@skyra/start-banner@1.0.0...@skyra/start-banner@1.0.1) - (2022-06-19)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#108) ([dab6744](https://github.com/skyra-project/archid-components/commit/dab67449301dfbffbf81d03a7c6fcd86e452740b))
+
 # [@skyra/start-banner@1.0.0]
 (https://github.com/skyra-project/archid-components/tree/@skyra/start-banner@1.0.0) - (2022-05-07)
 
