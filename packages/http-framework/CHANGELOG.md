@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.5.6](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.5.5...@skyra/http-framework@0.5.6) - (2022-06-20)
+
+## 🐛 Bug Fixes
+
+- **http-framework:** Fix files not uploading (#110) ([cb19ffe](https://github.com/skyra-project/archid-components/commit/cb19ffe1b4cac87c0adb8657652f31e50130bfaf))
+
 # [@skyra/http-framework@0.5.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.5.4...@skyra/http-framework@0.5.5) - (2022-06-19)
 
 ## 🐛 Bug Fixes
