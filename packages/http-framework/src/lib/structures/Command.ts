@@ -4,7 +4,6 @@ import { Piece } from '@sapphire/pieces';
 import type { Awaitable, NonNullObject } from '@sapphire/utilities';
 import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import {
-	APIMessage,
 	ApplicationCommandOptionType,
 	ComponentType,
 	InteractionResponseType,
@@ -16,8 +15,10 @@ import {
 	type APIInteractionResponseCallbackData,
 	type APIInteractionResponseChannelMessageWithSource,
 	type APIInteractionResponseDeferredChannelMessageWithSource,
+	type APIMessage,
 	type APIModalInteractionResponse,
-	type APISelectMenuOption
+	type APISelectMenuOption,
+	type RESTPatchAPIInteractionOriginalResponseResult
 } from 'discord-api-types/v10';
 import { chatInputCommandRegistry, contextMenuCommandRegistry, type AutocompleteInteractionArguments } from '../interactions';
 import { getMethod } from '../interactions/shared/link';
@@ -25,7 +26,8 @@ import type {
 	AddFiles,
 	AsyncInteractionHandlerResponse,
 	InteractionHandlerGeneratorResponse,
-	InteractionHandlerResponse
+	InteractionHandlerResponse,
+	InteractionUpdateMessageWithFiles
 } from '../interactions/utils/util';
 
 export abstract class Command extends Piece {
@@ -103,6 +105,14 @@ export abstract class Command extends Piece {
 	}
 
 	/**
+	 * Updates a message response.
+	 * @param data The data to be sent.
+	 */
+	protected updateResponse(data: Command.UpdateResponseOptions) {
+		return data;
+	}
+
+	/**
 	 * Edits the initial Interaction response.
 	 *
 	 * When the `content` field is edited, the `mentions` array in the message object will be reconstructed from scratch based on the new content.
@@ -110,10 +120,10 @@ export abstract class Command extends Piece {
 	 * If there is no explicit `allowed_mentions` in the edit request, the content will be parsed with default allowances,
 	 * that is, without regard to whether or not an `allowed_mentions` was present in the request that originally created the message.
 	 *
-	 * Refer to [Uploading Files](https://discord.com/developers/docs/reference#uploading-files) for details on attachments and
-	 * `multipart/form-data` requests.
-	 * Any provided files will be **appended** to the message.
-	 * To remove or replace files you will have to supply the `attachments` field which specifies the files to retain on the message after edit.
+	 * Refer to [Uploading Files](https://discord.com/developers/docs/reference#uploading-files) for details on attachments.
+	 *
+	 * Any provided files will be **appended** to the message. To remove or replace files you will have to supply the `attachments` field which
+	 * specifies the files to retain on the message after edit.
 	 *
 	 * @see {@link https://discord.com/developers/docs/interactions/receiving-and-responding#edit-original-interaction-response}
 	 * @see {@link https://discord.com/developers/docs/resources/webhook#edit-webhook-message}
@@ -121,13 +131,13 @@ export abstract class Command extends Piece {
 	 * @param interaction The replied to Interaction of which you want to edit the reply
 	 * @param options The {@link Command.EditReplyOptions} to edit the reply with
 	 * @param message The message to delete, defaults to `'@original'`
-	 * @returns
+	 * @returns The edited message.
 	 */
 	protected editReply(
 		interaction: Command.Interaction,
 		options: Command.EditReplyOptions,
 		message: string | APIMessage = '@original'
-	): Promise<APIMessage> {
+	): Promise<Command.UpdateResponseResult> {
 		return this.container.rest.patch(
 			Routes.webhookMessage(interaction.application_id, interaction.token, typeof message === 'string' ? message : message.id),
 			{
@@ -139,7 +149,7 @@ export abstract class Command extends Piece {
 				files: options.files,
 				query: makeURLSearchParams({ thread_id: options.threadId })
 			}
-		) as Promise<APIMessage>;
+		) as Promise<Command.UpdateResponseResult>;
 	}
 
 	/**
@@ -288,6 +298,8 @@ export namespace Command {
 	export type DeferResponseOptions = APIInteractionResponseDeferredChannelMessageWithSource['data'];
 	export type ModalResponseOptions = APIModalInteractionResponse['data'];
 	export type ModalResponseResult = APIModalInteractionResponse;
+	export type UpdateResponseResult = RESTPatchAPIInteractionOriginalResponseResult;
+	export type UpdateResponseOptions = InteractionUpdateMessageWithFiles;
 
 	export interface EditReplyOptions {
 		data: Omit<MessageResponseOptions, 'flags' | 'type'>;

@@ -10,9 +10,15 @@ import {
 	type APIInteractionResponseUpdateMessage,
 	type APIMessageComponentInteraction,
 	type APIModalInteractionResponse,
-	type APIPingInteraction
+	type APIPingInteraction,
+	type RESTPatchAPIInteractionOriginalResponseResult
 } from 'discord-api-types/v10';
-import type { AddFiles, InteractionHandlerGeneratorResponse, InteractionHandlerResponse } from '../interactions/utils/util';
+import type {
+	AddFiles,
+	InteractionHandlerGeneratorResponse,
+	InteractionHandlerResponse,
+	InteractionUpdateMessageWithFiles
+} from '../interactions/utils/util';
 
 export abstract class InteractionHandler extends Piece {
 	public abstract run(interaction: InteractionHandler.Interaction, customIdValue: unknown): InteractionHandler.Response;
@@ -62,6 +68,14 @@ export abstract class InteractionHandler extends Piece {
 	protected modal(data: InteractionHandler.ModalResponseOptions): InteractionHandler.ModalResponseResult {
 		return { type: InteractionResponseType.Modal, data };
 	}
+
+	/**
+	 * Updates a message response.
+	 * @param data The data to be sent.
+	 */
+	protected updateResponse(data: InteractionHandler.UpdateResponseOptions) {
+		return data;
+	}
 }
 
 export namespace InteractionHandler {
@@ -92,4 +106,6 @@ export namespace InteractionHandler {
 	export type UpdateMessageResponseResult = AddFiles<APIInteractionResponseUpdateMessage>;
 	export type ModalResponseOptions = APIModalInteractionResponse['data'];
 	export type ModalResponseResult = APIModalInteractionResponse;
+	export type UpdateResponseResult = RESTPatchAPIInteractionOriginalResponseResult;
+	export type UpdateResponseOptions = InteractionUpdateMessageWithFiles;
 }
