@@ -2,12 +2,12 @@ import { Collection } from '@discordjs/collection';
 import { makeURLSearchParams, type RawFile } from '@discordjs/rest';
 import { Piece } from '@sapphire/pieces';
 import type { Awaitable, NonNullObject } from '@sapphire/utilities';
-import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/payloads/v9/_interactions/autocomplete';
 import {
 	ApplicationCommandOptionType,
 	ComponentType,
 	InteractionResponseType,
 	Routes,
+	type APIApplicationCommandAutocompleteInteraction,
 	type APIApplicationCommandAutocompleteResponse,
 	type APIApplicationCommandInteraction,
 	type APIChatInputApplicationCommandInteractionData,
