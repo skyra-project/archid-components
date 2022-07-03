@@ -27,7 +27,7 @@
 		"@discordjs/collection": "0.8.0-dev.1656158612-c4653f9",
 		"@discordjs/rest": "0.6.0-dev.1656158624-c4653f9",
 		"@sapphire/pieces": "^3.3.4",
-		"@sapphire/utilities": "^3.6.2",
+		"@sapphire/utilities": "^3.7.0",
 		"discord-api-types": "0.33.5",
 		"fastify": "^4.1.0",
 		"form-data": "^4.0.0",
