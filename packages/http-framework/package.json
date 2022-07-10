@@ -25,7 +25,7 @@
 	"dependencies": {
 		"@discordjs/builders": "0.16.0-dev.1656158607-c4653f9",
 		"@discordjs/collection": "0.8.0-dev.1656158612-c4653f9",
-		"@discordjs/rest": "0.6.0-dev.1656720651-d95197c",
+		"@discordjs/rest": "0.6.0-dev.1657411905-f0b68d5",
 		"@sapphire/pieces": "^3.3.4",
 		"@sapphire/utilities": "^3.7.0",
 		"discord-api-types": "0.33.5",
