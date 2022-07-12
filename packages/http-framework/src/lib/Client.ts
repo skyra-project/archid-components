@@ -2,13 +2,13 @@ import { REST, type RESTOptions } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { InteractionResponseType, InteractionType, type APIInteraction } from 'discord-api-types/v10';
 import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from 'fastify';
+import type { FastifyListenOptions } from 'fastify/types/instance';
 import { Buffer } from 'node:buffer';
 import { EventEmitter } from 'node:events';
 import tweetnacl from 'tweetnacl';
 import { HttpCodes } from './api/HttpCodes';
 import type { IIdParser } from './components/IIdParser';
 import { StringIdParser } from './components/StringIdParser';
-import type { FastifyObjectOptions } from './utils/FastifyObjectOptions';
 import { CommandStore } from './structures/CommandStore';
 import { InteractionHandlerStore } from './structures/InteractionHandlerStore';
 
@@ -141,7 +141,7 @@ export interface LoadOptions {
 	baseUserDirectory?: string | null;
 }
 
-export interface ListenOptions extends FastifyObjectOptions {
+export interface ListenOptions extends FastifyListenOptions {
 	/**
 	 * The port at which the server will listen for requests.
 	 */

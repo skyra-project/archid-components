@@ -13,6 +13,7 @@ export {
 	type StoreOptions,
 	type StoreRegistryEntries
 } from '@sapphire/pieces';
+export type { FastifyListenOptions } from 'fastify/types/instance';
 export * from './lib/api/HttpCodes';
 export * from './lib/Client';
 export * from './lib/components/IIdParser';
@@ -23,4 +24,3 @@ export * from './lib/structures/Command';
 export * from './lib/structures/CommandStore';
 export * from './lib/structures/InteractionHandler';
 export * from './lib/structures/InteractionHandlerStore';
-export type { FastifyObjectOptions } from './lib/utils/FastifyObjectOptions';
