@@ -1,4 +1,4 @@
-import { time, TimestampStyles, UnsafeEmbedBuilder } from '@discordjs/builders';
+import { EmbedBuilder, time, TimestampStyles } from '@discordjs/builders';
 import { Command, RegisterCommand } from '@skyra/http-framework';
 import { getSupportedUserLanguageName, getT, TFunction } from '@skyra/http-framework-i18n';
 import { ButtonStyle, ComponentType, MessageFlags, type APIEmbedField } from 'discord-api-types/v10';
@@ -11,7 +11,7 @@ import { getInvite, getRepository } from '../lib/information.js';
 export class UserCommand extends Command {
 	public override chatInputRun(interaction: Command.Interaction): Command.Response {
 		const t = getT(getSupportedUserLanguageName(interaction));
-		const embed = new UnsafeEmbedBuilder()
+		const embed = new EmbedBuilder()
 			.setDescription(t(LanguageKeys.Commands.Shared.InfoEmbedDescription))
 			.addFields([this.getUptimeStatistics(t), this.getServerUsageStatistics(t)]);
 		const components = this.getComponents(t);
