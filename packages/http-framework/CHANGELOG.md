@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.6.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.5.8...@skyra/http-framework@0.6.0) - (2022-07-12)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#118) ([86d2f87](https://github.com/skyra-project/archid-components/commit/86d2f87b63d5b9b485387e7b48e2114581a6eafd))
+- **deps:** Update all non-major dependencies (#116) ([67a5515](https://github.com/skyra-project/archid-components/commit/67a55152775b859f4c289e63d549f01901a5c1d0))
+- **deps:** Update dependency @sapphire/utilities to v3.7.0 ([0dc28c9](https://github.com/skyra-project/archid-components/commit/0dc28c9d15079a2c1a1b8cda60e851939f7a64f0))
+
+## 🚀 Features
+
+- **hfx:** Added `updateResponse` protected method to update replies (#112) ([4ad0be5](https://github.com/skyra-project/archid-components/commit/4ad0be5d30053ba12123eb8f76acdac63828e8a2))
+
 # [@skyra/http-framework@0.5.6](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.5.5...@skyra/http-framework@0.5.6) - (2022-06-20)
 
 ## 🐛 Bug Fixes
