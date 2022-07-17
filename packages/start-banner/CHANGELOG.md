@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/start-banner@1.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/start-banner@1.0.1...@skyra/start-banner@1.0.2) - (2022-07-17)
+
+## 🐛 Bug Fixes
+
+- Bump deps and use tsup dts ([7c1cb5d](https://github.com/skyra-project/archid-components/commit/7c1cb5d2baa1b9b92665f9b44e355cb0e318b687))
+- **deps:** Update all non-major dependencies (#116) ([67a5515](https://github.com/skyra-project/archid-components/commit/67a55152775b859f4c289e63d549f01901a5c1d0))
+
 # [@skyra/start-banner@1.0.1](https://github.com/skyra-project/archid-components/compare/@skyra/start-banner@1.0.0...@skyra/start-banner@1.0.1) - (2022-06-19)
 
 ## 🐛 Bug Fixes
