@@ -14,21 +14,20 @@
 	"sideEffects": false,
 	"scripts": {
 		"test": "jest",
-		"build": "tsup && tsc -b src",
-		"watch": "tsup --watch --onSuccess \"tsc -b src\"",
-		"watch:types": "tsc -b src -w",
+		"build": "tsup",
+		"watch": "tsup --watch",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.16.0-dev.1657411897-f0b68d5",
-		"@discordjs/collection": "0.8.0-dev.1657411895-f0b68d5",
+		"@discordjs/builders": "0.16.0-dev.1657757509-fe34f48",
+		"@discordjs/collection": "0.8.0-dev.1657757511-fe34f48",
 		"@discordjs/rest": "0.6.0-dev.1657757537-fe34f48",
 		"@sapphire/pieces": "^3.3.4",
 		"@sapphire/utilities": "^3.7.0",
-		"discord-api-types": "^0.36.1",
+		"discord-api-types": "^0.36.2",
 		"fastify": "^4.2.1",
 		"form-data": "^4.0.0",
 		"tweetnacl": "^1.0.3"

@@ -15,11 +15,10 @@
 	"sideEffects": false,
 	"scripts": {
 		"test": "eslint src --ext ts -c ../../package.json",
-		"build": "tsup && tsc -b src",
-		"watch": "tsup --watch --onSuccess \"tsc -b src\"",
-		"watch:types": "tsc -b src -w",
+		"build": "tsup",
+		"watch": "tsup --watch",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
-		"prepack": "rollup-type-bundler -v -e dotenv dotenv-cra",
+		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},

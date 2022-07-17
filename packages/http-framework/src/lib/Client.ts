@@ -166,8 +166,8 @@ export interface ListenOptions extends FastifyListenOptions {
 
 export namespace Client {
 	export type Options = import('./Client').ClientOptions;
-	export type LoadOptions = import('./Client').LoadOptions;
-	export type ListenOptions = import('./Client').ListenOptions;
+	export type PieceLoadOptions = import('./Client').LoadOptions;
+	export type ServerListenOptions = import('./Client').ListenOptions;
 }
 
 interface VerifyDiscordInteractionResponse {

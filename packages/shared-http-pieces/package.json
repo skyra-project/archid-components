@@ -24,18 +24,17 @@
 	"scripts": {
 		"build": "tsc -b src",
 		"watch": "tsc -b src --watch",
-		"watch:types": "tsc -b src -w",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.16.0-dev.1657411897-f0b68d5",
-		"@discordjs/collection": "0.8.0-dev.1657411895-f0b68d5",
+		"@discordjs/builders": "0.16.0-dev.1657757509-fe34f48",
+		"@discordjs/collection": "0.8.0-dev.1657757511-fe34f48",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
-		"discord-api-types": "^0.36.1",
+		"discord-api-types": "^0.36.2",
 		"tslib": "^2.4.0"
 	},
 	"repository": {

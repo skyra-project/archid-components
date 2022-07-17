@@ -30,7 +30,7 @@ export const createTsupConfig = ({
 }: ConfigOptions = defaultConfigOptions) =>
 	defineConfig({
 		clean: true,
-		dts: false,
+		dts: true,
 		entry: ['src/index.ts'],
 		format,
 		minify: false,
