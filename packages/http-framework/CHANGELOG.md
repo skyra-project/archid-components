@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.6.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.6.0...@skyra/http-framework@0.6.1) - (2022-07-17)
+
+## 🐛 Bug Fixes
+
+- Bump deps and use tsup dts ([7c1cb5d](https://github.com/skyra-project/archid-components/commit/7c1cb5d2baa1b9b92665f9b44e355cb0e318b687))
+- **deps:** Update all non-major dependencies (#123) ([906d844](https://github.com/skyra-project/archid-components/commit/906d844797464bb14a3b5e0ebe87efb7723d362a))
+
 # [@skyra/http-framework@0.6.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.5.8...@skyra/http-framework@0.6.0) - (2022-07-12)
 
 ## 🐛 Bug Fixes
