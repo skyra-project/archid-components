@@ -1,8 +1,7 @@
 import { REST, type RESTOptions } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { InteractionResponseType, InteractionType, type APIInteraction } from 'discord-api-types/v10';
-import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from 'fastify';
-import type { FastifyListenOptions } from 'fastify/types/instance';
+import Fastify, { type FastifyInstance, type FastifyListenOptions, type FastifyReply, type FastifyRequest } from 'fastify';
 import { Buffer } from 'node:buffer';
 import { EventEmitter } from 'node:events';
 import tweetnacl from 'tweetnacl';
