@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.6.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.6.3...@skyra/http-framework@0.6.4) - (2022-07-30)
+
+## 🐛 Bug Fixes
+
+- **http-framework:** AsyncGeneratorResponse types (#128) ([fe5e8c8](https://github.com/skyra-project/archid-components/commit/fe5e8c8ad6425eefb832bf1ef7b832247565e13f))
+
 # [@skyra/http-framework@0.6.3](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.6.2...@skyra/http-framework@0.6.3) - (2022-07-30)
 
 ## 🐛 Bug Fixes
