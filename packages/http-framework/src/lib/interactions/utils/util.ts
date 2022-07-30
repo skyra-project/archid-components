@@ -170,13 +170,13 @@ async function handleGenerator(
 	// `generator.next(...)` call. As such, the following code works:
 	//
 	//     yield this.defer(); // null
-	//     yield this.message({ content: 'Hello There' }); // APIMessage
-	//     yield this.message({ content: 'General Kenobi!' }); // APIMessage
+	//     yield this.updateResponse({ content: 'Hello There' }); // APIMessage
+	//     yield this.updateResponse({ content: 'General Kenobi!' }); // APIMessage
 	//
 	// We also add a last case to read the result of the returned iterator, this
 	// way, the following code is also supported as intended:
 	//
-	//     return this.message({ content: 'My job here is done' });
+	//     return this.updateResponse({ content: 'My job here is done' });
 	//
 	// For starters, we will need to store the last response, so it can be
 	// passed in the next `generator.next(...)` call.
