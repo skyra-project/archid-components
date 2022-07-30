@@ -24,6 +24,7 @@ import { chatInputCommandRegistry, contextMenuCommandRegistry, type Autocomplete
 import { getMethod } from '../interactions/shared/link';
 import type {
 	AddFiles,
+	AsyncInteractionGenerator,
 	AsyncInteractionHandlerResponse,
 	InteractionHandlerGeneratorResponse,
 	InteractionHandlerResponse,
@@ -274,6 +275,7 @@ export namespace Command {
 	export type Response = InteractionHandlerResponse;
 	export type AsyncResponse = AsyncInteractionHandlerResponse;
 	export type GeneratorResponse = InteractionHandlerGeneratorResponse;
+	export type AsyncGeneratorResponse = AsyncInteractionGenerator;
 
 	export type AutocompleteResponse = Awaitable<AutocompleteResponseResult>;
 	export type AsyncAutocompleteResponse = Promise<AutocompleteResponseResult>;
