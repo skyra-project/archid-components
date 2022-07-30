@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/http-framework-i18n",
-	"version": "0.1.16",
+	"version": "0.1.17",
 	"description": "The common pieces for ArchId Network's HTTP-only bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
