@@ -15,6 +15,7 @@ import {
 } from 'discord-api-types/v10';
 import type {
 	AddFiles,
+	AsyncInteractionGenerator,
 	InteractionHandlerGeneratorResponse,
 	InteractionHandlerResponse,
 	InteractionUpdateMessageWithFiles
@@ -82,6 +83,7 @@ export namespace InteractionHandler {
 	export type Response = InteractionHandlerResponse;
 	export type AsyncResponse = Promise<Awaited<Response>>;
 	export type GeneratorResponse = InteractionHandlerGeneratorResponse;
+	export type AsyncGeneratorResponse = AsyncInteractionGenerator;
 
 	export type Interaction = Exclude<
 		APIInteraction,
