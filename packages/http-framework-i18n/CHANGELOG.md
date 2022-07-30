@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.17...@skyra/http-framework-i18n@0.2.0) - (2022-07-30)
+
+## 🚀 Features
+
+- **http-framework-i18n:** Add builder helper methods (#129) ([74b94fd](https://github.com/skyra-project/archid-components/commit/74b94fd650c801b9aa4b0f31581d0933a50808a2))
+
+# [@skyra/http-framework-i18n@0.1.17](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.16...@skyra/http-framework-i18n@0.1.17) - (2022-07-30)
+
+## 🐛 Bug Fixes
+
+- **http-framework-i18n:** Remove dependency on `@skyra/http-framwork` ([e330694](https://github.com/skyra-project/archid-components/commit/e33069412fcfb0d6b8d99b388fdd0508dd953fd8))
+
+# [@skyra/http-framework-i18n@0.1.15](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.14...@skyra/http-framework-i18n@0.1.15) - (2022-07-17)
+
+## 🐛 Bug Fixes
+
+- Bump deps and use tsup dts ([7c1cb5d](https://github.com/skyra-project/archid-components/commit/7c1cb5d2baa1b9b92665f9b44e355cb0e318b687))
+- **deps:** Update all non-major dependencies (#123) ([906d844](https://github.com/skyra-project/archid-components/commit/906d844797464bb14a3b5e0ebe87efb7723d362a))
+
+# [@skyra/http-framework-i18n@0.1.14](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.13...@skyra/http-framework-i18n@0.1.14) - (2022-07-12)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies (#118) ([86d2f87](https://github.com/skyra-project/archid-components/commit/86d2f87b63d5b9b485387e7b48e2114581a6eafd))
+- **deps:** Update all non-major dependencies (#116) ([67a5515](https://github.com/skyra-project/archid-components/commit/67a55152775b859f4c289e63d549f01901a5c1d0))
+- **deps:** Update dependency @sapphire/utilities to v3.7.0 ([0dc28c9](https://github.com/skyra-project/archid-components/commit/0dc28c9d15079a2c1a1b8cda60e851939f7a64f0))
+
+# [@skyra/http-framework-i18n@0.1.10](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.9...@skyra/http-framework-i18n@0.1.10) - (2022-06-19)
+
+## 🐛 Bug Fixes
+
+- Debump discord-api-types ([cfc3099](https://github.com/skyra-project/archid-components/commit/cfc309976d74e386ee33b90c9adb68338b67d6b4))
+
 # [@skyra/http-framework-i18n@0.1.17](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.16...@skyra/http-framework-i18n@0.1.17) - (2022-07-30)
 
 ## 🐛 Bug Fixes
