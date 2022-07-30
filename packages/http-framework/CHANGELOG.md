@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.7.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.6.4...@skyra/http-framework@0.7.0) - (2022-07-30)
+
+## 🚀 Features
+
+- **http-framework-i18n:** Add builder helper methods (#129) ([74b94fd](https://github.com/skyra-project/archid-components/commit/74b94fd650c801b9aa4b0f31581d0933a50808a2))
+
 # [@skyra/http-framework@0.6.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.6.3...@skyra/http-framework@0.6.4) - (2022-07-30)
 
 ## 🐛 Bug Fixes
