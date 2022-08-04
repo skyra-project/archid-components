@@ -8,7 +8,7 @@ import { Command } from './Command';
 
 export class CommandStore extends Store<Command> {
 	public constructor() {
-		super(Command as any, { name: 'commands' });
+		super(Command, { name: 'commands' });
 	}
 
 	public async runApplicationCommand(reply: FastifyReply, interaction: Command.Interaction): Promise<FastifyReply> {
