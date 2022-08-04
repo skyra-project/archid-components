@@ -1282,6 +1282,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@skyra/logger@workspace:packages/logger":
+  version: 0.0.0-use.local
+  resolution: "@skyra/logger@workspace:packages/logger"
+  dependencies:
+    "@favware/cliff-jumper": ^1.8.6
+    colorette: 2.0.19
+    tsup: ^6.2.1
+    typescript: ^4.7.4
+  languageName: unknown
+  linkType: soft
+
 "@skyra/shared-http-pieces@workspace:packages/shared-http-pieces":
   version: 0.0.0-use.local
   resolution: "@skyra/shared-http-pieces@workspace:packages/shared-http-pieces"
@@ -2613,7 +2624,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colorette@npm:^2.0.16, colorette@npm:^2.0.17, colorette@npm:^2.0.19":
+"colorette@npm:2.0.19, colorette@npm:^2.0.16, colorette@npm:^2.0.17, colorette@npm:^2.0.19":
   version: 2.0.19
   resolution: "colorette@npm:2.0.19"
   checksum: 888cf5493f781e5fcf54ce4d49e9d7d698f96ea2b2ef67906834bb319a392c667f9ec69f4a10e268d2946d13a9503d2d19b3abaaaf174e3451bfe91fb9d82427
