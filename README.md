@@ -16,7 +16,6 @@
 [![npm](https://img.shields.io/npm/v/@skyra/http-framework-i18n?color=crimson&logo=npm&style=flat-square&label=@skyra/http-framework-i18n)](https://www.npmjs.com/package/@skyra/http-framework-i18n)
 [![npm](https://img.shields.io/npm/v/@skyra/i18next-backend?color=crimson&logo=npm&style=flat-square&label=@skyra/i18next-backend)](https://www.npmjs.com/package/@skyra/i18next-backend)
 [![npm](https://img.shields.io/npm/v/@skyra/logger?color=crimson&logo=npm&style=flat-square&label=@skyra/logger)](https://www.npmjs.com/package/@skyra/logger)
-[![npm](https://img.shields.io/npm/v/@skyra/shared-gateway-pieces?color=crimson&logo=npm&style=flat-square&label=@skyra/shared-gateway-pieces)](https://www.npmjs.com/package/@skyra/shared-gateway-pieces)
 [![npm](https://img.shields.io/npm/v/@skyra/shared-http-pieces?color=crimson&logo=npm&style=flat-square&label=@skyra/shared-http-pieces)](https://www.npmjs.com/package/@skyra/shared-http-pieces)
 [![npm](https://img.shields.io/npm/v/@skyra/start-banner?color=crimson&logo=npm&style=flat-square&label=@skyra/start-banner)](https://www.npmjs.com/package/@skyra/start-banner)
 

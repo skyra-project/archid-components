@@ -11,7 +11,6 @@ const paths = [
 	new URL('http-framework-i18n/dist/', packagesDir),
 	new URL('i18next-backend/dist/', packagesDir),
 	new URL('logger/dist/', packagesDir),
-	new URL('shared-gateway-pieces/dist/', packagesDir),
 	new URL('shared-http-pieces/dist/', packagesDir),
 	new URL('start-banner/dist/', packagesDir),
 
@@ -21,7 +20,6 @@ const paths = [
 	new URL('http-framework-i18n/.turbo/', packagesDir),
 	new URL('i18next-backend/.turbo/', packagesDir),
 	new URL('logger/.turbo/', packagesDir),
-	new URL('shared-gateway-pieces/.turbo/', packagesDir),
 	new URL('shared-http-pieces/.turbo/', packagesDir),
 	new URL('start-banner/.turbo/', packagesDir)
 ];

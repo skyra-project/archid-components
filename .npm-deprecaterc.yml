@@ -6,6 +6,4 @@ package:
   - '@skyra/i18next-backend'
   - '@skyra/logger'
   - '@skyra/shared-http-pieces'
-  # TODO: Fix name when package.json is created
-  # - '@skyra/shared-gateway-pieces'
   - '@skyra/start-banner'
