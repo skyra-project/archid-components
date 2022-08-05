@@ -1,6 +1,6 @@
 import { EmbedBuilder, time, TimestampStyles } from '@discordjs/builders';
 import { Command, RegisterCommand } from '@skyra/http-framework';
-import { getSupportedUserLanguageName, getT, TFunction } from '@skyra/http-framework-i18n';
+import { getSupportedUserLanguageName, getT, type TFunction } from '@skyra/http-framework-i18n';
 import { ButtonStyle, ComponentType, MessageFlags, type APIEmbedField } from 'discord-api-types/v10';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
