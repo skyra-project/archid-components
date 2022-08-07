@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.3.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.2.1...@skyra/http-framework-i18n@0.3.0) - (2022-08-07)
+
+## 🚀 Features
+
+- Add `applyNameLocalizedBuilder` among others (#138) ([ceab5a4](https://github.com/skyra-project/archid-components/commit/ceab5a42b387dd2d1cd0e8afa7115794a9fceda5))
+
 # [@skyra/http-framework-i18n@0.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.1.17...@skyra/http-framework-i18n@0.2.0) - (2022-07-30)
 
 ## 🚀 Features
