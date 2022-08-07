@@ -11,7 +11,7 @@ import { contextMenuCommandRegistry, type ContextMenuOptions } from './shared';
  * @example
  * ```typescript
  * export class UserCommand extends Command {
- * 	@RegisterUserCommand(createData())
+ * 	(at)RegisterUserCommand(createData())
  * 	public run(interaction: Command.UserInteraction, data: TransformedArguments.User) {
  * 		// ...
  * 	}
@@ -36,7 +36,7 @@ export function RegisterUserCommand(
  * @example
  * ```typescript
  * export class UserCommand extends Command {
- * 	@RegisterMessageCommand(createData())
+ * 	(at)RegisterMessageCommand(createData())
  * 	public run(interaction: Command.MessageInteraction, data: TransformedArguments.Message) {
  * 		// ...
  * 	}
