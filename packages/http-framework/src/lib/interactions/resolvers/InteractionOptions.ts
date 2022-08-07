@@ -9,8 +9,11 @@ import {
 	type APIChatInputApplicationCommandInteractionDataResolved,
 	type APIInteractionDataResolvedChannel,
 	type APIInteractionDataResolvedGuildMember,
+	type APIMessage,
+	type APIMessageApplicationCommandInteractionData,
 	type APIRole,
-	type APIUser
+	type APIUser,
+	type APIUserApplicationCommandInteractionData
 } from 'discord-api-types/v10';
 
 export function transformInteraction<T extends NonNullObject>(
@@ -140,7 +143,19 @@ function transformMentionable(
 	return { id };
 }
 
+export function transformUserInteraction(data: APIUserApplicationCommandInteractionData): TransformedArguments.User {
+	return { user: data.resolved.users[data.target_id], member: data.resolved.members?.[data.target_id] ?? null };
+}
+
+export function transformMessageInteraction(data: APIMessageApplicationCommandInteractionData): TransformedArguments.Message {
+	return { message: data.resolved.messages[data.target_id] };
+}
+
 export namespace TransformedArguments {
+	export interface Message {
+		message: APIMessage;
+	}
+
 	export interface User {
 		user: APIUser;
 		member: APIInteractionDataResolvedGuildMember | null;

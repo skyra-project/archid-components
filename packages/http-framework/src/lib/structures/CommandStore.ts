@@ -2,7 +2,7 @@ import { Store } from '@sapphire/pieces';
 import { ApplicationCommandType, type APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../api/HttpCodes';
-import { transformAutocompleteInteraction, transformInteraction } from '../interactions';
+import { transformAutocompleteInteraction, transformInteraction, transformMessageInteraction, transformUserInteraction } from '../interactions';
 import { handleError, handleResponse, runner } from '../interactions/utils/util';
 import { Command } from './Command';
 
@@ -66,9 +66,9 @@ export class CommandStore extends Store<Command> {
 			case ApplicationCommandType.ChatInput:
 				return transformInteraction(data.resolved ?? {}, data.options ?? []);
 			case ApplicationCommandType.User:
-				return { [data.name]: { user: data.resolved.users[data.target_id], member: data.resolved.members?.[data.target_id] } };
+				return transformUserInteraction(data);
 			case ApplicationCommandType.Message:
-				return { [data.name]: { message: data.resolved.messages[data.target_id] } };
+				return transformMessageInteraction(data);
 			default:
 				throw new Error('Unknown ApplicationCommandType');
 		}
