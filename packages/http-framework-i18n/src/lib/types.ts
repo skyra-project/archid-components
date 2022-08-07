@@ -1,5 +1,4 @@
 import type { NonNullObject } from '@sapphire/utilities';
-import type { LocalizationMap } from 'discord-api-types/v10';
 
 export type TypedT<TCustom = string> = string & { __type__: TCustom };
 
@@ -25,13 +24,6 @@ export interface Values<T = string> {
 export interface Difference<T = string> {
 	previous: T;
 	next: T;
-}
-
-export interface BuilderWithNameAndDescription {
-	setName(name: string): this;
-	setNameLocalizations(localizedNames: LocalizationMap | null): this;
-	setDescription(description: string): this;
-	setDescriptionLocalizations(localizedDescriptions: LocalizationMap | null): this;
 }
 
 export type LocalePrefixKey = `commands/${string}:${string}`;
