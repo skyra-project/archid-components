@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.8.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.7.2...@skyra/http-framework@0.8.0) - (2022-08-07)
+
+## 🏠 Refactor
+
+- Implement better context command support (#139) ([ff449e5](https://github.com/skyra-project/archid-components/commit/ff449e531b446743ce988cc5bd0859d878bc82a7))
+  - 💥 **BREAKING CHANGE:** User command options are not longer nested into `{ [interaction.name]: T }`
+  - 💥 **BREAKING CHANGE:** Message command options are not longer nested into `{ [interaction.name]: T }`
+
+* chore: added super-widget 2.0.
+
 # [@skyra/http-framework@0.7.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.6.4...@skyra/http-framework@0.7.0) - (2022-07-30)
 
 ## 🚀 Features
