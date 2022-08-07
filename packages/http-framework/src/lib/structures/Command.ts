@@ -283,8 +283,10 @@ export namespace Command {
 	export type Interaction = import('discord-api-types/v10').APIApplicationCommandInteraction;
 	export type InteractionData = Interaction['data'];
 
-	export type UserInteraction = import('discord-api-types/v10').APIUserApplicationCommandInteractionData;
-	export type MessageInteraction = import('discord-api-types/v10').APIMessageApplicationCommandInteractionData;
+	export type UserInteraction = import('discord-api-types/v10').APIUserApplicationCommandInteraction;
+	export type UserInteractionData = UserInteraction['data'];
+	export type MessageInteraction = import('discord-api-types/v10').APIMessageApplicationCommandInteraction;
+	export type MessageInteractionData = MessageInteraction['data'];
 
 	export type AutocompleteInteraction = import('discord-api-types/v10').APIApplicationCommandAutocompleteInteraction;
 
