@@ -5,6 +5,7 @@
 
 import {
 	ContextMenuCommandBuilder,
+	ContextMenuCommandType,
 	SlashCommandBuilder,
 	SlashCommandOptionsOnlyBuilder,
 	SlashCommandSubcommandBuilder,
@@ -138,17 +139,18 @@ export function normalizeChatInputSubCommand(
 }
 
 export function normalizeContextMenuCommand(
-	command: ContextMenuOptions | ContextMenuCommandBuilder | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandBuilder)
-): ContextMenuOptions {
+	command: ContextMenuOptions | ContextMenuCommandBuilder | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandBuilder),
+	type: ContextMenuCommandType
+): RESTPostAPIContextMenuApplicationCommandsJSONBody {
 	if (isFunction(command)) {
-		const builder = new ContextMenuCommandBuilder();
+		const builder = new ContextMenuCommandBuilder().setType(type);
 		command(builder);
 		return builder.toJSON() as RESTPostAPIContextMenuApplicationCommandsJSONBody;
 	}
 
 	if (command instanceof ContextMenuCommandBuilder) {
-		return command.toJSON() as RESTPostAPIContextMenuApplicationCommandsJSONBody;
+		return command.setType(type).toJSON() as RESTPostAPIContextMenuApplicationCommandsJSONBody;
 	}
 
-	return command;
+	return { type, ...command };
 }
