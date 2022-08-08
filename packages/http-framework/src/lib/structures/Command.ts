@@ -30,6 +30,7 @@ import type {
 	InteractionHandlerResponse,
 	InteractionUpdateMessageWithFiles
 } from '../interactions/utils/util';
+import type { CommandStore } from './CommandStore';
 
 export abstract class Command extends Piece {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();
@@ -265,8 +266,12 @@ export abstract class Command extends Piece {
 
 		for (const entry of entries) {
 			const method = getMethod(entry);
-			if (method && typeof Reflect.get(this, method) === 'function') this.chatInputRouter.set(entry.name, method);
-			else throw new Error(`Context menu command named "${entry.name}" is not linked to a method`);
+			if (method && typeof Reflect.get(this, method) === 'function') {
+				this.contextMenuRouter.set(entry.name, method);
+				(this.store as CommandStore).contextMenuCommands.set(entry.name, this);
+			} else {
+				throw new Error(`Context menu command named "${entry.name}" is not linked to a method`);
+			}
 		}
 	}
 }
