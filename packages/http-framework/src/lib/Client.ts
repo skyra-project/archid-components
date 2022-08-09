@@ -2,13 +2,13 @@ import { REST, type RESTOptions } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { InteractionResponseType, InteractionType, type APIInteraction } from 'discord-api-types/v10';
 import Fastify, { type FastifyInstance, type FastifyListenOptions, type FastifyReply, type FastifyRequest } from 'fastify';
-import FastifyRawBody from 'fastify-raw-body';
 import { EventEmitter } from 'node:events';
 import { HttpCodes } from './api/HttpCodes';
 import type { IIdParser } from './components/IIdParser';
 import { StringIdParser } from './components/StringIdParser';
 import { CommandStore } from './structures/CommandStore';
 import { InteractionHandlerStore } from './structures/InteractionHandlerStore';
+import { assignRawData } from './utils/raw';
 import { handleSecurityHook, makeKey } from './utils/security';
 
 container.stores.register(new CommandStore());
@@ -54,7 +54,7 @@ export class Client extends EventEmitter {
 		const key = await makeKey(this.#discordPublicKey);
 
 		this.server = Fastify(serverOptions);
-		await this.server.register(FastifyRawBody, { runFirst: true });
+		this.server.addHook('onRoute', (options) => assignRawData(options));
 		this.server.addHook('preHandler', (request, reply) => handleSecurityHook(request, reply, key));
 		this.server.post(postPath ?? process.env.HTTP_POST_PATH ?? '/', this.handleHttpMessage.bind(this));
 
