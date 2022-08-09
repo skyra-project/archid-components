@@ -22,11 +22,11 @@ import { contextMenuCommandRegistry, type ContextMenuOptions } from './shared';
 export function RegisterUserCommand(
 	command: ContextMenuOptions | ContextMenuCommandBuilder | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandBuilder)
 ) {
-	const builtData = normalizeContextMenuCommand(command);
+	const builtData = normalizeContextMenuCommand(command, ApplicationCommandType.User);
 
 	return function decorate(target: Command, method: string) {
 		const commands = contextMenuCommandRegistry.ensure(target.constructor as typeof Command, () => []);
-		commands.push(link({ type: ApplicationCommandType.User, ...builtData }, method));
+		commands.push(link(builtData, method));
 	};
 }
 
@@ -47,10 +47,10 @@ export function RegisterUserCommand(
 export function RegisterMessageCommand(
 	command: ContextMenuOptions | ContextMenuCommandBuilder | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandBuilder)
 ) {
-	const builtData = normalizeContextMenuCommand(command);
+	const builtData = normalizeContextMenuCommand(command, ApplicationCommandType.Message);
 
 	return function decorate(target: Command, method: string) {
 		const commands = contextMenuCommandRegistry.ensure(target.constructor as typeof Command, () => []);
-		commands.push(link({ type: ApplicationCommandType.Message, ...builtData }, method));
+		commands.push(link(builtData, method));
 	};
 }
