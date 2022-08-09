@@ -1,3 +1,4 @@
+import { Collection } from '@discordjs/collection';
 import { Store } from '@sapphire/pieces';
 import { ApplicationCommandType, type APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
@@ -7,12 +8,18 @@ import { handleError, handleResponse, runner } from '../interactions/utils/util'
 import { Command } from './Command';
 
 export class CommandStore extends Store<Command> {
+	public contextMenuCommands = new Collection<string, Command>();
+
 	public constructor() {
 		super(Command, { name: 'commands' });
 	}
 
 	public async runApplicationCommand(reply: FastifyReply, interaction: Command.Interaction): Promise<FastifyReply> {
-		const command = this.get(interaction.data.name);
+		const command =
+			interaction.data.type === ApplicationCommandType.ChatInput
+				? this.get(interaction.data.name)
+				: this.contextMenuCommands.get(interaction.data.name);
+
 		if (!command) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown command name' });
 
 		const method = this.routeCommandMethodName(command, interaction.data);
