@@ -1271,7 +1271,6 @@ __metadata:
     fastify: ^4.3.0
     form-data: ^4.0.0
     tsup: ^6.2.1
-    tweetnacl: ^1.0.3
     typescript: ^4.7.4
   languageName: unknown
   linkType: soft
@@ -7661,13 +7660,6 @@ __metadata:
   bin:
     turbo: bin/turbo
   checksum: 19c173aa06d0ae224ef03353d5c05875a2386bb2451bc0bf06af05881e700e08931d4ee9acb01f5a00bb8a3ecd961ffec6cc611cdb90e881d541679cf3ce4dc0
-  languageName: node
-  linkType: hard
-
-"tweetnacl@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "tweetnacl@npm:1.0.3"
-  checksum: e4a57cac188f0c53f24c7a33279e223618a2bfb5fea426231991652a13247bea06b081fd745d71291fcae0f4428d29beba1b984b1f1ce6f66b06a6d1ab90645c
   languageName: node
   linkType: hard
 

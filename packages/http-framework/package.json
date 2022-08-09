@@ -29,8 +29,7 @@
 		"@sapphire/utilities": "^3.9.0",
 		"discord-api-types": "^0.36.3",
 		"fastify": "^4.3.0",
-		"form-data": "^4.0.0",
-		"tweetnacl": "^1.0.3"
+		"form-data": "^4.0.0"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.6",
