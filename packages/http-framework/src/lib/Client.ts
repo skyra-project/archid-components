@@ -2,33 +2,33 @@ import { REST, type RESTOptions } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { InteractionResponseType, InteractionType, type APIInteraction } from 'discord-api-types/v10';
 import Fastify, { type FastifyInstance, type FastifyListenOptions, type FastifyReply, type FastifyRequest } from 'fastify';
-import { Buffer } from 'node:buffer';
+import FastifyRawBody from 'fastify-raw-body';
 import { EventEmitter } from 'node:events';
-import tweetnacl from 'tweetnacl';
 import { HttpCodes } from './api/HttpCodes';
 import type { IIdParser } from './components/IIdParser';
 import { StringIdParser } from './components/StringIdParser';
 import { CommandStore } from './structures/CommandStore';
 import { InteractionHandlerStore } from './structures/InteractionHandlerStore';
+import { handleSecurityHook, makeKey } from './utils/security';
 
 container.stores.register(new CommandStore());
 container.stores.register(new InteractionHandlerStore());
 
 export class Client extends EventEmitter {
 	public server!: FastifyInstance;
-	#discordPublicKey: Buffer;
+	#discordPublicKey: string;
 
 	public constructor(options: ClientOptions = {}) {
 		super({ captureRejections: true });
 
 		const discordPublicKey = options.discordPublicKey ?? process.env.DISCORD_PUBLIC_KEY;
 		if (!discordPublicKey) throw new Error('The discordPublicKey cannot be empty');
+		this.#discordPublicKey = discordPublicKey;
 
 		container.rest = new REST(options.restOptions);
 		const discordToken = options.discordToken ?? process.env.DISCORD_TOKEN;
 		if (discordToken) container.rest.setToken(discordToken);
 
-		this.#discordPublicKey = Buffer.from(discordPublicKey, 'hex');
 		container.idParser ??= new StringIdParser();
 		container.client = this;
 	}
@@ -51,18 +51,17 @@ export class Client extends EventEmitter {
 	 * @param options The listen options.
 	 */
 	public async listen({ serverOptions, postPath, port, address, ...listenOptions }: ListenOptions) {
+		const key = await makeKey(this.#discordPublicKey);
+
 		this.server = Fastify(serverOptions);
+		await this.server.register(FastifyRawBody, { runFirst: true });
+		this.server.addHook('preHandler', (request, reply) => handleSecurityHook(request, reply, key));
 		this.server.post(postPath ?? process.env.HTTP_POST_PATH ?? '/', this.handleHttpMessage.bind(this));
 
 		await this.server.listen({ ...listenOptions, port, host: address });
 	}
 
 	protected async handleHttpMessage(request: FastifyRequest, reply: FastifyReply): Promise<FastifyReply> {
-		const interactionInvalid = this.verifyDiscordInteraction(request);
-		if (interactionInvalid !== null) {
-			return reply.status(interactionInvalid.statusCode).send({ message: interactionInvalid.message });
-		}
-
 		const interaction = request.body as APIInteraction;
 		if (interaction.type === InteractionType.Ping) return reply.send({ type: InteractionResponseType.Pong });
 
@@ -77,37 +76,6 @@ export class Client extends EventEmitter {
 			default:
 				return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown interaction type' });
 		}
-	}
-
-	protected verifyDiscordInteraction(request: FastifyRequest): VerifyDiscordInteractionResponse | null {
-		const { headers } = request;
-		const signatureHeader = headers['x-signature-ed25519'] as string | undefined;
-		const timestampHeader = headers['x-signature-timestamp'] as string | undefined;
-
-		if (!signatureHeader || !timestampHeader) {
-			return {
-				statusCode: HttpCodes.Unauthorized,
-				message: 'Could not verify the signatures'
-			};
-		}
-
-		const body = timestampHeader + JSON.stringify(request.body);
-
-		const isVerified = tweetnacl.sign.detached.verify(
-			//
-			Buffer.from(body),
-			Buffer.from(signatureHeader, 'hex'),
-			this.#discordPublicKey
-		);
-
-		if (!isVerified) {
-			return {
-				statusCode: HttpCodes.Unauthorized,
-				message: 'The signature is incorrect.'
-			};
-		}
-
-		return null;
 	}
 }
 
@@ -167,11 +135,6 @@ export namespace Client {
 	export type Options = import('./Client').ClientOptions;
 	export type PieceLoadOptions = import('./Client').LoadOptions;
 	export type ServerListenOptions = import('./Client').ListenOptions;
-}
-
-interface VerifyDiscordInteractionResponse {
-	statusCode: HttpCodes;
-	message: string;
 }
 
 declare module '@sapphire/pieces' {
