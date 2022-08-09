@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.8.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.8.0...@skyra/http-framework@0.8.1) - (2022-08-09)
+
+## 🏠 Refactor
+
+- Better Ed25519 verification (#143) ([8d34709](https://github.com/skyra-project/archid-components/commit/8d347097ab6ff0698bc96017494fc6d472973cb1))
+
+## 🐛 Bug Fixes
+
+- Add type in context menu register decorators (#141) ([129c4c7](https://github.com/skyra-project/archid-components/commit/129c4c764b4575c7b49b63b78c3bfc61a3f2b9c2))
+- Resolved context command routing (#142) ([cc47bdd](https://github.com/skyra-project/archid-components/commit/cc47bdd27550cbf714d2badfd1546af7f8878eac))
+- Use the correct Interaction type (#140) ([97f078c](https://github.com/skyra-project/archid-components/commit/97f078ce5e2c561055be08925bfb84e72b7f61e4))
+
 # [@skyra/http-framework@0.8.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.7.2...@skyra/http-framework@0.8.0) - (2022-08-07)
 
 ## 🏠 Refactor
