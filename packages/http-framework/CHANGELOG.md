@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.9.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.8.1...@skyra/http-framework@0.9.0) - (2022-08-15)
+
+## 🚀 Features
+
+- Add attachment support (#145) ([7f3f127](https://github.com/skyra-project/archid-components/commit/7f3f1270d2874a702975904547a0dee58db5b0f0))
+
 # [@skyra/http-framework@0.8.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.8.0...@skyra/http-framework@0.8.1) - (2022-08-09)
 
 ## 🏠 Refactor
