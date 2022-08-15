@@ -6,6 +6,7 @@ import {
 	type APIApplicationCommandInteractionDataOption,
 	type APIApplicationCommandInteractionDataSubcommandGroupOption,
 	type APIApplicationCommandInteractionDataSubcommandOption,
+	type APIAttachment,
 	type APIChatInputApplicationCommandInteractionDataResolved,
 	type APIInteractionDataResolvedChannel,
 	type APIInteractionDataResolvedGuildMember,
@@ -106,23 +107,20 @@ function transformArgument(
 	resolved: APIChatInputApplicationCommandInteractionDataResolved,
 	option: APIApplicationCommandInteractionDataBasicOption
 ): TransformedArguments.Any {
-	if (option.type === ApplicationCommandOptionType.User) {
-		return { user: resolved.users?.[option.value], member: resolved.members?.[option.value] ?? null } as TransformedArguments.User;
+	switch (option.type) {
+		case ApplicationCommandOptionType.Attachment:
+			return resolved.attachments![option.value];
+		case ApplicationCommandOptionType.Channel:
+			return resolved.channels![option.value];
+		case ApplicationCommandOptionType.Mentionable:
+			return transformMentionable(resolved, option);
+		case ApplicationCommandOptionType.Role:
+			return resolved.roles![option.value];
+		case ApplicationCommandOptionType.User:
+			return { user: resolved.users![option.value], member: resolved.members?.[option.value] ?? null };
+		default:
+			return option.value;
 	}
-
-	if (option.type === ApplicationCommandOptionType.Channel) {
-		return resolved.channels?.[option.value] as TransformedArguments.Channel;
-	}
-
-	if (option.type === ApplicationCommandOptionType.Role) {
-		return resolved.roles?.[option.value] as TransformedArguments.Role;
-	}
-
-	if (option.type === ApplicationCommandOptionType.Mentionable) {
-		return transformMentionable(resolved, option);
-	}
-
-	return option.value;
 }
 
 function transformMentionable(
@@ -163,6 +161,7 @@ export namespace TransformedArguments {
 
 	export type Channel = APIInteractionDataResolvedChannel;
 	export type Role = APIRole;
+	export type Attachment = APIAttachment;
 
 	export type Mentionable =
 		| ({ id: string } & User) //
@@ -170,5 +169,62 @@ export namespace TransformedArguments {
 		| { id: string; role: Role }
 		| { id: string };
 
-	export type Any = User | Channel | Role | Mentionable | number | string | boolean;
+	export type Any = User | Channel | Role | Mentionable | number | string | boolean | Attachment;
 }
+
+/**
+ * A map of the argument types to their respective resolved values.
+ */
+export interface ArgumentTypes {
+	[ApplicationCommandOptionType.Attachment]: TransformedArguments.Attachment;
+	[ApplicationCommandOptionType.Boolean]: boolean;
+	[ApplicationCommandOptionType.Channel]: TransformedArguments.Channel;
+	[ApplicationCommandOptionType.Integer]: number;
+	[ApplicationCommandOptionType.Mentionable]: TransformedArguments.Mentionable;
+	[ApplicationCommandOptionType.Number]: number;
+	[ApplicationCommandOptionType.Role]: TransformedArguments.Role;
+	[ApplicationCommandOptionType.String]: string;
+	[ApplicationCommandOptionType.User]: TransformedArguments.User;
+	attachment: this[ApplicationCommandOptionType.Attachment];
+	boolean: this[ApplicationCommandOptionType.Boolean];
+	channel: this[ApplicationCommandOptionType.Channel];
+	integer: this[ApplicationCommandOptionType.Integer];
+	mentionable: this[ApplicationCommandOptionType.Mentionable];
+	number: this[ApplicationCommandOptionType.Number];
+	role: this[ApplicationCommandOptionType.Role];
+	string: this[ApplicationCommandOptionType.String];
+	user: this[ApplicationCommandOptionType.User];
+}
+
+/**
+ * Convenience type for creating arguments out of strings.
+ *
+ * @example
+ * ```typescript
+ * // Using named string:
+ * type Options = MakeArguments<{
+ * 	name: 'string';
+ * 	file: 'attachment';
+ * }>;
+ *
+ * // ➥ type Options = {
+ * //    	name: string;
+ * //    	attachment: APIAttachment;
+ * //    };
+ * ```
+ *
+ * @example
+ * ```typescript
+ * // Using named string:
+ * type Options = MakeArguments<{
+ * 	name: ApplicationCommandOptionType.String;
+ * 	file: ApplicationCommandOptionType.Attachment;
+ * }>;
+ *
+ * // ➥ type Options = {
+ * //    	name: string;
+ * //    	attachment: APIAttachment;
+ * //    };
+ * ```
+ */
+export type MakeArguments<T extends Record<string, keyof ArgumentTypes>> = { [K in keyof T]: ArgumentTypes[T[K]] };
