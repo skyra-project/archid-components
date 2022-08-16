@@ -33,13 +33,13 @@ export async function init(options?: InitOptions) {
 		ns: [...loadedNamespaces],
 		preload: [...loadedLocales],
 		initImmediate: false,
+		ignoreJSONStructure: false,
+		...options,
 		interpolation: {
 			escapeValue: false,
 			skipOnVariables: false,
 			...options?.interpolation
-		},
-		ignoreJSONStructure: false,
-		...options
+		}
 	});
 
 	for (const { name, format } of loadedFormatters) {
