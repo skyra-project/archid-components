@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.3.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.3.0...@skyra/http-framework-i18n@0.3.1) - (2022-08-17)
+
+## 🐛 Bug Fixes
+
+- Do not override `options.interpolation` in `init` (#146) ([fdb5d2e](https://github.com/skyra-project/archid-components/commit/fdb5d2e2ef697772950a5637270cf9a61d5d8f68))
+
 # [@skyra/http-framework-i18n@0.3.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.2.1...@skyra/http-framework-i18n@0.3.0) - (2022-08-07)
 
 ## 🚀 Features
