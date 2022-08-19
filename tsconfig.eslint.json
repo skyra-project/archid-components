@@ -9,6 +9,6 @@
 		"packages/**/types*.js",
 		"packages/**/types*.mjs",
 		"scripts/",
-		"./jest.config.mjs"
+		"./vitest.config.ts"
 	]
 }

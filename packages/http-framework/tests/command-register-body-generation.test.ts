@@ -22,8 +22,8 @@ describe('User Context Menu Command', () => {
 	test('GIVEN new instance of ContextMenuCommandBuilder THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterUserCommand(new ContextMenuCommandBuilder().setName('name').setType(ApplicationCommandType.User))
-			public userName(): Command.Response {
-				return this.message({ content: 'Pong!' });
+			public userName(interaction: Command.Interaction) {
+				return interaction.sendMessage({ content: 'Pong!' });
 			}
 		}
 
@@ -39,8 +39,8 @@ describe('User Context Menu Command', () => {
 	test('GIVEN ContextMenuCommandBuilder callback THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterUserCommand((builder) => builder.setName('name').setType(ApplicationCommandType.User))
-			public userName(): Command.Response {
-				return this.message({ content: 'Pong!' });
+			public userName(interaction: Command.Interaction) {
+				return interaction.sendMessage({ content: 'Pong!' });
 			}
 		}
 
@@ -56,8 +56,8 @@ describe('User Context Menu Command', () => {
 	test('GIVEN command with raw object THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterUserCommand({ name: 'name' })
-			public userName(): Command.Response {
-				return this.message({ content: 'Pong!' });
+			public userName(interaction: Command.Interaction) {
+				return interaction.sendMessage({ content: 'Pong!' });
 			}
 		}
 
@@ -77,8 +77,8 @@ describe('Message Context Menu Command', () => {
 	test('GIVEN new instance of ContextMenuCommandBuilder THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterMessageCommand(new ContextMenuCommandBuilder().setName('quote').setType(ApplicationCommandType.Message))
-			public userName(): Command.Response {
-				return this.message({ content: 'Some content' });
+			public userName(interaction: Command.Interaction) {
+				return interaction.sendMessage({ content: 'Some content' });
 			}
 		}
 
@@ -94,8 +94,8 @@ describe('Message Context Menu Command', () => {
 	test('GIVEN ContextMenuCommandBuilder callback THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterMessageCommand((builder) => builder.setName('quote').setType(ApplicationCommandType.Message))
-			public userName(): Command.Response {
-				return this.message({ content: 'Pong!' });
+			public userName(interaction: Command.Interaction) {
+				return interaction.sendMessage({ content: 'Pong!' });
 			}
 		}
 
@@ -111,8 +111,8 @@ describe('Message Context Menu Command', () => {
 	test('GIVEN command with raw object THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterMessageCommand({ name: 'quote' })
-			public userName(): Command.Response {
-				return this.message({ content: 'Pong!' });
+			public userName(interaction: Command.Interaction) {
+				return interaction.sendMessage({ content: 'Pong!' });
 			}
 		}
 
@@ -133,8 +133,8 @@ describe('Chat Input Commands', () => {
 		test('GIVEN command without options THEN returns expected body', () => {
 			@RegisterCommand({ name: 'ping', description: 'Runs a network connection test with me' })
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -151,8 +151,8 @@ describe('Chat Input Commands', () => {
 		test('GIVEN new instance of SlashCommandBuilder THEN returns expected body', () => {
 			@RegisterCommand(new SlashCommandBuilder().setName('ping').setDescription('Runs a network connection test with me'))
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -168,8 +168,8 @@ describe('Chat Input Commands', () => {
 		test('GIVEN SlashCommandBuilder callback THEN returns expected body', () => {
 			@RegisterCommand((builder) => builder.setName('ping').setDescription('Runs a network connection test with me'))
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -199,8 +199,8 @@ describe('Chat Input Commands', () => {
 					.addUserOption((option) => option.setName('user').setDescription('A user'))
 			)
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -276,8 +276,8 @@ describe('Chat Input Commands', () => {
 					)
 			)
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -311,8 +311,8 @@ describe('Chat Input Commands', () => {
 					)
 			)
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -357,8 +357,8 @@ describe('Chat Input Commands', () => {
 					)
 			)
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -426,8 +426,8 @@ describe('Chat Input Commands', () => {
 			@RegisterCommand({ name: 'ping', description: 'Runs a network connection test with me' })
 			class UserCommand extends Command {
 				@RegisterSubCommand((builder) => builder.setName('latency').setDescription('Runs a network latency test with me'))
-				public latency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public latency(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -451,13 +451,13 @@ describe('Chat Input Commands', () => {
 			@RegisterCommand({ name: 'ping', description: 'Runs a network connection test with me' })
 			class UserCommand extends Command {
 				@RegisterSubCommand((builder) => builder.setName('latency').setDescription('Runs a network latency test with me'))
-				public latency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public latency(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand((builder) => builder.setName('dashboard').setDescription('Runs a network latency test with my dashboard'))
-				public dashboard(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public dashboard(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -494,8 +494,8 @@ describe('Chat Input Commands', () => {
 			)
 			class UserCommand extends Command {
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with me'), 'network')
-				public networkLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public networkLatency(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -531,13 +531,13 @@ describe('Chat Input Commands', () => {
 			)
 			class UserCommand extends Command {
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with me'), 'network')
-				public discordLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public discordLatency(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand(buildSubcommand('dashboard', 'Runs a network latency test with my dashboard'), 'network')
-				public dashboardLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public dashboardLatency(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -582,13 +582,13 @@ describe('Chat Input Commands', () => {
 			)
 			class UserCommand extends Command {
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with me'), 'discord')
-				public discordLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public discordLatency(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with my dashboard'), 'dashboard')
-				public dashboardLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public dashboardLatency(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 
@@ -638,23 +638,23 @@ describe('Chat Input Commands', () => {
 			)
 			class UserCommand extends Command {
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with me'), 'discord')
-				public discordLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public discordLatency(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand(buildSubcommand('status', 'Checks whether or not Discord is ok'), 'discord')
-				public discordStatus(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public discordStatus(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with my dashboard'), 'dashboard')
-				public dashboardLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public dashboardLatency(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand(buildSubcommand('status', 'Checks whether or not my dashboard is ok'), 'dashboard')
-				public dashboardStatus(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public dashboardStatus(interaction: Command.Interaction) {
+					return interaction.sendMessage({ content: 'Pong!' });
 				}
 			}
 

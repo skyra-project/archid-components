@@ -1,7 +1,8 @@
 import { Store } from '@sapphire/pieces';
+import type { APIMessageComponentInteraction, APIModalSubmitInteraction } from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../..';
-import { runner } from '../interactions/utils/util';
+import { makeInteraction } from '../interactions/utils/util';
 import { InteractionHandler } from './InteractionHandler';
 
 export class InteractionHandlerStore extends Store<InteractionHandler> {
@@ -9,14 +10,14 @@ export class InteractionHandlerStore extends Store<InteractionHandler> {
 		super(InteractionHandler, { name: 'interaction-handlers' });
 	}
 
-	public async runHandler(reply: FastifyReply, interaction: InteractionHandler.Interaction): Promise<FastifyReply> {
+	public async runHandler(reply: FastifyReply, interaction: APIMessageComponentInteraction | APIModalSubmitInteraction): Promise<FastifyReply> {
 		const parsed = this.container.idParser.run(interaction.data.custom_id);
 		if (parsed === null) return reply.status(HttpCodes.BadRequest).send({ message: 'Could not parse the `custom_id` field' });
 
 		const handler = this.get(parsed.name);
 		if (!handler) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown handler name' });
 
-		const cb = () => handler.run(interaction, parsed.content);
-		return runner(reply, interaction, cb);
+		await handler.run(makeInteraction(reply, interaction), parsed.content);
+		return reply;
 	}
 }

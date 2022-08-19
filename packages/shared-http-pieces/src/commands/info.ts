@@ -1,6 +1,6 @@
 import { EmbedBuilder, time, TimestampStyles } from '@discordjs/builders';
-import { Command, RegisterCommand } from '@skyra/http-framework';
-import { getSupportedUserLanguageName, getT, type TFunction } from '@skyra/http-framework-i18n';
+import { Command, RegisterCommand, type MessageResponseOptions } from '@skyra/http-framework';
+import { getSupportedUserLanguageT, type TFunction } from '@skyra/http-framework-i18n';
 import { ButtonStyle, ComponentType, MessageFlags, type APIEmbedField } from 'discord-api-types/v10';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
@@ -9,14 +9,14 @@ import { getInvite, getRepository } from '../lib/information.js';
 
 @RegisterCommand(generateLocalizedCommandInformation('commands/shared:info'))
 export class UserCommand extends Command {
-	public override chatInputRun(interaction: Command.Interaction): Command.Response {
-		const t = getT(getSupportedUserLanguageName(interaction));
+	public override chatInputRun(interaction: Command.ChatInputInteraction) {
+		const t = getSupportedUserLanguageT(interaction);
 		const embed = new EmbedBuilder()
 			.setDescription(t(LanguageKeys.Commands.Shared.InfoEmbedDescription))
 			.addFields([this.getUptimeStatistics(t), this.getServerUsageStatistics(t)]);
 		const components = this.getComponents(t);
 
-		return this.message({ embeds: [embed.toJSON()], components, flags: MessageFlags.Ephemeral });
+		return interaction.sendMessage({ embeds: [embed.toJSON()], components, flags: MessageFlags.Ephemeral });
 	}
 
 	private getUptimeStatistics(t: TFunction): APIEmbedField {
@@ -45,7 +45,7 @@ export class UserCommand extends Command {
 		};
 	}
 
-	private getComponents(t: TFunction): Command.MessageResponseOptions['components'] {
+	private getComponents(t: TFunction): MessageResponseOptions['components'] {
 		return [
 			{
 				type: ComponentType.ActionRow,
