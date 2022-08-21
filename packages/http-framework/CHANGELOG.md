@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.9.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.9.0...@skyra/http-framework@0.9.1) - (2022-08-21)
+
+## 🏠 Refactor
+
+- **hfx:** Switch to OOP patterns, remove `form-data` (#147) ([c465c9b](https://github.com/skyra-project/archid-components/commit/c465c9b2ecff704834a17f95a0109aac721fc2df))
+
 # [@skyra/http-framework@0.9.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.8.1...@skyra/http-framework@0.9.0) - (2022-08-15)
 
 ## 🚀 Features
