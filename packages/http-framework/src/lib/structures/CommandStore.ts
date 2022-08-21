@@ -1,10 +1,17 @@
 import { Collection } from '@discordjs/collection';
 import { Store } from '@sapphire/pieces';
-import { ApplicationCommandType, type APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/v10';
+import { Result } from '@sapphire/result';
+import type { Awaitable } from '@sapphire/utilities';
+import {
+	ApplicationCommandType,
+	type APIApplicationCommandAutocompleteInteraction,
+	type APIApplicationCommandInteraction,
+	type APIApplicationCommandInteractionData
+} from 'discord-api-types/v10';
 import type { FastifyReply } from 'fastify';
 import { HttpCodes } from '../api/HttpCodes';
 import { transformAutocompleteInteraction, transformInteraction, transformMessageInteraction, transformUserInteraction } from '../interactions';
-import { handleError, handleResponse, runner } from '../interactions/utils/util';
+import { handleError, makeInteraction } from '../interactions/utils/util';
 import { Command } from './Command';
 
 export class CommandStore extends Store<Command> {
@@ -14,7 +21,7 @@ export class CommandStore extends Store<Command> {
 		super(Command, { name: 'commands' });
 	}
 
-	public async runApplicationCommand(reply: FastifyReply, interaction: Command.Interaction): Promise<FastifyReply> {
+	public async runApplicationCommand(reply: FastifyReply, interaction: APIApplicationCommandInteraction): Promise<FastifyReply> {
 		const command =
 			interaction.data.type === ApplicationCommandType.ChatInput
 				? this.get(interaction.data.name)
@@ -25,8 +32,9 @@ export class CommandStore extends Store<Command> {
 		const method = this.routeCommandMethodName(command, interaction.data);
 		if (!method) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown subcommand name' });
 
-		const cb = () => this.runCommandMethod(command, method, interaction);
-		return runner(reply, interaction as any, cb);
+		const result = await Result.fromAsync(() => this.runCommandMethod(command, method, makeInteraction(reply, interaction)));
+		result.inspectErr((error) => handleError(reply, error));
+		return reply;
 	}
 
 	public async runApplicationCommandAutocomplete(
@@ -38,23 +46,19 @@ export class CommandStore extends Store<Command> {
 		const command = this.get(interaction.data.name);
 		if (!command) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown command name' });
 
-		try {
-			// eslint-disable-next-line @typescript-eslint/dot-notation
-			const response = await command['autocompleteRun'](
-				interaction,
-				transformAutocompleteInteraction(interaction.data.resolved ?? {}, interaction.data.options)
-			);
-			return handleResponse(reply, response);
-		} catch (error) {
-			return handleError(reply, error);
-		}
+		const options = transformAutocompleteInteraction(interaction.data.resolved ?? {}, interaction.data.options);
+
+		// eslint-disable-next-line @typescript-eslint/dot-notation
+		const result = await Result.fromAsync(() => command['autocompleteRun'](makeInteraction(reply, interaction), options));
+		result.inspectErr((error) => handleError(reply, error));
+		return reply;
 	}
 
-	private runCommandMethod(command: Command, method: string, interaction: Command.Interaction): Command.Response {
+	private runCommandMethod(command: Command, method: string, interaction: Command.ApplicationCommandInteraction): Awaitable<unknown> {
 		return Reflect.apply(Reflect.get(command, method), command, [interaction, this.createArguments(interaction.data)]);
 	}
 
-	private routeCommandMethodName(command: Command, data: Command.InteractionData): string | null {
+	private routeCommandMethodName(command: Command, data: Command.ApplicationCommandInteraction['data']): string | null {
 		switch (data.type) {
 			case ApplicationCommandType.ChatInput: {
 				// eslint-disable-next-line @typescript-eslint/dot-notation
@@ -68,7 +72,7 @@ export class CommandStore extends Store<Command> {
 		}
 	}
 
-	private createArguments(data: Command.InteractionData) {
+	private createArguments(data: APIApplicationCommandInteractionData) {
 		switch (data.type) {
 			case ApplicationCommandType.ChatInput:
 				return transformInteraction(data.resolved ?? {}, data.options ?? []);

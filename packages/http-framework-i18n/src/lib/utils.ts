@@ -6,7 +6,7 @@ import type { TFunction, TOptions, TOptionsBase } from 'i18next';
 import { getT, loadedLocales } from './registry';
 import type { LocalePrefixKey, TypedFT, TypedT } from './types';
 
-export type Interaction = Exclude<APIInteraction, APIPingInteraction>;
+export type Interaction = Pick<Exclude<APIInteraction, APIPingInteraction>, 'locale' | 'guild_locale' | 'guild_id'>;
 
 export function getSupportedUserLanguageName(interaction: Interaction): LocaleString {
 	if (loadedLocales.has(interaction.locale)) return interaction.locale;

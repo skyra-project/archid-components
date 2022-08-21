@@ -5,4 +5,6 @@ export * from './context-menu/shared';
 export * from './context-menu/util';
 export * from './resolvers/InteractionOptions';
 export * from './shared/decorators';
-export { patchMessage, postMessage, runner, type InteractionResponseWithFiles, type PostMessageOptions } from './utils/util';
+export * from './structures/Interaction';
+export * from './structures/Message';
+export { makeInteraction, type AbortError, type AddFiles, type DiscordError, type NonPingInteraction } from './utils/util';
