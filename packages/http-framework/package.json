@@ -22,13 +22,13 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "^1.1.0",
-		"@discordjs/collection": "^1.0.1",
-		"@discordjs/rest": "^1.0.1",
+		"@discordjs/builders": "^1.2.0",
+		"@discordjs/collection": "^1.1.0",
+		"@discordjs/rest": "^1.1.0",
 		"@sapphire/pieces": "^3.5.1",
 		"@sapphire/result": "^2.4.0",
 		"@sapphire/utilities": "^3.9.2",
-		"discord-api-types": "^0.36.3",
+		"discord-api-types": "^0.37.4",
 		"fastify": "^4.5.2"
 	},
 	"devDependencies": {
