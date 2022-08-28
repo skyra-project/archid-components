@@ -3,6 +3,7 @@ import type { APIMessageComponentInteraction, APIModalSubmitInteraction } from '
 import type { ServerResponse } from 'node:http';
 import { HttpCodes } from '../..';
 import { makeInteraction } from '../interactions/utils/util';
+import { ErrorMessages } from '../utils/constants';
 import { InteractionHandler } from './InteractionHandler';
 
 export class InteractionHandlerStore extends Store<InteractionHandler> {
@@ -17,13 +18,13 @@ export class InteractionHandlerStore extends Store<InteractionHandler> {
 		const parsed = this.container.idParser.run(interaction.data.custom_id);
 		if (parsed === null) {
 			response.statusCode = HttpCodes.BadRequest;
-			return response.end('{"message":"Could not parse the `custom_id` field"}');
+			return response.end(ErrorMessages.InvalidCustomId);
 		}
 
 		const handler = this.get(parsed.name);
 		if (!handler) {
-			response.statusCode = HttpCodes.BadRequest;
-			return response.end('{"message":"Unknown handler name"}');
+			response.statusCode = HttpCodes.NotImplemented;
+			return response.end(ErrorMessages.UnknownHandlerName);
 		}
 
 		await handler.run(makeInteraction(response, interaction), parsed.content);

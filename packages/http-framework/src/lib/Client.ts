@@ -1,7 +1,7 @@
 import { REST, type RESTOptions } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { isNullishOrEmpty } from '@sapphire/utilities';
-import { InteractionResponseType, InteractionType, type APIInteraction } from 'discord-api-types/v10';
+import { InteractionType, type APIInteraction } from 'discord-api-types/v10';
 import { EventEmitter } from 'node:events';
 import { createServer, type IncomingMessage, type Server, type ServerOptions, type ServerResponse } from 'node:http';
 import type { ListenOptions as NetListenOptions } from 'node:net';
@@ -11,6 +11,7 @@ import type { IIdParser } from './components/IIdParser';
 import { StringIdParser } from './components/StringIdParser';
 import { CommandStore } from './structures/CommandStore';
 import { InteractionHandlerStore } from './structures/InteractionHandlerStore';
+import { ErrorMessages, Payloads } from './utils/constants';
 import { makeKey, verifyBody, type Key } from './utils/security';
 
 container.stores.register(new CommandStore());
@@ -67,12 +68,12 @@ export class Client extends EventEmitter {
 
 		if (request.url !== path) {
 			response.statusCode = HttpCodes.NotFound;
-			return response.end('{"message":"Unsupported method"}');
+			return response.end(ErrorMessages.NotFound);
 		}
 
 		if (request.method !== 'POST') {
 			response.statusCode = HttpCodes.MethodNotAllowed;
-			return response.end('{"message":"Unsupported method"}');
+			return response.end(ErrorMessages.UnsupportedHttpMethod);
 		}
 
 		const signature = request.headers['x-signature-ed25519'];
@@ -80,19 +81,19 @@ export class Client extends EventEmitter {
 
 		if (isNullishOrEmpty(signature) || isNullishOrEmpty(timestamp)) {
 			response.statusCode = HttpCodes.Unauthorized;
-			return response.end('{"message":"Missing signature information"}');
+			return response.end(ErrorMessages.MissingSignatureInformation);
 		}
 
 		const body = await text(request);
 		if (isNullishOrEmpty(body)) {
 			response.statusCode = HttpCodes.BadRequest;
-			return response.end('{"message":"Missing body data"}');
+			return response.end(ErrorMessages.MissingBodyData);
 		}
 
 		const valid = await verifyBody(body, signature, timestamp, key);
 		if (!valid) {
 			response.statusCode = HttpCodes.Unauthorized;
-			return response.end('{"message":"The signature is incorrect"}');
+			return response.end(ErrorMessages.InvalidSignature);
 		}
 
 		return this.handleHttpMessage(JSON.parse(body) as APIInteraction, response);
@@ -101,7 +102,7 @@ export class Client extends EventEmitter {
 	protected async handleHttpMessage(interaction: APIInteraction, response: ServerResponse): Promise<ServerResponse> {
 		if (interaction.type === InteractionType.Ping) {
 			response.statusCode = HttpCodes.OK;
-			return response.end(`{"type":${InteractionResponseType.Pong}}`);
+			return response.end(Payloads.Pong);
 		}
 
 		switch (interaction.type) {
@@ -114,7 +115,7 @@ export class Client extends EventEmitter {
 				return container.stores.get('interaction-handlers').runHandler(response, interaction);
 			default: {
 				response.statusCode = HttpCodes.NotImplemented;
-				return response.end('{"type":"Unknown interaction type"');
+				return response.end(ErrorMessages.UnknownInteractionType);
 			}
 		}
 	}

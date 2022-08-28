@@ -16,6 +16,7 @@ import {
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
 import { HttpCodes } from '../../api/HttpCodes';
+import { ErrorMessages } from '../../utils/constants';
 import { Interaction, MessageComponentInteraction, type BaseInteractionType, type Interactions } from '../structures/Interaction';
 
 export type NonPingInteraction = Exclude<APIInteraction, APIPingInteraction>;
@@ -56,7 +57,7 @@ export function handleError(response: ServerResponse, error: unknown): ServerRes
 	if (response.closed) return response;
 
 	response.statusCode = HttpCodes.InternalServerError;
-	return response.end('{"message":"Received an internal error"}');
+	return response.end(ErrorMessages.InternalError);
 }
 
 export function resultFromDiscord<T>(promise: Promise<T>): AsyncDiscordResult<T> {

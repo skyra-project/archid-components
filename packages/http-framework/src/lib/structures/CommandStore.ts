@@ -12,6 +12,7 @@ import type { ServerResponse } from 'node:http';
 import { HttpCodes } from '../api/HttpCodes';
 import { transformAutocompleteInteraction, transformInteraction, transformMessageInteraction, transformUserInteraction } from '../interactions';
 import { handleError, makeInteraction } from '../interactions/utils/util';
+import { ErrorMessages } from '../utils/constants';
 import { Command } from './Command';
 
 export class CommandStore extends Store<Command> {
@@ -29,13 +30,13 @@ export class CommandStore extends Store<Command> {
 
 		if (!command) {
 			response.statusCode = HttpCodes.NotImplemented;
-			return response.end('{"message":"Unknown command name"}');
+			return response.end(ErrorMessages.UnknownCommandName);
 		}
 
 		const method = this.routeCommandMethodName(command, interaction.data);
 		if (!method) {
 			response.statusCode = HttpCodes.NotImplemented;
-			return response.end('{"message":"Unknown command handler"}');
+			return response.end(ErrorMessages.UnknownCommandHandler);
 		}
 
 		const result = await Result.fromAsync(() => this.runCommandMethod(command, method, makeInteraction(response, interaction)));
@@ -49,13 +50,13 @@ export class CommandStore extends Store<Command> {
 	): Promise<ServerResponse> {
 		if (!interaction.data?.name) {
 			response.statusCode = HttpCodes.BadRequest;
-			return response.end('{"message":"Missing command name"}');
+			return response.end(ErrorMessages.MissingCommandName);
 		}
 
 		const command = this.get(interaction.data.name);
 		if (!command) {
-			response.statusCode = HttpCodes.BadRequest;
-			return response.end('{"message":"Unknown command name"}');
+			response.statusCode = HttpCodes.NotImplemented;
+			return response.end(ErrorMessages.UnknownCommandName);
 		}
 
 		const options = transformAutocompleteInteraction(interaction.data.resolved ?? {}, interaction.data.options);
