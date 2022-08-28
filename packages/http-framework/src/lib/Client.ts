@@ -59,7 +59,7 @@ export class Client extends EventEmitter {
 		this.server = createServer(serverOptions ?? {});
 		this.server.on('request', (request, response) => this.handleRawHttpMessage(request, response, path, key));
 
-		await this.server.listen({ ...listenOptions, port, host: address });
+		return new Promise<void>((resolve) => this.server.listen({ ...listenOptions, port, host: address }, resolve));
 	}
 
 	protected async handleRawHttpMessage(request: IncomingMessage, response: ServerResponse, path: string, key: Key) {
