@@ -1,2 +1,2 @@
 export const Data = Symbol('data');
-export const Reply = Symbol('reply');
+export const Response = Symbol('response');

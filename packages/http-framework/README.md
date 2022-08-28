@@ -84,7 +84,7 @@ interface Args {
 
 ### Client
 
-The `Client` class contains the HTTP server, powered by [`fastify`], it also registers a handler which processes whether or not the HTTP request comes from Discord, then processes the information accordingly, handling the heavy weight in the background.
+The `Client` class contains the HTTP server, powered by [`node:http`], it also registers a handler which processes whether or not the HTTP request comes from Discord, then processes the information accordingly, handling the heavy weight in the background.
 
 ```typescript
 import { Client } from '@skyra/http-framework';
@@ -121,5 +121,4 @@ await registry.registerGlobalCommands();
 await registry.registerGuildRestrictedCommands();
 ```
 
-[`fastify`]: https://www.npmjs.com/package/fastify
 [`@discordjs/rest`]: https://www.npmjs.com/package/@discordjs/rest

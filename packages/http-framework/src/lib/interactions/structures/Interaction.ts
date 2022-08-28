@@ -23,25 +23,25 @@ import {
 	type RESTPostAPIInteractionFollowupJSONBody,
 	type RESTPostAPIInteractionFollowupResult
 } from 'discord-api-types/v10';
-import type { FastifyReply } from 'fastify';
+import type { ServerResponse } from 'node:http';
 import { HttpCodes } from '../../api/HttpCodes';
 import { resultFromDiscord, type AddFiles, type DiscordError } from '../utils/util';
-import { Data, Reply } from './common/symbols';
+import { Data, Response } from './common/symbols';
 import { Message, PartialMessage } from './Message';
 
 export type BaseInteractionType = Exclude<APIInteraction, APIPingInteraction>;
 
 export class Interaction<I extends BaseInteractionType = BaseInteractionType> {
 	protected readonly [Data]: I;
-	protected readonly [Reply]: FastifyReply;
+	protected readonly [Response]: ServerResponse;
 
-	public constructor(reply: FastifyReply, data: I) {
+	public constructor(reply: ServerResponse, data: I) {
 		this[Data] = data;
-		this[Reply] = reply;
+		this[Response] = reply;
 	}
 
 	public get replied() {
-		return this[Reply].sent;
+		return this[Response].closed;
 	}
 
 	/**
@@ -263,9 +263,12 @@ export class Interaction<I extends BaseInteractionType = BaseInteractionType> {
 		return resultFromDiscord(container.rest.get(Routes.guild(this.guildId)) as Promise<RESTGetAPIGuildResult>);
 	}
 
-	protected async _sendReply(data: NonNullObject) {
-		if (this[Reply].sent) throw new Error('Cannot send response, the request has already been replied.');
-		await this[Reply].status(HttpCodes.OK).type('application/json').send(data);
+	protected _sendReply(data: NonNullObject) {
+		const response = this[Response];
+		if (response.closed) throw new Error('Cannot send response, the request has already been replied.');
+
+		response.statusCode = HttpCodes.OK;
+		return new Promise<void>((resolve) => response.end(JSON.stringify(data), resolve));
 	}
 }
 

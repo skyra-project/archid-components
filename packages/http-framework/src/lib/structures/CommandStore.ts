@@ -8,7 +8,7 @@ import {
 	type APIApplicationCommandInteraction,
 	type APIApplicationCommandInteractionData
 } from 'discord-api-types/v10';
-import type { FastifyReply } from 'fastify';
+import type { ServerResponse } from 'node:http';
 import { HttpCodes } from '../api/HttpCodes';
 import { transformAutocompleteInteraction, transformInteraction, transformMessageInteraction, transformUserInteraction } from '../interactions';
 import { handleError, makeInteraction } from '../interactions/utils/util';
@@ -21,37 +21,49 @@ export class CommandStore extends Store<Command> {
 		super(Command, { name: 'commands' });
 	}
 
-	public async runApplicationCommand(reply: FastifyReply, interaction: APIApplicationCommandInteraction): Promise<FastifyReply> {
+	public async runApplicationCommand(response: ServerResponse, interaction: APIApplicationCommandInteraction): Promise<ServerResponse> {
 		const command =
 			interaction.data.type === ApplicationCommandType.ChatInput
 				? this.get(interaction.data.name)
 				: this.contextMenuCommands.get(interaction.data.name);
 
-		if (!command) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown command name' });
+		if (!command) {
+			response.statusCode = HttpCodes.NotImplemented;
+			return response.end('{"message":"Unknown command name"}');
+		}
 
 		const method = this.routeCommandMethodName(command, interaction.data);
-		if (!method) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown subcommand name' });
+		if (!method) {
+			response.statusCode = HttpCodes.NotImplemented;
+			return response.end('{"message":"Unknown command handler"}');
+		}
 
-		const result = await Result.fromAsync(() => this.runCommandMethod(command, method, makeInteraction(reply, interaction)));
-		result.inspectErr((error) => handleError(reply, error));
-		return reply;
+		const result = await Result.fromAsync(() => this.runCommandMethod(command, method, makeInteraction(response, interaction)));
+		result.inspectErr((error) => handleError(response, error));
+		return response;
 	}
 
 	public async runApplicationCommandAutocomplete(
-		reply: FastifyReply,
+		response: ServerResponse,
 		interaction: APIApplicationCommandAutocompleteInteraction
-	): Promise<FastifyReply> {
-		if (!interaction.data?.name) return reply.status(HttpCodes.NotImplemented).send({ message: 'Missing command name' });
+	): Promise<ServerResponse> {
+		if (!interaction.data?.name) {
+			response.statusCode = HttpCodes.BadRequest;
+			return response.end('{"message":"Missing command name"}');
+		}
 
 		const command = this.get(interaction.data.name);
-		if (!command) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown command name' });
+		if (!command) {
+			response.statusCode = HttpCodes.BadRequest;
+			return response.end('{"message":"Unknown command name"}');
+		}
 
 		const options = transformAutocompleteInteraction(interaction.data.resolved ?? {}, interaction.data.options);
 
 		// eslint-disable-next-line @typescript-eslint/dot-notation
-		const result = await Result.fromAsync(() => command['autocompleteRun'](makeInteraction(reply, interaction), options));
-		result.inspectErr((error) => handleError(reply, error));
-		return reply;
+		const result = await Result.fromAsync(() => command['autocompleteRun'](makeInteraction(response, interaction), options));
+		result.inspectErr((error) => handleError(response, error));
+		return response;
 	}
 
 	private runCommandMethod(command: Command, method: string, interaction: Command.ApplicationCommandInteraction): Awaitable<unknown> {

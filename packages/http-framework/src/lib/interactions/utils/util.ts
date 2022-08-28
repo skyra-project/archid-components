@@ -14,27 +14,27 @@ import {
 	type APIPingInteraction,
 	type APIUserApplicationCommandInteraction
 } from 'discord-api-types/v10';
-import type { FastifyReply } from 'fastify';
+import type { ServerResponse } from 'node:http';
 import { HttpCodes } from '../../api/HttpCodes';
 import { Interaction, MessageComponentInteraction, type BaseInteractionType, type Interactions } from '../structures/Interaction';
 
 export type NonPingInteraction = Exclude<APIInteraction, APIPingInteraction>;
 
-export function makeInteraction(reply: FastifyReply, interaction: APIChatInputApplicationCommandInteraction): Interactions.ChatInput;
-export function makeInteraction(reply: FastifyReply, interaction: APIApplicationCommandAutocompleteInteraction): Interactions.Autocomplete;
-export function makeInteraction(reply: FastifyReply, interaction: APIUserApplicationCommandInteraction): Interactions.User;
-export function makeInteraction(reply: FastifyReply, interaction: APIMessageApplicationCommandInteraction): Interactions.Message;
-export function makeInteraction(reply: FastifyReply, interaction: APIModalSubmitInteraction): Interactions.Modal;
-export function makeInteraction(reply: FastifyReply, interaction: APIMessageComponentInteraction): MessageComponentInteraction;
-export function makeInteraction(reply: FastifyReply, interaction: APIContextMenuInteraction): Interactions.ContextMenu;
-export function makeInteraction(reply: FastifyReply, interaction: APIApplicationCommandInteraction): Interactions.ApplicationCommand;
+export function makeInteraction(response: ServerResponse, interaction: APIChatInputApplicationCommandInteraction): Interactions.ChatInput;
+export function makeInteraction(response: ServerResponse, interaction: APIApplicationCommandAutocompleteInteraction): Interactions.Autocomplete;
+export function makeInteraction(response: ServerResponse, interaction: APIUserApplicationCommandInteraction): Interactions.User;
+export function makeInteraction(response: ServerResponse, interaction: APIMessageApplicationCommandInteraction): Interactions.Message;
+export function makeInteraction(response: ServerResponse, interaction: APIModalSubmitInteraction): Interactions.Modal;
+export function makeInteraction(response: ServerResponse, interaction: APIMessageComponentInteraction): MessageComponentInteraction;
+export function makeInteraction(response: ServerResponse, interaction: APIContextMenuInteraction): Interactions.ContextMenu;
+export function makeInteraction(response: ServerResponse, interaction: APIApplicationCommandInteraction): Interactions.ApplicationCommand;
 export function makeInteraction(
-	reply: FastifyReply,
+	response: ServerResponse,
 	interaction: APIMessageComponentInteraction | APIModalSubmitInteraction
 ): MessageComponentInteraction | Interactions.Modal;
-export function makeInteraction(reply: FastifyReply, interaction: BaseInteractionType) {
-	if (interaction.type === InteractionType.MessageComponent) return new MessageComponentInteraction(reply, interaction);
-	return new Interaction(reply, interaction);
+export function makeInteraction(response: ServerResponse, interaction: BaseInteractionType) {
+	if (interaction.type === InteractionType.MessageComponent) return new MessageComponentInteraction(response, interaction);
+	return new Interaction(response, interaction);
 }
 
 /**
@@ -46,14 +46,17 @@ export function makeInteraction(reply: FastifyReply, interaction: BaseInteractio
  *
  * When an error is thrown, the error is emitted in client, and a generic error
  * message is sent back to Discord.
- * @param reply The HTTP request we can reply to.
+ * @param response The HTTP request we can response to.
  * @param error The error to handle.
- * @returns The reply object.
+ * @returns The response object.
  */
-export function handleError(reply: FastifyReply, error: unknown): FastifyReply {
+export function handleError(response: ServerResponse, error: unknown): ServerResponse {
 	container.client.emit('error', error);
 
-	return reply.sent ? reply : reply.status(HttpCodes.InternalServerError).send({ message: 'Received an internal error' });
+	if (response.closed) return response;
+
+	response.statusCode = HttpCodes.InternalServerError;
+	return response.end('{"message":"Received an internal error"}');
 }
 
 export function resultFromDiscord<T>(promise: Promise<T>): AsyncDiscordResult<T> {
