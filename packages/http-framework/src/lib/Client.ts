@@ -3,7 +3,7 @@ import { container } from '@sapphire/pieces';
 import { isNullishOrEmpty } from '@sapphire/utilities';
 import { InteractionResponseType, InteractionType, type APIInteraction } from 'discord-api-types/v10';
 import { EventEmitter } from 'node:events';
-import { createServer, IncomingMessage, ServerResponse, type Server, type ServerOptions } from 'node:http';
+import { createServer, type IncomingMessage, type Server, type ServerOptions, type ServerResponse } from 'node:http';
 import type { ListenOptions as NetListenOptions } from 'node:net';
 import { text } from 'node:stream/consumers';
 import { HttpCodes } from './api/HttpCodes';
