@@ -6,13 +6,15 @@ export abstract class InteractionHandler extends Piece {
 }
 
 export namespace InteractionHandler {
-	export type ModalInteraction = Interactions.Modal;
+	export type ButtonInteraction = Interactions.MessageComponentButton;
+	export type SelectMenuInteraction = Interactions.MessageComponentSelectMenu;
+	export type ModalInteraction = Interactions.ModalSubmit;
 	export type MessageComponentInteraction = Interactions.MessageComponent;
 
-	export type ContextMenuInteraction = Interactions.ContextMenu;
+	export type ContextMenuInteraction = Interactions.ContextMenuCommand;
 	export type ApplicationCommandInteraction = Interactions.ApplicationCommand;
 
-	export type Interaction = MessageComponentInteraction | ModalInteraction;
+	export type Interaction = Interactions.MessageComponent;
 	export type InteractionData = Interaction['data'];
 
 	// Piece re-exports

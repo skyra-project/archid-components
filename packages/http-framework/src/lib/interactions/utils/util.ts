@@ -2,41 +2,75 @@ import type { DiscordAPIError, HTTPError, RawFile } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { Result } from '@sapphire/result';
 import {
+	ApplicationCommandType,
+	ComponentType,
 	InteractionType,
-	type APIApplicationCommandAutocompleteInteraction,
-	type APIApplicationCommandInteraction,
 	type APIChatInputApplicationCommandInteraction,
-	type APIContextMenuInteraction,
 	type APIInteraction,
 	type APIMessageApplicationCommandInteraction,
-	type APIMessageComponentInteraction,
-	type APIModalSubmitInteraction,
+	type APIMessageComponentButtonInteraction,
+	type APIMessageComponentSelectMenuInteraction,
 	type APIPingInteraction,
 	type APIUserApplicationCommandInteraction
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
 import { HttpCodes } from '../../api/HttpCodes';
 import { ErrorMessages } from '../../utils/constants';
-import { Interaction, MessageComponentInteraction, type BaseInteractionType, type Interactions } from '../structures/Interaction';
+import {
+	AutocompleteInteraction,
+	ChatInputCommandInteraction,
+	MessageComponentButtonInteraction,
+	MessageComponentSelectMenuInteraction,
+	MessageContextMenuCommandInteraction,
+	ModalSubmitInteraction,
+	UserContextMenuCommandInteraction,
+	type BaseInteractionType
+} from '../structures/interactions';
 
 export type NonPingInteraction = Exclude<APIInteraction, APIPingInteraction>;
 
-export function makeInteraction(response: ServerResponse, interaction: APIChatInputApplicationCommandInteraction): Interactions.ChatInput;
-export function makeInteraction(response: ServerResponse, interaction: APIApplicationCommandAutocompleteInteraction): Interactions.Autocomplete;
-export function makeInteraction(response: ServerResponse, interaction: APIUserApplicationCommandInteraction): Interactions.User;
-export function makeInteraction(response: ServerResponse, interaction: APIMessageApplicationCommandInteraction): Interactions.Message;
-export function makeInteraction(response: ServerResponse, interaction: APIModalSubmitInteraction): Interactions.Modal;
-export function makeInteraction(response: ServerResponse, interaction: APIMessageComponentInteraction): MessageComponentInteraction;
-export function makeInteraction(response: ServerResponse, interaction: APIContextMenuInteraction): Interactions.ContextMenu;
-export function makeInteraction(response: ServerResponse, interaction: APIApplicationCommandInteraction): Interactions.ApplicationCommand;
-export function makeInteraction(
-	response: ServerResponse,
-	interaction: APIMessageComponentInteraction | APIModalSubmitInteraction
-): MessageComponentInteraction | Interactions.Modal;
+export function makeInteraction<T extends BaseInteractionType>(response: ServerResponse, interaction: T): TransformRaw<T>;
 export function makeInteraction(response: ServerResponse, interaction: BaseInteractionType) {
-	if (interaction.type === InteractionType.MessageComponent) return new MessageComponentInteraction(response, interaction);
-	return new Interaction(response, interaction);
+	switch (interaction.type) {
+		case InteractionType.ApplicationCommand: {
+			switch (interaction.data.type) {
+				case ApplicationCommandType.ChatInput:
+					return new ChatInputCommandInteraction(response, interaction as APIChatInputApplicationCommandInteraction);
+				case ApplicationCommandType.User:
+					return new UserContextMenuCommandInteraction(response, interaction as APIUserApplicationCommandInteraction);
+				case ApplicationCommandType.Message:
+					return new MessageContextMenuCommandInteraction(response, interaction as APIMessageApplicationCommandInteraction);
+			}
+		}
+		case InteractionType.MessageComponent:
+			switch (interaction.data.component_type) {
+				case ComponentType.Button:
+					return new MessageComponentButtonInteraction(response, interaction as APIMessageComponentButtonInteraction);
+				case ComponentType.SelectMenu:
+					return new MessageComponentSelectMenuInteraction(response, interaction as APIMessageComponentSelectMenuInteraction);
+			}
+		case InteractionType.ApplicationCommandAutocomplete:
+			return new AutocompleteInteraction(response, interaction);
+		case InteractionType.ModalSubmit:
+			return new ModalSubmitInteraction(response, interaction);
+	}
 }
+
+export type TransformRaw<T extends BaseInteractionType> = T extends AutocompleteInteraction.Type
+	? AutocompleteInteraction
+	: T extends ChatInputCommandInteraction.Type
+	? ChatInputCommandInteraction
+	: T extends UserContextMenuCommandInteraction.Type
+	? UserContextMenuCommandInteraction
+	: T extends MessageContextMenuCommandInteraction.Type
+	? MessageContextMenuCommandInteraction
+	: T extends MessageComponentButtonInteraction.Type
+	? MessageComponentButtonInteraction
+	: T extends MessageComponentSelectMenuInteraction.Type
+	? MessageComponentSelectMenuInteraction
+	: T extends ModalSubmitInteraction.Type
+	? ModalSubmitInteraction
+	: never;
 
 /**
  * Handles a received error. This function must only be called if the HTTP

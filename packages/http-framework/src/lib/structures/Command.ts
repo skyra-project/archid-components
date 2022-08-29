@@ -26,7 +26,7 @@ export abstract class Command extends Piece {
 	 */
 	protected chatInputRun(interaction: Command.ApplicationCommandInteraction, args: NonNullObject): Awaitable<unknown>;
 	protected chatInputRun(interaction: Command.ApplicationCommandInteraction) {
-		return interaction.sendMessage({});
+		return interaction.reply({});
 	}
 
 	/**
@@ -37,7 +37,7 @@ export abstract class Command extends Piece {
 	 */
 	protected autocompleteRun(interaction: Command.AutocompleteInteraction, args: AutocompleteInteractionArguments<any>): Awaitable<unknown>;
 	protected autocompleteRun(interaction: Command.AutocompleteInteraction) {
-		return interaction.sendEmptyAutocomplete();
+		return interaction.replyEmpty();
 	}
 
 	protected routeChatInputInteraction(data: APIChatInputApplicationCommandInteractionData): string | null {
@@ -119,12 +119,13 @@ export abstract class Command extends Piece {
 }
 
 export namespace Command {
-	export type ChatInputInteraction = Interactions.ChatInput;
 	export type AutocompleteInteraction = Interactions.Autocomplete;
-	export type UserInteraction = Interactions.User;
-	export type MessageInteraction = Interactions.Message;
 
-	export type ContextMenuInteraction = Interactions.ContextMenu;
+	export type ChatInputInteraction = Interactions.ChatInputCommand;
+	export type UserInteraction = Interactions.UserContextMenuCommand;
+	export type MessageInteraction = Interactions.MessageContextMenuCommand;
+
+	export type ContextMenuInteraction = Interactions.ContextMenuCommand;
 	export type ApplicationCommandInteraction = Interactions.ApplicationCommand;
 
 	export type Interaction = ChatInputInteraction | AutocompleteInteraction | UserInteraction | MessageInteraction;
