@@ -5,7 +5,6 @@ import { InteractionType, type APIInteraction } from 'discord-api-types/v10';
 import { EventEmitter } from 'node:events';
 import { createServer, type IncomingMessage, type Server, type ServerOptions, type ServerResponse } from 'node:http';
 import type { ListenOptions as NetListenOptions } from 'node:net';
-import { text } from 'node:stream/consumers';
 import { HttpCodes } from './api/HttpCodes';
 import type { IIdParser } from './components/IIdParser';
 import { StringIdParser } from './components/StringIdParser';
@@ -14,6 +13,7 @@ import { InteractionHandlerStore } from './structures/InteractionHandlerStore';
 import { ListenerStore } from './structures/ListenerStore';
 import { ErrorMessages, Payloads } from './utils/constants';
 import { makeKey, verifyBody, type Key } from './utils/security';
+import { getSafeTextBody } from './utils/streams';
 
 container.stores.register(new CommandStore());
 container.stores.register(new InteractionHandlerStore());
@@ -21,10 +21,12 @@ container.stores.register(new ListenerStore());
 
 export class Client extends EventEmitter {
 	public server!: Server;
+	public readonly bodySizeLimit: number;
 	#discordPublicKey: string;
 
 	public constructor(options: ClientOptions = {}) {
 		super({ captureRejections: true });
+		this.bodySizeLimit = options.bodySizeLimit ?? 1024 * 1024;
 
 		const discordPublicKey = options.discordPublicKey ?? process.env.DISCORD_PUBLIC_KEY;
 		if (!discordPublicKey) throw new Error('The discordPublicKey cannot be empty');
@@ -86,12 +88,13 @@ export class Client extends EventEmitter {
 			return response.end(ErrorMessages.MissingSignatureInformation);
 		}
 
-		const body = await text(request);
-		if (isNullishOrEmpty(body)) {
+		const result = await getSafeTextBody(request);
+		if (result.isErr()) {
 			response.statusCode = HttpCodes.BadRequest;
-			return response.end(ErrorMessages.MissingBodyData);
+			return response.end(result.unwrapErr());
 		}
 
+		const body = result.unwrap();
 		const valid = await verifyBody(body, signature, timestamp, key);
 		if (!valid) {
 			response.statusCode = HttpCodes.Unauthorized;
@@ -141,6 +144,12 @@ export interface ClientOptions {
 	 * The options to be passed to the underlying REST library.
 	 */
 	restOptions?: Partial<RESTOptions>;
+
+	/**
+	 * The body size limit in bytes.
+	 * @default `1024 * 1024` (1 MiB)
+	 */
+	bodySizeLimit?: number;
 }
 
 export interface LoadOptions {
