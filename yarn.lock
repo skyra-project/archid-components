@@ -591,7 +591,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.7
     "@sapphire/utilities": ^3.9.2
     "@skyra/i18next-backend": "workspace:^"
-    discord-api-types: ^0.37.4
+    discord-api-types: ^0.37.5
     i18next: ^21.9.1
     tslib: ^2.4.0
     tsup: ^6.2.3
@@ -611,7 +611,7 @@ __metadata:
     "@sapphire/result": ^2.4.0
     "@sapphire/utilities": ^3.9.2
     "@vitest/coverage-c8": ^0.22.1
-    discord-api-types: ^0.37.4
+    discord-api-types: ^0.37.5
     tsup: ^6.2.3
     typescript: ^4.8.2
     vitest: ^0.22.1
@@ -623,7 +623,7 @@ __metadata:
   resolution: "@skyra/i18next-backend@workspace:packages/i18next-backend"
   dependencies:
     "@favware/cliff-jumper": ^1.8.7
-    "@types/node": ^18.7.9
+    "@types/node": ^18.7.13
     i18next: ^21.9.1
     tslib: ^2.4.0
     tsup: ^6.2.3
@@ -653,7 +653,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.7
     "@skyra/http-framework": "workspace:^"
     "@skyra/http-framework-i18n": "workspace:^"
-    discord-api-types: ^0.37.4
+    discord-api-types: ^0.37.5
     tslib: ^2.4.0
     typescript: ^4.8.2
   languageName: unknown
@@ -924,7 +924,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.7.9":
+"@types/node@npm:*, @types/node@npm:^18.7.13":
   version: 18.7.13
   resolution: "@types/node@npm:18.7.13"
   checksum: 45431e7e89ecaf85c7d2c180d801c132a7c59e2f8ad578726b6d71cc74e3267c18f9ccdcad738bc0479790c078f0c79efb0e58da2c6be535c15995dbb19050c9
@@ -1263,7 +1263,7 @@ __metadata:
     "@sapphire/prettier-config": ^1.4.4
     "@sapphire/ts-config": ^3.3.4
     "@swc/core": ^1.2.244
-    "@types/node": ^18.7.9
+    "@types/node": ^18.7.13
     "@types/ws": ^8.5.3
     "@typescript-eslint/eslint-plugin": ^5.35.1
     "@typescript-eslint/parser": ^5.35.1
@@ -2095,7 +2095,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.3, discord-api-types@npm:^0.37.4":
+"discord-api-types@npm:^0.37.3, discord-api-types@npm:^0.37.5":
   version: 0.37.5
   resolution: "discord-api-types@npm:0.37.5"
   checksum: 10a23b813d9a30d836aa27169f768883eeed971ab67e58325ff272bfe6b63b169d727ae983d7c1b69c7e0b02ed9072e66e79319ce48174b36cd4a2a5fafe2e9f
