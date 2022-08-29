@@ -11,11 +11,13 @@ import type { IIdParser } from './components/IIdParser';
 import { StringIdParser } from './components/StringIdParser';
 import { CommandStore } from './structures/CommandStore';
 import { InteractionHandlerStore } from './structures/InteractionHandlerStore';
+import { ListenerStore } from './structures/ListenerStore';
 import { ErrorMessages, Payloads } from './utils/constants';
 import { makeKey, verifyBody, type Key } from './utils/security';
 
 container.stores.register(new CommandStore());
 container.stores.register(new InteractionHandlerStore());
+container.stores.register(new ListenerStore());
 
 export class Client extends EventEmitter {
 	public server!: Server;
