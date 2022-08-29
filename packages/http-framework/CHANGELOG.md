@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.10.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.9.2...@skyra/http-framework@0.10.0) - (2022-08-29)
+
+## 🏠 Refactor
+
+- **hfx:** Remove `fastify` (#154) ([08911c0](https://github.com/skyra-project/archid-components/commit/08911c029460c0edc733e19505613738394126fa))
+
+## 🐛 Bug Fixes
+
+- Bump discord-api-types ([28a74f0](https://github.com/skyra-project/archid-components/commit/28a74f07a1585bb86adaa2768874400cab841c35))
+- **hfx:** Add safe text body reader (#155) ([9b28833](https://github.com/skyra-project/archid-components/commit/9b28833f7b431504c194c66f9d44cb020916a0a3))
+
+## 🚀 Features
+
+- **hfx:** Add `Listener` structure (#156) ([6a61c40](https://github.com/skyra-project/archid-components/commit/6a61c4084d514790c78235573e3d2e7d7cf0eac8))
+
 # [@skyra/http-framework@0.9.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.9.0...@skyra/http-framework@0.9.1) - (2022-08-21)
 
 ## 🏠 Refactor
