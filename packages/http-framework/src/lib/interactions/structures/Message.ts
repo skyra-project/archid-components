@@ -11,12 +11,12 @@ import {
 } from 'discord-api-types/v10';
 import { AddFiles, AsyncDiscordResult, resultFromDiscord } from '../utils/util';
 import { Data } from './common/symbols';
-import type { Interaction } from './Interaction';
+import type { BaseInteraction } from './interactions';
 
-export class PartialMessage {
-	public readonly interaction: Interaction;
+export class PartialMessage<I extends BaseInteraction = BaseInteraction> {
+	public readonly interaction: I;
 
-	public constructor(interaction: Interaction) {
+	public constructor(interaction: I) {
 		this.interaction = interaction;
 	}
 
@@ -82,10 +82,10 @@ export class PartialMessage {
 export type UpdateResponseResult = RESTPatchAPIInteractionOriginalResponseResult;
 export type UpdateResponseOptions = AddFiles<RESTPatchAPIInteractionOriginalResponseJSONBody>;
 
-export class Message extends PartialMessage {
+export class Message<I extends BaseInteraction = BaseInteraction> extends PartialMessage<I> {
 	private readonly [Data]: APIMessage;
 
-	public constructor(interaction: Interaction, data: APIMessage) {
+	public constructor(interaction: I, data: APIMessage) {
 		super(interaction);
 		this[Data] = data;
 	}

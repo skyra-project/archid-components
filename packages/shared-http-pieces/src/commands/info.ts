@@ -16,7 +16,7 @@ export class UserCommand extends Command {
 			.addFields([this.getUptimeStatistics(t), this.getServerUsageStatistics(t)]);
 		const components = this.getComponents(t);
 
-		return interaction.sendMessage({ embeds: [embed.toJSON()], components, flags: MessageFlags.Ephemeral });
+		return interaction.reply({ embeds: [embed.toJSON()], components, flags: MessageFlags.Ephemeral });
 	}
 
 	private getUptimeStatistics(t: TFunction): APIEmbedField {
