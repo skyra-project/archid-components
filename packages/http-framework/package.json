@@ -27,7 +27,7 @@
 		"@discordjs/rest": "^1.1.0",
 		"@sapphire/pieces": "^3.5.1",
 		"@sapphire/result": "^2.4.1",
-		"@sapphire/utilities": "^3.9.2",
+		"@sapphire/utilities": "^3.9.3",
 		"discord-api-types": "^0.37.5"
 	},
 	"devDependencies": {
