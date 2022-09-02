@@ -1,3 +1,6 @@
+// eslint-disable-next-line spaced-comment
+/// <reference lib="dom" />
+
 import { none, some, type Option } from '@sapphire/result';
 
 export class HttpError extends Error {
@@ -9,6 +12,10 @@ export class HttpError extends Error {
 		super('Received a non-OK HTTP response code');
 		this.response = response;
 		this.body = body;
+	}
+
+	public get url() {
+		return this.response.url;
 	}
 
 	public get code() {

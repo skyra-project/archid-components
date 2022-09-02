@@ -1,5 +1,8 @@
+// eslint-disable-next-line spaced-comment
+/// <reference lib="dom" />
+
 import { err, ok, type Result } from '@sapphire/result';
-import { HttpError } from './errors/HttpError';
+import { HttpError } from './HttpError';
 
 export type Awaitable<T> = PromiseLike<T> | T;
 
