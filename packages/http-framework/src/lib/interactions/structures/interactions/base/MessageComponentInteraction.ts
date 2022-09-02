@@ -87,7 +87,7 @@ export abstract class MessageComponentInteraction<T extends MessageComponentInte
 	 */
 	public async followup({ files, ...body }: FollowupOptions): AsyncDiscordResult<Message<this>> {
 		const result = await resultFromDiscord(
-			container.rest.patch(Routes.webhook(this.applicationId, this.token), {
+			container.rest.post(Routes.webhook(this.applicationId, this.token), {
 				body,
 				files,
 				auth: false
