@@ -1,0 +1,60 @@
+{
+	"name": "@skyra/safe-fetch",
+	"version": "1.0.0",
+	"description": "A fetch wrapper on top of Rust's Result",
+	"author": "@skyra",
+	"license": "Apache-2.0",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"types": "./dist/index.d.ts"
+	},
+	"sideEffects": false,
+	"scripts": {
+		"test": "eslint src --ext ts -c ../../package.json",
+		"build": "tsup",
+		"watch": "tsup --watch",
+		"lint": "eslint src --ext ts --fix -c ../../package.json",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/skyra-project/archid-components.git",
+		"directory": "packages/safe-fetch"
+	},
+	"files": [
+		"dist/**/*.mjs*",
+		"dist/**/*.d.ts"
+	],
+	"engines": {
+		"node": ">=18.0.0",
+		"npm": ">=8.0.0"
+	},
+	"keywords": [
+		"discord",
+		"api",
+		"http",
+		"skyra",
+		"typescript",
+		"ts",
+		"yarn"
+	],
+	"bugs": {
+		"url": "https://github.com/skyra-project/archid-components/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@sapphire/result": "^2.4.1"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^1.8.7",
+		"tsup": "^6.2.3",
+		"typescript": "^4.8.2"
+	}
+}
