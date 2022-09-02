@@ -1,3 +1,3 @@
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-export default createTsupConfig({ format: ['esm'] });
+export default createTsupConfig({ format: ['cjs', 'esm'] });
