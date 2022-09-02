@@ -1,6 +1,7 @@
 import { err, ok, type Result } from '@sapphire/result';
-import type { Awaitable, NonNullObject } from '@sapphire/utilities';
 import { HttpError } from './errors/HttpError';
+
+export type Awaitable<T> = PromiseLike<T> | T;
 
 export async function safeFetch(input: RequestInfo | URL, init?: RequestInit): Promise<FetchResult<Response>> {
 	try {
@@ -24,7 +25,7 @@ export async function Text(result: Awaitable<FetchResult<Response>>): Promise<Fe
 	return (await result).map((response) => response.text()).intoPromise();
 }
 
-export async function Json<T extends NonNullObject>(result: Awaitable<FetchResult<Response>>): Promise<FetchResult<T>> {
+export async function Json<T extends object>(result: Awaitable<FetchResult<Response>>): Promise<FetchResult<T>> {
 	return (await result).map((response) => response.json()).intoPromise();
 }
 
