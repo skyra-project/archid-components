@@ -12,7 +12,7 @@ export abstract class Listener extends Piece<Listener.Options> {
 	public constructor(context: Listener.Context, options: Listener.Options) {
 		super(context, options);
 
-		this.emitter = typeof options.emitter === 'string' ? this.container[options.emitter] : options.emitter;
+		this.emitter = typeof options.emitter === 'string' ? this.container[options.emitter] : options.emitter ?? this.container.client;
 		this.event = options.event ?? this.name;
 		this._listener = this.run.bind(this);
 	}
