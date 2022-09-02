@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.3.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.3.4...@skyra/http-framework-i18n@0.3.5) - (2022-09-02)
+
+## 🐛 Bug Fixes
+
+- **http-framework-i18n:** Bump @sapphire/utilities ([823cf2e](https://github.com/skyra-project/archid-components/commit/823cf2e6ecf1046c9e5a3522c61056e3f04493b6))
+
 # [@skyra/http-framework-i18n@0.3.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.3.3...@skyra/http-framework-i18n@0.3.4) - (2022-08-29)
 
 ## 🐛 Bug Fixes
