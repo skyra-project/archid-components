@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/safe-fetch",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A fetch wrapper on top of Rust's Result",
 	"author": "@skyra",
 	"license": "Apache-2.0",
