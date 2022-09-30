@@ -1,11 +1,5 @@
 import type { TwitchEventSubTypes, TwitchHelixBroadcasterType, TwitchHelixUserType } from './enums';
 
-export interface TwitchHelixBearerToken {
-	EXPIRE: number | null;
-
-	TOKEN: string | null;
-}
-
 export interface TwitchHelixResponse<T> {
 	data: T[];
 }
@@ -180,5 +174,12 @@ export interface TwitchOnlineEmbedData {
 
 export interface TwitchFetchUsersParameters {
 	ids?: Iterable<string>;
+
 	logins?: Iterable<string>;
+}
+
+export interface TwitchHelixBearerToken {
+	expiresAt: number;
+
+	token: string;
 }

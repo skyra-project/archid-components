@@ -49,6 +49,7 @@
 		"access": "public"
 	},
 	"dependencies": {
+		"@sapphire/result": "^2.4.1",
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/safe-fetch": "workspace:^"
 	},
