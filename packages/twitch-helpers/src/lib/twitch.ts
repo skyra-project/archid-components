@@ -3,7 +3,7 @@ import { envParseString } from '@skyra/env-utilities';
 import { Json, safeFetch, type FetchResult } from '@skyra/safe-fetch';
 import { createHmac } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import os from 'node:os';
+import { platform, release } from 'node:os';
 import { URL } from 'node:url';
 import { BaseUrlHelix } from './constants';
 import { TwitchEventSubTypes } from './enums';
@@ -34,7 +34,7 @@ const TwitchRequestHeaders = {
 	'Content-Type': 'application/json',
 	Accept: 'application/json',
 	'Client-ID': ClientId,
-	'User-Agent': `@skyra/twitch-helpers/${packageVersion} (NodeJS) ${os.platform()}/${os.release()} (https://github.com/skyra-project/archid-components/tree/main/packages/twitch-helpers)`
+	'User-Agent': `@skyra/twitch-helpers/${packageVersion} (NodeJS) ${platform()}/${release()} (https://github.com/skyra-project/archid-components/tree/main/packages/twitch-helpers)`
 };
 
 let BearerToken: Option<TwitchHelixBearerToken> = none;
@@ -88,23 +88,15 @@ export async function fetchStream(streamerId: string): Promise<TwitchHelixStream
 		ok: async (value) => {
 			const streamData = value.data?.[0];
 
-			if (streamData) {
-				const gameSearch = `id=${encodeURIComponent(streamData.game_id)}`;
-				const gameResult = await getRequest<TwitchHelixResponse<TwitchHelixGameSearchResult>>(`games?${gameSearch}`);
-
-				if (gameResult.isOk()) {
-					const gameData = gameResult.unwrap().data?.[0];
-
-					if (gameData) {
-						return {
-							...streamData,
-							game_box_art_url: gameData.box_art_url
-						};
-					}
-				}
+			if (!streamData) {
+				return null;
 			}
 
-			return streamData ?? null;
+			const gameSearch = `id=${encodeURIComponent(streamData.game_id)}`;
+			const gameResult = await getRequest<TwitchHelixResponse<TwitchHelixGameSearchResult>>(`games?${gameSearch}`);
+
+			const gameData = gameResult.map((value) => value.data?.[0]).unwrapOr(null);
+			return gameData ? { ...streamData, game_box_art_url: gameData.box_art_url } : null;
 		}
 	});
 }

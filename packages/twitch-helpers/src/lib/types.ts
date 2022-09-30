@@ -6,33 +6,21 @@ export interface TwitchHelixResponse<T> {
 
 export interface TwitchHelixOauth2Result {
 	access_token: string;
-
 	expires_in: number;
-
 	refresh_token: string;
-
 	scope: string;
 }
 
 export interface TwitchHelixUsersSearchResult {
 	broadcaster_type: TwitchHelixBroadcasterType;
-
 	description: string;
-
 	display_name: string;
-
 	email?: string;
-
 	id: string;
-
 	login: string;
-
 	offline_image_url: string;
-
 	profile_image_url: string;
-
 	type: TwitchHelixUserType;
-
 	view_count: number;
 }
 
@@ -115,30 +103,21 @@ export interface TwitchEventSubResult {
 	condition: {
 		broadcaster_user_id: string;
 	};
-
 	cost: number;
-
 	created_at: string;
-
 	id: string;
-
 	status: string;
-
 	transport: {
 		method: string;
 		callback: string;
 	};
-
 	type: TwitchEventSubTypes;
-
 	version: string;
 }
 
 export interface TwitchEventSubVerificationMessage<T = object> {
 	challenge: string;
-
 	event: TwitchEventSubEvent<T>;
-
 	subscription: TwitchEventSubResult;
 }
 
@@ -156,30 +135,21 @@ export type TwitchEventSubOnlineEvent = TwitchEventSubEvent<{
 
 export interface TwitchOnlineEmbedData {
 	embedImageUrl?: string;
-
 	embedThumbnailUrl?: string;
-
 	gameName?: string;
-
 	language?: string;
-
 	startedAt: Date;
-
 	title: string;
-
 	userName: string;
-
 	viewerCount?: number;
 }
 
 export interface TwitchFetchUsersParameters {
 	ids?: Iterable<string>;
-
 	logins?: Iterable<string>;
 }
 
 export interface TwitchHelixBearerToken {
 	expiresAt: number;
-
 	token: string;
 }
