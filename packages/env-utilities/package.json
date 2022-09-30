@@ -31,6 +31,7 @@
 		"directory": "packages/env-utilities"
 	},
 	"files": [
+		"dist/**/*.js*",
 		"dist/**/*.mjs*",
 		"dist/**/*.d.ts"
 	],
