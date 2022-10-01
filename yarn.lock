@@ -268,7 +268,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discordjs/rest@npm:^1.2.0":
+"@discordjs/rest@npm:^1.1.0":
   version: 1.2.0
   resolution: "@discordjs/rest@npm:1.2.0"
   dependencies:
@@ -531,7 +531,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/result@npm:^2.4.0, @sapphire/result@npm:^2.5.0":
+"@sapphire/result@npm:^2.4.0, @sapphire/result@npm:^2.4.1, @sapphire/result@npm:^2.5.0":
   version: 2.5.0
   resolution: "@sapphire/result@npm:2.5.0"
   checksum: af1eeaae1c4b0acffb6e6f8ce49fa27326a002e469019f40216a574e244625fac967a9b6678124d36f9388efd74c964cdf52c90e5b75705008a48a8cd910087e
@@ -591,7 +591,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.7
     "@sapphire/utilities": ^3.9.3
     "@skyra/i18next-backend": "workspace:^"
-    discord-api-types: ^0.37.11
+    discord-api-types: ^0.37.5
     i18next: ^21.9.2
     tslib: ^2.4.0
     tsup: ^6.2.3
@@ -605,13 +605,13 @@ __metadata:
   dependencies:
     "@discordjs/builders": ^1.2.0
     "@discordjs/collection": ^1.1.0
-    "@discordjs/rest": ^1.2.0
+    "@discordjs/rest": ^1.1.0
     "@favware/cliff-jumper": ^1.8.7
     "@sapphire/pieces": ^3.5.1
-    "@sapphire/result": ^2.5.0
+    "@sapphire/result": ^2.4.1
     "@sapphire/utilities": ^3.9.3
     "@vitest/coverage-c8": ^0.23.4
-    discord-api-types: ^0.37.11
+    discord-api-types: ^0.37.5
     tsup: ^6.2.3
     typescript: ^4.8.4
     vitest: ^0.23.4
@@ -649,7 +649,7 @@ __metadata:
   resolution: "@skyra/safe-fetch@workspace:packages/safe-fetch"
   dependencies:
     "@favware/cliff-jumper": ^1.8.7
-    "@sapphire/result": ^2.5.0
+    "@sapphire/result": ^2.4.1
     tsup: ^6.2.3
     typescript: ^4.8.4
   languageName: unknown
@@ -664,7 +664,7 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.7
     "@skyra/http-framework": "workspace:^"
     "@skyra/http-framework-i18n": "workspace:^"
-    discord-api-types: ^0.37.11
+    discord-api-types: ^0.37.5
     tslib: ^2.4.0
     typescript: ^4.8.4
   languageName: unknown
@@ -2119,7 +2119,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.10, discord-api-types@npm:^0.37.11, discord-api-types@npm:^0.37.3":
+"discord-api-types@npm:^0.37.10, discord-api-types@npm:^0.37.3, discord-api-types@npm:^0.37.5":
   version: 0.37.11
   resolution: "discord-api-types@npm:0.37.11"
   checksum: 61af711c29dc089f150c0dd41f257e59583d6ef72789bdb63183d328efe73d2df86ef4b6867390ad31441fe3588985a99a2a1ed8fc920b7ba1deda1dceaf5f84
