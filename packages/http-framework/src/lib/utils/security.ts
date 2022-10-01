@@ -1,4 +1,4 @@
-import { subtle, type webcrypto } from 'node:crypto';
+import { webcrypto } from 'node:crypto';
 
 export type HeaderValue = string | string[];
 export type Key = webcrypto.CryptoKey;
@@ -10,7 +10,7 @@ function headerToString(header: HeaderValue): string {
 }
 
 export function makeKey(key: string): Promise<Key> {
-	return subtle.importKey('raw', Buffer.from(key, 'hex'), { name: AlgorithmName }, true, ['verify']);
+	return webcrypto.subtle.importKey('raw', Buffer.from(key, 'hex'), { name: AlgorithmName }, true, ['verify']);
 }
 
 /**
@@ -26,5 +26,5 @@ export async function verifyBody(body: string, signature: string | string[], tim
 		? Buffer.concat([Buffer.from(headerToString(timestamp)), body])
 		: Buffer.from(`${headerToString(timestamp)}${body}`);
 
-	return subtle.verify(AlgorithmName, key, signatureData, Buffer.from(data));
+	return webcrypto.subtle.verify(AlgorithmName, key, signatureData, Buffer.from(data));
 }
