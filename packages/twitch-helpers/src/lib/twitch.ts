@@ -197,12 +197,7 @@ export async function addEventSubscription(
 		})
 	);
 
-	return result.match({
-		err: (error) => {
-			throw error;
-		},
-		ok: (value) => value.data[0]
-	});
+	return result.map((value) => value.data?.[0]).unwrapRaw();
 }
 
 /**
