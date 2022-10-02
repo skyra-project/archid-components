@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@0.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.1.0...@skyra/shared-http-pieces@0.2.0) - (2022-10-02)
+
+## 🐛 Bug Fixes
+
+- **shared-http-pieces:** Bump discord-api-types ([6e481cc](https://github.com/skyra-project/archid-components/commit/6e481ccef5968aff0b7fa043dfeff1b4f018529c))
+
+## 🚀 Features
+
+- Add twitch helpers package (#168) ([103160f](https://github.com/skyra-project/archid-components/commit/103160f94898a6842544441a49dd13bb8bacf48f))
+
 # [@skyra/shared-http-pieces@0.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.0.46...@skyra/shared-http-pieces@0.1.0) - (2022-09-01)
 
 ## 🏠 Refactor
