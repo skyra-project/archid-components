@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/i18next-backend@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@1.0.2...@skyra/i18next-backend@1.1.0) - (2022-10-02)
+
+## 🐛 Bug Fixes
+
+- **i18next-backend:** Fixed pack for CJS (#170) ([95a5b22](https://github.com/skyra-project/archid-components/commit/95a5b22baaf7a17f83c41f2a705885b2c6d8b8c6))
+
+## 🚀 Features
+
+- Add twitch helpers package (#168) ([103160f](https://github.com/skyra-project/archid-components/commit/103160f94898a6842544441a49dd13bb8bacf48f))
+
 # [@skyra/i18next-backend@1.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@1.0.1...@skyra/i18next-backend@1.0.2) - (2022-07-17)
 
 ## 🐛 Bug Fixes
