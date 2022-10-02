@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/env-utilities@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.0.2...@skyra/env-utilities@1.1.0) - (2022-10-02)
+
+## 🐛 Bug Fixes
+
+- **env-utilities:** Fixed pack for CJS (#169) ([4c11055](https://github.com/skyra-project/archid-components/commit/4c1105570af73715795b95b28be56d1514adfc7d))
+
+## 🚀 Features
+
+- Add twitch helpers package (#168) ([103160f](https://github.com/skyra-project/archid-components/commit/103160f94898a6842544441a49dd13bb8bacf48f))
+
 # [@skyra/env-utilities@1.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.0.1...@skyra/env-utilities@1.0.2) - (2022-07-17)
 
 ## 🐛 Bug Fixes
