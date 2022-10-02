@@ -314,23 +314,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/cliff-jumper@npm:^1.8.7":
-  version: 1.8.7
-  resolution: "@favware/cliff-jumper@npm:1.8.7"
+"@favware/cliff-jumper@npm:^1.8.8":
+  version: 1.8.8
+  resolution: "@favware/cliff-jumper@npm:1.8.8"
   dependencies:
-    "@sapphire/result": ^2.4.0
-    "@sapphire/utilities": ^3.9.2
+    "@sapphire/result": ^2.5.0
+    "@sapphire/utilities": ^3.9.3
     colorette: ^2.0.19
-    commander: ^9.4.0
+    commander: ^9.4.1
     conventional-changelog-angular: ^5.0.13
     conventional-recommended-bump: ^6.1.0
     js-yaml: ^4.1.0
     semver: ^7.3.7
-    typescript: ^4.7.4
+    typescript: ^4.8.4
   bin:
     cj: ./dist/cli.js
     cliff-jumper: ./dist/cli.js
-  checksum: 088fe16d5bcc974a3a854042887ca3b4585d4afd62c687404fa8c305a7ebef5526069477734d01200cc8ff353c4575bb5a7e887be48e60de52f9d6771c43b5d4
+  checksum: 1e82daac8d975b7835b7326db794502d0aebd4f141dd18fdf5ccb80d4e2566050272bf2be5d82d918ea81a2a5a0245c71cb6738f366142e4da8d95403c08ab3e
   languageName: node
   linkType: hard
 
@@ -531,7 +531,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/result@npm:^2.4.0, @sapphire/result@npm:^2.5.0":
+"@sapphire/result@npm:^2.5.0":
   version: 2.5.0
   resolution: "@sapphire/result@npm:2.5.0"
   checksum: af1eeaae1c4b0acffb6e6f8ce49fa27326a002e469019f40216a574e244625fac967a9b6678124d36f9388efd74c964cdf52c90e5b75705008a48a8cd910087e
@@ -565,10 +565,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/utilities@npm:^3.8.0, @sapphire/utilities@npm:^3.9.2, @sapphire/utilities@npm:^3.9.3":
-  version: 3.9.3
-  resolution: "@sapphire/utilities@npm:3.9.3"
-  checksum: 9f3f977fd5c0677d5f79136e9cb68ade3317cfba3e87bb58689f4af68233a807af34eb6092ad262c946d5eaf5c4a76cd534b0b395ebbaf0f0912dd80e174f912
+"@sapphire/utilities@npm:^3.10.0, @sapphire/utilities@npm:^3.8.0, @sapphire/utilities@npm:^3.9.2, @sapphire/utilities@npm:^3.9.3":
+  version: 3.10.0
+  resolution: "@sapphire/utilities@npm:3.10.0"
+  checksum: 93795fc0903943aa22ebcde32f5f7c52a50b085e300b655d1ff77d42585040cb459153b1aee9e7c0408d4e4d535e1978803b0a06d4a0a577f64f0b0b92f1a7bd
   languageName: node
   linkType: hard
 
@@ -576,7 +576,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@skyra/env-utilities@workspace:packages/env-utilities"
   dependencies:
-    "@favware/cliff-jumper": ^1.8.7
+    "@favware/cliff-jumper": ^1.8.8
     dotenv-cra: ^3.0.2
     tsup: ^6.2.3
     typescript: ^4.8.4
@@ -588,10 +588,10 @@ __metadata:
   resolution: "@skyra/http-framework-i18n@workspace:packages/http-framework-i18n"
   dependencies:
     "@discordjs/collection": ^1.1.0
-    "@favware/cliff-jumper": ^1.8.7
-    "@sapphire/utilities": ^3.9.3
+    "@favware/cliff-jumper": ^1.8.8
+    "@sapphire/utilities": ^3.10.0
     "@skyra/i18next-backend": "workspace:^"
-    discord-api-types: ^0.37.5
+    discord-api-types: ^0.37.11
     i18next: ^21.9.2
     tslib: ^2.4.0
     tsup: ^6.2.3
@@ -606,12 +606,12 @@ __metadata:
     "@discordjs/builders": ^1.2.0
     "@discordjs/collection": ^1.1.0
     "@discordjs/rest": ^1.2.0
-    "@favware/cliff-jumper": ^1.8.7
+    "@favware/cliff-jumper": ^1.8.8
     "@sapphire/pieces": ^3.5.1
     "@sapphire/result": ^2.5.0
-    "@sapphire/utilities": ^3.9.3
+    "@sapphire/utilities": ^3.10.0
     "@vitest/coverage-c8": ^0.23.4
-    discord-api-types: ^0.37.5
+    discord-api-types: ^0.37.11
     tsup: ^6.2.3
     typescript: ^4.8.4
     vitest: ^0.23.4
@@ -622,7 +622,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@skyra/i18next-backend@workspace:packages/i18next-backend"
   dependencies:
-    "@favware/cliff-jumper": ^1.8.7
+    "@favware/cliff-jumper": ^1.8.8
     "@types/node": ^18.7.23
     i18next: ^21.9.2
     tslib: ^2.4.0
@@ -635,7 +635,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@skyra/logger@workspace:packages/logger"
   dependencies:
-    "@favware/cliff-jumper": ^1.8.7
+    "@favware/cliff-jumper": ^1.8.8
     "@vitest/coverage-c8": ^0.23.4
     colorette: 2.0.19
     tsup: ^6.2.3
@@ -648,7 +648,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@skyra/safe-fetch@workspace:packages/safe-fetch"
   dependencies:
-    "@favware/cliff-jumper": ^1.8.7
+    "@favware/cliff-jumper": ^1.8.8
     "@sapphire/result": ^2.5.0
     tsup: ^6.2.3
     typescript: ^4.8.4
@@ -661,10 +661,10 @@ __metadata:
   dependencies:
     "@discordjs/builders": ^1.2.0
     "@discordjs/collection": ^1.1.0
-    "@favware/cliff-jumper": ^1.8.7
+    "@favware/cliff-jumper": ^1.8.8
     "@skyra/http-framework": "workspace:^"
     "@skyra/http-framework-i18n": "workspace:^"
-    discord-api-types: ^0.37.5
+    discord-api-types: ^0.37.11
     tslib: ^2.4.0
     typescript: ^4.8.4
   languageName: unknown
@@ -674,7 +674,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@skyra/start-banner@workspace:packages/start-banner"
   dependencies:
-    "@favware/cliff-jumper": ^1.8.7
+    "@favware/cliff-jumper": ^1.8.8
     "@vitest/coverage-c8": ^0.23.4
     tsup: ^6.2.3
     typescript: ^4.8.4
@@ -686,7 +686,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@skyra/twitch-helpers@workspace:packages/twitch-helpers"
   dependencies:
-    "@favware/cliff-jumper": ^1.8.7
+    "@favware/cliff-jumper": ^1.8.8
     "@sapphire/result": ^2.5.0
     "@skyra/env-utilities": "workspace:^"
     "@skyra/safe-fetch": "workspace:^"
@@ -1281,7 +1281,7 @@ __metadata:
   dependencies:
     "@commitlint/cli": ^17.1.2
     "@commitlint/config-conventional": ^17.1.0
-    "@favware/cliff-jumper": ^1.8.7
+    "@favware/cliff-jumper": ^1.8.8
     "@favware/npm-deprecate": ^1.0.5
     "@sapphire/eslint-config": ^4.3.8
     "@sapphire/prettier-config": ^1.4.4
@@ -1780,10 +1780,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^9.3.0, commander@npm:^9.4.0":
-  version: 9.4.0
-  resolution: "commander@npm:9.4.0"
-  checksum: a322de584a6ccd1ea83c24f6a660e52d16ffbe2613fcfbb8d2cc68bc9dec637492456d754fe8bb5b039ad843ed8e04fb0b107e581a75f62cde9e1a0ab1546e09
+"commander@npm:^9.3.0, commander@npm:^9.4.0, commander@npm:^9.4.1":
+  version: 9.4.1
+  resolution: "commander@npm:9.4.1"
+  checksum: bfb18e325a5bdf772763c2213d5c7d9e77144d944124e988bcd8e5e65fb6d45d5d4e86b09155d0f2556c9a59c31e428720e57968bcd050b2306e910a0bf3cf13
   languageName: node
   linkType: hard
 
@@ -2119,7 +2119,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.10, discord-api-types@npm:^0.37.3, discord-api-types@npm:^0.37.5":
+"discord-api-types@npm:^0.37.10, discord-api-types@npm:^0.37.11, discord-api-types@npm:^0.37.3":
   version: 0.37.11
   resolution: "discord-api-types@npm:0.37.11"
   checksum: 61af711c29dc089f150c0dd41f257e59583d6ef72789bdb63183d328efe73d2df86ef4b6867390ad31441fe3588985a99a2a1ed8fc920b7ba1deda1dceaf5f84
