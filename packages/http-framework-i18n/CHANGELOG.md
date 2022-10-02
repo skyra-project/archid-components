@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.4.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.3.5...@skyra/http-framework-i18n@0.4.0) - (2022-10-02)
+
+## 🐛 Bug Fixes
+
+- **http-framework-i18n:** Bump sapphire utilities and discord-api-types ([11a1d37](https://github.com/skyra-project/archid-components/commit/11a1d3703530f0fbfca8ee19b14187881816457b))
+
+## 🚀 Features
+
+- Add twitch helpers package (#168) ([103160f](https://github.com/skyra-project/archid-components/commit/103160f94898a6842544441a49dd13bb8bacf48f))
+
 # [@skyra/http-framework-i18n@0.3.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.3.4...@skyra/http-framework-i18n@0.3.5) - (2022-09-02)
 
 ## 🐛 Bug Fixes
