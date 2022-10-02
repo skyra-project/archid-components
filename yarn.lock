@@ -531,7 +531,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/result@npm:^2.4.0, @sapphire/result@npm:^2.4.1, @sapphire/result@npm:^2.5.0":
+"@sapphire/result@npm:^2.4.0, @sapphire/result@npm:^2.5.0":
   version: 2.5.0
   resolution: "@sapphire/result@npm:2.5.0"
   checksum: af1eeaae1c4b0acffb6e6f8ce49fa27326a002e469019f40216a574e244625fac967a9b6678124d36f9388efd74c964cdf52c90e5b75705008a48a8cd910087e
@@ -608,7 +608,7 @@ __metadata:
     "@discordjs/rest": ^1.2.0
     "@favware/cliff-jumper": ^1.8.7
     "@sapphire/pieces": ^3.5.1
-    "@sapphire/result": ^2.4.1
+    "@sapphire/result": ^2.5.0
     "@sapphire/utilities": ^3.9.3
     "@vitest/coverage-c8": ^0.23.4
     discord-api-types: ^0.37.5
@@ -649,7 +649,7 @@ __metadata:
   resolution: "@skyra/safe-fetch@workspace:packages/safe-fetch"
   dependencies:
     "@favware/cliff-jumper": ^1.8.7
-    "@sapphire/result": ^2.4.1
+    "@sapphire/result": ^2.5.0
     tsup: ^6.2.3
     typescript: ^4.8.4
   languageName: unknown
