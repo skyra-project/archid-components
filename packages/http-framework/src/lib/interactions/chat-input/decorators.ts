@@ -1,20 +1,20 @@
-import type {
-	SlashCommandBuilder,
-	SlashCommandOptionsOnlyBuilder,
-	SlashCommandSubcommandBuilder,
-	SlashCommandSubcommandGroupBuilder,
-	SlashCommandSubcommandsOnlyBuilder
-} from '@discordjs/builders';
+import type { SlashCommandBuilder, SlashCommandSubcommandBuilder, SlashCommandSubcommandGroupBuilder } from '@discordjs/builders';
 import {
 	ApplicationCommandOptionType,
 	ApplicationCommandType,
 	type APIApplicationCommandOption,
 	type APIApplicationCommandSubcommandGroupOption,
-	type APIApplicationCommandSubcommandOption,
 	type RESTPostAPIChatInputApplicationCommandsJSONBody
 } from 'discord-api-types/v10';
 import type { Command } from '../../structures/Command';
-import { normalizeChatInputCommand, normalizeChatInputSubCommand, normalizeChatInputSubCommandGroup } from '../../utils/normalizeInput';
+import {
+	normalizeChatInputCommand,
+	normalizeChatInputSubCommand,
+	normalizeChatInputSubCommandGroup,
+	type ChatInputCommandDataResolvable,
+	type ChatInputCommandSubCommandDataResolvable,
+	type ChatInputCommandSubCommandGroupDataResolvable
+} from '../../utils/normalizeInput';
 import { link } from '../shared/link';
 import { chatInputCommandRegistry } from './shared';
 
@@ -50,22 +50,8 @@ function mergeOption(existing: APIApplicationCommandOption | undefined, data: AP
 	return { ...existing, ...data } as any;
 }
 
-export function RegisterCommand(
-	command:
-		| RESTPostAPIChatInputApplicationCommandsJSONBody
-		| SlashCommandBuilder
-		| SlashCommandSubcommandsOnlyBuilder
-		| SlashCommandOptionsOnlyBuilder
-		| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>
-		| ((
-				builder: SlashCommandBuilder
-		  ) =>
-				| SlashCommandBuilder
-				| SlashCommandSubcommandsOnlyBuilder
-				| SlashCommandOptionsOnlyBuilder
-				| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>)
-) {
-	const builtData = normalizeChatInputCommand(command);
+export function RegisterCommand(data: ChatInputCommandDataResolvable | ((builder: SlashCommandBuilder) => ChatInputCommandDataResolvable)) {
+	const builtData = normalizeChatInputCommand(data);
 
 	return function decorate(target: typeof Command) {
 		chatInputCommandRegistry.set(target, { type: ApplicationCommandType.ChatInput, ...merge(chatInputCommandRegistry.get(target), builtData) });
@@ -73,12 +59,11 @@ export function RegisterCommand(
 }
 
 export function RegisterSubCommandGroup(
-	subCommandGroup:
-		| APIApplicationCommandSubcommandGroupOption
-		| SlashCommandSubcommandGroupBuilder
-		| ((builder: SlashCommandSubcommandGroupBuilder) => SlashCommandSubcommandGroupBuilder)
+	data:
+		| ChatInputCommandSubCommandGroupDataResolvable
+		| ((builder: SlashCommandSubcommandGroupBuilder) => ChatInputCommandSubCommandGroupDataResolvable)
 ) {
-	const builtData = normalizeChatInputSubCommandGroup(subCommandGroup);
+	const builtData = normalizeChatInputSubCommandGroup(data);
 
 	return function decorate(target: Command, method: string) {
 		const existing = chatInputCommandRegistry.ensure(target.constructor as typeof Command, () => ({
@@ -93,10 +78,7 @@ export function RegisterSubCommandGroup(
 }
 
 export function RegisterSubCommand(
-	subCommand:
-		| APIApplicationCommandSubcommandOption
-		| SlashCommandSubcommandBuilder
-		| ((builder: SlashCommandSubcommandBuilder) => SlashCommandSubcommandBuilder),
+	subCommand: ChatInputCommandSubCommandDataResolvable | ((builder: SlashCommandSubcommandBuilder) => ChatInputCommandSubCommandDataResolvable),
 	subCommandGroupName?: string | null
 ) {
 	const builtData = normalizeChatInputSubCommand(subCommand);

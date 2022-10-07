@@ -1,13 +1,13 @@
 import type { ContextMenuCommandBuilder } from '@discordjs/builders';
 import { ApplicationCommandType } from 'discord-api-types/v10';
 import type { Command } from '../../structures/Command';
-import { normalizeContextMenuCommand } from '../../utils/normalizeInput';
+import { ContextMenuCommandDataResolvable, normalizeContextMenuCommand } from '../../utils/normalizeInput';
 import { link } from '../shared/link';
-import { contextMenuCommandRegistry, type ContextMenuOptions } from './shared';
+import { contextMenuCommandRegistry } from './shared';
 
 /**
  * Registers a user command.
- * @param command The command to register.
+ * @param data The command to register.
  * @example
  * ```typescript
  * export class UserCommand extends Command {
@@ -20,9 +20,9 @@ import { contextMenuCommandRegistry, type ContextMenuOptions } from './shared';
  * @returns A method decorator function, does not override the method.
  */
 export function RegisterUserCommand(
-	command: ContextMenuOptions | ContextMenuCommandBuilder | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandBuilder)
+	data: ContextMenuCommandDataResolvable | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandDataResolvable)
 ) {
-	const builtData = normalizeContextMenuCommand(command, ApplicationCommandType.User);
+	const builtData = normalizeContextMenuCommand(data, ApplicationCommandType.User);
 
 	return function decorate(target: Command, method: string) {
 		const commands = contextMenuCommandRegistry.ensure(target.constructor as typeof Command, () => []);
@@ -32,7 +32,7 @@ export function RegisterUserCommand(
 
 /**
  * Registers a message command.
- * @param command The command to register.
+ * @param data The command to register.
  * @example
  * ```typescript
  * export class UserCommand extends Command {
@@ -45,9 +45,9 @@ export function RegisterUserCommand(
  * @returns A method decorator function, does not override the method.
  */
 export function RegisterMessageCommand(
-	command: ContextMenuOptions | ContextMenuCommandBuilder | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandBuilder)
+	data: ContextMenuCommandDataResolvable | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandDataResolvable)
 ) {
-	const builtData = normalizeContextMenuCommand(command, ApplicationCommandType.Message);
+	const builtData = normalizeContextMenuCommand(data, ApplicationCommandType.Message);
 
 	return function decorate(target: Command, method: string) {
 		const commands = contextMenuCommandRegistry.ensure(target.constructor as typeof Command, () => []);
