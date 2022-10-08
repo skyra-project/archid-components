@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@0.3.1](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.3.0...@skyra/shared-http-pieces@0.3.1) - (2022-10-08)
+
+## 🏠 Refactor
+
+- Use hfx-i18n utilities (#178) ([4e15333](https://github.com/skyra-project/archid-components/commit/4e15333205c3fc97fe5b54e46bb5a5ea999a6c36))
+
 # [@skyra/shared-http-pieces@0.3.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.2.0...@skyra/shared-http-pieces@0.3.0) - (2022-10-08)
 
 ## 🏠 Refactor
