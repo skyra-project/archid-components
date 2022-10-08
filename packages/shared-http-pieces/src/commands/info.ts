@@ -1,19 +1,18 @@
 import { EmbedBuilder, time, TimestampStyles } from '@discordjs/builders';
 import { Command, RegisterCommand, type MessageResponseOptions } from '@skyra/http-framework';
-import { getSupportedUserLanguageT, type TFunction } from '@skyra/http-framework-i18n';
+import { applyLocalizedBuilder, getSupportedUserLanguageT, type TFunction } from '@skyra/http-framework-i18n';
 import { ButtonStyle, ComponentType, MessageFlags, type APIEmbedField } from 'discord-api-types/v10';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
-import { generateLocalizedCommandInformation } from '../lib/i18n/utils.js';
 import { getInvite, getRepository } from '../lib/information.js';
 
-@RegisterCommand(generateLocalizedCommandInformation('commands/shared:info'))
+@RegisterCommand((builder) => applyLocalizedBuilder(builder, 'commands/shared:info'))
 export class UserCommand extends Command {
 	public override chatInputRun(interaction: Command.ChatInputInteraction) {
 		const t = getSupportedUserLanguageT(interaction);
 		const embed = new EmbedBuilder()
 			.setDescription(t(LanguageKeys.Commands.Shared.InfoEmbedDescription))
-			.addFields([this.getUptimeStatistics(t), this.getServerUsageStatistics(t)]);
+			.addFields(this.getUptimeStatistics(t), this.getServerUsageStatistics(t));
 		const components = this.getComponents(t);
 
 		return interaction.reply({ embeds: [embed.toJSON()], components, flags: MessageFlags.Ephemeral });
