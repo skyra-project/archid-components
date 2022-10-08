@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@0.3.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.2.0...@skyra/shared-http-pieces@0.3.0) - (2022-10-08)
+
+## 🏠 Refactor
+
+- Support `JSONEncodable<T>` types in registry ([59a57d9](https://github.com/skyra-project/archid-components/commit/59a57d906b5765374d8cf8fc509c32273b477195))
+  - 💥 **feat:** `RegisterCommand` now supports any object with `toJSON(): RESTPostAPIChatInputApplicationCommandsJSONBody`
+  - 💥 **feat:** `RegisterCommand` now supports `Omit<RESTPostAPIChatInputApplicationCommandsJSONBody, 'type'>` as valid returned value from function overload
+  - 💥 **feat:** `RegisterSubCommand` now supports any object with `toJSON(): APIApplicationCommandSubcommandOption`
+  - 💥 **feat:** `RegisterSubCommand` now supports `Omit<APIApplicationCommandSubcommandOption, 'type'>` as valid returned value from function overload
+  - 💥 **feat:** `RegisterSubCommandGroup` now supports any object with `toJSON(): APIApplicationCommandSubcommandGroupOption`
+  - 💥 **feat:** `RegisterSubCommandGroup` now supports `Omit<APIApplicationCommandSubcommandGroupOption, 'type'>` as valid returned value from function overload
+  - 💥 **BREAKING CHANGE:** 
+  - 💥 **refactor:** removed `makeContextMenuCommand`, it was a remnant from older utilities
+  - 💥 **BREAKING CHANGE:** 
+  - 💥 **refactor:** removed `ContextMenuOptions` type, use `Omit<RESTPostAPIContextMenuApplicationCommandsJSONBody, 'type'>` instead
+
 # [@skyra/shared-http-pieces@0.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.1.0...@skyra/shared-http-pieces@0.2.0) - (2022-10-02)
 
 ## 🐛 Bug Fixes
