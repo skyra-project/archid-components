@@ -23,12 +23,12 @@
 		"@sapphire/eslint-config": "^4.3.8",
 		"@sapphire/prettier-config": "^1.4.4",
 		"@sapphire/ts-config": "^3.3.4",
-		"@swc/core": "^1.3.6",
+		"@swc/core": "^1.3.8",
 		"@types/node": "^18.8.3",
 		"@types/ws": "^8.5.3",
-		"@typescript-eslint/eslint-plugin": "^5.39.0",
-		"@typescript-eslint/parser": "^5.39.0",
-		"@vitest/coverage-c8": "^0.24.0",
+		"@typescript-eslint/eslint-plugin": "^5.40.0",
+		"@typescript-eslint/parser": "^5.40.0",
+		"@vitest/coverage-c8": "^0.24.3",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.25.0",
 		"eslint-config-prettier": "^8.5.0",
@@ -38,13 +38,13 @@
 		"prettier": "^2.7.1",
 		"pretty-quick": "^3.1.3",
 		"tsup": "^6.2.3",
-		"turbo": "^1.5.5",
+		"turbo": "^1.5.6",
 		"typescript": "^4.8.4",
-		"vitest": "^0.24.0"
+		"vitest": "^0.24.3"
 	},
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
-		"minimist": "1.2.6"
+		"minimist": "1.2.7"
 	},
 	"engines": {
 		"node": ">=18.0.0"
