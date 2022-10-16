@@ -52,7 +52,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/result": "^2.5.0"
+		"@sapphire/result": "^2.6.0"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.8.8",

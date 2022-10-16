@@ -49,7 +49,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/result": "^2.5.0",
+		"@sapphire/result": "^2.6.0",
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/safe-fetch": "workspace:^"
 	},
