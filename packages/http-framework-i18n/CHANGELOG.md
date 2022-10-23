@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.6.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.5.0...@skyra/http-framework-i18n@0.6.0) - (2022-10-23)
+
+## 🐛 Bug Fixes
+
+- **http-framework-i18n:** Update package description ([8bcd779](https://github.com/skyra-project/archid-components/commit/8bcd7795b4943545e5894b48455da6ba539ba3b1))
+  - 💥 **BREAKING CHANGE:** This package now depends on i18next v22, please refer to
+  - 💥 **https:** //github.com/i18next/i18next/blob/HEAD/CHANGELOG.md#2200 for further
+breaking changes
+- **deps:** Update dependency @sapphire/utilities to ^3.11.0 ([5e51420](https://github.com/skyra-project/archid-components/commit/5e51420a6fc39939fe50738247f7ede86360cc73))
+
 # [@skyra/http-framework-i18n@0.5.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.4.0...@skyra/http-framework-i18n@0.5.0) - (2022-10-08)
 
 ## 🏠 Refactor
