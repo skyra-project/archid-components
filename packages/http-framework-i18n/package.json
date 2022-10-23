@@ -1,7 +1,7 @@
 {
 	"name": "@skyra/http-framework-i18n",
 	"version": "0.5.0",
-	"description": "The common pieces for ArchId Network's HTTP-only bots",
+	"description": "An internationalization layer powered by i18next and @skyra/i18next-backend for @skyra/http-framework",
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/index.js",
