@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/i18next-backend@2.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@1.1.0...@skyra/i18next-backend@2.0.0) - (2022-10-23)
+
+## 🏠 Refactor
+
+- Support `JSONEncodable<T>` types in registry ([59a57d9](https://github.com/skyra-project/archid-components/commit/59a57d906b5765374d8cf8fc509c32273b477195))
+  - 💥 **feat:** `RegisterCommand` now supports any object with `toJSON(): RESTPostAPIChatInputApplicationCommandsJSONBody`
+  - 💥 **feat:** `RegisterCommand` now supports `Omit<RESTPostAPIChatInputApplicationCommandsJSONBody, 'type'>` as valid returned value from function overload
+  - 💥 **feat:** `RegisterSubCommand` now supports any object with `toJSON(): APIApplicationCommandSubcommandOption`
+  - 💥 **feat:** `RegisterSubCommand` now supports `Omit<APIApplicationCommandSubcommandOption, 'type'>` as valid returned value from function overload
+  - 💥 **feat:** `RegisterSubCommandGroup` now supports any object with `toJSON(): APIApplicationCommandSubcommandGroupOption`
+  - 💥 **feat:** `RegisterSubCommandGroup` now supports `Omit<APIApplicationCommandSubcommandGroupOption, 'type'>` as valid returned value from function overload
+  - 💥 **BREAKING CHANGE:** 
+  - 💥 **refactor:** removed `makeContextMenuCommand`, it was a remnant from older utilities
+  - 💥 **BREAKING CHANGE:** 
+  - 💥 **refactor:** removed `ContextMenuOptions` type, use `Omit<RESTPostAPIContextMenuApplicationCommandsJSONBody, 'type'>` instead
+
+## 🐛 Bug Fixes
+
+- **i18next-backend:** Update package description ([46691c1](https://github.com/skyra-project/archid-components/commit/46691c126a13e453eaac632fa99c5c9c8530366c))
+  - 💥 **BREAKING CHANGE:** This package now depends on i18next v22, please refer to
+  - 💥 **https:** //github.com/i18next/i18next/blob/HEAD/CHANGELOG.md#2200 for further
+breaking changes
+
 # [@skyra/i18next-backend@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@1.0.2...@skyra/i18next-backend@1.1.0) - (2022-10-02)
 
 ## 🐛 Bug Fixes
