@@ -1,7 +1,7 @@
 {
 	"name": "@skyra/i18next-backend",
 	"version": "1.1.0",
-	"description": "A filesystem-based backend for i18next",
+	"description": "A fast and modern filesystem-based i18next backend for Node.js.",
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/index.js",
