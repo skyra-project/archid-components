@@ -1,5 +1,5 @@
 import { Collection } from '@discordjs/collection';
-import { Store } from '@sapphire/pieces';
+import { container, Store } from '@sapphire/pieces';
 import { Result } from '@sapphire/result';
 import type { Awaitable } from '@sapphire/utilities';
 import {
@@ -29,18 +29,26 @@ export class CommandStore extends Store<Command> {
 				: this.contextMenuCommands.get(interaction.data.name);
 
 		if (!command) {
+			container.client.emit('commandNameUnknown', interaction, response);
 			response.statusCode = HttpCodes.NotImplemented;
 			return response.end(ErrorMessages.UnknownCommandName);
 		}
 
+		const context = { command, interaction, response };
 		const method = this.routeCommandMethodName(command, interaction.data);
 		if (!method) {
+			container.client.emit('commandMethodUnknown', context);
 			response.statusCode = HttpCodes.NotImplemented;
 			return response.end(ErrorMessages.UnknownCommandHandler);
 		}
 
+		container.client.emit('commandRun', context);
 		const result = await Result.fromAsync(() => this.runCommandMethod(command, method, makeInteraction(response, interaction)));
-		result.inspectErr((error) => handleError(response, error));
+		result
+			.inspect((value) => container.client.emit('commandSuccess', context, value))
+			.inspectErr((error) => (handleError(response, error), container.client.emit('commandError', error, context)));
+
+		container.client.emit('commandFinish', context);
 		return response;
 	}
 
@@ -49,21 +57,29 @@ export class CommandStore extends Store<Command> {
 		interaction: APIApplicationCommandAutocompleteInteraction
 	): Promise<ServerResponse> {
 		if (!interaction.data?.name) {
+			container.client.emit('commandNameMissing', interaction, response);
 			response.statusCode = HttpCodes.BadRequest;
 			return response.end(ErrorMessages.MissingCommandName);
 		}
 
 		const command = this.get(interaction.data.name);
 		if (!command) {
+			container.client.emit('commandNameUnknown', interaction, response);
 			response.statusCode = HttpCodes.NotImplemented;
 			return response.end(ErrorMessages.UnknownCommandName);
 		}
 
+		const context = { command, interaction, response };
 		const options = transformAutocompleteInteraction(interaction.data.resolved ?? {}, interaction.data.options);
 
+		container.client.emit('autocompleteRun', context);
 		// eslint-disable-next-line @typescript-eslint/dot-notation
 		const result = await Result.fromAsync(() => command['autocompleteRun'](makeInteraction(response, interaction), options));
-		result.inspectErr((error) => handleError(response, error));
+		result
+			.inspect((value) => container.client.emit('autocompleteSuccess', context, value))
+			.inspectErr((error) => (handleError(response, error), container.client.emit('autocompleteError', error, context)));
+
+		container.client.emit('autocompleteFinish', context);
 		return response;
 	}
 
