@@ -1,11 +1,12 @@
 import { REST, type RESTOptions } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { isNullishOrEmpty } from '@sapphire/utilities';
+import { AsyncEventEmitter } from '@vladfrangu/async_event_emitter';
 import { InteractionType, type APIInteraction } from 'discord-api-types/v10';
-import { EventEmitter } from 'node:events';
 import { createServer, type IncomingMessage, type Server, type ServerOptions, type ServerResponse } from 'node:http';
 import type { ListenOptions as NetListenOptions } from 'node:net';
 import { HttpCodes } from './api/HttpCodes';
+import type { MappedClientEvents } from './ClientEvents';
 import type { IIdParser } from './components/IIdParser';
 import { StringIdParser } from './components/StringIdParser';
 import { CommandStore } from './structures/CommandStore';
@@ -19,13 +20,13 @@ container.stores.register(new CommandStore());
 container.stores.register(new InteractionHandlerStore());
 container.stores.register(new ListenerStore());
 
-export class Client extends EventEmitter {
+export class Client extends AsyncEventEmitter<MappedClientEvents> {
 	public server!: Server;
 	public readonly bodySizeLimit: number;
 	#discordPublicKey: string;
 
 	public constructor(options: ClientOptions = {}) {
-		super({ captureRejections: true });
+		super();
 		this.bodySizeLimit = options.bodySizeLimit ?? 1024 * 1024;
 
 		const discordPublicKey = options.discordPublicKey ?? process.env.DISCORD_PUBLIC_KEY;
@@ -185,9 +186,9 @@ export interface ListenOptions extends Omit<NetListenOptions, 'path' | 'readable
 }
 
 export namespace Client {
-	export type Options = import('./Client').ClientOptions;
-	export type PieceLoadOptions = import('./Client').LoadOptions;
-	export type ServerListenOptions = import('./Client').ListenOptions;
+	export type Options = ClientOptions;
+	export type PieceLoadOptions = LoadOptions;
+	export type ServerListenOptions = ListenOptions;
 }
 
 declare module '@sapphire/pieces' {

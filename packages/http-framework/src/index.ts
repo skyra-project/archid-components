@@ -15,6 +15,7 @@ export {
 } from '@sapphire/pieces';
 export * from './lib/api/HttpCodes';
 export * from './lib/Client';
+export * from './lib/ClientEvents';
 export * from './lib/components/IIdParser';
 export * from './lib/components/StringIdParser';
 export * from './lib/interactions';
