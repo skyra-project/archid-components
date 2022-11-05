@@ -2,6 +2,97 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.14.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.13.0...@skyra/http-framework@0.14.0) - (2022-11-05)
+
+## 🐛 Bug Fixes
+
+- **http-framework:** Manually set next major version ([dcd57ee](https://github.com/skyra-project/archid-components/commit/dcd57ee27c61d2dcd0895be7726357fde45ffa46))
+- **deps:** Update dependency @sapphire/result to ^2.6.0 (#185) ([cbc9cce](https://github.com/skyra-project/archid-components/commit/cbc9cce0004bcb67b4713b24fb8a1c50f2b39be7))
+- **deps:** Update dependency @sapphire/utilities to ^3.11.0 ([5e51420](https://github.com/skyra-project/archid-components/commit/5e51420a6fc39939fe50738247f7ede86360cc73))
+
+## 🚀 Features
+
+- Added event hooks (#194) ([fc9a728](https://github.com/skyra-project/archid-components/commit/fc9a72803bb8fba9feb642adc2bd3270d00a6699))
+  - 💥 **BREAKING CHANGE:** `Client` now extends `@vladfrangu/async_event_emitter`
+
+# [@skyra/http-framework@0.13.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.12.0...@skyra/http-framework@0.13.0) - (2022-10-08)
+
+## 🏠 Refactor
+
+- Support `JSONEncodable<T>` types in registry ([59a57d9](https://github.com/skyra-project/archid-components/commit/59a57d906b5765374d8cf8fc509c32273b477195))
+  - 💥 **feat:** `RegisterCommand` now supports any object with `toJSON(): RESTPostAPIChatInputApplicationCommandsJSONBody`
+  - 💥 **feat:** `RegisterCommand` now supports `Omit<RESTPostAPIChatInputApplicationCommandsJSONBody, 'type'>` as valid returned value from function overload
+  - 💥 **feat:** `RegisterSubCommand` now supports any object with `toJSON(): APIApplicationCommandSubcommandOption`
+  - 💥 **feat:** `RegisterSubCommand` now supports `Omit<APIApplicationCommandSubcommandOption, 'type'>` as valid returned value from function overload
+  - 💥 **feat:** `RegisterSubCommandGroup` now supports any object with `toJSON(): APIApplicationCommandSubcommandGroupOption`
+  - 💥 **feat:** `RegisterSubCommandGroup` now supports `Omit<APIApplicationCommandSubcommandGroupOption, 'type'>` as valid returned value from function overload
+  - 💥 **BREAKING CHANGE:** 
+  - 💥 **refactor:** removed `makeContextMenuCommand`, it was a remnant from older utilities
+  - 💥 **BREAKING CHANGE:** 
+  - 💥 **refactor:** removed `ContextMenuOptions` type, use `Omit<RESTPostAPIContextMenuApplicationCommandsJSONBody, 'type'>` instead
+
+# [@skyra/http-framework@0.12.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.11.1...@skyra/http-framework@0.12.0) - (2022-10-02)
+
+## 🐛 Bug Fixes
+
+- **http-framework:** Bump pieces ([be12a2b](https://github.com/skyra-project/archid-components/commit/be12a2b943c90bb3c43d3352b0fe983c75ae7432))
+- **http-framework:** Bump sapphire utilities and discord-api-types ([afcc268](https://github.com/skyra-project/archid-components/commit/afcc268c1c443a4eefeb9b19c9004eafd23dca8f))
+- **deps:** Update dependency @sapphire/result to ^2.5.0 ([e227a55](https://github.com/skyra-project/archid-components/commit/e227a5550cb619845cb685d669052d9e18509e3f))
+- **deps:** Update dependency @discordjs/rest to ^1.2.0 ([095207f](https://github.com/skyra-project/archid-components/commit/095207fbfacfb8f7692d570f7333671003c57cc2))
+- **http-framework:** Ensure node16 compatibility (#172) ([a82d88f](https://github.com/skyra-project/archid-components/commit/a82d88fcfe5739ab67e206724700e09de2bca333))
+
+## 🚀 Features
+
+- Add twitch helpers package (#168) ([103160f](https://github.com/skyra-project/archid-components/commit/103160f94898a6842544441a49dd13bb8bacf48f))
+
+# [@skyra/http-framework@0.11.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.11.0...@skyra/http-framework@0.11.1) - (2022-09-02)
+
+## 🐛 Bug Fixes
+
+- **hfx:** Set default emitter (#159) ([f84f1fd](https://github.com/skyra-project/archid-components/commit/f84f1fddc434098e088d7ee4cb04d246e8c47283))
+- **hfx:** `Interaction#followup` sending `PATCH` instead of `POST` (#160) ([07a0bca](https://github.com/skyra-project/archid-components/commit/07a0bca6666c3690dad0a0cd99b35efd178cca82))
+- **http-framework:** Bump @sapphire/utilities ([948b370](https://github.com/skyra-project/archid-components/commit/948b370a46ccf9f2bd0f8267fae1ed0c943e3231))
+
+# [@skyra/http-framework@0.11.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.10.0...@skyra/http-framework@0.11.0) - (2022-09-01)
+
+## 🏠 Refactor
+
+- **hfx:** Better interaction handling (#157) ([53925e2](https://github.com/skyra-project/archid-components/commit/53925e2c6ad4efff3bb1c5d3a7ed06b0300ae733))
+  - 💥 **BREAKING CHANGE:** `BaseInteraction#applicationPermissions` now defaults to raw value (`undefined`)
+  - 💥 **BREAKING CHANGE:** `BaseInteraction#channelId` now defaults to raw value (`undefined`)
+  - 💥 **BREAKING CHANGE:** `BaseInteraction#guildId` now defaults to raw value (`undefined`)
+  - 💥 **BREAKING CHANGE:** `BaseInteraction#guildLocale` now defaults to raw value (`undefined`)
+  - 💥 **BREAKING CHANGE:** `BaseInteraction#member` now defaults to raw value (`undefined`)
+  - 💥 **BREAKING CHANGE:** `BaseInteraction#sendEmptyAutocomplete` is renamed to `replyEmpty`
+  - 💥 **BREAKING CHANGE:** `BaseInteraction#sendMessage` is renamed to `reply`
+  - 💥 **BREAKING CHANGE:** `BaseInteraction#sendModal` is not longer available on `ModalSubmit`
+  - 💥 **BREAKING CHANGE:** `BaseInteraction#sendModal` is renamed to `showModal`
+  - 💥 **BREAKING CHANGE:** `Interactions.ChatInput` is renamed to `Interactions.ChatInputCommand`
+  - 💥 **BREAKING CHANGE:** `Interactions.ChatInput` is renamed to `Interactions.ChatInputCommand`
+  - 💥 **BREAKING CHANGE:** `Interactions.Message` is renamed to `Interactions.MessageContextMenuCommand`
+  - 💥 **BREAKING CHANGE:** `Interactions.Modal` is renamed to `Interactions.ModalSubmit`
+  - 💥 **BREAKING CHANGE:** `Interactions.User` is renamed to `Interactions.UserContextMenuCommand`
+  - 💥 **BREAKING CHANGE:** Removed `Interaction` class, it's now an alias of `Interactions.Any`
+
+## 🐛 Bug Fixes
+
+- **hfx:** Bump @sapphire/result to v2.4.1 ([2c4e466](https://github.com/skyra-project/archid-components/commit/2c4e4666597b8203b7e94d0cc6e990faa0d0e328))
+
+# [@skyra/http-framework@0.10.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.9.2...@skyra/http-framework@0.10.0) - (2022-08-29)
+
+## 🏠 Refactor
+
+- **hfx:** Remove `fastify` (#154) ([08911c0](https://github.com/skyra-project/archid-components/commit/08911c029460c0edc733e19505613738394126fa))
+
+## 🐛 Bug Fixes
+
+- Bump discord-api-types ([28a74f0](https://github.com/skyra-project/archid-components/commit/28a74f07a1585bb86adaa2768874400cab841c35))
+- **hfx:** Add safe text body reader (#155) ([9b28833](https://github.com/skyra-project/archid-components/commit/9b28833f7b431504c194c66f9d44cb020916a0a3))
+
+## 🚀 Features
+
+- **hfx:** Add `Listener` structure (#156) ([6a61c40](https://github.com/skyra-project/archid-components/commit/6a61c4084d514790c78235573e3d2e7d7cf0eac8))
+
 # [@skyra/http-framework@0.13.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.12.0...@skyra/http-framework@0.13.0) - (2022-10-08)
 
 ## 🏠 Refactor
