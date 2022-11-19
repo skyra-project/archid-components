@@ -634,7 +634,7 @@ __metadata:
     "@sapphire/utilities": ^3.11.0
     "@vitest/coverage-c8": ^0.25.1
     "@vladfrangu/async_event_emitter": ^2.1.2
-    discord-api-types: ^0.37.12
+    discord-api-types: ^0.37.17
     tsup: ^6.4.0
     typescript: ^4.8.4
     vitest: ^0.25.1
@@ -2242,6 +2242,13 @@ __metadata:
   version: 0.37.12
   resolution: "discord-api-types@npm:0.37.12"
   checksum: 0dd6bd5ad9e80708e020904fd3fc0e538df89549ea398559e51fdb562428aaddd07b3b218c7aac574c18153fe5e3bed45860ba6af6c8ccc5f4e408ffc25e3d58
+  languageName: node
+  linkType: hard
+
+"discord-api-types@npm:^0.37.17":
+  version: 0.37.18
+  resolution: "discord-api-types@npm:0.37.18"
+  checksum: 66f8910f56cb882c85a698d723615d09407ce70b74fc9d8e033cc6620b45e3bdcbf19504e0b9428bdd2edfd47d12a5d97c086671f8b2c255e823b97a7c1b10fa
   languageName: node
   linkType: hard
 
