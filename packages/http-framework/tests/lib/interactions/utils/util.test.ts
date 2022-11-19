@@ -14,6 +14,7 @@ import {
 	ChatInputApplicationCommandInteractionData,
 	MessageApplicationCommandInteractionData,
 	MessageComponentButtonInteractionData,
+	MessageComponentChannelSelectInteractionData,
 	MessageComponentSelectMenuInteractionData,
 	ModalSubmitInteractionData,
 	UserApplicationCommandInteractionData
@@ -55,6 +56,12 @@ describe('util', () => {
 
 		test('GIVEN THEN returns MessageComponentSelectMenuInteraction instance', () => {
 			const interaction = makeInteraction(response, MessageComponentSelectMenuInteractionData);
+
+			expect<MessageComponentSelectMenuInteraction>(interaction).toBeInstanceOf(MessageComponentSelectMenuInteraction);
+		});
+
+		test('GIVEN THEN returns MessageComponentSelectMenuInteraction instance', () => {
+			const interaction = makeInteraction(response, MessageComponentChannelSelectInteractionData);
 
 			expect<MessageComponentSelectMenuInteraction>(interaction).toBeInstanceOf(MessageComponentSelectMenuInteraction);
 		});

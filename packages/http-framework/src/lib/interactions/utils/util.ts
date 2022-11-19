@@ -46,7 +46,11 @@ export function makeInteraction(response: ServerResponse, interaction: BaseInter
 			switch (interaction.data.component_type) {
 				case ComponentType.Button:
 					return new MessageComponentButtonInteraction(response, interaction as APIMessageComponentButtonInteraction);
-				case ComponentType.SelectMenu:
+				case ComponentType.StringSelect:
+				case ComponentType.UserSelect:
+				case ComponentType.RoleSelect:
+				case ComponentType.MentionableSelect:
+				case ComponentType.ChannelSelect:
 					return new MessageComponentSelectMenuInteraction(response, interaction as APIMessageComponentSelectMenuInteraction);
 			}
 		case InteractionType.ApplicationCommandAutocomplete:
