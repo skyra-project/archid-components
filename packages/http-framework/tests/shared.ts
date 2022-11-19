@@ -120,6 +120,14 @@ export const MessageComponentSelectMenuInteractionData: APIMessageComponentSelec
 	message: MessageData
 };
 
+export const MessageComponentChannelSelectInteractionData: APIMessageComponentSelectMenuInteraction = {
+	...BaseInteractionData,
+	type: InteractionType.MessageComponent,
+	data: { component_type: ComponentType.ChannelSelect, custom_id: 'channelselect:foo:bar', values: [], resolved: { channels: {} } },
+	channel_id: MessageData.channel_id,
+	message: MessageData
+};
+
 export const ModalSubmitInteractionData: APIModalSubmitInteraction = {
 	...BaseInteractionData,
 	type: InteractionType.ModalSubmit,
