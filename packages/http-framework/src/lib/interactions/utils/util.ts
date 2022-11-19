@@ -9,7 +9,6 @@ import {
 	type APIInteraction,
 	type APIMessageApplicationCommandInteraction,
 	type APIMessageComponentButtonInteraction,
-	type APIMessageComponentSelectMenuInteraction,
 	type APIPingInteraction,
 	type APIUserApplicationCommandInteraction
 } from 'discord-api-types/v10';
@@ -20,7 +19,11 @@ import {
 	AutocompleteInteraction,
 	ChatInputCommandInteraction,
 	MessageComponentButtonInteraction,
-	MessageComponentSelectMenuInteraction,
+	MessageComponentChannelSelectInteraction,
+	MessageComponentMentionableSelectInteraction,
+	MessageComponentRoleSelectInteraction,
+	MessageComponentStringSelectInteraction,
+	MessageComponentUserSelectInteraction,
 	MessageContextMenuCommandInteraction,
 	ModalSubmitInteraction,
 	UserContextMenuCommandInteraction,
@@ -47,11 +50,18 @@ export function makeInteraction(response: ServerResponse, interaction: BaseInter
 				case ComponentType.Button:
 					return new MessageComponentButtonInteraction(response, interaction as APIMessageComponentButtonInteraction);
 				case ComponentType.StringSelect:
+					return new MessageComponentStringSelectInteraction(response, interaction as MessageComponentStringSelectInteraction.Type);
 				case ComponentType.UserSelect:
+					return new MessageComponentUserSelectInteraction(response, interaction as MessageComponentUserSelectInteraction.Type);
 				case ComponentType.RoleSelect:
+					return new MessageComponentRoleSelectInteraction(response, interaction as MessageComponentRoleSelectInteraction.Type);
 				case ComponentType.MentionableSelect:
+					return new MessageComponentMentionableSelectInteraction(
+						response,
+						interaction as MessageComponentMentionableSelectInteraction.Type
+					);
 				case ComponentType.ChannelSelect:
-					return new MessageComponentSelectMenuInteraction(response, interaction as APIMessageComponentSelectMenuInteraction);
+					return new MessageComponentChannelSelectInteraction(response, interaction as MessageComponentChannelSelectInteraction.Type);
 			}
 		case InteractionType.ApplicationCommandAutocomplete:
 			return new AutocompleteInteraction(response, interaction);
@@ -70,8 +80,16 @@ export type TransformRaw<T extends BaseInteractionType> = T extends Autocomplete
 	? MessageContextMenuCommandInteraction
 	: T extends MessageComponentButtonInteraction.Type
 	? MessageComponentButtonInteraction
-	: T extends MessageComponentSelectMenuInteraction.Type
-	? MessageComponentSelectMenuInteraction
+	: T extends MessageComponentChannelSelectInteraction.Type
+	? MessageComponentChannelSelectInteraction
+	: T extends MessageComponentMentionableSelectInteraction.Type
+	? MessageComponentMentionableSelectInteraction
+	: T extends MessageComponentRoleSelectInteraction.Type
+	? MessageComponentRoleSelectInteraction
+	: T extends MessageComponentStringSelectInteraction.Type
+	? MessageComponentStringSelectInteraction
+	: T extends MessageComponentUserSelectInteraction.Type
+	? MessageComponentUserSelectInteraction
 	: T extends ModalSubmitInteraction.Type
 	? ModalSubmitInteraction
 	: never;

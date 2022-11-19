@@ -34,7 +34,7 @@
 		"@discordjs/collection": "^1.2.0",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
-		"discord-api-types": "^0.37.12",
+		"discord-api-types": "^0.37.18",
 		"tslib": "^2.4.1"
 	},
 	"repository": {
@@ -67,7 +67,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.8.8",
-		"typescript": "^4.8.4"
+		"@favware/cliff-jumper": "^1.9.0",
+		"typescript": "^4.9.3"
 	}
 }

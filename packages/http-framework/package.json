@@ -29,14 +29,14 @@
 		"@sapphire/result": "^2.6.0",
 		"@sapphire/utilities": "^3.11.0",
 		"@vladfrangu/async_event_emitter": "^2.1.2",
-		"discord-api-types": "^0.37.17"
+		"discord-api-types": "^0.37.18"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^1.8.8",
-		"@vitest/coverage-c8": "^0.25.1",
-		"tsup": "^6.4.0",
-		"typescript": "^4.8.4",
-		"vitest": "^0.25.1"
+		"@favware/cliff-jumper": "^1.9.0",
+		"@vitest/coverage-c8": "^0.25.2",
+		"tsup": "^6.5.0",
+		"typescript": "^4.9.3",
+		"vitest": "^0.25.2"
 	},
 	"repository": {
 		"type": "git",
