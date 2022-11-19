@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@0.4.1](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.4.0...@skyra/shared-http-pieces@0.4.1) - (2022-11-19)
+
+## 🏠 Refactor
+
+- Add select menu classes (#200) ([cbab493](https://github.com/skyra-project/archid-components/commit/cbab493afc198d24226bd626efa80c82379ea36c))
+
 # [@skyra/shared-http-pieces@0.4.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.3.2...@skyra/shared-http-pieces@0.4.0) - (2022-11-05)
 
 ## 🐛 Bug Fixes
