@@ -4,7 +4,11 @@ import {
 	ChatInputCommandInteraction,
 	makeInteraction,
 	MessageComponentButtonInteraction,
-	MessageComponentSelectMenuInteraction,
+	MessageComponentChannelSelectInteraction,
+	MessageComponentMentionableSelectInteraction,
+	MessageComponentRoleSelectInteraction,
+	MessageComponentStringSelectInteraction,
+	MessageComponentUserSelectInteraction,
 	MessageContextMenuCommandInteraction,
 	ModalSubmitInteraction,
 	UserContextMenuCommandInteraction
@@ -15,7 +19,10 @@ import {
 	MessageApplicationCommandInteractionData,
 	MessageComponentButtonInteractionData,
 	MessageComponentChannelSelectInteractionData,
-	MessageComponentSelectMenuInteractionData,
+	MessageComponentMentionableSelectInteractionData,
+	MessageComponentRoleSelectInteractionData,
+	MessageComponentStringSelectInteractionData,
+	MessageComponentUserSelectInteractionData,
 	ModalSubmitInteractionData,
 	UserApplicationCommandInteractionData
 } from '../../../shared';
@@ -54,16 +61,34 @@ describe('util', () => {
 			expect<MessageComponentButtonInteraction>(interaction).toBeInstanceOf(MessageComponentButtonInteraction);
 		});
 
-		test('GIVEN THEN returns MessageComponentSelectMenuInteraction instance', () => {
-			const interaction = makeInteraction(response, MessageComponentSelectMenuInteractionData);
-
-			expect<MessageComponentSelectMenuInteraction>(interaction).toBeInstanceOf(MessageComponentSelectMenuInteraction);
-		});
-
-		test('GIVEN THEN returns MessageComponentSelectMenuInteraction instance', () => {
+		test('GIVEN THEN returns MessageComponentChannelSelectInteraction instance', () => {
 			const interaction = makeInteraction(response, MessageComponentChannelSelectInteractionData);
 
-			expect<MessageComponentSelectMenuInteraction>(interaction).toBeInstanceOf(MessageComponentSelectMenuInteraction);
+			expect<MessageComponentChannelSelectInteraction>(interaction).toBeInstanceOf(MessageComponentChannelSelectInteraction);
+		});
+
+		test('GIVEN THEN returns MessageComponentMentionableSelectInteraction instance', () => {
+			const interaction = makeInteraction(response, MessageComponentMentionableSelectInteractionData);
+
+			expect<MessageComponentMentionableSelectInteraction>(interaction).toBeInstanceOf(MessageComponentMentionableSelectInteraction);
+		});
+
+		test('GIVEN THEN returns MessageComponentRoleSelectInteraction instance', () => {
+			const interaction = makeInteraction(response, MessageComponentRoleSelectInteractionData);
+
+			expect<MessageComponentRoleSelectInteraction>(interaction).toBeInstanceOf(MessageComponentRoleSelectInteraction);
+		});
+
+		test('GIVEN THEN returns MessageComponentStringSelectInteraction instance', () => {
+			const interaction = makeInteraction(response, MessageComponentStringSelectInteractionData);
+
+			expect<MessageComponentStringSelectInteraction>(interaction).toBeInstanceOf(MessageComponentStringSelectInteraction);
+		});
+
+		test('GIVEN THEN returns MessageComponentUserSelectInteraction instance', () => {
+			const interaction = makeInteraction(response, MessageComponentUserSelectInteractionData);
+
+			expect<MessageComponentUserSelectInteraction>(interaction).toBeInstanceOf(MessageComponentUserSelectInteraction);
 		});
 
 		test('GIVEN THEN returns ModalSubmitInteraction instance', () => {

@@ -9,7 +9,6 @@ import {
 	type APIMessage,
 	type APIMessageApplicationCommandInteraction,
 	type APIMessageComponentButtonInteraction,
-	type APIMessageComponentSelectMenuInteraction,
 	type APIModalSubmitInteraction,
 	type APIUser,
 	type APIUserApplicationCommandInteraction,
@@ -18,6 +17,13 @@ import {
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
 import { Writable } from 'node:stream';
+import type {
+	MessageComponentChannelSelectInteraction,
+	MessageComponentMentionableSelectInteraction,
+	MessageComponentRoleSelectInteraction,
+	MessageComponentStringSelectInteraction,
+	MessageComponentUserSelectInteraction
+} from '../src';
 
 export const UserData: Readonly<APIUser> = {
 	id: '266624760782258186',
@@ -112,18 +118,47 @@ export const MessageComponentButtonInteractionData: APIMessageComponentButtonInt
 	message: MessageData
 };
 
-export const MessageComponentSelectMenuInteractionData: APIMessageComponentSelectMenuInteraction = {
+export const MessageComponentChannelSelectInteractionData: MessageComponentChannelSelectInteraction.Type = {
 	...BaseInteractionData,
 	type: InteractionType.MessageComponent,
-	data: { component_type: ComponentType.SelectMenu, custom_id: 'select:foo:bar', values: [] },
+	data: { component_type: ComponentType.ChannelSelect, custom_id: 'select:channel:foo', values: [], resolved: { channels: {} } },
 	channel_id: MessageData.channel_id,
 	message: MessageData
 };
 
-export const MessageComponentChannelSelectInteractionData: APIMessageComponentSelectMenuInteraction = {
+export const MessageComponentMentionableSelectInteractionData: MessageComponentMentionableSelectInteraction.Type = {
 	...BaseInteractionData,
 	type: InteractionType.MessageComponent,
-	data: { component_type: ComponentType.ChannelSelect, custom_id: 'channelselect:foo:bar', values: [], resolved: { channels: {} } },
+	data: {
+		component_type: ComponentType.MentionableSelect,
+		custom_id: 'select:mentionable:foo',
+		values: [],
+		resolved: { users: {}, members: {}, roles: {} }
+	},
+	channel_id: MessageData.channel_id,
+	message: MessageData
+};
+
+export const MessageComponentRoleSelectInteractionData: MessageComponentRoleSelectInteraction.Type = {
+	...BaseInteractionData,
+	type: InteractionType.MessageComponent,
+	data: { component_type: ComponentType.RoleSelect, custom_id: 'select:role:foo', values: [], resolved: { roles: {} } },
+	channel_id: MessageData.channel_id,
+	message: MessageData
+};
+
+export const MessageComponentStringSelectInteractionData: MessageComponentStringSelectInteraction.Type = {
+	...BaseInteractionData,
+	type: InteractionType.MessageComponent,
+	data: { component_type: ComponentType.StringSelect, custom_id: 'select:string:foo', values: [] },
+	channel_id: MessageData.channel_id,
+	message: MessageData
+};
+
+export const MessageComponentUserSelectInteractionData: MessageComponentUserSelectInteraction.Type = {
+	...BaseInteractionData,
+	type: InteractionType.MessageComponent,
+	data: { component_type: ComponentType.UserSelect, custom_id: 'select:user:foo', values: [], resolved: { users: {} } },
 	channel_id: MessageData.channel_id,
 	message: MessageData
 };
@@ -131,7 +166,7 @@ export const MessageComponentChannelSelectInteractionData: APIMessageComponentSe
 export const ModalSubmitInteractionData: APIModalSubmitInteraction = {
 	...BaseInteractionData,
 	type: InteractionType.ModalSubmit,
-	data: { custom_id: 'modal:foo:bar' },
+	data: { custom_id: 'modal:foo:bar', components: [] },
 	channel_id: MessageData.channel_id,
 	message: MessageData
 };

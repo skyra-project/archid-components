@@ -1,7 +1,11 @@
 import type { AutocompleteInteraction } from './AutocompleteInteraction';
 import type { ChatInputCommandInteraction } from './ChatInputCommandInteraction';
 import type { MessageComponentButtonInteraction } from './MessageComponentButtonInteraction';
-import type { MessageComponentSelectMenuInteraction } from './MessageComponentSelectMenuInteraction';
+import type { MessageComponentChannelSelectInteraction } from './MessageComponentChannelSelectInteraction';
+import type { MessageComponentMentionableSelectInteraction } from './MessageComponentMentionableSelectInteraction';
+import type { MessageComponentRoleSelectInteraction } from './MessageComponentRoleSelectInteraction';
+import type { MessageComponentStringSelectInteraction } from './MessageComponentStringSelectInteraction';
+import type { MessageComponentUserSelectInteraction } from './MessageComponentUserSelectInteraction';
 import type { MessageContextMenuCommandInteraction } from './MessageContextMenuCommandInteraction';
 import type { ModalSubmitInteraction } from './ModalSubmitInteraction';
 import type { UserContextMenuCommandInteraction } from './UserContextMenuCommandInteraction';
@@ -14,7 +18,17 @@ export namespace Interactions {
 	export type UserContextMenuCommand = UserContextMenuCommandInteraction;
 
 	export type MessageComponentButton = MessageComponentButtonInteraction;
-	export type MessageComponentSelectMenu = MessageComponentSelectMenuInteraction;
+	export type MessageComponentChannelSelect = MessageComponentChannelSelectInteraction;
+	export type MessageComponentMentionableSelect = MessageComponentMentionableSelectInteraction;
+	export type MessageComponentRoleSelect = MessageComponentRoleSelectInteraction;
+	export type MessageComponentStringSelect = MessageComponentStringSelectInteraction;
+	export type MessageComponentUserSelect = MessageComponentUserSelectInteraction;
+	export type MessageComponentSelectMenu =
+		| MessageComponentChannelSelect
+		| MessageComponentMentionableSelect
+		| MessageComponentRoleSelect
+		| MessageComponentStringSelect
+		| MessageComponentUserSelect;
 	export type ModalSubmit = ModalSubmitInteraction;
 
 	export type MessageComponent = MessageComponentButton | MessageComponentSelectMenu | ModalSubmit;
@@ -40,7 +54,11 @@ export * from './base/common';
 export * from './base/MessageComponentInteraction';
 export * from './ChatInputCommandInteraction';
 export * from './MessageComponentButtonInteraction';
-export * from './MessageComponentSelectMenuInteraction';
+export * from './MessageComponentChannelSelectInteraction';
+export * from './MessageComponentMentionableSelectInteraction';
+export * from './MessageComponentRoleSelectInteraction';
+export * from './MessageComponentStringSelectInteraction';
+export * from './MessageComponentUserSelectInteraction';
 export * from './MessageContextMenuCommandInteraction';
 export * from './ModalSubmitInteraction';
 export * from './UserContextMenuCommandInteraction';
