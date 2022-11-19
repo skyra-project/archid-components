@@ -64,7 +64,7 @@ describe('util', () => {
 		test('GIVEN THEN returns MessageComponentChannelSelectInteraction instance', () => {
 			const interaction = makeInteraction(response, MessageComponentChannelSelectInteractionData);
 
-			expect<MessageComponentChannelSelectInteraction>(interaction).toBeInstanceOf(MessageComponentStringSelectInteraction);
+			expect<MessageComponentChannelSelectInteraction>(interaction).toBeInstanceOf(MessageComponentChannelSelectInteraction);
 		});
 
 		test('GIVEN THEN returns MessageComponentMentionableSelectInteraction instance', () => {

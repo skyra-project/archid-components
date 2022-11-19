@@ -49,19 +49,19 @@ export function makeInteraction(response: ServerResponse, interaction: BaseInter
 			switch (interaction.data.component_type) {
 				case ComponentType.Button:
 					return new MessageComponentButtonInteraction(response, interaction as APIMessageComponentButtonInteraction);
-				case ComponentType.StringSelect:
-					return new MessageComponentStringSelectInteraction(response, interaction as MessageComponentStringSelectInteraction.Type);
-				case ComponentType.UserSelect:
-					return new MessageComponentUserSelectInteraction(response, interaction as MessageComponentUserSelectInteraction.Type);
-				case ComponentType.RoleSelect:
-					return new MessageComponentRoleSelectInteraction(response, interaction as MessageComponentRoleSelectInteraction.Type);
+				case ComponentType.ChannelSelect:
+					return new MessageComponentChannelSelectInteraction(response, interaction as MessageComponentChannelSelectInteraction.Type);
 				case ComponentType.MentionableSelect:
 					return new MessageComponentMentionableSelectInteraction(
 						response,
 						interaction as MessageComponentMentionableSelectInteraction.Type
 					);
-				case ComponentType.ChannelSelect:
-					return new MessageComponentChannelSelectInteraction(response, interaction as MessageComponentChannelSelectInteraction.Type);
+				case ComponentType.RoleSelect:
+					return new MessageComponentRoleSelectInteraction(response, interaction as MessageComponentRoleSelectInteraction.Type);
+				case ComponentType.StringSelect:
+					return new MessageComponentStringSelectInteraction(response, interaction as MessageComponentStringSelectInteraction.Type);
+				case ComponentType.UserSelect:
+					return new MessageComponentUserSelectInteraction(response, interaction as MessageComponentUserSelectInteraction.Type);
 			}
 		case InteractionType.ApplicationCommandAutocomplete:
 			return new AutocompleteInteraction(response, interaction);
