@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/i18next-backend@2.0.1](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@2.0.0...@skyra/i18next-backend@2.0.1) - (2022-12-11)
+
+## 🏠 Refactor
+
+- Add select menu classes (#200) ([cbab493](https://github.com/skyra-project/archid-components/commit/cbab493afc198d24226bd626efa80c82379ea36c))
+
+## 🐛 Bug Fixes
+
+- **i18next-backend:** Fixed types with i18next (#205) ([3c2e140](https://github.com/skyra-project/archid-components/commit/3c2e14053f51548c036bfe6fbb5c2221b4ceb4fe))
+- **deps:** Update all non-major dependencies ([a21a43f](https://github.com/skyra-project/archid-components/commit/a21a43ff6258f6c79d886a2faa57755db6724d88))
+
 # [@skyra/i18next-backend@2.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@1.1.0...@skyra/i18next-backend@2.0.0) - (2022-10-23)
 
 ## 🏠 Refactor
