@@ -3,12 +3,12 @@ import { readFileSync, type PathLike } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
-export class Backend implements BackendModule<Backend.Options> {
+export class Backend<T = object> implements BackendModule<Backend.Options<T>> {
 	public readonly type = 'backend';
 	private paths!: readonly PathResolvable[];
 	private i18nextOptions!: InitOptions;
 
-	public init(_: Services, backendOptions: Backend.Options, i18nextOptions: InitOptions): void {
+	public init(_: Services, backendOptions: Backend.Options<T>, i18nextOptions: InitOptions): void {
 		this.paths = backendOptions.paths ?? [];
 		this.i18nextOptions = i18nextOptions;
 	}
@@ -79,15 +79,15 @@ export class Backend implements BackendModule<Backend.Options> {
 }
 
 export namespace Backend {
-	export interface Options {
+	export type Options<T = object> = T & {
 		paths: readonly PathResolvable[];
-	}
+	};
 }
 
 export type PathResolvable = string | URL | ((language: string, namespace: string) => PathLike);
 
 declare module 'i18next' {
-	interface InitOptions {
-		backend?: Backend.Options | undefined;
+	interface InitOptions<T = object> {
+		backend?: Backend.Options<T> | undefined;
 	}
 }
