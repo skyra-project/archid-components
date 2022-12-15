@@ -121,4 +121,5 @@ await registry.registerGlobalCommands();
 await registry.registerGuildRestrictedCommands();
 ```
 
+[`node:http`]: https://nodejs.org/api/http.html
 [`@discordjs/rest`]: https://www.npmjs.com/package/@discordjs/rest
