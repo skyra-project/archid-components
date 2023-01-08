@@ -115,7 +115,7 @@ export class MessageComponentMentionableSelectInteraction extends MessageCompone
 
 export namespace MessageComponentMentionableSelectInteraction {
 	type Base = APIBaseInteraction<InteractionType.MessageComponent, APIMessageMentionableSelectInteractionData>;
-	export type Type = Base & Required<Pick<Base, 'channel_id' | 'data' | 'message'>>;
+	export type Type = Base & Required<Pick<Base, 'channel_id' | 'data' | 'message' | 'app_permissions'>>;
 	export type Value = ValueUser | { id: string; role: TransformedArguments.Role } | { id: string };
 
 	export type ValueUser = { id: string } & TransformedArguments.User;

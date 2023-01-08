@@ -61,6 +61,6 @@ export class MessageComponentUserSelectInteraction extends MessageComponentInter
 
 export namespace MessageComponentUserSelectInteraction {
 	type Base = APIBaseInteraction<InteractionType.MessageComponent, APIMessageUserSelectInteractionData>;
-	export type Type = Base & Required<Pick<Base, 'channel_id' | 'data' | 'message'>>;
+	export type Type = Base & Required<Pick<Base, 'channel_id' | 'data' | 'message' | 'app_permissions'>>;
 	export type Value = TransformedArguments.User;
 }
