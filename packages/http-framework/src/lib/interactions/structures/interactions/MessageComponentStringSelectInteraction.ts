@@ -9,7 +9,7 @@ export class MessageComponentStringSelectInteraction extends MessageComponentInt
 
 export namespace MessageComponentStringSelectInteraction {
 	type Base = APIBaseInteraction<InteractionType.MessageComponent, APIMessageStringSelectInteractionData>;
-	export type Type = Base & Required<Pick<Base, 'channel_id' | 'data' | 'message'>>;
+	export type Type = Base & Required<Pick<Base, 'channel_id' | 'data' | 'message' | 'app_permissions'>>;
 }
 
 export {
