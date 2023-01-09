@@ -42,13 +42,14 @@ We accept donations through Patreon, BitCoin, Ethereum, and Litecoin. You can us
 
 Please make sure to read the [Contributing Guide][contributing] before making a pull request.
 
-Thank you to all the people who already contributed to Sapphire!
+Thank you to all the people who already contributed to Skyra Project!
 
 <a href="https://github.com/skyra-project/archid-components/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=skyra-project/archid-components" />
 </a>
 
-[contributing]: https://github.com/skyra-project/.github/blob/main/.github/CONTRIBUTING.md[bitcoin]: bitcoin:3JNzCHMTFtxYFWBnVtDM9Tt34zFbKvdwco?amount=0.01&label=Skyra%20Discord%20Bot
+[contributing]: https://github.com/skyra-project/.github/blob/main/.github/CONTRIBUTING.md
+[bitcoin]: bitcoin:3JNzCHMTFtxYFWBnVtDM9Tt34zFbKvdwco?amount=0.01&label=Skyra%20Discord%20Bot
 [bitcoinimage]: https://cdn.skyra.pw/gh-assets/bitcoin.png
 [ethereum]: ethereum:0xcB5EDB76Bc9E389514F905D9680589004C00190c?amount=0.01&label=Skyra%20Discord%20Bot
 [ethereumimage]: https://cdn.skyra.pw/gh-assets/ethereum.png
