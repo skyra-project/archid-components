@@ -22,7 +22,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"tslib": "^2.4.1"
+		"tslib": "^2.5.0"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.10.0",
