@@ -21,7 +21,7 @@ export abstract class Command extends Piece {
 
 	/**
 	 * Responds to the chat input command for this command
-	 * @param interaction The interaction to be routed.
+	 * @param interaction The interaction to be handled.
 	 * @param args The parsed arguments for this autocomplete interaction.
 	 */
 	protected chatInputRun(interaction: Command.ApplicationCommandInteraction, args: NonNullObject): Awaitable<unknown>;
@@ -31,7 +31,7 @@ export abstract class Command extends Piece {
 
 	/**
 	 * Responds to an auto completable option for this command
-	 * @param interaction The interaction to be routed.
+	 * @param interaction The interaction to be handled.
 	 * @param args The parsed arguments for this autocomplete interaction.
 	 * @returns The response to the autocomplete interaction.
 	 */
