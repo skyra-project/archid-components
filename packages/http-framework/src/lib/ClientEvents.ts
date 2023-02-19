@@ -27,6 +27,7 @@ export interface ClientEventInteractionHandlerContext {
 }
 
 export interface ClientEvents {
+	error: [error: unknown];
 	commandNameMissing: [interaction: APIApplicationCommandAutocompleteInteraction, response: ServerResponse];
 	commandNameUnknown: [interaction: APIApplicationCommandInteraction | APIApplicationCommandAutocompleteInteraction, response: ServerResponse];
 	commandMethodUnknown: [context: ClientEventCommandContext];
