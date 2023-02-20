@@ -1,6 +1,7 @@
 import {
 	ApplicationCommandType,
 	ComponentType,
+	GuildMemberFlags,
 	InteractionType,
 	MessageType,
 	type APIApplicationCommandAutocompleteInteraction,
@@ -38,6 +39,7 @@ export const UserData: Readonly<APIUser> = {
 export const InteractionGuildMemberData: Readonly<APIInteractionGuildMember> = {
 	user: UserData,
 	deaf: false,
+	flags: GuildMemberFlags.CompletedOnboarding,
 	mute: false,
 	permissions: '1090921168887',
 	roles: [],

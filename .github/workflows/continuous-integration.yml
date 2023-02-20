@@ -48,7 +48,6 @@ jobs:
   TypeChecking:
     name: Type check code with tsc
     runs-on: ubuntu-latest
-    if: false # TODO: Enable this once the currently broken type checking bugs are fixed
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3

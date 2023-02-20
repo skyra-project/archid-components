@@ -1,18 +1,39 @@
 {
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
+		"lib": ["esnext", "dom"],
 		"noEmit": true,
 		"incremental": false,
 		"types": ["vitest/globals"]
 	},
 	"include": [
-		"packages/**/*.ts",
-		"packages/**/*.mjs",
-		"packages/**/tests/*.js",
-		"packages/**/register*.js",
-		"packages/**/register*.mjs",
-		"packages/**/types*.js",
-		"packages/**/types*.mjs",
+		"packages/env-utilities/src",
+		"packages/env-utilities/tests",
+
+		"packages/http-framework/src",
+		"packages/http-framework/tests",
+
+		"packages/http-framework-i18n/src",
+		"packages/http-framework-i18n/tests",
+
+		"packages/i18next-backend/src",
+		"packages/i18next-backend/tests",
+
+		"packages/logger/src",
+		"packages/logger/tests",
+
+		"packages/safe-fetch/src",
+		"packages/safe-fetch/tests",
+
+		"packages/shared-http-pieces/src",
+		"packages/shared-http-pieces/tests",
+
+		"packages/start-banner/src",
+		"packages/start-banner/tests",
+
+		"packages/twitch-helpes/src",
+		"packages/AAAAAAAA/tests",
+
 		"scripts/",
 		"./vitest.config.ts"
 	]
