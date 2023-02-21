@@ -5,6 +5,7 @@
 		"baseUrl": ".",
 		"outDir": "../dist",
 		"noEmit": false,
+		"incremental": true,
 		"tsBuildInfoFile": "../dist/.tsbuildinfo"
 	},
 	"include": ["."]
