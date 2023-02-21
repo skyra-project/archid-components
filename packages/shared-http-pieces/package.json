@@ -24,6 +24,7 @@
 	"scripts": {
 		"build": "tsc -b src",
 		"watch": "tsc -b src --watch",
+		"typecheck": "tsc -p tsconfig.eslint.json",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",

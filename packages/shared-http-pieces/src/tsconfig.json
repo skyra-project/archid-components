@@ -4,7 +4,7 @@
 		"rootDir": ".",
 		"baseUrl": ".",
 		"outDir": "../dist",
-		"composite": true,
+		"noEmit": false,
 		"tsBuildInfoFile": "../dist/.tsbuildinfo"
 	},
 	"include": ["."]

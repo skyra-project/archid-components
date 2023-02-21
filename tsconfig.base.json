@@ -1,6 +1,7 @@
 {
 	"extends": "@sapphire/ts-config/extra-strict",
 	"compilerOptions": {
+		"noEmit": true,
 		"target": "ESNext",
 		"module": "ESNext"
 	}
