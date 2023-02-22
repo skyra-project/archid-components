@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.15.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.15.1...@skyra/http-framework@0.15.2) - (2023-02-22)
+
+## 🐛 Bug Fixes
+
+- **http-framework:** Bump discord-api-types ([f604b0d](https://github.com/skyra-project/archid-components/commit/f604b0d0018bf696b3ef63bef70f189130c7bc12))
+
 # [@skyra/http-framework@0.15.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.15.0...@skyra/http-framework@0.15.1) - (2023-01-08)
 
 ## 🐛 Bug Fixes
