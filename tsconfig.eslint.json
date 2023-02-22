@@ -1,18 +1,13 @@
 {
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
+		"lib": ["esnext", "dom"],
 		"noEmit": true,
 		"incremental": false,
 		"types": ["vitest/globals"]
 	},
 	"include": [
-		"packages/**/*.ts",
-		"packages/**/*.mjs",
-		"packages/**/tests/*.js",
-		"packages/**/register*.js",
-		"packages/**/register*.mjs",
-		"packages/**/types*.js",
-		"packages/**/types*.mjs",
+		"packages/",
 		"scripts/",
 		"./vitest.config.ts"
 	]

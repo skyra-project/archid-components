@@ -12,6 +12,10 @@
 			"dependsOn": [],
 			"outputs": []
 		},
+		"typecheck": {
+			"dependsOn": [],
+			"outputs": []
+		},
 		"bump": {
 			"dependsOn": [],
 			"outputs": []

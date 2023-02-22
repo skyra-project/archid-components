@@ -11,7 +11,7 @@
 		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"test": "vitest run",
 		"build": "turbo run build",
-		"typecheck": "tsc -p tsconfig.eslint.json",
+		"typecheck": "turbo run typecheck",
 		"postinstall": "husky install .github/husky",
 		"check-update": "turbo run check-update"
 	},

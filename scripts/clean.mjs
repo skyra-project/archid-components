@@ -13,6 +13,7 @@ const paths = [
 	new URL('logger/dist/', packagesDir),
 	new URL('shared-http-pieces/dist/', packagesDir),
 	new URL('start-banner/dist/', packagesDir),
+	new URL('twitch-helpers/dist/', packagesDir),
 
 	// Turbo folders
 	new URL('env-utilities/.turbo/', packagesDir),
@@ -21,7 +22,8 @@ const paths = [
 	new URL('i18next-backend/.turbo/', packagesDir),
 	new URL('logger/.turbo/', packagesDir),
 	new URL('shared-http-pieces/.turbo/', packagesDir),
-	new URL('start-banner/.turbo/', packagesDir)
+	new URL('start-banner/.turbo/', packagesDir),
+	new URL('twitch-helpers/.turbo/', packagesDir)
 ];
 
 await Promise.all(paths.map((path) => rm(path, options)));

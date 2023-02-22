@@ -27,7 +27,7 @@ jobs:
         run: yarn lint --fix=false
 
   Building:
-    name: Building NodeJS
+    name: Build & Typecheck
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
@@ -44,24 +44,6 @@ jobs:
         run: yarn --immutable
       - name: Build code
         run: yarn build
-
-  TypeChecking:
-    name: Type check code with tsc
-    runs-on: ubuntu-latest
-    if: false # TODO: Enable this once the currently broken type checking bugs are fixed
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v3
-      - name: Add problem matchers
-        run: echo "::add-matcher::.github/problemMatchers/tsc.json"
-      - name: Use Node.js v16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: yarn
-          registry-url: https://registry.npmjs.org/
-      - name: Install Dependencies
-        run: yarn --immutable
       - name: Typecheck code
         run: yarn typecheck
 

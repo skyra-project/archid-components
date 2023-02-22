@@ -2,10 +2,7 @@
 	"extends": "../../../tsconfig.base.json",
 	"compilerOptions": {
 		"rootDir": ".",
-		"outDir": "../test-dist",
-		"tsBuildInfoFile": "../test-dist/.tsbuildinfo",
 		"types": ["vitest/globals"]
 	},
-	"include": [".", "../src/**/*"],
-	"references": [{ "path": "../src" }]
+	"include": [".", "../src/**/*"]
 }

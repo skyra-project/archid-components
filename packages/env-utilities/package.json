@@ -17,6 +17,7 @@
 		"test": "eslint src --ext ts -c ../../package.json",
 		"build": "tsup",
 		"watch": "tsup --watch",
+		"typecheck": "tsc -p tsconfig.eslint.json",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
 		"prepack": "yarn build",
 		"bump": "cliff-jumper",
