@@ -62,7 +62,7 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
       - name: Build dependant packages
-        run: yarn turbo run build --filter="i18next-backend" --filter="env-utilities" --filter="http-framework-i18n" --no-deps
+        run: yarn turbo run build --filter="i18next-backend" --filter="env-utilities" --filter="http-framework-i18n" --filter="safe-fetch" --no-deps
       - name: Typecheck code
         run: yarn typecheck
 
