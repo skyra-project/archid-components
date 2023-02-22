@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@0.4.3](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.4.2...@skyra/shared-http-pieces@0.4.3) - (2023-02-22)
+
+## 🐛 Bug Fixes
+
+- **shared-http-pieces:** Bump discord-api-types ([41e0776](https://github.com/skyra-project/archid-components/commit/41e07766c1af7393a24952f49085429fd409c242))
+
 # [@skyra/shared-http-pieces@0.4.1](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.4.0...@skyra/shared-http-pieces@0.4.1) - (2022-11-19)
 
 ## 🏠 Refactor
