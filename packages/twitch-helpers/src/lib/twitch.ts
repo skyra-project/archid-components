@@ -1,7 +1,7 @@
 import { none, some, type Option } from '@sapphire/result';
 import { envParseString } from '@skyra/env-utilities';
 import { Json, safeFetch, type FetchResult } from '@skyra/safe-fetch';
-import { BinaryLike, createHmac } from 'node:crypto';
+import { createHmac, type BinaryLike } from 'node:crypto';
 import { platform, release } from 'node:os';
 import { URL } from 'node:url';
 import { BaseUrlHelix } from './constants';
