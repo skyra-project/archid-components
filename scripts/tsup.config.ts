@@ -20,6 +20,7 @@ export const createTsupConfig = ({
 	format = ['esm', 'cjs'],
 	target = 'es2021',
 	sourcemap = true,
+	esbuildPlugins,
 	esbuildOptions = (options, context) => {
 		if (context.format === 'cjs') {
 			options.banner = {
@@ -40,7 +41,8 @@ export const createTsupConfig = ({
 		tsconfig: relative(__dirname, resolveDir(process.cwd(), 'src', 'tsconfig.json')),
 		keepNames: true,
 		globalName,
+		esbuildPlugins,
 		esbuildOptions
 	});
 
-type ConfigOptions = Pick<Options, 'esbuildOptions' | 'sourcemap' | 'target' | 'format' | 'globalName'>;
+type ConfigOptions = Pick<Options, 'esbuildOptions' | 'esbuildPlugins' | 'sourcemap' | 'target' | 'format' | 'globalName'>;

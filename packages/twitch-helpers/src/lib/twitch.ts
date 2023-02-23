@@ -1,8 +1,7 @@
 import { none, some, type Option } from '@sapphire/result';
 import { envParseString } from '@skyra/env-utilities';
 import { Json, safeFetch, type FetchResult } from '@skyra/safe-fetch';
-import { createHmac } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { createHmac, type BinaryLike } from 'node:crypto';
 import { platform, release } from 'node:os';
 import { URL } from 'node:url';
 import { BaseUrlHelix } from './constants';
@@ -19,13 +18,12 @@ import type {
 	TwitchHelixUsersSearchResult
 } from './types';
 
-const packageVersion = (
-	JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), { encoding: 'utf-8' })) as Record<'version', 'string'>
-).version;
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+const packageVersion: string = '[VI]{{inject}}[/VI]';
 
 const ClientId = envParseString('TWITCH_CLIENT_ID');
 const ClientSecret = envParseString('TWITCH_TOKEN');
-const EventSubSecret = envParseString('TWITCH_EVENTSUB_SECRET');
+const EventSubSecret = envParseString('TWITCH_EVENTSUB_SECRET', null);
 
 /**
  * The default Twitch Request headers that we sent to the API
@@ -151,9 +149,10 @@ export async function fetchUserFollowage(followerId: string, streamerId: string)
  * }
  * ```
  */
-export function checkSignature(algorithm: string, signature: string, data: any) {
-	const hash = createHmac(algorithm, EventSubSecret).update(data).digest('hex');
+export function checkSignature(algorithm: string, signature: string, data: BinaryLike) {
+	if (EventSubSecret === null) throw new Error('Environment variable TWITCH_EVENTSUB_SECRET was not set');
 
+	const hash = createHmac(algorithm, EventSubSecret).update(data).digest('hex');
 	return hash === signature;
 }
 
@@ -175,6 +174,8 @@ export async function addEventSubscription(
 	streamerId: string,
 	subscriptionType: TwitchEventSubTypes = TwitchEventSubTypes.StreamOnline
 ): Promise<TwitchEventSubResult> {
+	if (EventSubSecret === null) throw new Error('Environment variable TWITCH_EVENTSUB_SECRET was not set');
+
 	const result = await Json<TwitchHelixResponse<TwitchEventSubResult>>(
 		safeFetch(`${BaseUrlHelix}/eventsub/subscriptions`, {
 			body: JSON.stringify({
@@ -209,6 +210,8 @@ export async function addEventSubscription(
  * @param subscriptionId the ID to remove. This ID should be saved from {@link addEventSubscription}
  */
 export async function removeEventSubscription(subscriptionId: string): Promise<void> {
+	if (EventSubSecret === null) throw new Error('Environment variable TWITCH_EVENTSUB_SECRET was not set');
+
 	const url = new URL(`${BaseUrlHelix}/eventsub/subscriptions`);
 	url.searchParams.append('id', subscriptionId);
 

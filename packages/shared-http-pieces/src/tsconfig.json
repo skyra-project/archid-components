@@ -6,7 +6,9 @@
 		"outDir": "../dist",
 		"noEmit": false,
 		"incremental": true,
-		"tsBuildInfoFile": "../dist/.tsbuildinfo"
+		"tsBuildInfoFile": "../dist/.tsbuildinfo",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
 	},
 	"include": ["."]
 }
