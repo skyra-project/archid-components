@@ -1,7 +1,7 @@
 import { EmbedBuilder, time, TimestampStyles } from '@discordjs/builders';
 import { Command, RegisterCommand, type MessageResponseOptions } from '@skyra/http-framework';
 import { applyLocalizedBuilder, getSupportedUserLanguageT, type TFunction } from '@skyra/http-framework-i18n';
-import { ButtonStyle, ComponentType, MessageFlags, type APIEmbedField } from 'discord-api-types/v10';
+import { APIMessageActionRowComponent, ButtonStyle, ComponentType, MessageFlags, type APIEmbedField } from 'discord-api-types/v10';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
 import { getInvite, getRepository } from '../lib/information.js';
@@ -44,47 +44,57 @@ export class UserCommand extends Command {
 		};
 	}
 
-	private getComponents(t: TFunction): MessageResponseOptions['components'] {
+	private getComponents(t: TFunction) {
+		const data = [
+			{ type: ComponentType.ActionRow, components: this.getFirstComponentRow(t) },
+			{ type: ComponentType.ActionRow, components: this.getSecondComponentRow(t) }
+		] satisfies MessageResponseOptions['components'];
+
+		return data;
+	}
+
+	private getFirstComponentRow(t: TFunction) {
+		const components = [
+			{
+				type: ComponentType.Button,
+				style: ButtonStyle.Link,
+				label: t(LanguageKeys.Commands.Shared.InfoButtonSupport),
+				emoji: { name: '🆘' },
+				url: 'https://discord.gg/6gakFR2'
+			}
+		] satisfies APIMessageActionRowComponent[];
+
+		const invite = getInvite();
+		if (invite) {
+			components.unshift({
+				type: ComponentType.Button,
+				style: ButtonStyle.Link,
+				label: t(LanguageKeys.Commands.Shared.InfoButtonInvite),
+				emoji: { name: '🎉' },
+				url: invite
+			});
+		}
+
+		return components;
+	}
+
+	private getSecondComponentRow(t: TFunction) {
 		return [
 			{
-				type: ComponentType.ActionRow,
-				components: [
-					{
-						type: ComponentType.Button,
-						style: ButtonStyle.Link,
-						label: t(LanguageKeys.Commands.Shared.InfoButtonInvite),
-						emoji: { name: '🎉' },
-						url: getInvite()
-					},
-					{
-						type: ComponentType.Button,
-						style: ButtonStyle.Link,
-						label: t(LanguageKeys.Commands.Shared.InfoButtonSupport),
-						emoji: { name: '🆘' },
-						url: 'https://discord.gg/6gakFR2'
-					}
-				]
+				type: ComponentType.Button,
+				style: ButtonStyle.Link,
+				label: t(LanguageKeys.Commands.Shared.InfoButtonGitHub),
+				emoji: { id: '950888087188283422', name: 'github2' },
+				url: getRepository()
 			},
 			{
-				type: ComponentType.ActionRow,
-				components: [
-					{
-						type: ComponentType.Button,
-						style: ButtonStyle.Link,
-						label: t(LanguageKeys.Commands.Shared.InfoButtonGitHub),
-						emoji: { id: '950888087188283422', name: 'github2' },
-						url: getRepository()
-					},
-					{
-						type: ComponentType.Button,
-						style: ButtonStyle.Link,
-						label: t(LanguageKeys.Commands.Shared.InfoButtonDonate),
-						emoji: { name: '🧡' },
-						url: 'https://donate.skyra.pw'
-					}
-				]
+				type: ComponentType.Button,
+				style: ButtonStyle.Link,
+				label: t(LanguageKeys.Commands.Shared.InfoButtonDonate),
+				emoji: { name: '🧡' },
+				url: 'https://donate.skyra.pw'
 			}
-		];
+		] satisfies APIMessageActionRowComponent[];
 	}
 
 	private static formatCpuInfo({ times }: CpuInfo) {
