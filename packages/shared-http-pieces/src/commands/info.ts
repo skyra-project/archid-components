@@ -1,7 +1,14 @@
 import { EmbedBuilder, time, TimestampStyles } from '@discordjs/builders';
-import { Command, RegisterCommand, type MessageResponseOptions } from '@skyra/http-framework';
+import { Command, RegisterCommand } from '@skyra/http-framework';
 import { applyLocalizedBuilder, getSupportedUserLanguageT, type TFunction } from '@skyra/http-framework-i18n';
-import { APIMessageActionRowComponent, ButtonStyle, ComponentType, MessageFlags, type APIEmbedField } from 'discord-api-types/v10';
+import {
+	ButtonStyle,
+	ComponentType,
+	MessageFlags,
+	type APIActionRowComponent,
+	type APIEmbedField,
+	type APIMessageActionRowComponent
+} from 'discord-api-types/v10';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
 import { getInvite, getRepository } from '../lib/information.js';
@@ -45,56 +52,59 @@ export class UserCommand extends Command {
 	}
 
 	private getComponents(t: TFunction) {
-		const data = [
-			{ type: ComponentType.ActionRow, components: this.getFirstComponentRow(t) },
-			{ type: ComponentType.ActionRow, components: this.getSecondComponentRow(t) }
-		] satisfies MessageResponseOptions['components'];
+		const url = getInvite();
+		const support = this.getSupportComponent(t);
+		const github = this.getGitHubComponent(t);
+		const donate = this.getDonateComponent(t);
+		const data = url
+			? [this.getActionRow(support, this.getInviteComponent(t, url)), this.getActionRow(github, donate)]
+			: [this.getActionRow(support, github, donate)];
 
 		return data;
 	}
 
-	private getFirstComponentRow(t: TFunction) {
-		const components = [
-			{
-				type: ComponentType.Button,
-				style: ButtonStyle.Link,
-				label: t(LanguageKeys.Commands.Shared.InfoButtonSupport),
-				emoji: { name: '🆘' },
-				url: 'https://discord.gg/6gakFR2'
-			}
-		] satisfies APIMessageActionRowComponent[];
-
-		const invite = getInvite();
-		if (invite) {
-			components.unshift({
-				type: ComponentType.Button,
-				style: ButtonStyle.Link,
-				label: t(LanguageKeys.Commands.Shared.InfoButtonInvite),
-				emoji: { name: '🎉' },
-				url: invite
-			});
-		}
-
-		return components;
+	private getActionRow(...components: APIMessageActionRowComponent[]): APIActionRowComponent<APIMessageActionRowComponent> {
+		return { type: ComponentType.ActionRow, components };
 	}
 
-	private getSecondComponentRow(t: TFunction) {
-		return [
-			{
-				type: ComponentType.Button,
-				style: ButtonStyle.Link,
-				label: t(LanguageKeys.Commands.Shared.InfoButtonGitHub),
-				emoji: { id: '950888087188283422', name: 'github2' },
-				url: getRepository()
-			},
-			{
-				type: ComponentType.Button,
-				style: ButtonStyle.Link,
-				label: t(LanguageKeys.Commands.Shared.InfoButtonDonate),
-				emoji: { name: '🧡' },
-				url: 'https://donate.skyra.pw'
-			}
-		] satisfies APIMessageActionRowComponent[];
+	private getSupportComponent(t: TFunction): APIMessageActionRowComponent {
+		return {
+			type: ComponentType.Button,
+			style: ButtonStyle.Link,
+			label: t(LanguageKeys.Commands.Shared.InfoButtonSupport),
+			emoji: { name: '🆘' },
+			url: 'https://discord.gg/6gakFR2'
+		};
+	}
+
+	private getInviteComponent(t: TFunction, url: string): APIMessageActionRowComponent {
+		return {
+			type: ComponentType.Button,
+			style: ButtonStyle.Link,
+			label: t(LanguageKeys.Commands.Shared.InfoButtonInvite),
+			emoji: { name: '🎉' },
+			url
+		};
+	}
+
+	private getGitHubComponent(t: TFunction): APIMessageActionRowComponent {
+		return {
+			type: ComponentType.Button,
+			style: ButtonStyle.Link,
+			label: t(LanguageKeys.Commands.Shared.InfoButtonGitHub),
+			emoji: { id: '950888087188283422', name: 'github2' },
+			url: getRepository()
+		};
+	}
+
+	private getDonateComponent(t: TFunction): APIMessageActionRowComponent {
+		return {
+			type: ComponentType.Button,
+			style: ButtonStyle.Link,
+			label: t(LanguageKeys.Commands.Shared.InfoButtonDonate),
+			emoji: { name: '🧡' },
+			url: 'https://donate.skyra.pw'
+		};
 	}
 
 	private static formatCpuInfo({ times }: CpuInfo) {
