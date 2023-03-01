@@ -1,5 +1,5 @@
 let repository = process.env.CLIENT_REPOSITORY ?? 'https://github.com/skyra-project';
-let invite = process.env.CLIENT_INVITE ?? '';
+let invite = process.env.CLIENT_INVITE ?? null;
 
 export function setRepository(url: string) {
 	repository = url.startsWith('http') ? url : `https://github.com/skyra-project/${url}`;
