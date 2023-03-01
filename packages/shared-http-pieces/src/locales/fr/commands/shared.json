@@ -7,5 +7,6 @@
 	"infoFieldServerUsageValue": "• **Utilisation du CPU** : {{cpu}}\n• **Mémoire** : {{heapUsed}}Mo (Total : {{heapTotal}}Mo)",
 	"infoButtonInvite": "Ajoute-moi sur ton serveur !",
 	"infoButtonSupport": "Serveur de support",
-	"infoButtonGitHub": "Répertoire GitHub"
+	"infoButtonGitHub": "Répertoire GitHub",
+	"infoButtonDonate": "Faire un don"
 }
