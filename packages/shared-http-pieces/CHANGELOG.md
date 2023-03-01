@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@0.4.4](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.4.3...@skyra/shared-http-pieces@0.4.4) - (2023-03-01)
+
+## 🏠 Refactor
+
+- Handle invite-less bots (#225) ([a27198f](https://github.com/skyra-project/archid-components/commit/a27198f2a416c61f84556472bf3f55e7e53b6e33))
+
+## 🐛 Bug Fixes
+
+- **twitch-helpers:** Resolve loading bugs (#221) ([0dafe6d](https://github.com/skyra-project/archid-components/commit/0dafe6d9aa28d0f2ed29e1bd912b9ddde9841fd8))
+
 # [@skyra/shared-http-pieces@0.4.3](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.4.2...@skyra/shared-http-pieces@0.4.3) - (2023-02-22)
 
 ## 🐛 Bug Fixes
