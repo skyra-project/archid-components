@@ -7,6 +7,6 @@
 	"infoFieldServerUsageValue": "• **CPU उपयोग**: {{cpu}}\n• **मेमोरी**: {{heapUsed}}MB (कुल:{{heapTotal}}MB)",
 	"infoButtonInvite": "मुझे अपने सर्वर में जोड़ें!",
 	"infoButtonSupport": "सहयोग सर्वर",
-	"infoButtonGitHub": "जीथब रिपोजिटरी",
+	"infoButtonGitHub": "गिटहब रिपोजिटरी",
 	"infoButtonDonate": "दान करें"
 }
