@@ -1,9 +1,9 @@
 import * as Sentry from '@sentry/node';
-import { Listener, type ClientEventAutocompleteContext } from '@skyra/http-framework';
+import { Listener, type ClientEventAutocompleteContext, type ClientEvents } from '@skyra/http-framework';
 
 export class SharedListener extends Listener {
 	public constructor(context: Listener.Context, options: Listener.Options) {
-		super(context, { ...options, enabled: 'SENTRY_DSN' in process.env });
+		super(context, { ...options, event: 'autocompleteError' satisfies keyof ClientEvents, enabled: 'SENTRY_DSN' in process.env });
 	}
 
 	public run(error: unknown, context: ClientEventAutocompleteContext) {
