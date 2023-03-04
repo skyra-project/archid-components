@@ -33,6 +33,6 @@ export function initializeSentry(options: SentryOptions = {}) {
 	}
 }
 
-export interface SentryOptions extends Sentry.NodeOptions {
+export interface SentryOptions extends Omit<Sentry.NodeOptions, 'dsn'> {
 	root?: URL | string;
 }
