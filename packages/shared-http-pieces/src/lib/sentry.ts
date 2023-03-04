@@ -8,25 +8,29 @@ export function isSentryInitialized() {
 }
 
 export function initializeSentry(options: SentryOptions = {}) {
-	options = {
-		dsn: process.env.SENTRY_DSN,
-		integrations: [
-			new Sentry.Integrations.Console(),
-			new Sentry.Integrations.FunctionToString(),
-			new Sentry.Integrations.LinkedErrors(),
-			new Sentry.Integrations.Modules(),
-			new Sentry.Integrations.Modules(),
-			new Sentry.Integrations.OnUncaughtException(),
-			new Sentry.Integrations.OnUnhandledRejection(),
-			new RewriteFrames({
-				root: options.root ? (typeof options.root === 'string' ? options.root : fileURLToPath(options.root)) : process.cwd()
-			})
-		],
-		...options
-	};
+	if (process.env.SENTRY_DSN) {
+		const extractedIntegrations = options.integrations ?? [];
 
-	Sentry.init(options);
-	initialized = Boolean(options.dsn);
+		Sentry.init({
+			dsn: process.env.SENTRY_DSN,
+			...options,
+			integrations: (integration) => [
+				new Sentry.Integrations.Console(),
+				new Sentry.Integrations.FunctionToString(),
+				new Sentry.Integrations.LinkedErrors(),
+				new Sentry.Integrations.Modules(),
+				new Sentry.Integrations.Modules(),
+				new Sentry.Integrations.OnUncaughtException(),
+				new Sentry.Integrations.OnUnhandledRejection(),
+				new RewriteFrames({
+					root: options.root ? (typeof options.root === 'string' ? options.root : fileURLToPath(options.root)) : process.cwd()
+				}),
+				...(typeof extractedIntegrations === 'function' ? extractedIntegrations(integration) : extractedIntegrations)
+			]
+		});
+
+		initialized = true;
+	}
 }
 
 export interface SentryOptions extends Sentry.NodeOptions {
