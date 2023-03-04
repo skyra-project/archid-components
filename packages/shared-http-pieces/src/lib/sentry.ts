@@ -1,6 +1,6 @@
 import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 
 let initialized = false;
 export function isSentryInitialized() {
