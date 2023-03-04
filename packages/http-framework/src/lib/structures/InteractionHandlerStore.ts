@@ -35,7 +35,7 @@ export class InteractionHandlerStore extends Store<InteractionHandler> {
 		const result = await Result.fromAsync(() => handler.run(makeInteraction(response, interaction), parsed.content));
 		result
 			.inspect((value) => container.client.emit('interactionHandlerSuccess', context, value))
-			.inspectErr((error) => (handleError(response, error), container.client.emit('interactionHandlerError', error, context)));
+			.inspectErr((error) => (container.client.emit('interactionHandlerError', error, context), handleError(response, error)));
 
 		container.client.emit('interactionHandlerFinish', context);
 		return response;
