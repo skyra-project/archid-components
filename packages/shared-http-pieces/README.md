@@ -28,3 +28,5 @@ import '@skyra/shared-http-pieces/register';
 setRepository('skyra'); // setRepository('https://github.com/skyra-project/skyra');
 setInvite('266624760782258186', '534185897078');
 ```
+
+Furthermore, error handling can be enabled by setting the `SENTRY_DSN`, `@skyra/shared-http-pieces` includes a way to register [Sentry](https://docs.sentry.io) and registers handlers to handle errors into Sentry. The plugin also reads `SENTRY_ROOT` to set [`RewriteFrames`](https://docs.sentry.io/platforms/node/configuration/integrations/pluggable-integrations/#rewriteframes)'s root, defaults to `process.cwd()`.
