@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@0.5.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.4.5...@skyra/shared-http-pieces@0.5.0) - (2023-03-04)
+
+## 🚀 Features
+
+- Add Sentry error reporting (#226) ([3f273e4](https://github.com/skyra-project/archid-components/commit/3f273e46f5c4fb9a0bcdc29ae744064b3f647bf1))
+
 # [@skyra/shared-http-pieces@0.4.4](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.4.3...@skyra/shared-http-pieces@0.4.4) - (2023-03-01)
 
 ## 🏠 Refactor
