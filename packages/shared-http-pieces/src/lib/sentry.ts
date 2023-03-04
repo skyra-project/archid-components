@@ -8,7 +8,7 @@ export function isSentryInitialized() {
 }
 
 export function initializeSentry(options: SentryOptions = {}) {
-	Sentry.init({
+	options = {
 		dsn: process.env.SENTRY_DSN,
 		integrations: [
 			new Sentry.Integrations.Console(),
@@ -23,9 +23,10 @@ export function initializeSentry(options: SentryOptions = {}) {
 			})
 		],
 		...options
-	});
+	};
 
-	initialized = true;
+	Sentry.init(options);
+	initialized = Boolean(options.dsn);
 }
 
 export interface SentryOptions extends Sentry.NodeOptions {
