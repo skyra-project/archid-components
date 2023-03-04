@@ -46,7 +46,7 @@ export class CommandStore extends Store<Command> {
 		const result = await Result.fromAsync(() => this.runCommandMethod(command, method, makeInteraction(response, interaction)));
 		result
 			.inspect((value) => container.client.emit('commandSuccess', context, value))
-			.inspectErr((error) => (handleError(response, error), container.client.emit('commandError', error, context)));
+			.inspectErr((error) => (container.client.emit('commandError', error, context), handleError(response, error)));
 
 		container.client.emit('commandFinish', context);
 		return response;
@@ -77,7 +77,7 @@ export class CommandStore extends Store<Command> {
 		const result = await Result.fromAsync(() => command['autocompleteRun'](makeInteraction(response, interaction), options));
 		result
 			.inspect((value) => container.client.emit('autocompleteSuccess', context, value))
-			.inspectErr((error) => (handleError(response, error), container.client.emit('autocompleteError', error, context)));
+			.inspectErr((error) => (container.client.emit('autocompleteError', error, context), handleError(response, error)));
 
 		container.client.emit('autocompleteFinish', context);
 		return response;
