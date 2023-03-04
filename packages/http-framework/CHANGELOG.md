@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.15.3](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.15.2...@skyra/http-framework@0.15.3) - (2023-03-04)
+
+## 🏠 Refactor
+
+- Change error emit order (#227) ([386d9be](https://github.com/skyra-project/archid-components/commit/386d9be8abbc4603ac175265374a69fb428bd3a3))
+
+## 🐛 Bug Fixes
+
+- **twitch-helpers:** Resolve loading bugs (#221) ([0dafe6d](https://github.com/skyra-project/archid-components/commit/0dafe6d9aa28d0f2ed29e1bd912b9ddde9841fd8))
+
 # [@skyra/http-framework@0.15.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.15.1...@skyra/http-framework@0.15.2) - (2023-02-22)
 
 ## 🐛 Bug Fixes
