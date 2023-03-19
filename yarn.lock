@@ -1171,7 +1171,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": ^2.0.0
     dotenv-cra: ^3.0.3
-    tsup: ^6.6.3
+    tsup: ^6.7.0
     typescript: ^4.9.5
   languageName: unknown
   linkType: soft
@@ -1187,7 +1187,7 @@ __metadata:
     discord-api-types: ^0.37.35
     i18next: ^22.4.12
     tslib: ^2.5.0
-    tsup: ^6.6.3
+    tsup: ^6.7.0
     typescript: ^4.9.5
   languageName: unknown
   linkType: soft
@@ -1206,7 +1206,7 @@ __metadata:
     "@vitest/coverage-c8": ^0.29.3
     "@vladfrangu/async_event_emitter": ^2.1.4
     discord-api-types: ^0.37.35
-    tsup: ^6.6.3
+    tsup: ^6.7.0
     typescript: ^4.9.5
     vitest: ^0.29.3
   languageName: unknown
@@ -1220,7 +1220,7 @@ __metadata:
     "@types/node": ^18.15.3
     i18next: ^22.4.12
     tslib: ^2.5.0
-    tsup: ^6.6.3
+    tsup: ^6.7.0
     typescript: ^4.9.5
   languageName: unknown
   linkType: soft
@@ -1232,7 +1232,7 @@ __metadata:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.29.3
     colorette: 2.0.19
-    tsup: ^6.6.3
+    tsup: ^6.7.0
     typescript: ^4.9.5
     vitest: ^0.29.3
   languageName: unknown
@@ -1244,7 +1244,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": ^2.0.0
     "@sapphire/result": ^2.6.0
-    tsup: ^6.6.3
+    tsup: ^6.7.0
     typescript: ^4.9.5
   languageName: unknown
   linkType: soft
@@ -1272,7 +1272,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.29.3
-    tsup: ^6.6.3
+    tsup: ^6.7.0
     typescript: ^4.9.5
     vitest: ^0.29.3
   languageName: unknown
@@ -1287,7 +1287,7 @@ __metadata:
     "@skyra/env-utilities": "workspace:^"
     "@skyra/safe-fetch": "workspace:^"
     esbuild-plugin-version-injector: ^1.1.0
-    tsup: ^6.6.3
+    tsup: ^6.7.0
     typescript: ^4.9.5
   languageName: unknown
   linkType: soft
@@ -2024,7 +2024,7 @@ __metadata:
     lint-staged: ^13.2.0
     prettier: ^2.8.4
     pretty-quick: ^3.1.3
-    tsup: ^6.6.3
+    tsup: ^6.7.0
     turbo: ^1.8.3
     typescript: ^4.9.5
     vite: ^4.2.0
@@ -6765,9 +6765,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^6.6.3":
-  version: 6.6.3
-  resolution: "tsup@npm:6.6.3"
+"tsup@npm:^6.7.0":
+  version: 6.7.0
+  resolution: "tsup@npm:6.7.0"
   dependencies:
     bundle-require: ^4.0.0
     cac: ^6.7.12
@@ -6786,7 +6786,7 @@ __metadata:
   peerDependencies:
     "@swc/core": ^1
     postcss: ^8.4.12
-    typescript: ^4.1.0
+    typescript: ">=4.1.0"
   peerDependenciesMeta:
     "@swc/core":
       optional: true
@@ -6797,7 +6797,7 @@ __metadata:
   bin:
     tsup: dist/cli-default.js
     tsup-node: dist/cli-node.js
-  checksum: 4fa45fd7493971e5bf1f142a2590eabc1de536dc251d4b90bfce7dfaf1d7f40e19ef04ee541f9d2ab6a55841b72d265b7ddd3ea70c6371d746b5aed782f08094
+  checksum: 91ff179f0b9828a6880b6decaa8603fd7af0311f46a38d3a93647a2497298750d676810aeff533a335443a01a7b340dbba7c76523bcd7a87d7b05b7677742901
   languageName: node
   linkType: hard
 
