@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/i18next-backend@2.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@2.0.1...@skyra/i18next-backend@2.0.2) - (2023-03-25)
+
+## 🐛 Bug Fixes
+
+- **i18next-backend:** Update i18next and @types/node ([77cd04c](https://github.com/skyra-project/archid-components/commit/77cd04cbb99a8c76a71f524c00ef207eb0584bc7))
+- **deps:** Update all non-major dependencies ([df22552](https://github.com/skyra-project/archid-components/commit/df22552999e2aa863023388fc6014a3701f9f8d8))
+- **deps:** Update all non-major dependencies ([08fca58](https://github.com/skyra-project/archid-components/commit/08fca581eb8075f359baeb33f6eeb744d33a6a9d))
+- **deps:** Update all non-major dependencies (#207) ([4768f93](https://github.com/skyra-project/archid-components/commit/4768f93bbf7dab023c592f6bd8dbb6c278aa1d83))
+
 # [@skyra/i18next-backend@2.0.1](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@2.0.0...@skyra/i18next-backend@2.0.1) - (2022-12-11)
 
 ## 🏠 Refactor
