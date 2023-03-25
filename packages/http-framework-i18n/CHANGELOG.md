@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@0.6.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.6.0...@skyra/http-framework-i18n@0.6.1) - (2023-03-25)
+
+## 🏠 Refactor
+
+- Add select menu classes (#200) ([cbab493](https://github.com/skyra-project/archid-components/commit/cbab493afc198d24226bd626efa80c82379ea36c))
+
+## 🐛 Bug Fixes
+
+- **http-i18n:** Update collecetion, api types and i18next ([d69049e](https://github.com/skyra-project/archid-components/commit/d69049ee00eb2d31812fd573b60f04956f703591))
+- **deps:** Update all non-major dependencies ([df22552](https://github.com/skyra-project/archid-components/commit/df22552999e2aa863023388fc6014a3701f9f8d8))
+- **deps:** Update all non-major dependencies ([08fca58](https://github.com/skyra-project/archid-components/commit/08fca581eb8075f359baeb33f6eeb744d33a6a9d))
+- **http-framework-i18n:** Bump discord-api-types ([350c945](https://github.com/skyra-project/archid-components/commit/350c945bdcbe17406f8e7c8c52b237a8a6e7db92))
+- **deps:** Update all non-major dependencies (#207) ([4768f93](https://github.com/skyra-project/archid-components/commit/4768f93bbf7dab023c592f6bd8dbb6c278aa1d83))
+
 # [@skyra/http-framework-i18n@0.6.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.5.0...@skyra/http-framework-i18n@0.6.0) - (2022-10-23)
 
 ## 🐛 Bug Fixes
