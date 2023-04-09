@@ -28,7 +28,7 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.0.0",
 		"@types/node": "^18.15.11",
-		"i18next": "^22.4.13",
+		"i18next": "^22.4.14",
 		"tsup": "^6.7.0",
 		"typescript": "^4.9.5"
 	},
