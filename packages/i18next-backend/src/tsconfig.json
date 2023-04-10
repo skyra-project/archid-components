@@ -4,7 +4,7 @@
 		"rootDir": "./",
 		"outDir": "../dist",
 		"target": "ES2021",
-		"module": "CommonJS"
+		"module": "Node16"
 	},
 	"include": ["."]
 }
