@@ -1,7 +1,7 @@
 import { Collection } from '@discordjs/collection';
 import { Backend } from '@skyra/i18next-backend';
 import { Locale, type LocaleString } from 'discord-api-types/v10';
-import i18next, { getFixedT, InitOptions, TFunction } from 'i18next';
+import i18next, { getFixedT, type InitOptions, type TFunction } from 'i18next';
 import type { PathLike } from 'node:fs';
 import { opendir } from 'node:fs/promises';
 import { join } from 'node:path';
