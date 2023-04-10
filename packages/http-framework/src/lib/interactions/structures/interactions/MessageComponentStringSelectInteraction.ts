@@ -12,4 +12,7 @@ export namespace MessageComponentStringSelectInteraction {
 	export type Type = Base & Required<Pick<Base, 'channel' | 'channel_id' | 'data' | 'app_permissions' | 'message'>>;
 }
 
-export { MessageComponentStringSelectInteraction as MessageComponentSelectMenuInteraction };
+export {
+	/** @deprecated Use {@link MessageComponentStringSelectInteraction} instead. */
+	MessageComponentStringSelectInteraction as MessageComponentSelectMenuInteraction
+};
