@@ -75,19 +75,28 @@ export abstract class BaseInteraction<T extends BaseInteractionType = BaseIntera
 	}
 
 	/**
-	 * The channel the interaction was sent from.
+	 * The channel of the interaction.
 	 */
-	public get channel_id(): T['channel_id'] {
-		return this[Data].channel_id;
+	public get channel(): T['channel'] {
+		return this[Data].channel;
 	}
 
 	/**
 	 * The channel the interaction was sent from.
+	 * @deprecated Use {@link channel}.id instead.
+	 */
+	public get channel_id(): T['channel_id'] {
+		return this.channel?.id;
+	}
+
+	/**
+	 * The channel the interaction was sent from.
+	 * @deprecated Use {@link channel}.id instead.
 	 *
 	 * @seealso {@link channel_id} for the raw data.
 	 */
 	public get channelId(): T['channel_id'] {
-		return this.channel_id;
+		return this.channel?.id;
 	}
 
 	/**
@@ -178,10 +187,11 @@ export abstract class BaseInteraction<T extends BaseInteractionType = BaseIntera
 	 * Fetches the channel the interaction was sent from.
 	 * @returns The fetched channel.
 	 * @remarks **This requires REST to have a token.**
+	 * @seealso {@link channel}.
 	 */
 	public async fetchChannel() {
-		if (isNullishOrEmpty(this.channelId)) return err(new Error('The interaction was not sent from a channel'));
-		return resultFromDiscord(container.rest.get(Routes.channel(this.channelId)) as Promise<RESTGetAPIChannelResult>);
+		if (isNullishOrEmpty(this.channel)) return err(new Error('The interaction was not sent from a channel'));
+		return resultFromDiscord(container.rest.get(Routes.channel(this.channel.id)) as Promise<RESTGetAPIChannelResult>);
 	}
 
 	/**
