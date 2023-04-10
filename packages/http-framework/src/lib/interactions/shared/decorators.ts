@@ -1,5 +1,5 @@
 import { Collection } from '@discordjs/collection';
-import type { Command } from '../../structures/Command';
+import type { Command } from '../../structures/Command.js';
 
 export const restrictedGuildIdRegistry = new Collection<typeof Command, readonly string[]>();
 

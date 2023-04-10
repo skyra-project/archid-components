@@ -5,6 +5,7 @@
 	"workspaces": [
 		"packages/*"
 	],
+	"type": "module",
 	"scripts": {
 		"clean": "node scripts/clean.mjs",
 		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",

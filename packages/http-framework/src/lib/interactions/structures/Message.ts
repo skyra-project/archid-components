@@ -9,9 +9,9 @@ import {
 	type RESTPatchAPIInteractionOriginalResponseJSONBody,
 	type RESTPatchAPIInteractionOriginalResponseResult
 } from 'discord-api-types/v10';
-import { resultFromDiscord, type AddFiles, type AsyncDiscordResult } from '../utils/util';
-import { Data } from './common/symbols';
-import type { BaseInteraction } from './interactions';
+import { resultFromDiscord, type AddFiles, type AsyncDiscordResult } from '../utils/util.js';
+import { Data } from './common/symbols.js';
+import type { BaseInteraction } from './interactions/index.js';
 
 export class PartialMessage<I extends BaseInteraction = BaseInteraction> {
 	public readonly interaction: I;

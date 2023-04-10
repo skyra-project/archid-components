@@ -5,8 +5,8 @@ import {
 	type DeferResponseOptions,
 	type MessageResponseOptions,
 	type ModalResponseOptions
-} from '../../../../../src';
-import { ChatInputApplicationCommandInteractionData, makeResponse } from '../../../../shared';
+} from '../../../../../src/index.js';
+import { ChatInputApplicationCommandInteractionData, makeResponse } from '../../../../shared.js';
 
 // NOTE: The reason why we use `spy.mock.calls[0][0]` is because `toHaveBeenCalledWith` would need to match
 // a function, which is impossible to do in tests, so we hack into the mock's calls and match the first

@@ -1,6 +1,6 @@
 import type { APIChannel, APIInteractionGuildMember, APIUser, InteractionType, LocaleString, Permissions, Snowflake } from 'discord-api-types/v10';
-import { ChatInputCommandInteraction, type BaseInteractionType, type InGuild } from '../../../../../src';
-import { ChatInputApplicationCommandInteractionData, makeResponse } from '../../../../shared';
+import { ChatInputCommandInteraction, type BaseInteractionType, type InGuild } from '../../../../../src/index.js';
+import { ChatInputApplicationCommandInteractionData, makeResponse } from '../../../../shared.js';
 
 describe('BaseInteraction', () => {
 	const instance = new ChatInputCommandInteraction(makeResponse(), ChatInputApplicationCommandInteractionData);

@@ -1,2 +1,2 @@
 export * from 'colorette';
-export * from './lib/Logger';
+export * from './lib/Logger.js';

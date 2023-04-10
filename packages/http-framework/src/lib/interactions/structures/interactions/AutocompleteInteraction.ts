@@ -1,6 +1,6 @@
 import { InteractionResponseType, type APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/v10';
-import { BaseInteraction } from './base/BaseInteraction';
-import type { AutocompleteResponseData, AutocompleteResponseOptions } from './base/common';
+import { BaseInteraction } from './base/BaseInteraction.js';
+import type { AutocompleteResponseData, AutocompleteResponseOptions } from './base/common.js';
 
 export class AutocompleteInteraction extends BaseInteraction<AutocompleteInteraction.Type> {
 	/**

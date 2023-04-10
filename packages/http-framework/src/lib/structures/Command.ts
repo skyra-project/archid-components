@@ -6,9 +6,14 @@ import {
 	type APIChatInputApplicationCommandInteractionData,
 	type APIContextMenuInteractionData
 } from 'discord-api-types/v10';
-import { chatInputCommandRegistry, contextMenuCommandRegistry, type Interactions, type AutocompleteInteractionArguments } from '../interactions';
-import { getMethod } from '../interactions/shared/link';
-import type { CommandStore } from './CommandStore';
+import {
+	chatInputCommandRegistry,
+	contextMenuCommandRegistry,
+	type AutocompleteInteractionArguments,
+	type Interactions
+} from '../interactions/index.js';
+import { getMethod } from '../interactions/shared/link.js';
+import type { CommandStore } from './CommandStore.js';
 
 export abstract class Command extends Piece {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();

@@ -7,6 +7,7 @@
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
 		"import": "./dist/index.mjs",
 		"types": "./dist/index.d.ts"
@@ -26,7 +27,7 @@
 		"@discordjs/builders": "^1.6.1",
 		"@discordjs/collection": "^1.5.0",
 		"@discordjs/rest": "^1.7.0",
-		"@sapphire/pieces": "^3.6.1",
+		"@sapphire/pieces": "^3.6.2",
 		"@sapphire/result": "^2.6.1",
 		"@sapphire/utilities": "^3.11.1",
 		"@vladfrangu/async_event_emitter": "^2.2.1",

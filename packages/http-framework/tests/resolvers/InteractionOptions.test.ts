@@ -4,7 +4,7 @@ import {
 	type APIApplicationCommandInteractionDataSubcommandGroupOption,
 	type APIApplicationCommandInteractionDataSubcommandOption
 } from 'discord-api-types/v10';
-import { extractTopLevelOptions, transformAutocompleteInteraction, transformInteraction } from '../../src';
+import { extractTopLevelOptions, transformAutocompleteInteraction, transformInteraction } from '../../src/index.js';
 
 describe('InteractionOptions', () => {
 	describe('transformInteraction', () => {

@@ -1,4 +1,7 @@
 {
 	"extends": "../../tsconfig.eslint.json",
-	"include": ["src", "tsup.config.ts"]
+	"include": ["src", "tsup.config.ts"],
+	"compilerOptions": {
+		"moduleResolution": "Node"
+	}
 }

@@ -2,7 +2,8 @@
 	"extends": "../../tsconfig.eslint.json",
 	"compilerOptions": {
 		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"skipLibCheck": true
 	},
 	"include": ["src", "tests", "tsup.config.ts"]
 }

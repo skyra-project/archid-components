@@ -1,5 +1,5 @@
 import type { APIChatInputApplicationCommandInteraction } from 'discord-api-types/v10';
-import { CommandInteraction } from './base/CommandInteraction';
+import { CommandInteraction } from './base/CommandInteraction.js';
 
 export class ChatInputCommandInteraction extends CommandInteraction<ChatInputCommandInteraction.Type> {}
 

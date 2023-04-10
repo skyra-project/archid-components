@@ -4,7 +4,7 @@
 		"rootDir": "./",
 		"outDir": "../dist",
 		"target": "ES2021",
-		"module": "Node16"
+		"moduleResolution": "node"
 	},
 	"include": ["."]
 }

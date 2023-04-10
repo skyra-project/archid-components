@@ -1,5 +1,5 @@
 import type { APIMessageApplicationCommandInteraction } from 'discord-api-types/v10';
-import { CommandInteraction } from './base/CommandInteraction';
+import { CommandInteraction } from './base/CommandInteraction.js';
 
 export class MessageContextMenuCommandInteraction extends CommandInteraction<MessageContextMenuCommandInteraction.Type> {}
 
