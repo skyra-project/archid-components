@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@0.15.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.15.4...@skyra/http-framework@0.15.5) - (2023-04-10)
+
+## 🏠 Refactor
+
+- **Interaction:** Add `channel`, deprecate `channelId` ([7cd7aa7](https://github.com/skyra-project/archid-components/commit/7cd7aa76aa6e1f74f5f86916dc6eba73bfb9ef0f))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([f9c1023](https://github.com/skyra-project/archid-components/commit/f9c1023350e16dd10a0b032925910ea040e5c1d5))
+
 # [@skyra/http-framework@0.15.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.15.3...@skyra/http-framework@0.15.4) - (2023-03-25)
 
 ## 🐛 Bug Fixes
