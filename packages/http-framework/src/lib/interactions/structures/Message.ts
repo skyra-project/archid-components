@@ -3,13 +3,13 @@ import { container } from '@sapphire/pieces';
 import { isNullishOrEmpty } from '@sapphire/utilities';
 import type { APIMessage, RESTDeleteAPIInteractionOriginalResponseResult } from 'discord-api-types/v10';
 import {
-	APIChannel,
 	Routes,
+	type APIChannel,
 	type RESTGetAPIInteractionOriginalResponseResult,
 	type RESTPatchAPIInteractionOriginalResponseJSONBody,
 	type RESTPatchAPIInteractionOriginalResponseResult
 } from 'discord-api-types/v10';
-import { AddFiles, AsyncDiscordResult, resultFromDiscord } from '../utils/util';
+import { resultFromDiscord, type AddFiles, type AsyncDiscordResult } from '../utils/util';
 import { Data } from './common/symbols';
 import type { BaseInteraction } from './interactions';
 

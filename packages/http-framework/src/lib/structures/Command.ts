@@ -6,7 +6,7 @@ import {
 	type APIChatInputApplicationCommandInteractionData,
 	type APIContextMenuInteractionData
 } from 'discord-api-types/v10';
-import { chatInputCommandRegistry, contextMenuCommandRegistry, Interactions, type AutocompleteInteractionArguments } from '../interactions';
+import { chatInputCommandRegistry, contextMenuCommandRegistry, type Interactions, type AutocompleteInteractionArguments } from '../interactions';
 import { getMethod } from '../interactions/shared/link';
 import type { CommandStore } from './CommandStore';
 

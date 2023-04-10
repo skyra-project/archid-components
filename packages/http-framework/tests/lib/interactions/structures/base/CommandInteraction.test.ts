@@ -1,10 +1,10 @@
 import { InteractionResponseType, MessageFlags } from 'discord-api-types/v10';
 import {
 	ChatInputCommandInteraction,
-	ModalResponseOptions,
 	PartialMessage,
 	type DeferResponseOptions,
-	type MessageResponseOptions
+	type MessageResponseOptions,
+	type ModalResponseOptions
 } from '../../../../../src';
 import { ChatInputApplicationCommandInteractionData, makeResponse } from '../../../../shared';
 

@@ -1,5 +1,5 @@
 import type { APIChannel, APIInteractionGuildMember, APIUser, InteractionType, LocaleString, Permissions, Snowflake } from 'discord-api-types/v10';
-import { BaseInteractionType, ChatInputCommandInteraction, InGuild } from '../../../../../src';
+import { ChatInputCommandInteraction, type BaseInteractionType, type InGuild } from '../../../../../src';
 import { ChatInputApplicationCommandInteractionData, makeResponse } from '../../../../shared';
 
 describe('BaseInteraction', () => {
