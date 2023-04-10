@@ -1,10 +1,10 @@
 import { container } from '@sapphire/pieces';
 import {
 	InteractionResponseType,
-	RESTPostAPIInteractionFollowupResult,
 	Routes,
 	type APIMessageComponentButtonInteraction,
-	type APIMessageComponentSelectMenuInteraction
+	type APIMessageComponentSelectMenuInteraction,
+	type RESTPostAPIInteractionFollowupResult
 } from 'discord-api-types/v10';
 import { resultFromDiscord, type AsyncDiscordResult } from '../../../utils/util';
 import { Data } from '../../common/symbols';

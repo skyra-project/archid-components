@@ -61,6 +61,6 @@ export class MessageComponentChannelSelectInteraction extends MessageComponentIn
 
 export namespace MessageComponentChannelSelectInteraction {
 	type Base = APIBaseInteraction<InteractionType.MessageComponent, APIMessageChannelSelectInteractionData>;
-	export type Type = Base & Required<Pick<Base, 'channel_id' | 'data' | 'message' | 'app_permissions'>>;
+	export type Type = Base & Required<Pick<Base, 'channel' | 'channel_id' | 'data' | 'app_permissions' | 'message'>>;
 	export type Value = TransformedArguments.Channel;
 }

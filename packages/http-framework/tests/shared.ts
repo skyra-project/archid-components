@@ -88,7 +88,8 @@ export const ChatInputApplicationCommandInteractionData: APIChatInputApplication
 	...BaseInteractionData,
 	type: InteractionType.ApplicationCommand,
 	data: { id: '0', name: 'foo', type: ApplicationCommandType.ChatInput, options: [] },
-	channel_id: '737142209639350343'
+	channel_id: '737142209639350343',
+	channel: { id: '737142209639350343', name: 'general', type: 0, parent_id: null, permission_overwrites: [] }
 };
 
 export const MessageApplicationCommandInteractionData: APIMessageApplicationCommandInteraction = {
@@ -101,7 +102,8 @@ export const MessageApplicationCommandInteractionData: APIMessageApplicationComm
 		target_id: MessageData.id,
 		resolved: { messages: { [MessageData.id]: MessageData } }
 	},
-	channel_id: MessageData.channel_id
+	channel_id: MessageData.channel_id,
+	channel: { id: '737142209639350343', name: 'general', type: 0, parent_id: null, permission_overwrites: [] }
 };
 
 export const UserApplicationCommandInteractionData: APIUserApplicationCommandInteraction = {
@@ -109,6 +111,7 @@ export const UserApplicationCommandInteractionData: APIUserApplicationCommandInt
 	type: InteractionType.ApplicationCommand,
 	data: { id: '0', name: 'foo', type: ApplicationCommandType.User, target_id: UserData.id, resolved: { users: { [UserData.id]: UserData } } },
 	channel_id: MessageData.channel_id,
+	channel: { id: '737142209639350343', name: 'general', type: 0, parent_id: null, permission_overwrites: [] },
 	message: MessageData
 };
 
@@ -117,6 +120,7 @@ export const MessageComponentButtonInteractionData: APIMessageComponentButtonInt
 	type: InteractionType.MessageComponent,
 	data: { component_type: ComponentType.Button, custom_id: 'button:foo:bar' },
 	channel_id: MessageData.channel_id,
+	channel: { id: '737142209639350343', name: 'general', type: 0, parent_id: null, permission_overwrites: [] },
 	message: MessageData
 };
 
@@ -125,6 +129,7 @@ export const MessageComponentChannelSelectInteractionData: MessageComponentChann
 	type: InteractionType.MessageComponent,
 	data: { component_type: ComponentType.ChannelSelect, custom_id: 'select:channel:foo', values: [], resolved: { channels: {} } },
 	channel_id: MessageData.channel_id,
+	channel: { id: '737142209639350343', name: 'general', type: 0, parent_id: null, permission_overwrites: [] },
 	message: MessageData
 };
 
@@ -138,6 +143,7 @@ export const MessageComponentMentionableSelectInteractionData: MessageComponentM
 		resolved: { users: {}, members: {}, roles: {} }
 	},
 	channel_id: MessageData.channel_id,
+	channel: { id: '737142209639350343', name: 'general', type: 0, parent_id: null, permission_overwrites: [] },
 	message: MessageData
 };
 
@@ -146,6 +152,7 @@ export const MessageComponentRoleSelectInteractionData: MessageComponentRoleSele
 	type: InteractionType.MessageComponent,
 	data: { component_type: ComponentType.RoleSelect, custom_id: 'select:role:foo', values: [], resolved: { roles: {} } },
 	channel_id: MessageData.channel_id,
+	channel: { id: '737142209639350343', name: 'general', type: 0, parent_id: null, permission_overwrites: [] },
 	message: MessageData
 };
 
@@ -154,6 +161,7 @@ export const MessageComponentStringSelectInteractionData: MessageComponentString
 	type: InteractionType.MessageComponent,
 	data: { component_type: ComponentType.StringSelect, custom_id: 'select:string:foo', values: [] },
 	channel_id: MessageData.channel_id,
+	channel: { id: '737142209639350343', name: 'general', type: 0, parent_id: null, permission_overwrites: [] },
 	message: MessageData
 };
 
@@ -162,6 +170,7 @@ export const MessageComponentUserSelectInteractionData: MessageComponentUserSele
 	type: InteractionType.MessageComponent,
 	data: { component_type: ComponentType.UserSelect, custom_id: 'select:user:foo', values: [], resolved: { users: {} } },
 	channel_id: MessageData.channel_id,
+	channel: { id: '737142209639350343', name: 'general', type: 0, parent_id: null, permission_overwrites: [] },
 	message: MessageData
 };
 

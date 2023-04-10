@@ -1,4 +1,4 @@
-import type { APIInteractionGuildMember, APIUser, InteractionType, LocaleString, Permissions, Snowflake } from 'discord-api-types/v10';
+import type { APIChannel, APIInteractionGuildMember, APIUser, InteractionType, LocaleString, Permissions, Snowflake } from 'discord-api-types/v10';
 import { BaseInteractionType, ChatInputCommandInteraction, InGuild } from '../../../../../src';
 import { ChatInputApplicationCommandInteractionData, makeResponse } from '../../../../shared';
 
@@ -31,6 +31,11 @@ describe('BaseInteraction', () => {
 
 	test('GIVEN applicationId THEN returns the raw data', () => {
 		expect<Snowflake>(instance.applicationId).toBe(ChatInputApplicationCommandInteractionData.application_id);
+	});
+
+	test('GIVEN channel THEN returns the raw data', () => {
+		type Channel = Partial<APIChannel> & Pick<APIChannel, 'id' | 'type'>;
+		expect<Channel | undefined>(instance.channel).toBe(ChatInputApplicationCommandInteractionData.channel);
 	});
 
 	test('GIVEN channel_id THEN returns the raw data', () => {
