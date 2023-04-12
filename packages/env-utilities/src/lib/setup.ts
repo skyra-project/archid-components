@@ -1,6 +1,6 @@
 import type { DotenvConfigOutput } from 'dotenv';
 import { fileURLToPath } from 'node:url';
-import { loadEnvFiles, type EnvLoaderOptions } from './env-based-loader';
+import { loadEnvFiles, type EnvLoaderOptions } from './env-loader';
 import { envIsDefined, envParseBoolean } from './utils';
 
 export function setup(pathOrOptions?: string | URL | EnvSetupOptions): DotenvConfigOutput {
