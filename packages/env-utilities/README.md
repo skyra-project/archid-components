@@ -20,7 +20,7 @@ You can also pass a `string` or if you want to define other options, you may use
 
 -   `DOTENV_DEBUG`: configures `EnvSetupOptions.debug`. If enabled, the library will log to help debug why certain keys or values are not being set as expected.
 -   `DOTENV_ENCODING`: configures `EnvSetupOptions.encoding`. If set, it will specify the encoding of the files containing the environment variables
--   `DOTENV_ENV`: configures `EnvSetupOptions.env`. If set, it will specify a custon environment if `NODE_ENV` is not sufficient.
+-   `DOTENV_ENV`: configures `EnvSetupOptions.env`. If set, it will specify a custom environment if `NODE_ENV` is not sufficient.
 -   `DOTENV_PATH`: configures `EnvSetupOptions.path`. If set, it will specify a custom path to the file containing environment variables, useful for when they are located elsewhere.
 -   `DOTENV_PREFIX`: configures `EnvSetupOptions.prefix`. If set, it will specify a required prefix for dotenv variables (e.g. `APP_`).
 

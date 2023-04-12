@@ -1,13 +1,13 @@
 import type { DotenvConfigOutput } from 'dotenv';
-import { config, type DotenvCraOptions } from 'dotenv-cra';
 import { fileURLToPath } from 'node:url';
+import { loadEnvFiles, type EnvLoaderOptions } from './env-loader';
 import { envIsDefined, envParseBoolean } from './utils';
 
 export function setup(pathOrOptions?: string | URL | EnvSetupOptions): DotenvConfigOutput {
 	// Unless explicitly defined, set NODE_ENV as development:
 	process.env.NODE_ENV ??= 'development';
 
-	let options: DotenvCraOptions;
+	let options: EnvLoaderOptions;
 	if (typeof pathOrOptions === 'undefined') {
 		options = {};
 	} else if (typeof pathOrOptions === 'string') {
@@ -23,7 +23,7 @@ export function setup(pathOrOptions?: string | URL | EnvSetupOptions): DotenvCon
 		throw new TypeError('Expected undefined, string, URL, or EnvSetupOptions');
 	}
 
-	return config({
+	return loadEnvFiles({
 		debug: envIsDefined('DOTENV_DEBUG') ? envParseBoolean('DOTENV_DEBUG') : undefined,
 		encoding: process.env.DOTENV_ENCODING,
 		env: process.env.DOTENV_ENV,
@@ -33,7 +33,7 @@ export function setup(pathOrOptions?: string | URL | EnvSetupOptions): DotenvCon
 	});
 }
 
-export interface EnvSetupOptions extends Omit<DotenvCraOptions, 'path'> {
+export interface EnvSetupOptions extends Omit<EnvLoaderOptions, 'path'> {
 	/**
 	 * You may specify a custom path if your file containing environment variables is located elsewhere.
 	 */
