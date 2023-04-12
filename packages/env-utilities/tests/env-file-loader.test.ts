@@ -1,4 +1,4 @@
-import { readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { EnvLoaderOptions, loadEnvFiles } from '../src/lib/env-loader';
@@ -128,5 +128,14 @@ describe('Env file Loader', () => {
 			MY_APP_SETTING: 'FOO',
 			MY_APP_SETTING_2: 'BAZ'
 		});
+	});
+
+	test('should throw error when attempting to read an inaccessible file', () => {
+		process.env.NODE_ENV = 'development';
+
+		// use chmodSync to block access to `.env` in fixtures directory
+		chmodSync(resolve(fixturesDirectory, '.env'), 0o000);
+
+		expect(() => loadEnvFiles({ ...envLoaderConfig })).toThrowError(/EACCES: permission denied, open '.+\.env'/);
 	});
 });
