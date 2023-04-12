@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/safe-fetch@1.1.1](https://github.com/skyra-project/archid-components/compare/@skyra/safe-fetch@1.1.0...@skyra/safe-fetch@1.1.1) - (2023-04-12)
+
+## 🏠 Refactor
+
+- Add select menu classes (#200) ([cbab493](https://github.com/skyra-project/archid-components/commit/cbab493afc198d24226bd626efa80c82379ea36c))
+
+## 🐛 Bug Fixes
+
+- Update to TypeScript v5 & use moduleResolution node16 (#239) ([92986c1](https://github.com/skyra-project/archid-components/commit/92986c15e0ebed07efdbaf21f28915e373a738bd))
+- **deps:** Update dependency @sapphire/result to ^2.6.0 (#185) ([cbc9cce](https://github.com/skyra-project/archid-components/commit/cbc9cce0004bcb67b4713b24fb8a1c50f2b39be7))
+
 # [@skyra/safe-fetch@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/safe-fetch@1.0.1...@skyra/safe-fetch@1.1.0) - (2022-10-02)
 
 ## 🐛 Bug Fixes
