@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@1.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.15.5...@skyra/http-framework@1.0.0) - (2023-04-12)
+
+## 🐛 Bug Fixes
+
+- Update to TypeScript v5 & use moduleResolution node16 (#239) ([92986c1](https://github.com/skyra-project/archid-components/commit/92986c15e0ebed07efdbaf21f28915e373a738bd))
+
+## 🚀 Features
+
+- **hfx:** Set version to 1.0.0 ([d6235e3](https://github.com/skyra-project/archid-components/commit/d6235e32ebf1f4e88d81dafd1c40d3b2a82d7191))
+  - 💥 **BREAKING CHANGE:** This package has now dropped 0ver
+
 # [@skyra/http-framework@0.15.5](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.15.4...@skyra/http-framework@0.15.5) - (2023-04-10)
 
 ## 🏠 Refactor
