@@ -1,8 +1,0 @@
-{
-	"extends": "@sapphire/ts-config/extra-strict",
-	"compilerOptions": {
-		"target": "ESNext",
-		"module": "ESNext"
-	},
-	"exclude": ["**/dist/**/*"]
-}

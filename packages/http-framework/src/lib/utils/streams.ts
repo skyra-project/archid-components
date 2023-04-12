@@ -1,16 +1,16 @@
 import { container } from '@sapphire/pieces';
-import { err, ok } from '@sapphire/result';
+import { err, ok, type Result } from '@sapphire/result';
 import { isNullishOrEmpty } from '@sapphire/utilities';
 import type { IncomingMessage } from 'node:http';
 import { TextDecoder } from 'node:util';
-import { ErrorMessages } from './constants';
+import { ErrorMessages } from './constants.js';
 
 /**
  * Safely reads the {@link IncomingMessage incoming message}'s body as a string.
  * @param request The incoming message to get the data from.
  * @returns The string, if it's within the body size limit.
  */
-export async function getSafeTextBody(request: IncomingMessage) {
+export async function getSafeTextBody(request: IncomingMessage): Promise<Result.Err<string> | Result.Ok<string>> {
 	let limit = container.client.bodySizeLimit;
 
 	// Validate the Content-Length header:

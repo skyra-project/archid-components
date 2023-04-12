@@ -43,6 +43,7 @@ export async function init(options?: InitOptions) {
 	});
 
 	for (const { name, format } of loadedFormatters) {
+		// @ts-expect-error TS says services doesn't exist, but it does
 		i18next.services.formatter!.add(name, format);
 	}
 }
@@ -82,7 +83,7 @@ async function loadLocale(directory: string, ns: string) {
 }
 
 const fixedCache = new Collection<LocaleString, TFunction>();
-export function getT(locale: LocaleString) {
+export function getT(locale: LocaleString): TFunction<'translation', undefined, 'translation'> {
 	if (!loadedLocales.has(locale)) throw new ReferenceError(`Invalid language (${locale})`);
 	return fixedCache.ensure(locale, () => getFixedT(locale));
 }

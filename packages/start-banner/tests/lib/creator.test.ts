@@ -1,4 +1,4 @@
-import { createBanner } from '../../src';
+import { createBanner } from '../../src/index.js';
 
 describe('createBanner', () => {
 	test('GIVEN no options THEN throws an Error', () => {

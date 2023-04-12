@@ -1,6 +1,6 @@
-export * from './lib/constants';
-export * from './lib/enums';
-export * from './lib/twitch';
+export * from './lib/constants.js';
+export * from './lib/enums.js';
+export * from './lib/twitch.js';
 export type {
 	TwitchEventSubEvent,
 	TwitchEventSubOnlineEvent,
@@ -15,7 +15,7 @@ export type {
 	TwitchHelixUserFollowsResult,
 	TwitchHelixUsersSearchResult,
 	TwitchOnlineEmbedData
-} from './lib/types';
+} from './lib/types.js';
 
 declare module '@skyra/env-utilities' {
 	interface Env {

@@ -7,6 +7,7 @@
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
+	"type": "commonjs",
 	"exports": {
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js",
@@ -29,9 +30,7 @@
 		"directory": "packages/safe-fetch"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=18.0.0",

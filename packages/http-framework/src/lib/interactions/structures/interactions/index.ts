@@ -1,14 +1,14 @@
-import type { AutocompleteInteraction } from './AutocompleteInteraction';
-import type { ChatInputCommandInteraction } from './ChatInputCommandInteraction';
-import type { MessageComponentButtonInteraction } from './MessageComponentButtonInteraction';
-import type { MessageComponentChannelSelectInteraction } from './MessageComponentChannelSelectInteraction';
-import type { MessageComponentMentionableSelectInteraction } from './MessageComponentMentionableSelectInteraction';
-import type { MessageComponentRoleSelectInteraction } from './MessageComponentRoleSelectInteraction';
-import type { MessageComponentStringSelectInteraction } from './MessageComponentStringSelectInteraction';
-import type { MessageComponentUserSelectInteraction } from './MessageComponentUserSelectInteraction';
-import type { MessageContextMenuCommandInteraction } from './MessageContextMenuCommandInteraction';
-import type { ModalSubmitInteraction } from './ModalSubmitInteraction';
-import type { UserContextMenuCommandInteraction } from './UserContextMenuCommandInteraction';
+import type { AutocompleteInteraction } from './AutocompleteInteraction.js';
+import type { ChatInputCommandInteraction } from './ChatInputCommandInteraction.js';
+import type { MessageComponentButtonInteraction } from './MessageComponentButtonInteraction.js';
+import type { MessageComponentChannelSelectInteraction } from './MessageComponentChannelSelectInteraction.js';
+import type { MessageComponentMentionableSelectInteraction } from './MessageComponentMentionableSelectInteraction.js';
+import type { MessageComponentRoleSelectInteraction } from './MessageComponentRoleSelectInteraction.js';
+import type { MessageComponentStringSelectInteraction } from './MessageComponentStringSelectInteraction.js';
+import type { MessageComponentUserSelectInteraction } from './MessageComponentUserSelectInteraction.js';
+import type { MessageContextMenuCommandInteraction } from './MessageContextMenuCommandInteraction.js';
+import type { ModalSubmitInteraction } from './ModalSubmitInteraction.js';
+import type { UserContextMenuCommandInteraction } from './UserContextMenuCommandInteraction.js';
 
 export namespace Interactions {
 	export type Autocomplete = AutocompleteInteraction;
@@ -47,18 +47,18 @@ export namespace Interactions {
 
 export type Interaction = Interactions.Any;
 
-export * from './AutocompleteInteraction';
-export * from './base/BaseInteraction';
-export * from './base/CommandInteraction';
-export * from './base/common';
-export * from './base/MessageComponentInteraction';
-export * from './ChatInputCommandInteraction';
-export * from './MessageComponentButtonInteraction';
-export * from './MessageComponentChannelSelectInteraction';
-export * from './MessageComponentMentionableSelectInteraction';
-export * from './MessageComponentRoleSelectInteraction';
-export * from './MessageComponentStringSelectInteraction';
-export * from './MessageComponentUserSelectInteraction';
-export * from './MessageContextMenuCommandInteraction';
-export * from './ModalSubmitInteraction';
-export * from './UserContextMenuCommandInteraction';
+export * from './AutocompleteInteraction.js';
+export * from './base/BaseInteraction.js';
+export * from './base/CommandInteraction.js';
+export * from './base/common.js';
+export * from './base/MessageComponentInteraction.js';
+export * from './ChatInputCommandInteraction.js';
+export * from './MessageComponentButtonInteraction.js';
+export * from './MessageComponentChannelSelectInteraction.js';
+export * from './MessageComponentMentionableSelectInteraction.js';
+export * from './MessageComponentRoleSelectInteraction.js';
+export * from './MessageComponentStringSelectInteraction.js';
+export * from './MessageComponentUserSelectInteraction.js';
+export * from './MessageContextMenuCommandInteraction.js';
+export * from './ModalSubmitInteraction.js';
+export * from './UserContextMenuCommandInteraction.js';

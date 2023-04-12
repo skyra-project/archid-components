@@ -24,7 +24,7 @@ import type {
 	MessageComponentRoleSelectInteraction,
 	MessageComponentStringSelectInteraction,
 	MessageComponentUserSelectInteraction
-} from '../src';
+} from '../src/index.js';
 
 export const UserData: Readonly<APIUser> = {
 	id: '266624760782258186',

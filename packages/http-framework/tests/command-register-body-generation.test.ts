@@ -6,15 +6,15 @@ import {
 	type RESTPostAPIContextMenuApplicationCommandsJSONBody
 } from 'discord-api-types/v10';
 import {
-	chatInputCommandRegistry,
 	Command,
-	contextMenuCommandRegistry,
 	RegisterCommand,
 	RegisterMessageCommand,
 	RegisterSubCommand,
-	RegisterUserCommand
-} from '../src';
-import { buildSubcommand } from './util/util';
+	RegisterUserCommand,
+	chatInputCommandRegistry,
+	contextMenuCommandRegistry
+} from '../src/index.js';
+import { buildSubcommand } from './util/util.js';
 
 describe('User Context Menu Command', () => {
 	afterEach(() => contextMenuCommandRegistry.clear());

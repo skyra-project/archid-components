@@ -7,6 +7,7 @@
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
+	"type": "commonjs",
 	"exports": {
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js",
@@ -38,9 +39,7 @@
 		"directory": "packages/i18next-backend"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=16.9.0",

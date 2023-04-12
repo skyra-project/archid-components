@@ -9,11 +9,16 @@ import {
 	type APIApplicationCommandInteractionData
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
-import { HttpCodes } from '../api/HttpCodes';
-import { transformAutocompleteInteraction, transformInteraction, transformMessageInteraction, transformUserInteraction } from '../interactions';
-import { handleError, makeInteraction } from '../interactions/utils/util';
-import { ErrorMessages } from '../utils/constants';
-import { Command } from './Command';
+import { HttpCodes } from '../api/HttpCodes.js';
+import {
+	transformAutocompleteInteraction,
+	transformInteraction,
+	transformMessageInteraction,
+	transformUserInteraction
+} from '../interactions/index.js';
+import { handleError, makeInteraction } from '../interactions/utils/util.js';
+import { ErrorMessages } from '../utils/constants.js';
+import { Command } from './Command.js';
 
 export class CommandStore extends Store<Command> {
 	public contextMenuCommands = new Collection<string, Command>();
@@ -87,7 +92,7 @@ export class CommandStore extends Store<Command> {
 		return Reflect.apply(Reflect.get(command, method), command, [interaction, this.createArguments(interaction.data)]);
 	}
 
-	private routeCommandMethodName(command: Command, data: Command.ApplicationCommandInteraction['data']): string | null {
+	private routeCommandMethodName(command: Command, data: Command.ApplicationCommandInteraction['data']): string | null | undefined {
 		switch (data.type) {
 			case ApplicationCommandType.ChatInput: {
 				// eslint-disable-next-line @typescript-eslint/dot-notation

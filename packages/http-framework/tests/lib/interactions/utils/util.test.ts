@@ -12,7 +12,7 @@ import {
 	MessageContextMenuCommandInteraction,
 	ModalSubmitInteraction,
 	UserContextMenuCommandInteraction
-} from '../../../../src';
+} from '../../../../src/index.js';
 import {
 	ApplicationCommandAutocompleteInteractionData,
 	ChatInputApplicationCommandInteractionData,
@@ -25,7 +25,7 @@ import {
 	MessageComponentUserSelectInteractionData,
 	ModalSubmitInteractionData,
 	UserApplicationCommandInteractionData
-} from '../../../shared';
+} from '../../../shared.js';
 
 describe('util', () => {
 	describe('makeInteraction', () => {

@@ -1,4 +1,4 @@
-import { generateFrameData } from './utils';
+import { generateFrameData } from './utils.js';
 
 export function createBanner(options: BannerOptions) {
 	const logoHeight = options.logo?.length ?? 0;

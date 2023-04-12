@@ -1,17 +1,19 @@
 import { container } from '@sapphire/pieces';
-import { err } from '@sapphire/result';
+import { Result, err } from '@sapphire/result';
 import { isNullish, isNullishOrEmpty, type NonNullObject } from '@sapphire/utilities';
 import {
 	Routes,
 	type APIInteraction,
 	type APIPingInteraction,
 	type RESTGetAPIChannelResult,
-	type RESTGetAPIGuildResult
+	type RESTGetAPIGuildResult,
+	type APIChannel,
+	type APIGuild
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
-import { HttpCodes } from '../../../../api/HttpCodes';
-import { resultFromDiscord } from '../../../utils/util';
-import { Data, Response } from '../../common/symbols';
+import { HttpCodes } from '../../../../api/HttpCodes.js';
+import { resultFromDiscord, type DiscordResult } from '../../../utils/util.js';
+import { Data, Response } from '../../common/symbols.js';
 
 export type BaseInteractionType = Exclude<APIInteraction, APIPingInteraction>;
 
@@ -189,7 +191,7 @@ export abstract class BaseInteraction<T extends BaseInteractionType = BaseIntera
 	 * @remarks **This requires REST to have a token.**
 	 * @seealso {@link channel}.
 	 */
-	public async fetchChannel() {
+	public async fetchChannel(): Promise<Result.Err<Error> | DiscordResult<APIChannel>> {
 		if (isNullishOrEmpty(this.channel)) return err(new Error('The interaction was not sent from a channel'));
 		return resultFromDiscord(container.rest.get(Routes.channel(this.channel.id)) as Promise<RESTGetAPIChannelResult>);
 	}
@@ -199,7 +201,7 @@ export abstract class BaseInteraction<T extends BaseInteractionType = BaseIntera
 	 * @returns The fetched channel.
 	 * @remarks **This requires REST to have a token.**
 	 */
-	public async fetchGuild() {
+	public async fetchGuild(): Promise<Result.Err<Error> | DiscordResult<APIGuild>> {
 		if (isNullishOrEmpty(this.guildId)) return err(new Error('The interaction was not sent from a guild'));
 		return resultFromDiscord(container.rest.get(Routes.guild(this.guildId)) as Promise<RESTGetAPIGuildResult>);
 	}

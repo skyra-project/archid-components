@@ -5,8 +5,8 @@ import type {
 	APIModalSubmitInteraction
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
-import type { Command } from './structures/Command';
-import type { InteractionHandler } from './structures/InteractionHandler';
+import type { Command } from './structures/Command.js';
+import type { InteractionHandler } from './structures/InteractionHandler.js';
 
 export interface ClientEventCommandContext {
 	command: Command;

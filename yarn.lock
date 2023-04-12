@@ -721,18 +721,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/eslint-config@npm:^4.4.0":
-  version: 4.4.0
-  resolution: "@sapphire/eslint-config@npm:4.4.0"
+"@sapphire/eslint-config@npm:^4.4.1":
+  version: 4.4.1
+  resolution: "@sapphire/eslint-config@npm:4.4.1"
   dependencies:
-    "@typescript-eslint/eslint-plugin": ^5.57.1
-    "@typescript-eslint/parser": ^5.57.1
+    "@typescript-eslint/eslint-plugin": ^5.58.0
+    "@typescript-eslint/parser": ^5.58.0
     eslint: ^8.38.0
     eslint-config-prettier: ^8.8.0
     eslint-plugin-prettier: ^4.2.1
     prettier: ^2.8.7
-    typescript: ^5.0.3
-  checksum: 610461ecea7f918417b9aa9436487bb666569d212da36b7e4eb300f019e0082d894b3117de3dd121f51f484439296a8836a67178345057c94bf5de155a45ec49
+    typescript: ^5.0.4
+  checksum: 6288948999dd40651e97a2d5d540483219a8f2f243c840fa2229fd9497be35f3a8823eb10639126a0f1279a6da9b431dbb3dd0c451f7814a12bb513a5eebaf2b
   languageName: node
   linkType: hard
 
@@ -745,7 +745,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/pieces@npm:^3.6.1":
+"@sapphire/pieces@npm:^3.6.2":
   version: 3.6.2
   resolution: "@sapphire/pieces@npm:3.6.2"
   dependencies:
@@ -783,9 +783,9 @@ __metadata:
   linkType: hard
 
 "@sapphire/snowflake@npm:^3.4.0":
-  version: 3.4.1
-  resolution: "@sapphire/snowflake@npm:3.4.1"
-  checksum: 1eb29cea15ec9985f5d149d80985e8a30c11069785602a62e9adcc05270abb3fdcb7bb93a794cb5a9101be73bdf68d429e41cafc689d961d374db60f82f60801
+  version: 3.4.2
+  resolution: "@sapphire/snowflake@npm:3.4.2"
+  checksum: 3bcd05608a63f012538aa0a45bc6abe5b19e15979a1012a9b3af1e0901f897e4df83c80d484c87bd1dece1124f5a14a2f86427190b1dca7f116ee34f13c96788
   languageName: node
   linkType: hard
 
@@ -920,7 +920,7 @@ __metadata:
     "@discordjs/collection": ^1.5.0
     "@discordjs/rest": ^1.7.0
     "@favware/cliff-jumper": ^2.0.0
-    "@sapphire/pieces": ^3.6.1
+    "@sapphire/pieces": ^3.6.2
     "@sapphire/result": ^2.6.1
     "@sapphire/utilities": ^3.11.1
     "@vitest/coverage-c8": ^0.29.8
@@ -1242,7 +1242,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.57.1, @typescript-eslint/eslint-plugin@npm:^5.58.0":
+"@typescript-eslint/eslint-plugin@npm:^5.58.0":
   version: 5.58.0
   resolution: "@typescript-eslint/eslint-plugin@npm:5.58.0"
   dependencies:
@@ -1266,7 +1266,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.57.1, @typescript-eslint/parser@npm:^5.58.0":
+"@typescript-eslint/parser@npm:^5.58.0":
   version: 5.58.0
   resolution: "@typescript-eslint/parser@npm:5.58.0"
   dependencies:
@@ -1604,7 +1604,7 @@ __metadata:
     "@commitlint/config-conventional": ^17.4.4
     "@favware/cliff-jumper": ^2.0.0
     "@favware/npm-deprecate": ^1.0.7
-    "@sapphire/eslint-config": ^4.4.0
+    "@sapphire/eslint-config": ^4.4.1
     "@sapphire/prettier-config": ^1.4.5
     "@sapphire/ts-config": ^4.0.0
     "@swc/core": ^1.3.49
@@ -1622,7 +1622,7 @@ __metadata:
     prettier: ^2.8.7
     pretty-quick: ^3.1.3
     tsup: ^6.7.0
-    turbo: ^1.8.8
+    turbo: ^1.9.1
     typescript: ^5.0.4
     vite: ^4.2.1
     vitest: ^0.29.8
@@ -6223,7 +6223,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo@npm:^1.8.8":
+"turbo@npm:^1.9.1":
   version: 1.9.1
   resolution: "turbo@npm:1.9.1"
   dependencies:
@@ -6478,7 +6478,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^3.0.0 || ^4.0.0, vite@npm:^4.2.1":
+"vite-node@patch:vite-node@npm%3A0.29.8#./.yarn/patches/vite-node-npm-0.29.8-c8fb5c6850.patch::locator=archid-components%40workspace%3A.":
+  version: 0.29.8
+  resolution: "vite-node@patch:vite-node@npm%3A0.29.8#./.yarn/patches/vite-node-npm-0.29.8-c8fb5c6850.patch::version=0.29.8&hash=acb078&locator=archid-components%40workspace%3A."
+  dependencies:
+    cac: ^6.7.14
+    debug: ^4.3.4
+    mlly: ^1.1.0
+    pathe: ^1.1.0
+    picocolors: ^1.0.0
+    vite: ^3.0.0 || ^4.0.0
+  bin:
+    vite-node: vite-node.mjs
+  checksum: 8c6a56751e12930f6a0a4d64f29a3874f740ac10784b883494dd6b8e2598114aa7c513673ed0b793f084d6aef9475da5c77fc33270b3a30cd3714292e40cc652
+  languageName: node
+  linkType: hard
+
+"vite@npm:4.2.1":
   version: 4.2.1
   resolution: "vite@npm:4.2.1"
   dependencies:
@@ -6513,6 +6529,44 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 70eb162ffc299017a3c310e3adc95e9661def6b17aafd1f8e5e02e516766060435590dbe3df1e4e95acc3583c728a76e91f07c546221d1e701f1b2b021293f45
+  languageName: node
+  linkType: hard
+
+"vite@patch:vite@npm%3A4.2.1#./.yarn/patches/vite-npm-4.2.1-a0fa6996de.patch::locator=archid-components%40workspace%3A.":
+  version: 4.2.1
+  resolution: "vite@patch:vite@npm%3A4.2.1#./.yarn/patches/vite-npm-4.2.1-a0fa6996de.patch::version=4.2.1&hash=398933&locator=archid-components%40workspace%3A."
+  dependencies:
+    esbuild: ^0.17.5
+    fsevents: ~2.3.2
+    postcss: ^8.4.21
+    resolve: ^1.22.1
+    rollup: ^3.18.0
+  peerDependencies:
+    "@types/node": ">= 14"
+    less: "*"
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 15317f527632eb20c84363ff551aa12c1aa2bb14bd798ade26576fa2cf9e5ca1e620e244d1561cef2a6853db0903303f580accaabf4e0958ac33d953c442c91a
   languageName: node
   linkType: hard
 

@@ -5,10 +5,11 @@
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
+		"import": "./dist/index.js",
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
@@ -26,7 +27,7 @@
 		"@discordjs/builders": "^1.6.1",
 		"@discordjs/collection": "^1.5.0",
 		"@discordjs/rest": "^1.7.0",
-		"@sapphire/pieces": "^3.6.1",
+		"@sapphire/pieces": "^3.6.2",
 		"@sapphire/result": "^2.6.1",
 		"@sapphire/utilities": "^3.11.1",
 		"@vladfrangu/async_event_emitter": "^2.2.1",
@@ -45,8 +46,7 @@
 		"directory": "packages/http-framework"
 	},
 	"files": [
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=16.17.0",

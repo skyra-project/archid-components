@@ -6,7 +6,7 @@ import {
 	type APIApplicationCommandSubcommandGroupOption,
 	type RESTPostAPIChatInputApplicationCommandsJSONBody
 } from 'discord-api-types/v10';
-import type { Command } from '../../structures/Command';
+import type { Command } from '../../structures/Command.js';
 import {
 	normalizeChatInputCommand,
 	normalizeChatInputSubCommand,
@@ -14,9 +14,9 @@ import {
 	type ChatInputCommandDataResolvable,
 	type ChatInputCommandSubCommandDataResolvable,
 	type ChatInputCommandSubCommandGroupDataResolvable
-} from '../../utils/normalizeInput';
-import { link } from '../shared/link';
-import { chatInputCommandRegistry } from './shared';
+} from '../../utils/normalizeInput.js';
+import { link } from '../shared/link.js';
+import { chatInputCommandRegistry } from './shared.js';
 
 function merge(
 	existing: RESTPostAPIChatInputApplicationCommandsJSONBody | undefined,

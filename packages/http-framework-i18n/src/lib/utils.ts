@@ -3,8 +3,8 @@ import type { NonNullObject } from '@sapphire/utilities';
 import { lazy } from '@sapphire/utilities';
 import type { APIInteraction, APIPingInteraction, LocaleString, LocalizationMap } from 'discord-api-types/v10';
 import type { TFunction, TOptions, TOptionsBase } from 'i18next';
-import { getT, loadedLocales } from './registry';
-import type { LocalePrefixKey, TypedFT, TypedT } from './types';
+import { getT, loadedLocales } from './registry.js';
+import type { LocalePrefixKey, TypedFT, TypedT } from './types.js';
 
 export type Interaction = Pick<Exclude<APIInteraction, APIPingInteraction>, 'locale' | 'guild_locale' | 'guild_id'>;
 

@@ -4,10 +4,11 @@
 	"description": "Very basic Twitch helper functions used across several ArchId bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
-	"module": "dist/index.mjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
+		"import": "./dist/index.js",
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
@@ -27,8 +28,7 @@
 		"directory": "packages/twitch-helpers"
 	},
 	"files": [
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=18.0.0",

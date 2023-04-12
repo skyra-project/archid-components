@@ -5,10 +5,11 @@
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
+		"import": "./dist/index.js",
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
@@ -28,8 +29,7 @@
 		"directory": "packages/logger"
 	},
 	"files": [
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=16.9.0",
