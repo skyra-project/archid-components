@@ -4,10 +4,11 @@
 	"description": "Very basic Twitch helper functions used across several ArchId bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
-	"module": "dist/index.mjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
+		"import": "./dist/index.js",
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
@@ -27,8 +28,7 @@
 		"directory": "packages/twitch-helpers"
 	},
 	"files": [
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=18.0.0",
@@ -50,7 +50,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/result": "^2.6.0",
+		"@sapphire/result": "^2.6.1",
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/safe-fetch": "workspace:^"
 	},
@@ -58,6 +58,6 @@
 		"@favware/cliff-jumper": "^2.0.0",
 		"esbuild-plugin-version-injector": "^1.1.0",
 		"tsup": "^6.7.0",
-		"typescript": "^4.9.5"
+		"typescript": "^5.0.4"
 	}
 }

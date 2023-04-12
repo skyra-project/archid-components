@@ -1,2 +1,2 @@
-export * from './lib/creator';
-export * from './lib/utils';
+export * from './lib/creator.js';
+export * from './lib/utils.js';

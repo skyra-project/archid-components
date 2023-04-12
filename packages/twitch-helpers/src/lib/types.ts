@@ -1,4 +1,4 @@
-import type { TwitchEventSubTypes, TwitchHelixBroadcasterType, TwitchHelixUserType } from './enums';
+import type { TwitchEventSubTypes, TwitchHelixBroadcasterType, TwitchHelixUserType } from './enums.js';
 
 export interface TwitchHelixResponse<T> {
 	data: T[];

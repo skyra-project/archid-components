@@ -13,8 +13,8 @@ import {
 	type APIUserApplicationCommandInteraction
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
-import { HttpCodes } from '../../api/HttpCodes';
-import { ErrorMessages } from '../../utils/constants';
+import { HttpCodes } from '../../api/HttpCodes.js';
+import { ErrorMessages } from '../../utils/constants.js';
 import {
 	AutocompleteInteraction,
 	ChatInputCommandInteraction,
@@ -28,7 +28,7 @@ import {
 	ModalSubmitInteraction,
 	UserContextMenuCommandInteraction,
 	type BaseInteractionType
-} from '../structures/interactions';
+} from '../structures/interactions/index.js';
 
 export type NonPingInteraction = Exclude<APIInteraction, APIPingInteraction>;
 

@@ -4,8 +4,8 @@ import { Json, safeFetch, type FetchResult } from '@skyra/safe-fetch';
 import { createHmac, type BinaryLike } from 'node:crypto';
 import { platform, release } from 'node:os';
 import { URL } from 'node:url';
-import { BaseUrlHelix } from './constants';
-import { TwitchEventSubTypes } from './enums';
+import { BaseUrlHelix } from './constants.js';
+import { TwitchEventSubTypes } from './enums.js';
 import type {
 	TwitchEventSubResult,
 	TwitchFetchUsersParameters,
@@ -16,7 +16,7 @@ import type {
 	TwitchHelixStreamsResult,
 	TwitchHelixUserFollowsResult,
 	TwitchHelixUsersSearchResult
-} from './types';
+} from './types.js';
 
 // eslint-disable-next-line @typescript-eslint/no-inferrable-types
 const packageVersion: string = '[VI]{{inject}}[/VI]';

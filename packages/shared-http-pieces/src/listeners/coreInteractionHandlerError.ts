@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/node';
-import { ClientEvents, Listener, type ClientEventInteractionHandlerContext } from '@skyra/http-framework';
+import { Listener, type ClientEventInteractionHandlerContext, type ClientEvents } from '@skyra/http-framework';
 import { isSentryInitialized } from '../lib/sentry.js';
 
 export class SharedListener extends Listener {

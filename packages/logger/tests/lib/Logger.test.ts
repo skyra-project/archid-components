@@ -1,5 +1,5 @@
 import { blue, gray, magenta, red, redBright, yellow } from 'colorette';
-import { Logger } from '../../src';
+import { Logger } from '../../src/index.js';
 
 describe('Logger', () => {
 	describe('constructor', () => {

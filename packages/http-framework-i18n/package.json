@@ -5,10 +5,11 @@
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
+		"import": "./dist/index.js",
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
@@ -23,7 +24,7 @@
 	},
 	"dependencies": {
 		"@discordjs/collection": "^1.5.0",
-		"@sapphire/utilities": "^3.11.0",
+		"@sapphire/utilities": "^3.11.1",
 		"@skyra/i18next-backend": "workspace:^",
 		"discord-api-types": "^0.37.38",
 		"i18next": "^22.4.14",
@@ -35,8 +36,7 @@
 		"directory": "packages/http-framework-i18n"
 	},
 	"files": [
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=16.9.0",
@@ -60,6 +60,6 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.0.0",
 		"tsup": "^6.7.0",
-		"typescript": "^4.9.5"
+		"typescript": "^5.0.4"
 	}
 }

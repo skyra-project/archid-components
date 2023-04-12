@@ -1,7 +1,7 @@
 import { Collection } from '@discordjs/collection';
 import type { APIBaseInteraction, APIMessageMentionableSelectInteractionData, APIRole, InteractionType, Snowflake } from 'discord-api-types/v10';
-import type { TransformedArguments } from '../../resolvers/InteractionOptions';
-import { MessageComponentInteraction } from './base/MessageComponentInteraction';
+import type { TransformedArguments } from '../../resolvers/InteractionOptions.js';
+import { MessageComponentInteraction } from './base/MessageComponentInteraction.js';
 
 export class MessageComponentMentionableSelectInteraction extends MessageComponentInteraction<MessageComponentMentionableSelectInteraction.Type> {
 	/**

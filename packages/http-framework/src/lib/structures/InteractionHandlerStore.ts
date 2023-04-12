@@ -2,10 +2,10 @@ import { container, Store } from '@sapphire/pieces';
 import { Result } from '@sapphire/result';
 import type { APIMessageComponentInteraction, APIModalSubmitInteraction } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
-import { HttpCodes } from '../..';
-import { handleError, makeInteraction } from '../interactions/utils/util';
-import { ErrorMessages } from '../utils/constants';
-import { InteractionHandler } from './InteractionHandler';
+import { HttpCodes } from '../api/HttpCodes.js';
+import { handleError, makeInteraction } from '../interactions/utils/util.js';
+import { ErrorMessages } from '../utils/constants.js';
+import { InteractionHandler } from './InteractionHandler.js';
 
 export class InteractionHandlerStore extends Store<InteractionHandler> {
 	public constructor() {

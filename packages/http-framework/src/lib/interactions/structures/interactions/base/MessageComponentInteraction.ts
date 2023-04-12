@@ -6,10 +6,10 @@ import {
 	type APIMessageComponentSelectMenuInteraction,
 	type RESTPostAPIInteractionFollowupResult
 } from 'discord-api-types/v10';
-import { resultFromDiscord, type AsyncDiscordResult } from '../../../utils/util';
-import { Data } from '../../common/symbols';
-import { Message, PartialMessage } from '../../Message';
-import { BaseInteraction } from './BaseInteraction';
+import { resultFromDiscord, type AsyncDiscordResult } from '../../../utils/util.js';
+import { Data } from '../../common/symbols.js';
+import { Message, PartialMessage } from '../../Message.js';
+import { BaseInteraction } from './BaseInteraction.js';
 import type {
 	DeferResponseData,
 	DeferResponseOptions,
@@ -21,7 +21,7 @@ import type {
 	ModalResponseOptions,
 	UpdateData,
 	UpdateOptions
-} from './common';
+} from './common.js';
 
 export type MessageComponentInteractionType = APIMessageComponentButtonInteraction | APIMessageComponentSelectMenuInteraction;
 

@@ -1,12 +1,12 @@
 import { InteractionResponseType, MessageFlags } from 'discord-api-types/v10';
 import {
 	ChatInputCommandInteraction,
-	ModalResponseOptions,
 	PartialMessage,
 	type DeferResponseOptions,
-	type MessageResponseOptions
-} from '../../../../../src';
-import { ChatInputApplicationCommandInteractionData, makeResponse } from '../../../../shared';
+	type MessageResponseOptions,
+	type ModalResponseOptions
+} from '../../../../../src/index.js';
+import { ChatInputApplicationCommandInteractionData, makeResponse } from '../../../../shared.js';
 
 // NOTE: The reason why we use `spy.mock.calls[0][0]` is because `toHaveBeenCalledWith` would need to match
 // a function, which is impossible to do in tests, so we hack into the mock's calls and match the first

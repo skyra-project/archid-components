@@ -4,6 +4,6 @@
 		"noEmit": true,
 		"incremental": false,
 		"target": "ESNext",
-		"module": "ESNext"
+		"moduleResolution": "node16"
 	}
 }

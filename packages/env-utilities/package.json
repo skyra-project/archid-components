@@ -7,6 +7,7 @@
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
+	"type": "commonjs",
 	"exports": {
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js",
@@ -33,9 +34,7 @@
 		"directory": "packages/env-utilities"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=16.9.0",
@@ -61,7 +60,7 @@
 		"@vitest/coverage-c8": "^0.29.8",
 		"esbuild-plugin-version-injector": "^1.1.0",
 		"tsup": "^6.7.0",
-		"typescript": "^4.9.5",
+		"typescript": "^5.0.4",
 		"vitest": "^0.29.8"
 	}
 }

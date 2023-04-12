@@ -7,9 +7,9 @@ import {
 	type APIUserApplicationCommandInteraction,
 	type RESTPostAPIInteractionFollowupResult
 } from 'discord-api-types/v10';
-import { resultFromDiscord, type AsyncDiscordResult } from '../../../utils/util';
-import { Message, PartialMessage } from '../../Message';
-import { BaseInteraction } from './BaseInteraction';
+import { resultFromDiscord, type AsyncDiscordResult } from '../../../utils/util.js';
+import { Message, PartialMessage } from '../../Message.js';
+import { BaseInteraction } from './BaseInteraction.js';
 import type {
 	DeferResponseData,
 	DeferResponseOptions,
@@ -18,7 +18,7 @@ import type {
 	MessageResponseOptions,
 	ModalResponseData,
 	ModalResponseOptions
-} from './common';
+} from './common.js';
 
 export type BaseCommandInteractionType =
 	| APIChatInputApplicationCommandInteraction

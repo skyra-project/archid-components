@@ -1,5 +1,5 @@
 import { Piece } from '@sapphire/pieces';
-import type { Interactions } from '../interactions';
+import type { Interactions } from '../interactions/index.js';
 
 export abstract class InteractionHandler extends Piece {
 	public abstract run(interaction: InteractionHandler.Interaction, customIdValue: unknown): Awaited<unknown>;

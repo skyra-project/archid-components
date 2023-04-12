@@ -1,5 +1,5 @@
 import type { APIBaseInteraction, APIMessageStringSelectInteractionData, InteractionType } from 'discord-api-types/v10';
-import { MessageComponentInteraction } from './base/MessageComponentInteraction';
+import { MessageComponentInteraction } from './base/MessageComponentInteraction.js';
 
 export class MessageComponentStringSelectInteraction extends MessageComponentInteraction<MessageComponentStringSelectInteraction.Type> {
 	public get values(): string[] {

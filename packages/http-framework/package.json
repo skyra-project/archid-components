@@ -5,10 +5,11 @@
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
+		"import": "./dist/index.js",
 		"types": "./dist/index.d.ts"
 	},
 	"sideEffects": false,
@@ -26,9 +27,9 @@
 		"@discordjs/builders": "^1.6.1",
 		"@discordjs/collection": "^1.5.0",
 		"@discordjs/rest": "^1.7.0",
-		"@sapphire/pieces": "^3.6.1",
-		"@sapphire/result": "^2.6.0",
-		"@sapphire/utilities": "^3.11.0",
+		"@sapphire/pieces": "^3.6.2",
+		"@sapphire/result": "^2.6.1",
+		"@sapphire/utilities": "^3.11.1",
 		"@vladfrangu/async_event_emitter": "^2.2.1",
 		"discord-api-types": "^0.37.38"
 	},
@@ -36,7 +37,7 @@
 		"@favware/cliff-jumper": "^2.0.0",
 		"@vitest/coverage-c8": "^0.29.8",
 		"tsup": "^6.7.0",
-		"typescript": "^4.9.5",
+		"typescript": "^5.0.4",
 		"vitest": "^0.29.8"
 	},
 	"repository": {
@@ -45,8 +46,7 @@
 		"directory": "packages/http-framework"
 	},
 	"files": [
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=16.17.0",

@@ -3,15 +3,15 @@ import { container } from '@sapphire/pieces';
 import { isNullishOrEmpty } from '@sapphire/utilities';
 import type { APIMessage, RESTDeleteAPIInteractionOriginalResponseResult } from 'discord-api-types/v10';
 import {
-	APIChannel,
 	Routes,
+	type APIChannel,
 	type RESTGetAPIInteractionOriginalResponseResult,
 	type RESTPatchAPIInteractionOriginalResponseJSONBody,
 	type RESTPatchAPIInteractionOriginalResponseResult
 } from 'discord-api-types/v10';
-import { AddFiles, AsyncDiscordResult, resultFromDiscord } from '../utils/util';
-import { Data } from './common/symbols';
-import type { BaseInteraction } from './interactions';
+import { resultFromDiscord, type AddFiles, type AsyncDiscordResult } from '../utils/util.js';
+import { Data } from './common/symbols.js';
+import type { BaseInteraction } from './interactions/index.js';
 
 export class PartialMessage<I extends BaseInteraction = BaseInteraction> {
 	public readonly interaction: I;
