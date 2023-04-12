@@ -21,8 +21,9 @@ export function loadEnvFiles(options?: EnvLoaderOptions): DotenvConfigOutput {
 		? (message: string) => console.debug(`[@skyra/env-utilities@${packageVersion}][DEBUG] ${message}`)
 		: (_: string) => undefined;
 
-	// Reference:
-	// https://github.com/facebook/create-react-app/blob/d960b9e38c062584ff6cfb1a70e1512509a966e7/packages/react-scripts/config/env.js#L18-L23
+	/**
+	 * @see {@linkplain https://github.com/facebook/create-react-app/blob/d960b9e38c062584ff6cfb1a70e1512509a966e7/packages/react-scripts/config/env.js#L18-L23}
+	 */
 	if (!process.env.NODE_ENV) {
 		throw new Error('The NODE_ENV environment variable is required but was not specified.');
 	}
