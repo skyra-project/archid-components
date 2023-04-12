@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/env-utilities@1.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.1.0...@skyra/env-utilities@1.2.0) - (2023-04-12)
+
+## 🏠 Refactor
+
+- Add select menu classes (#200) ([cbab493](https://github.com/skyra-project/archid-components/commit/cbab493afc198d24226bd626efa80c82379ea36c))
+
+## 🐛 Bug Fixes
+
+- Update to TypeScript v5 & use moduleResolution node16 (#239) ([92986c1](https://github.com/skyra-project/archid-components/commit/92986c15e0ebed07efdbaf21f28915e373a738bd))
+
+## 🚀 Features
+
+- **env-utilities:** Drop dotenv-cra in favour of embedding the code directly (#241) ([fa57ad6](https://github.com/skyra-project/archid-components/commit/fa57ad605def670049c90439cf1258d76a3df143))
+
 # [@skyra/env-utilities@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.0.2...@skyra/env-utilities@1.1.0) - (2022-10-02)
 
 ## 🐛 Bug Fixes
