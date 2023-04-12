@@ -1,13 +1,13 @@
 import type { DotenvConfigOutput } from 'dotenv';
-import { config, type DotenvCraOptions } from 'dotenv-cra';
 import { fileURLToPath } from 'node:url';
+import { config, EnvBasedLoaderOptions } from './env-based-loader';
 import { envIsDefined, envParseBoolean } from './utils';
 
 export function setup(pathOrOptions?: string | URL | EnvSetupOptions): DotenvConfigOutput {
 	// Unless explicitly defined, set NODE_ENV as development:
 	process.env.NODE_ENV ??= 'development';
 
-	let options: DotenvCraOptions;
+	let options: EnvBasedLoaderOptions;
 	if (typeof pathOrOptions === 'undefined') {
 		options = {};
 	} else if (typeof pathOrOptions === 'string') {
@@ -33,7 +33,7 @@ export function setup(pathOrOptions?: string | URL | EnvSetupOptions): DotenvCon
 	});
 }
 
-export interface EnvSetupOptions extends Omit<DotenvCraOptions, 'path'> {
+export interface EnvSetupOptions extends Omit<EnvBasedLoaderOptions, 'path'> {
 	/**
 	 * You may specify a custom path if your file containing environment variables is located elsewhere.
 	 */
