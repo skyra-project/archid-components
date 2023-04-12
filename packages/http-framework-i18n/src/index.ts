@@ -1,4 +1,5 @@
 export { default as i18next, type InitOptions, type TFunction, type TOptions, type TOptionsBase } from 'i18next';
+export * from './lib/functions.js';
 export * from './lib/registry.js';
 export type * from './lib/types.js';
 export * from './lib/utils.js';

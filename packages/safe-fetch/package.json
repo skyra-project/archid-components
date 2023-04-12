@@ -30,9 +30,7 @@
 		"directory": "packages/safe-fetch"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=18.0.0",

@@ -46,8 +46,7 @@
 		"directory": "packages/shared-http-pieces"
 	},
 	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.d.ts",
+		"dist/",
 		"src/locales/**/*.json"
 	],
 	"engines": {
