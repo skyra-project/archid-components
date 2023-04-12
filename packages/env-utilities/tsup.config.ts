@@ -1,3 +1,4 @@
+import { esbuildPluginVersionInjector } from 'esbuild-plugin-version-injector';
 import { createTsupConfig } from '../../scripts/tsup.config';
 
-export default createTsupConfig({ format: ['esm', 'cjs'] });
+export default createTsupConfig({ format: ['esm', 'cjs'], esbuildPlugins: [esbuildPluginVersionInjector()] });

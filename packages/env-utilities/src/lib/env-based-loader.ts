@@ -1,9 +1,8 @@
-import { config as dotenvConfig, type DotenvConfigOptions, type DotenvConfigOutput, type DotenvParseOutput } from 'dotenv';
+import { config, type DotenvConfigOptions, type DotenvConfigOutput, type DotenvParseOutput } from 'dotenv';
 import { expand } from 'dotenv-expand';
-import { existsSync } from 'node:fs';
 import { basename, resolve } from 'node:path';
 
-export interface EnvBasedLoaderOptions extends DotenvConfigOptions {
+export interface EnvLoaderOptions extends DotenvConfigOptions {
 	/**
 	 * You may specify a custom environment if `NODE_ENV` isn't sufficient.
 	 */
@@ -14,10 +13,13 @@ export interface EnvBasedLoaderOptions extends DotenvConfigOptions {
 	prefix?: string;
 }
 
-export function config(options?: EnvBasedLoaderOptions): DotenvConfigOutput {
-	const log = (message: string): void => {
-		options?.debug && console.debug(`[@skyra/env-utilities][DEBUG] ${message}`);
-	};
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+const packageVersion: string = '[VI]{{inject}}[/VI]';
+
+export function loadEnvFiles(options?: EnvLoaderOptions): DotenvConfigOutput {
+	const log = options?.debug
+		? (message: string) => console.debug(`[@skyra/env-utilities@${packageVersion}][DEBUG] ${message}`)
+		: (_: string) => undefined;
 
 	// Reference:
 	// https://github.com/facebook/create-react-app/blob/d960b9e38c062584ff6cfb1a70e1512509a966e7/packages/react-scripts/config/env.js#L18-L23
@@ -31,7 +33,11 @@ export function config(options?: EnvBasedLoaderOptions): DotenvConfigOutput {
 	/**
 	 * @see {@linkplain https://github.com/facebook/create-react-app/blob/d960b9e38c062584ff6cfb1a70e1512509a966e7/packages/react-scripts/config/env.js#L25-L34}
 	 */
-	const dotenvFiles = [`${dotenvPath}.${env}.local`, process.env.NODE_ENV !== 'test' && `${dotenvPath}.local`, `${dotenvPath}.${env}`, dotenvPath];
+	const dotenvFiles = [`${dotenvPath}.${env}.local`, `${dotenvPath}.${env}`, dotenvPath];
+
+	if (process.env.NODE_ENV !== 'test') {
+		dotenvFiles.splice(1, 0, `${dotenvPath}.local`);
+	}
 
 	/**
 	 * @see {@linkplain https://github.com/facebook/create-react-app/blob/d960b9e38c062584ff6cfb1a70e1512509a966e7/packages/react-scripts/config/env.js#L36-L49}
@@ -39,19 +45,10 @@ export function config(options?: EnvBasedLoaderOptions): DotenvConfigOutput {
 	let parsed: DotenvParseOutput = {};
 
 	for (const dotenvFile of dotenvFiles) {
-		if (!dotenvFile) {
-			continue;
-		}
-
-		if (!existsSync(dotenvFile)) {
-			log(`\`${basename(dotenvFile)}\` file not found`);
-			continue;
-		}
-
 		log(`loading \`${basename(dotenvFile)}\``);
 
 		const result = expand(
-			dotenvConfig({
+			config({
 				debug: options?.debug,
 				encoding: options?.encoding,
 				path: dotenvFile
@@ -59,7 +56,12 @@ export function config(options?: EnvBasedLoaderOptions): DotenvConfigOutput {
 		);
 
 		if (result.error) {
-			return result;
+			if ((result.error as FSError).code === 'ENOENT') {
+				log(`\`${basename(dotenvFile)}\` file not found`);
+				continue;
+			}
+
+			throw result.error;
 		}
 
 		parsed = { ...result.parsed, ...parsed };
@@ -85,4 +87,8 @@ export function config(options?: EnvBasedLoaderOptions): DotenvConfigOutput {
 	return {
 		parsed
 	};
+}
+
+interface FSError extends Error {
+	code: string;
 }
