@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/twitch-helpers@1.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/twitch-helpers@1.0.1...@skyra/twitch-helpers@1.0.2) - (2023-04-12)
+
+## 🐛 Bug Fixes
+
+- Update to TypeScript v5 & use moduleResolution node16 (#239) ([92986c1](https://github.com/skyra-project/archid-components/commit/92986c15e0ebed07efdbaf21f28915e373a738bd))
+- **deps:** Update all non-major dependencies ([df22552](https://github.com/skyra-project/archid-components/commit/df22552999e2aa863023388fc6014a3701f9f8d8))
+
 # [@skyra/twitch-helpers@1.0.1](https://github.com/skyra-project/archid-components/compare/@skyra/twitch-helpers@1.0.0...@skyra/twitch-helpers@1.0.1) - (2023-02-24)
 
 ## 🏠 Refactor
