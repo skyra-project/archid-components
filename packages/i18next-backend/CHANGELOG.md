@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/i18next-backend@2.0.3](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@2.0.2...@skyra/i18next-backend@2.0.3) - (2023-04-12)
+
+## 🐛 Bug Fixes
+
+- Update to TypeScript v5 & use moduleResolution node16 (#239) ([92986c1](https://github.com/skyra-project/archid-components/commit/92986c15e0ebed07efdbaf21f28915e373a738bd))
+- **deps:** Update all non-major dependencies ([f9c1023](https://github.com/skyra-project/archid-components/commit/f9c1023350e16dd10a0b032925910ea040e5c1d5))
+
 # [@skyra/i18next-backend@2.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@2.0.1...@skyra/i18next-backend@2.0.2) - (2023-03-25)
 
 ## 🐛 Bug Fixes
