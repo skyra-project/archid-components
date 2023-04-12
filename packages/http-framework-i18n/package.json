@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/http-framework-i18n",
-	"version": "0.6.2",
+	"version": "1.0.0",
 	"description": "An internationalization layer powered by i18next and @skyra/i18next-backend for @skyra/http-framework",
 	"author": "@skyra",
 	"license": "Apache-2.0",
