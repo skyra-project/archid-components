@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@1.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.6.2...@skyra/shared-http-pieces@1.0.0) - (2023-04-12)
+
+## 🐛 Bug Fixes
+
+- Update to TypeScript v5 & use moduleResolution node16 (#239) ([92986c1](https://github.com/skyra-project/archid-components/commit/92986c15e0ebed07efdbaf21f28915e373a738bd))
+
+## 🚀 Features
+
+- **shared-http-pieces:** Set version to 1.0.0 ([2203103](https://github.com/skyra-project/archid-components/commit/2203103e3257933874f873fe938e98c3d7a2ab36))
+  - 💥 **BREAKING CHANGE:** This package has now dropped 0ver
+
 # [@skyra/shared-http-pieces@0.6.2](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@0.6.1...@skyra/shared-http-pieces@0.6.2) - (2023-04-10)
 
 ## 🐛 Bug Fixes
