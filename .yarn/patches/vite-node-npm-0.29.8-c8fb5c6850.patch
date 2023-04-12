@@ -1,0 +1,10 @@
+diff --git a/package.json b/package.json
+index b6e029235d6a2b8297c91531b071032f74b18edb..491d76d20a88da1ffcf39aee3fb3ae7297321159 100644
+--- a/package.json
++++ b/package.json
+@@ -1,4 +1,5 @@
+ {
++  "type": "module",
+   "name": "vite-node",
+   "version": "0.29.8",
+   "description": "Vite as Node.js runtime",

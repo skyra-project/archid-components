@@ -6478,7 +6478,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^3.0.0 || ^4.0.0, vite@npm:^4.2.1":
+"vite-node@patch:vite-node@npm%3A0.29.8#./.yarn/patches/vite-node-npm-0.29.8-c8fb5c6850.patch::locator=archid-components%40workspace%3A.":
+  version: 0.29.8
+  resolution: "vite-node@patch:vite-node@npm%3A0.29.8#./.yarn/patches/vite-node-npm-0.29.8-c8fb5c6850.patch::version=0.29.8&hash=acb078&locator=archid-components%40workspace%3A."
+  dependencies:
+    cac: ^6.7.14
+    debug: ^4.3.4
+    mlly: ^1.1.0
+    pathe: ^1.1.0
+    picocolors: ^1.0.0
+    vite: ^3.0.0 || ^4.0.0
+  bin:
+    vite-node: vite-node.mjs
+  checksum: 8c6a56751e12930f6a0a4d64f29a3874f740ac10784b883494dd6b8e2598114aa7c513673ed0b793f084d6aef9475da5c77fc33270b3a30cd3714292e40cc652
+  languageName: node
+  linkType: hard
+
+"vite@npm:4.2.1":
   version: 4.2.1
   resolution: "vite@npm:4.2.1"
   dependencies:
@@ -6513,6 +6529,44 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 70eb162ffc299017a3c310e3adc95e9661def6b17aafd1f8e5e02e516766060435590dbe3df1e4e95acc3583c728a76e91f07c546221d1e701f1b2b021293f45
+  languageName: node
+  linkType: hard
+
+"vite@patch:vite@npm%3A4.2.1#./.yarn/patches/vite-npm-4.2.1-a0fa6996de.patch::locator=archid-components%40workspace%3A.":
+  version: 4.2.1
+  resolution: "vite@patch:vite@npm%3A4.2.1#./.yarn/patches/vite-npm-4.2.1-a0fa6996de.patch::version=4.2.1&hash=398933&locator=archid-components%40workspace%3A."
+  dependencies:
+    esbuild: ^0.17.5
+    fsevents: ~2.3.2
+    postcss: ^8.4.21
+    resolve: ^1.22.1
+    rollup: ^3.18.0
+  peerDependencies:
+    "@types/node": ">= 14"
+    less: "*"
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 15317f527632eb20c84363ff551aa12c1aa2bb14bd798ade26576fa2cf9e5ca1e620e244d1561cef2a6853db0903303f580accaabf4e0958ac33d953c442c91a
   languageName: node
   linkType: hard
 

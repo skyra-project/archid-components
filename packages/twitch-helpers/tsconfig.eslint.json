@@ -1,7 +1,4 @@
 {
 	"extends": "../../tsconfig.eslint.json",
-	"include": ["src", "tsup.config.ts"],
-	"compilerOptions": {
-		"skipLibCheck": true
-	}
+	"include": ["src", "tsup.config.ts"]
 }
