@@ -783,9 +783,9 @@ __metadata:
   linkType: hard
 
 "@sapphire/snowflake@npm:^3.4.0":
-  version: 3.4.1
-  resolution: "@sapphire/snowflake@npm:3.4.1"
-  checksum: 1eb29cea15ec9985f5d149d80985e8a30c11069785602a62e9adcc05270abb3fdcb7bb93a794cb5a9101be73bdf68d429e41cafc689d961d374db60f82f60801
+  version: 3.4.2
+  resolution: "@sapphire/snowflake@npm:3.4.2"
+  checksum: 3bcd05608a63f012538aa0a45bc6abe5b19e15979a1012a9b3af1e0901f897e4df83c80d484c87bd1dece1124f5a14a2f86427190b1dca7f116ee34f13c96788
   languageName: node
   linkType: hard
 
