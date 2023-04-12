@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@1.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.6.2...@skyra/http-framework-i18n@1.0.0) - (2023-04-12)
+
+## 🐛 Bug Fixes
+
+- Update to TypeScript v5 & use moduleResolution node16 (#239) ([92986c1](https://github.com/skyra-project/archid-components/commit/92986c15e0ebed07efdbaf21f28915e373a738bd))
+
+## 🚀 Features
+
+- **hfx-i18n:** Set version to 1.0.0 ([d3bc394](https://github.com/skyra-project/archid-components/commit/d3bc394b9269638e0d346f6fc4440aff611278b1))
+  - 💥 **BREAKING CHANGE:** This package has now dropped 0ver
+
 # [@skyra/http-framework-i18n@0.6.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@0.6.1...@skyra/http-framework-i18n@0.6.2) - (2023-04-10)
 
 ## 🐛 Bug Fixes
