@@ -49,7 +49,7 @@
 		"minimist": "1.2.8",
 		"vite@^4.2.1": "patch:vite@npm%3A4.2.1#./.yarn/patches/vite-npm-4.2.1-a0fa6996de.patch",
 		"vite@^3.0.0 || ^4.0.0": "patch:vite@npm%3A4.2.1#./.yarn/patches/vite-npm-4.2.1-a0fa6996de.patch",
-		"vite-node@0.29.8": "patch:vite-node@npm%3A0.29.8#./.yarn/patches/vite-node-npm-0.29.8-c8fb5c6850.patch"
+		"vite-node@0.30.1": "patch:vite-node@npm%3A0.30.1#./.yarn/patches/vite-node-npm-0.30.1-83f1035e95.patch"
 	},
 	"engines": {
 		"node": ">=18.0.0"
