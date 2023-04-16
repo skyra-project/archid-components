@@ -3,16 +3,17 @@ import { Result, err } from '@sapphire/result';
 import { isNullish, isNullishOrEmpty, type NonNullObject } from '@sapphire/utilities';
 import {
 	Routes,
+	type APIChannel,
+	type APIGuild,
 	type APIInteraction,
 	type APIPingInteraction,
 	type RESTGetAPIChannelResult,
-	type RESTGetAPIGuildResult,
-	type APIChannel,
-	type APIGuild
+	type RESTGetAPIGuildResult
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
 import { HttpCodes } from '../../../../api/HttpCodes.js';
-import { resultFromDiscord, type DiscordResult } from '../../../utils/util.js';
+import type { DiscordResult } from '../../../utils/util-types.js';
+import { resultFromDiscord } from '../../../utils/util.js';
 import { Data, Response } from '../../common/symbols.js';
 
 export type BaseInteractionType = Exclude<APIInteraction, APIPingInteraction>;

@@ -7,7 +7,7 @@ import type {
 	APIModalInteractionResponse,
 	RESTPostAPIInteractionFollowupJSONBody
 } from 'discord-api-types/v10';
-import type { AddFiles } from '../../../utils/util.js';
+import type { AddFiles } from '../../../utils/util-types.js';
 
 export type AutocompleteResponseData = APIApplicationCommandAutocompleteResponse;
 export type AutocompleteResponseOptions = AutocompleteResponseData['data'];

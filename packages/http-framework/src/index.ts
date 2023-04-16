@@ -20,6 +20,7 @@ export * from './lib/api/HttpCodes.js';
 export * from './lib/components/IIdParser.js';
 export * from './lib/components/StringIdParser.js';
 export * from './lib/interactions/index.js';
+export type * from './lib/interactions/utils/util-types.js';
 export * from './lib/structures/Command.js';
 export * from './lib/structures/CommandStore.js';
 export * from './lib/structures/InteractionHandler.js';

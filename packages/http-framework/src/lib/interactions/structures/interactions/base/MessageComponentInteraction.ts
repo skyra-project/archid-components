@@ -6,9 +6,10 @@ import {
 	type APIMessageComponentSelectMenuInteraction,
 	type RESTPostAPIInteractionFollowupResult
 } from 'discord-api-types/v10';
-import { resultFromDiscord, type AsyncDiscordResult } from '../../../utils/util.js';
-import { Data } from '../../common/symbols.js';
+import type { AsyncDiscordResult } from '../../../utils/util-types.js';
+import { resultFromDiscord } from '../../../utils/util.js';
 import { Message, PartialMessage } from '../../Message.js';
+import { Data } from '../../common/symbols.js';
 import { BaseInteraction } from './BaseInteraction.js';
 import type {
 	DeferResponseData,
