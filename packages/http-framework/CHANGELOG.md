@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@1.0.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.0.0...@skyra/http-framework@1.0.1) - (2023-04-16)
+
+## 🐛 Bug Fixes
+
+- Explicitly export interaction types (#243) ([4fda351](https://github.com/skyra-project/archid-components/commit/4fda351add85714945d72ed27c76ee8bf2712405))
+
 # [@skyra/http-framework@1.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@0.15.5...@skyra/http-framework@1.0.0) - (2023-04-12)
 
 ## 🐛 Bug Fixes
