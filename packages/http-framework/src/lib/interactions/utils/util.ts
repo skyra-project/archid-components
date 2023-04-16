@@ -1,4 +1,3 @@
-import type { DiscordAPIError, HTTPError, RawFile } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { Result } from '@sapphire/result';
 import {
@@ -6,10 +5,8 @@ import {
 	ComponentType,
 	InteractionType,
 	type APIChatInputApplicationCommandInteraction,
-	type APIInteraction,
 	type APIMessageApplicationCommandInteraction,
 	type APIMessageComponentButtonInteraction,
-	type APIPingInteraction,
 	type APIUserApplicationCommandInteraction
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
@@ -29,8 +26,7 @@ import {
 	UserContextMenuCommandInteraction,
 	type BaseInteractionType
 } from '../structures/interactions/index.js';
-
-export type NonPingInteraction = Exclude<APIInteraction, APIPingInteraction>;
+import type { AsyncDiscordResult } from './util-types.js';
 
 export function makeInteraction<T extends BaseInteractionType>(response: ServerResponse, interaction: T): TransformRaw<T>;
 export function makeInteraction(response: ServerResponse, interaction: BaseInteractionType) {
@@ -119,11 +115,3 @@ export function handleError(response: ServerResponse, error: unknown): ServerRes
 export function resultFromDiscord<T>(promise: Promise<T>): AsyncDiscordResult<T> {
 	return Result.fromAsync(promise);
 }
-
-export type DiscordResult<T> = Result<T, DiscordError>;
-export type AsyncDiscordResult<T> = Promise<DiscordResult<T>>;
-
-export type AddFiles<T> = T & { files?: RawFile[] };
-
-export type AbortError = Error & { name: 'AbortError' };
-export type DiscordError = HTTPError | DiscordAPIError | AbortError;

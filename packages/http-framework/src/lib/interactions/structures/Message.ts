@@ -9,7 +9,8 @@ import {
 	type RESTPatchAPIInteractionOriginalResponseJSONBody,
 	type RESTPatchAPIInteractionOriginalResponseResult
 } from 'discord-api-types/v10';
-import { resultFromDiscord, type AddFiles, type AsyncDiscordResult } from '../utils/util.js';
+import type { AddFiles, AsyncDiscordResult } from '../utils/util-types.js';
+import { resultFromDiscord } from '../utils/util.js';
 import { Data } from './common/symbols.js';
 import type { BaseInteraction } from './interactions/index.js';
 
