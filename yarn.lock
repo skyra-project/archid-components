@@ -951,7 +951,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": ^2.0.0
     "@vitest/coverage-c8": ^0.30.1
-    colorette: 2.0.19
+    colorette: ^2.0.19
     tsup: ^6.7.0
     typescript: ^5.0.4
     vitest: ^0.30.1
@@ -2154,7 +2154,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colorette@npm:2.0.19, colorette@npm:^2.0.19":
+"colorette@npm:^2.0.19":
   version: 2.0.19
   resolution: "colorette@npm:2.0.19"
   checksum: 888cf5493f781e5fcf54ce4d49e9d7d698f96ea2b2ef67906834bb319a392c667f9ec69f4a10e268d2946d13a9503d2d19b3abaaaf174e3451bfe91fb9d82427
