@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/logger@2.0.1](https://github.com/skyra-project/archid-components/compare/@skyra/logger@2.0.0...@skyra/logger@2.0.1) - (2023-04-21)
+
+## 🐛 Bug Fixes
+
+- **deps:** Use caret in `colorette`'s version (#244) ([669d539](https://github.com/skyra-project/archid-components/commit/669d5393b644213cfb2f0a13b939df21fb93e781))
+
 # [@skyra/logger@2.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/logger@1.0.1...@skyra/logger@2.0.0) - (2023-04-12)
 
 ## 🏠 Refactor
