@@ -51,7 +51,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"colorette": "^2.0.19"
+		"colorette": "^2.0.20"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.0.0",
