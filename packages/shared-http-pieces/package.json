@@ -31,13 +31,13 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "^1.6.1",
-		"@discordjs/collection": "^1.5.0",
-		"@sentry/integrations": "^7.50.0",
-		"@sentry/node": "^7.50.0",
+		"@discordjs/builders": "^1.6.3",
+		"@discordjs/collection": "^1.5.1",
+		"@sentry/integrations": "^7.51.0",
+		"@sentry/node": "^7.51.0",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
-		"discord-api-types": "^0.37.38",
+		"discord-api-types": "^0.37.41",
 		"tslib": "^2.5.0"
 	},
 	"repository": {
