@@ -6545,7 +6545,7 @@ __metadata:
 
 "vite-node@patch:vite-node@npm%3A0.31.0#./.yarn/patches/vite-node-npm-0.31.0-0b476529fb.patch::locator=archid-components%40workspace%3A.":
   version: 0.31.0
-  resolution: "vite-node@patch:vite-node@npm%3A0.31.0#./.yarn/patches/vite-node-npm-0.31.0-0b476529fb.patch::version=0.31.0&hash=ccb672&locator=archid-components%40workspace%3A."
+  resolution: "vite-node@patch:vite-node@npm%3A0.31.0#./.yarn/patches/vite-node-npm-0.31.0-0b476529fb.patch::version=0.31.0&hash=434055&locator=archid-components%40workspace%3A."
   dependencies:
     cac: ^6.7.14
     debug: ^4.3.4
@@ -6555,7 +6555,7 @@ __metadata:
     vite: ^3.0.0 || ^4.0.0
   bin:
     vite-node: vite-node.mjs
-  checksum: ba39522f0c3704dcda3f72b69c6e8500a52e84d27680cd5aefe46913482878a3123ff19d8c794abeb60018cd0aa24d2dd7d279d5f8d513e7e49394ff50cb933c
+  checksum: 309aa8b9cb623c669f73085c3d3b299ff55e2499877f0cd205c18eb7f7709131823cb4647fe0b86cd1d880fb9912f381eff34fbd3932a2e9972b0b3607947f4f
   languageName: node
   linkType: hard
 
