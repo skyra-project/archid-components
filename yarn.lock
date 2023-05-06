@@ -6543,6 +6543,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vite-node@patch:vite-node@npm%3A0.31.0#./.yarn/patches/vite-node-npm-0.31.0-0b476529fb.patch::locator=archid-components%40workspace%3A.":
+  version: 0.31.0
+  resolution: "vite-node@patch:vite-node@npm%3A0.31.0#./.yarn/patches/vite-node-npm-0.31.0-0b476529fb.patch::version=0.31.0&hash=ccb672&locator=archid-components%40workspace%3A."
+  dependencies:
+    cac: ^6.7.14
+    debug: ^4.3.4
+    mlly: ^1.2.0
+    pathe: ^1.1.0
+    picocolors: ^1.0.0
+    vite: ^3.0.0 || ^4.0.0
+  bin:
+    vite-node: vite-node.mjs
+  checksum: ba39522f0c3704dcda3f72b69c6e8500a52e84d27680cd5aefe46913482878a3123ff19d8c794abeb60018cd0aa24d2dd7d279d5f8d513e7e49394ff50cb933c
+  languageName: node
+  linkType: hard
+
 "vite@npm:4.2.1":
   version: 4.2.1
   resolution: "vite@npm:4.2.1"
