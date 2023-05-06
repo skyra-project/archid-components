@@ -5,13 +5,15 @@
 
 import {
 	ContextMenuCommandBuilder,
-	isJSONEncodable,
 	SlashCommandBuilder,
 	SlashCommandSubcommandBuilder,
 	SlashCommandSubcommandGroupBuilder,
 	type ContextMenuCommandType,
-	type JSONEncodable
 } from '@discordjs/builders';
+import { 
+  isJSONEncodable,
+  type isJSONEncodable,
+} from '@discordjs/util';
 import { isFunction } from '@sapphire/utilities';
 import {
 	ApplicationCommandOptionType,
