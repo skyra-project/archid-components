@@ -48,9 +48,9 @@
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
 		"minimist": "1.2.8",
-		"vite@^4.2.1": "patch:vite@npm%3A4.2.1#./.yarn/patches/vite-npm-4.2.1-a0fa6996de.patch",
-		"vite@^3.0.0 || ^4.0.0": "patch:vite@npm%3A4.2.1#./.yarn/patches/vite-npm-4.2.1-a0fa6996de.patch",
-		"vite-node@0.31.0": "patch:vite-node@npm%3A0.31.0#./.yarn/patches/vite-node-npm-0.31.0-0b476529fb.patch"
+		"vite@^4.3.9": "patch:vite@npm%3A4.3.9#./.yarn/patches/vite-npm-4.3.9-24f3552941.patch",
+		"vite@^3.0.0 || ^4.0.0": "patch:vite@npm%3A4.3.9#./.yarn/patches/vite-npm-4.3.9-24f3552941.patch",
+		"vite-node@0.32.0": "patch:vite-node@npm%3A0.32.0#./.yarn/patches/vite-node-npm-0.32.0-0f4a9a47cb.patch"
 	},
 	"engines": {
 		"node": ">=18.0.0"
