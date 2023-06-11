@@ -1,0 +1,96 @@
+diff --git a/dist/cli.d.ts b/dist/cli.d.ts
+index bee3a3567df56a0794acf47330973c7ddec8ee38..06895d90702f909f4bcef2e27d81a5a6184feaa9 100644
+--- a/dist/cli.d.ts
++++ b/dist/cli.d.ts
+@@ -1,5 +1,4 @@
+ import { f as ViteNodeServerOptions } from './types-516036fa.js';
+-import 'vite/types/hot';
+ import './types.d-7442d07f.js';
+ 
+ interface CliOptions {
+diff --git a/dist/client.d.ts b/dist/client.d.ts
+index f299f6f3e255157d0ffeab0b7a3d0dd91e91c3ef..2942b1d7dbd93d8b12763820a124f4d7d52204c3 100644
+--- a/dist/client.d.ts
++++ b/dist/client.d.ts
+@@ -1,3 +1,2 @@
+ import './types.d-7442d07f.js';
+ export { i as DEFAULT_REQUEST_STUBS, M as ModuleCacheMap, h as ViteNodeRunner } from './types-516036fa.js';
+-import 'vite/types/hot';
+diff --git a/dist/hmr.d.ts b/dist/hmr.d.ts
+index 9d1224a7d1bcfeb8bfc9cebe092e42198e8cb288..dafa0c73a9a34448ebb6357044bccb026c9e1c8e 100644
+--- a/dist/hmr.d.ts
++++ b/dist/hmr.d.ts
+@@ -1,7 +1,6 @@
+ import { EventEmitter } from 'node:events';
+ import { HMRPayload as HMRPayload$1, Plugin } from 'vite';
+ import { h as ViteNodeRunner, H as HotContext } from './types-516036fa.js';
+-import 'vite/types/hot';
+ import './types.d-7442d07f.js';
+ 
+ type EventType = string | symbol;
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index c5ec669b059ea14b41e48507ee00045af94278df..4373c8e6de41797f051581edab92150ce168b1b7 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -1,3 +1,2 @@
+ export { A as Arrayable, a as Awaitable, C as CreateHotContextFunction, g as DebuggerOptions, D as DepsHandlingOptions, b as FetchFunction, F as FetchResult, H as HotContext, d as ModuleCache, M as ModuleCacheMap, N as Nullable, R as RawSourceMap, c as ResolveIdFunction, S as StartOfSourceMap, e as ViteNodeResolveId, V as ViteNodeRunnerOptions, f as ViteNodeServerOptions } from './types-516036fa.js';
+ export { D as DecodedSourceMap, E as EncodedSourceMap } from './types.d-7442d07f.js';
+-import 'vite/types/hot';
+diff --git a/dist/server.d.ts b/dist/server.d.ts
+index a15a4a96a74c2c4e895d80839a325ef0fadb306e..b7eddbab547598b1aabd2dca2d6f1c33cc565da7 100644
+--- a/dist/server.d.ts
++++ b/dist/server.d.ts
+@@ -1,7 +1,6 @@
+ import { TransformResult, ViteDevServer } from 'vite';
+ import { E as EncodedSourceMap } from './types.d-7442d07f.js';
+ import { g as DebuggerOptions, D as DepsHandlingOptions, f as ViteNodeServerOptions, F as FetchResult, e as ViteNodeResolveId } from './types-516036fa.js';
+-import 'vite/types/hot';
+ 
+ declare class Debugger {
+     options: DebuggerOptions;
+diff --git a/dist/types-516036fa.d.ts b/dist/types-516036fa.d.ts
+index 26229f82050ba3809f86c98942f06031c19d5496..fc1e6c43136c7baf374a84728de37512d265eaa4 100644
+--- a/dist/types-516036fa.d.ts
++++ b/dist/types-516036fa.d.ts
+@@ -1,4 +1,3 @@
+-import { ViteHotContext } from 'vite/types/hot';
+ import { E as EncodedSourceMap } from './types.d-7442d07f.js';
+ 
+ declare const DEFAULT_REQUEST_STUBS: Record<string, unknown>;
+@@ -100,7 +99,7 @@ interface FetchResult {
+     externalize?: string;
+     map?: EncodedSourceMap | null;
+ }
+-type HotContext = Omit<ViteHotContext, 'acceptDeps' | 'decline'>;
++type HotContext = any;
+ type FetchFunction = (id: string) => Promise<FetchResult>;
+ type ResolveIdFunction = (id: string, importer?: string) => Awaitable<ViteNodeResolveId | null | undefined | void>;
+ type CreateHotContextFunction = (runner: ViteNodeRunner, url: string) => HotContext;
+diff --git a/dist/types.d.ts b/dist/types.d.ts
+index 6491e193b509ce6792f3d1d3290d5f2383bb3060..5026b55a14d74cba3db11d9d5a86a56be52024f7 100644
+--- a/dist/types.d.ts
++++ b/dist/types.d.ts
+@@ -1,3 +1,2 @@
+-import 'vite/types/hot';
+ export { D as DecodedSourceMap, E as EncodedSourceMap } from './types.d-7442d07f.js';
+ export { A as Arrayable, a as Awaitable, C as CreateHotContextFunction, g as DebuggerOptions, D as DepsHandlingOptions, b as FetchFunction, F as FetchResult, H as HotContext, d as ModuleCache, M as ModuleCacheMap, N as Nullable, R as RawSourceMap, c as ResolveIdFunction, S as StartOfSourceMap, e as ViteNodeResolveId, V as ViteNodeRunnerOptions, f as ViteNodeServerOptions } from './types-516036fa.js';
+diff --git a/dist/utils.d.ts b/dist/utils.d.ts
+index 164c1ca34f1d580659578b3a93b428ee3024b9d8..8f0e638c5f7426cff9ae4eec77b5e61b9b901e15 100644
+--- a/dist/utils.d.ts
++++ b/dist/utils.d.ts
+@@ -1,5 +1,4 @@
+ import { N as Nullable, A as Arrayable } from './types-516036fa.js';
+-import 'vite/types/hot';
+ import './types.d-7442d07f.js';
+ 
+ declare const isWindows: boolean;
+diff --git a/package.json b/package.json
+index 647d772a22a544986bcb5d9900093b0c8ea78f55..16759a596e21ef8dcf35e4f28e4c158ad882c4ba 100644
+--- a/package.json
++++ b/package.json
+@@ -1,4 +1,5 @@
+ {
++  "type": "module",
+   "name": "vite-node",
+   "version": "0.32.0",
+   "description": "Vite as Node.js runtime",

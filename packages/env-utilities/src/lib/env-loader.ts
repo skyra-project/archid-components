@@ -1,6 +1,7 @@
 import { config, type DotenvConfigOptions, type DotenvConfigOutput, type DotenvParseOutput } from 'dotenv';
 import { expand } from 'dotenv-expand';
 import { basename, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 export interface EnvLoaderOptions extends DotenvConfigOptions {
 	/**
@@ -46,7 +47,9 @@ export function loadEnvFiles(options?: EnvLoaderOptions): DotenvConfigOutput {
 	let parsed: DotenvParseOutput = {};
 
 	for (const dotenvFile of dotenvFiles) {
-		log(`loading \`${basename(dotenvFile)}\``);
+		const dotenvFileString = typeof dotenvFile === 'string' ? dotenvFile : fileURLToPath(dotenvFile);
+
+		log(`loading \`${basename(dotenvFileString)}\``);
 
 		const result = expand(
 			config({
@@ -58,7 +61,7 @@ export function loadEnvFiles(options?: EnvLoaderOptions): DotenvConfigOutput {
 
 		if (result.error) {
 			if ((result.error as FSError).code === 'ENOENT') {
-				log(`\`${basename(dotenvFile)}\` file not found`);
+				log(`\`${basename(dotenvFileString)}\` file not found`);
 				continue;
 			}
 

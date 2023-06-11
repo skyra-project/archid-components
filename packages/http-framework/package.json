@@ -30,16 +30,16 @@
 		"@discordjs/util": "^0.3.1",
 		"@sapphire/pieces": "^3.6.3",
 		"@sapphire/result": "^2.6.4",
-		"@sapphire/utilities": "^3.11.2",
+		"@sapphire/utilities": "^3.12.0",
 		"@vladfrangu/async_event_emitter": "^2.2.2",
 		"discord-api-types": "^0.37.43"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^2.0.1",
-		"@vitest/coverage-c8": "^0.31.4",
+		"@favware/cliff-jumper": "^2.1.0",
+		"@vitest/coverage-c8": "^0.32.0",
 		"tsup": "^6.7.0",
 		"typescript": "^5.1.3",
-		"vitest": "^0.31.4"
+		"vitest": "^0.32.0"
 	},
 	"repository": {
 		"type": "git",
