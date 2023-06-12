@@ -37,6 +37,7 @@
 		"@sentry/node": "^7.54.0",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
+		"@skyra/influx-utilities": "workspace:^",
 		"discord-api-types": "^0.37.43",
 		"tslib": "^2.5.3"
 	},
