@@ -1,12 +1,13 @@
 {
 	"name": "@skyra/i18next-backend",
-	"version": "0.0.5",
-	"description": "A filesystem-based backend for i18next",
+	"version": "2.0.3",
+	"description": "A fast and modern filesystem-based i18next backend for Node.js.",
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
+	"type": "commonjs",
 	"exports": {
 		"import": "./dist/index.mjs",
 		"require": "./dist/index.js",
@@ -14,22 +15,23 @@
 	},
 	"sideEffects": false,
 	"scripts": {
-		"build": "tsup && tsc -b src",
-		"watch": "tsup --watch --onSuccess \"tsc -b src\"",
-		"watch:types": "tsc -b src -w",
+		"build": "tsup",
+		"watch": "tsup --watch",
+		"typecheck": "tsc -p tsconfig.eslint.json",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
-		"prepublishOnly": "yarn build",
-		"bump": "standard-version --no-verify",
-		"changelog": "git cliff --prepend ./CHANGELOG.md -l -c ./cliff.toml -r ../../ --include-path 'packages/i18next-backend/*'",
-		"check-update": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/i18next-backend/*'",
-		"release": "yarn bump && git push --follow-tags origin main && yarn npm publish"
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"tslib": "^2.3.1"
+		"tslib": "^2.5.3"
 	},
 	"devDependencies": {
-		"@types/node": "*",
-		"i18next": "^21.6.16"
+		"@favware/cliff-jumper": "^2.1.0",
+		"@types/node": "^18.16.17",
+		"i18next": "^22.5.1",
+		"tsup": "^6.7.0",
+		"typescript": "^5.1.3"
 	},
 	"repository": {
 		"type": "git",
@@ -37,8 +39,7 @@
 		"directory": "packages/i18next-backend"
 	},
 	"files": [
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/"
 	],
 	"engines": {
 		"node": ">=16.9.0",

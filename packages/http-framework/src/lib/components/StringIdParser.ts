@@ -1,4 +1,4 @@
-import type { IdParserRead, IIdParser } from './IIdParser';
+import type { IdParserRead, IIdParser } from './IIdParser.js';
 
 export class StringIdParser implements IIdParser {
 	public run(customId: string): IdParserRead | null {

@@ -1,0 +1,12 @@
+{
+	"infoName": "info",
+	"infoDescription": "Wyświetla informacje o mnie oraz podaje linki do dodania bota i serwera wsparcia",
+	"infoFieldUptimeTitle": "Czas Pracy",
+	"infoFieldUptimeValue": "• **Host**: {{host}}\n• **Klient**: {{client}}",
+	"infoFieldServerUsageTitle": "Użycie Serwera",
+	"infoFieldServerUsageValue": "• **Procesor**: {{cpu}}\n• **Pamięć**: {{heapUsed}}MB (Łącznie: {{heapTotal}}MB)",
+	"infoButtonInvite": "Dodaj mnie do swojego serwera!",
+	"infoButtonSupport": "Serwer wsparcia",
+	"infoButtonGitHub": "Repozytorium na GitHub",
+	"infoButtonDonate": "Wesprzyj"
+}

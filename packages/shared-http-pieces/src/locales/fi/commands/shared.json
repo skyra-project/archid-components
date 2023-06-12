@@ -1,0 +1,12 @@
+{
+	"infoName": "info",
+	"infoDescription": "Tarjoaa tietoja minusta, linkit botin kutsumiseen sekä tukipalvelimelle liittymiseen",
+	"infoFieldUptimeTitle": "Käynnissäoloaika",
+	"infoFieldUptimeValue": "• **Palvelin**: {{host}}\n• **Sovellus**: {{client}}",
+	"infoFieldServerUsageTitle": "Palvelimen Käyttö",
+	"infoFieldServerUsageValue": "• **CPU**: {{cpu}}\n• **Muisti**: {{heapUsed}}MB (Käytettävissä: {{heapTotal}}MB)",
+	"infoButtonInvite": "Lisää minut palvelimellesi!",
+	"infoButtonSupport": "Tukipalvelin",
+	"infoButtonGitHub": "GitHub repositorio",
+	"infoButtonDonate": "Lahjoita"
+}

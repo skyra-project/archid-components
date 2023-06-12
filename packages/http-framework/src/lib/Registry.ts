@@ -1,5 +1,5 @@
 import { Collection } from '@discordjs/collection';
-import { REST, type RequestData, type RESTOptions } from '@discordjs/rest';
+import { REST, type RESTOptions, type RequestData } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import {
 	Routes,
@@ -9,9 +9,9 @@ import {
 	type RESTPutAPIApplicationGuildCommandsJSONBody,
 	type RESTPutAPIApplicationGuildCommandsResult
 } from 'discord-api-types/v10';
-import type { LoadOptions } from './Client';
-import { chatInputCommandRegistry, contextMenuCommandRegistry, restrictedGuildIdRegistry } from './interactions';
-import { filterUndefined, flattenIterableOfArrays, guardUndefined } from './utils/generators';
+import type { LoadOptions } from './Client.js';
+import { chatInputCommandRegistry, contextMenuCommandRegistry, restrictedGuildIdRegistry } from './interactions/index.js';
+import { filterUndefined, flattenIterableOfArrays, guardUndefined } from './utils/generators.js';
 
 export class Registry {
 	public readonly clientId: string;

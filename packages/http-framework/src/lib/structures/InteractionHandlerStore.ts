@@ -1,23 +1,43 @@
-import { Store } from '@sapphire/pieces';
-import type { APIMessageComponentInteraction } from 'discord-api-types/v10';
-import type { FastifyReply } from 'fastify';
-import { HttpCodes } from '../..';
-import { runner } from '../interactions/utils/util';
-import { InteractionHandler } from './InteractionHandler';
+import { container, Store } from '@sapphire/pieces';
+import { Result } from '@sapphire/result';
+import type { APIMessageComponentInteraction, APIModalSubmitInteraction } from 'discord-api-types/v10';
+import type { ServerResponse } from 'node:http';
+import { HttpCodes } from '../api/HttpCodes.js';
+import { handleError, makeInteraction } from '../interactions/utils/util.js';
+import { ErrorMessages } from '../utils/constants.js';
+import { InteractionHandler } from './InteractionHandler.js';
 
 export class InteractionHandlerStore extends Store<InteractionHandler> {
 	public constructor() {
-		super(InteractionHandler as any, { name: 'interaction-handlers' });
+		super(InteractionHandler, { name: 'interaction-handlers' });
 	}
 
-	public async runHandler(reply: FastifyReply, interaction: APIMessageComponentInteraction): Promise<FastifyReply> {
-		const parsed = this.container.idParser.run(interaction.data.custom_id);
-		if (parsed === null) return reply.status(HttpCodes.BadRequest).send({ message: 'Could not parse the `custom_id` field' });
+	public async runHandler(
+		response: ServerResponse,
+		interaction: APIMessageComponentInteraction | APIModalSubmitInteraction
+	): Promise<ServerResponse> {
+		const parsed = container.idParser.run(interaction.data.custom_id);
+		if (parsed === null) {
+			container.client.emit('interactionHandlerNameInvalid', interaction, response);
+			response.statusCode = HttpCodes.BadRequest;
+			return response.end(ErrorMessages.InvalidCustomId);
+		}
 
 		const handler = this.get(parsed.name);
-		if (!handler) return reply.status(HttpCodes.NotImplemented).send({ message: 'Unknown handler name' });
+		if (!handler) {
+			container.client.emit('interactionHandlerNameUnknown', interaction, response);
+			response.statusCode = HttpCodes.NotImplemented;
+			return response.end(ErrorMessages.UnknownHandlerName);
+		}
 
-		const cb = () => handler.run(interaction, parsed.content);
-		return runner(reply, interaction, cb);
+		const context = { handler, interaction, response };
+		container.client.emit('interactionHandlerRun', context);
+		const result = await Result.fromAsync(() => handler.run(makeInteraction(response, interaction), parsed.content));
+		result
+			.inspect((value) => container.client.emit('interactionHandlerSuccess', context, value))
+			.inspectErr((error) => (container.client.emit('interactionHandlerError', error, context), handleError(response, error)));
+
+		container.client.emit('interactionHandlerFinish', context);
+		return response;
 	}
 }

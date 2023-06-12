@@ -3,12 +3,12 @@ import { readFileSync, type PathLike } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
-export class Backend implements BackendModule<Backend.Options> {
+export class Backend<T = object> implements BackendModule<Backend.Options<T>> {
 	public readonly type = 'backend';
 	private paths!: readonly PathResolvable[];
 	private i18nextOptions!: InitOptions;
 
-	public init(_: Services, backendOptions: Backend.Options, i18nextOptions: InitOptions): void {
+	public init(_: Services, backendOptions: Backend.Options<T>, i18nextOptions: InitOptions): void {
 		this.paths = backendOptions.paths ?? [];
 		this.i18nextOptions = i18nextOptions;
 	}
@@ -29,12 +29,19 @@ export class Backend implements BackendModule<Backend.Options> {
 			.catch((error) => callback(error as Error, false));
 	}
 
+	private async readPaths(language: string, namespace: string): Promise<ResourceKey> {
+		if (this.paths.length === 1) return Backend.readPath(Backend.resolvePath(language, namespace, this.paths[0]));
+
+		const results = await Promise.allSettled(this.paths.map((path) => Backend.readPath(Backend.resolvePath(language, namespace, path))));
+		return Backend.handleResults(results);
+	}
+
 	private readPathsSync(language: string, namespace: string): ResourceKey {
-		if (this.paths.length === 1) return this.readPathSync(Backend.resolvePath(language, namespace, this.paths[0]));
+		if (this.paths.length === 1) return Backend.readPathSync(Backend.resolvePath(language, namespace, this.paths[0]));
 
 		const results = this.paths.map((path) => {
 			try {
-				return { status: 'fulfilled', value: this.readPathSync(Backend.resolvePath(language, namespace, path)) } as const;
+				return { status: 'fulfilled', value: Backend.readPathSync(Backend.resolvePath(language, namespace, path)) } as const;
 			} catch (error) {
 				return { status: 'rejected', reason: error } as const;
 			}
@@ -42,19 +49,14 @@ export class Backend implements BackendModule<Backend.Options> {
 		return Backend.handleResults(results);
 	}
 
-	private readPathSync(path: PathLike): ResourceKey {
-		return JSON.parse(readFileSync(path, 'utf8'));
-	}
+	public static readonly type = 'backend';
 
-	private async readPaths(language: string, namespace: string): Promise<ResourceKey> {
-		if (this.paths.length === 1) return this.readPath(Backend.resolvePath(language, namespace, this.paths[0]));
-
-		const results = await Promise.allSettled(this.paths.map((path) => this.readPath(Backend.resolvePath(language, namespace, path))));
-		return Backend.handleResults(results);
-	}
-
-	private async readPath(path: PathLike): Promise<ResourceKey> {
+	private static async readPath(path: PathLike): Promise<ResourceKey> {
 		return JSON.parse(await readFile(path, 'utf8'));
+	}
+
+	private static readPathSync(path: PathLike): ResourceKey {
+		return JSON.parse(readFileSync(path, 'utf8'));
 	}
 
 	private static handleResults(results: readonly PromiseSettledResult<ResourceKey>[]) {
@@ -72,20 +74,20 @@ export class Backend implements BackendModule<Backend.Options> {
 	private static resolvePath(language: string, namespace: string, path: PathResolvable) {
 		if (typeof path === 'function') return path(language, namespace);
 		if (typeof path !== 'string') path = fileURLToPath(path);
-		return path.replace(/\{\{(?:lng|ns)\}\}/, (match) => (match === '{{lng}}' ? language : namespace));
+		return path.replaceAll(/\{\{(?:lng|ns)\}\}/g, (match) => (match === '{{lng}}' ? language : namespace));
 	}
 }
 
 export namespace Backend {
-	export interface Options {
+	export type Options<T = object> = T & {
 		paths: readonly PathResolvable[];
-	}
+	};
 }
 
 export type PathResolvable = string | URL | ((language: string, namespace: string) => PathLike);
 
 declare module 'i18next' {
-	interface InitOptions {
-		backend?: Backend.Options | undefined;
+	interface InitOptions<T = object> {
+		backend?: Backend.Options<T> | undefined;
 	}
 }

@@ -4,12 +4,11 @@
 .vscode @favna
 .yarn @favna
 scripts/ @favna
-.all-contributorsrc @favna
 .npm-deprecaterc.yml @favna
 .yarnrc.yml @favna
-jest.config.mjs @favna
 package.json @favna
 README.md @favna
 tsconfig.base.json @favna
 tsconfig.eslint.json @favna
-turob.json @favna
+turbo.json @favna
+vitest.config.ts @favna

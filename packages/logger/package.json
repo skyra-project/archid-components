@@ -1,0 +1,63 @@
+{
+	"name": "@skyra/logger",
+	"version": "2.0.1",
+	"description": "A lightweight logger system with level support",
+	"author": "@skyra",
+	"license": "Apache-2.0",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"type": "module",
+	"exports": {
+		"import": "./dist/index.js",
+		"types": "./dist/index.d.ts"
+	},
+	"sideEffects": false,
+	"scripts": {
+		"test": "vitest run",
+		"build": "tsup",
+		"watch": "tsup --watch",
+		"typecheck": "tsc -p tsconfig.eslint.json",
+		"lint": "eslint src --ext ts --fix -c ../../package.json",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/skyra-project/archid-components.git",
+		"directory": "packages/logger"
+	},
+	"files": [
+		"dist/"
+	],
+	"engines": {
+		"node": ">=16.9.0",
+		"npm": ">=8.0.0"
+	},
+	"keywords": [
+		"discord",
+		"api",
+		"http",
+		"skyra",
+		"typescript",
+		"ts",
+		"yarn"
+	],
+	"bugs": {
+		"url": "https://github.com/skyra-project/archid-components/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"colorette": "^2.0.20"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^2.1.0",
+		"@vitest/coverage-c8": "^0.32.0",
+		"tsup": "^6.7.0",
+		"typescript": "^5.1.3",
+		"vitest": "^0.32.0"
+	}
+}

@@ -1,4 +1,4 @@
-import { escapedLength, generateFrameData, generateLineData } from '../../src';
+import { escapedLength, generateFrameData, generateLineData } from '../../src/index.js';
 
 describe('escapedLength', () => {
 	test('GIVEN string without ansi codes THEN returns the same length', () => {

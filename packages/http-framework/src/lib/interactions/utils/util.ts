@@ -1,74 +1,94 @@
-import type { RawFile } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
-import type { Awaitable, NonNullObject } from '@sapphire/utilities';
+import { Result } from '@sapphire/result';
 import {
-	Routes,
-	type APIBaseInteraction,
-	type APIInteractionResponse,
-	type InteractionType,
-	type RESTPatchAPIInteractionOriginalResponseResult,
-	type RESTPostAPIInteractionFollowupJSONBody,
-	type RESTPostAPIInteractionFollowupResult
+	ApplicationCommandType,
+	ComponentType,
+	InteractionType,
+	type APIChatInputApplicationCommandInteraction,
+	type APIMessageApplicationCommandInteraction,
+	type APIMessageComponentButtonInteraction,
+	type APIUserApplicationCommandInteraction
 } from 'discord-api-types/v10';
-import type { FastifyReply } from 'fastify';
-import { isGeneratorObject } from 'node:util/types';
-import { HttpCodes } from '../../api/HttpCodes';
-import FormData from 'form-data';
+import type { ServerResponse } from 'node:http';
+import { HttpCodes } from '../../api/HttpCodes.js';
+import { ErrorMessages } from '../../utils/constants.js';
+import {
+	AutocompleteInteraction,
+	ChatInputCommandInteraction,
+	MessageComponentButtonInteraction,
+	MessageComponentChannelSelectInteraction,
+	MessageComponentMentionableSelectInteraction,
+	MessageComponentRoleSelectInteraction,
+	MessageComponentStringSelectInteraction,
+	MessageComponentUserSelectInteraction,
+	MessageContextMenuCommandInteraction,
+	ModalSubmitInteraction,
+	UserContextMenuCommandInteraction,
+	type BaseInteractionType
+} from '../structures/interactions/index.js';
+import type { AsyncDiscordResult } from './util-types.js';
 
-/**
- * Runs the callback, handling all possible results (awaitable data or generator),
- * and handles all of its errors.
- * @note The function assumes the reply was not used, and will always consume it
- * after execution.
- * @param reply The HTTP request we can reply to.
- * @param interaction The received interaction from Discord.
- * @param cb A callback with the interaction handler call result.
- * @returns The reply object.
- */
-export async function runner<Type extends InteractionType, Data>(
-	reply: FastifyReply,
-	interaction: APIBaseInteraction<Type, Data>,
-	cb: () => InteractionHandlerResponse
-): Promise<FastifyReply> {
-	let result: InteractionHandlerResponse;
-	try {
-		result = await cb();
-	} catch (error) {
-		return handleError(reply, error);
-	}
-
-	return isGeneratorObject(result) ? handleGenerator(reply, interaction, result) : handleResponse(reply, result);
-}
-
-function hasFiles(data: NonNullObject): data is { files: RawFile[] } {
-	return Array.isArray((data as any).files) && (data as any).files.length > 0;
-}
-
-/**
- * Handles a response message. This function must only be called if the HTTP
- * interaction was not replied to.
- *
- * This function has a special case for when `data` has a non-empty `files`
- * array, where the data is sent as `multipart/form-data` rather than
- * `application/json`.
- * @param reply The HTTP request we can reply to.
- * @param data The data to be sent.
- * @returns The reply object.
- */
-export function handleResponse(reply: FastifyReply, data: NonNullObject): FastifyReply {
-	if (hasFiles(data)) {
-		const { files, ...rest } = data;
-		const form = new FormData();
-		for (const [index, file] of files.entries()) {
-			form.append(file.key ?? `files[${index}]`, file.data, file.name);
+export function makeInteraction<T extends BaseInteractionType>(response: ServerResponse, interaction: T): TransformRaw<T>;
+export function makeInteraction(response: ServerResponse, interaction: BaseInteractionType) {
+	switch (interaction.type) {
+		case InteractionType.ApplicationCommand: {
+			switch (interaction.data.type) {
+				case ApplicationCommandType.ChatInput:
+					return new ChatInputCommandInteraction(response, interaction as APIChatInputApplicationCommandInteraction);
+				case ApplicationCommandType.User:
+					return new UserContextMenuCommandInteraction(response, interaction as APIUserApplicationCommandInteraction);
+				case ApplicationCommandType.Message:
+					return new MessageContextMenuCommandInteraction(response, interaction as APIMessageApplicationCommandInteraction);
+			}
 		}
-
-		form.append('payload_json', JSON.stringify(rest));
-		return reply.status(HttpCodes.OK).header('content-type', 'multipart/form-data').send(form);
+		case InteractionType.MessageComponent:
+			switch (interaction.data.component_type) {
+				case ComponentType.Button:
+					return new MessageComponentButtonInteraction(response, interaction as APIMessageComponentButtonInteraction);
+				case ComponentType.ChannelSelect:
+					return new MessageComponentChannelSelectInteraction(response, interaction as MessageComponentChannelSelectInteraction.Type);
+				case ComponentType.MentionableSelect:
+					return new MessageComponentMentionableSelectInteraction(
+						response,
+						interaction as MessageComponentMentionableSelectInteraction.Type
+					);
+				case ComponentType.RoleSelect:
+					return new MessageComponentRoleSelectInteraction(response, interaction as MessageComponentRoleSelectInteraction.Type);
+				case ComponentType.StringSelect:
+					return new MessageComponentStringSelectInteraction(response, interaction as MessageComponentStringSelectInteraction.Type);
+				case ComponentType.UserSelect:
+					return new MessageComponentUserSelectInteraction(response, interaction as MessageComponentUserSelectInteraction.Type);
+			}
+		case InteractionType.ApplicationCommandAutocomplete:
+			return new AutocompleteInteraction(response, interaction);
+		case InteractionType.ModalSubmit:
+			return new ModalSubmitInteraction(response, interaction);
 	}
-
-	return reply.status(HttpCodes.OK).header('content-type', 'application/json').send(data);
 }
+
+export type TransformRaw<T extends BaseInteractionType> = T extends AutocompleteInteraction.Type
+	? AutocompleteInteraction
+	: T extends ChatInputCommandInteraction.Type
+	? ChatInputCommandInteraction
+	: T extends UserContextMenuCommandInteraction.Type
+	? UserContextMenuCommandInteraction
+	: T extends MessageContextMenuCommandInteraction.Type
+	? MessageContextMenuCommandInteraction
+	: T extends MessageComponentButtonInteraction.Type
+	? MessageComponentButtonInteraction
+	: T extends MessageComponentChannelSelectInteraction.Type
+	? MessageComponentChannelSelectInteraction
+	: T extends MessageComponentMentionableSelectInteraction.Type
+	? MessageComponentMentionableSelectInteraction
+	: T extends MessageComponentRoleSelectInteraction.Type
+	? MessageComponentRoleSelectInteraction
+	: T extends MessageComponentStringSelectInteraction.Type
+	? MessageComponentStringSelectInteraction
+	: T extends MessageComponentUserSelectInteraction.Type
+	? MessageComponentUserSelectInteraction
+	: T extends ModalSubmitInteraction.Type
+	? ModalSubmitInteraction
+	: never;
 
 /**
  * Handles a received error. This function must only be called if the HTTP
@@ -79,136 +99,19 @@ export function handleResponse(reply: FastifyReply, data: NonNullObject): Fastif
  *
  * When an error is thrown, the error is emitted in client, and a generic error
  * message is sent back to Discord.
- * @param reply The HTTP request we can reply to.
+ * @param response The HTTP request we can response to.
  * @param error The error to handle.
- * @returns The reply object.
+ * @returns The response object.
  */
-export function handleError(reply: FastifyReply, error: unknown): FastifyReply {
-	if (typeof error === 'string') {
-		return handleResponse(reply, { content: error });
-	}
-
+export function handleError(response: ServerResponse, error: unknown): ServerResponse {
 	container.client.emit('error', error);
-	return reply.status(HttpCodes.InternalServerError).send({ message: 'Received an internal error' });
+
+	if (response.closed) return response;
+
+	response.statusCode = HttpCodes.InternalServerError;
+	return response.end(ErrorMessages.InternalError);
 }
 
-/**
- * Sends an original interaction message response patch HTTP request.
- * @param interaction The received interaction from Discord.
- * @param body The body to be sent in the HTTP call.
- * @returns An API message.
- */
-export function postMessage<Type extends InteractionType, Data>(interaction: APIBaseInteraction<Type, Data>, { files, ...body }: PostMessageOptions) {
-	return container.rest.post(Routes.webhook(interaction.application_id, interaction.token), {
-		body,
-		files,
-		auth: false
-	}) as Promise<RESTPostAPIInteractionFollowupResult>;
+export function resultFromDiscord<T>(promise: Promise<T>): AsyncDiscordResult<T> {
+	return Result.fromAsync(promise);
 }
-
-export type AddFiles<T> = T & { files?: RawFile[] };
-
-export type PostMessageOptions = AddFiles<RESTPostAPIInteractionFollowupJSONBody>;
-
-/**
- * Sends an original interaction message response patch HTTP request.
- * @param interaction The received interaction from Discord.
- * @param body The body to be sent in the HTTP call.
- * @returns An API message.
- */
-export function patchMessage<Type extends InteractionType, Data>(
-	interaction: APIBaseInteraction<Type, Data>,
-	{ files, ...body }: InteractionResponseWithFiles
-) {
-	return container.rest.patch(Routes.webhookMessage(interaction.application_id, interaction.token), {
-		body,
-		files,
-		auth: false
-	}) as Promise<RESTPatchAPIInteractionOriginalResponseResult>;
-}
-
-export type InteractionResponseWithFiles = AddFiles<APIInteractionResponse>;
-
-/**
- * Handles a generator object from a command call.
- * @param reply The HTTP request we can reply to.
- * @param interaction The received interaction from Discord.
- * @param generator The generator object we use to receive more information from.
- * @returns The reply object.
- */
-async function handleGenerator<Type extends InteractionType, Data>(
-	reply: FastifyReply,
-	interaction: APIBaseInteraction<Type, Data>,
-	generator: InteractionHandlerGeneratorResponse
-): Promise<FastifyReply> {
-	let result = await generator.next();
-
-	// If the method was a generator...
-	if (result.done) {
-		// ... but returned data, then reply the HTTP request and finish execution:
-		if (result.value) return handleResponse(reply, result.value);
-
-		// ... but did not return data, then throw as this is potentially a bug:
-		return handleError(reply, new Error('The generator returned too early'));
-	}
-
-	// Reply the HTTP request with the first yielded value (likely a defer):
-	await handleResponse(reply, result.value);
-
-	// At this point, the method is a generator that is still returning more data,
-	// the first call will NOT receive data back, because it's an HTTP response,
-	// and we don't get the result from it.
-	//
-	// However, subsequent `yield` will indeed receive a response, since they
-	// come from HTTP requests made by the framework. The way this works,
-	// `generator.next(...)` goes to the next yield, but does not continue it.
-	// The returned value of the `yield` will be the data returned in the next
-	// `generator.next(...)` call. As such, the following code works:
-	//
-	//     yield this.defer(); // null
-	//     yield this.message({ content: 'Hello There' }); // APIMessage
-	//     yield this.message({ content: 'General Kenobi!' }); // APIMessage
-	//
-	// We also add a last case to read the result of the returned iterator, this
-	// way, the following code is also supported as intended:
-	//
-	//     return this.message({ content: 'My job here is done' });
-	//
-	// For starters, we will need to store the last response, so it can be
-	// passed in the next `generator.next(...)` call.
-	let lastResponse: RESTPatchAPIInteractionOriginalResponseResult | null = null;
-	try {
-		// Handle `yield`:
-		while (!(result = await generator.next(lastResponse)).done) {
-			lastResponse = await patchMessage(interaction, result.value);
-		}
-
-		// Handle `return`:
-		if (result.value) {
-			await patchMessage(interaction, result.value);
-		}
-	} catch (error) {
-		// Handle `throw`:
-		container.client.emit('error', error);
-	}
-
-	return reply;
-}
-
-export type SyncInteractionGenerator = Generator<
-	InteractionResponseWithFiles,
-	InteractionResponseWithFiles | undefined,
-	RESTPatchAPIInteractionOriginalResponseResult | null
->;
-
-export type AsyncInteractionGenerator = AsyncGenerator<
-	InteractionResponseWithFiles,
-	InteractionResponseWithFiles | undefined,
-	RESTPatchAPIInteractionOriginalResponseResult | null
->;
-
-export type InteractionHandlerInteractionResponse = InteractionResponseWithFiles;
-export type InteractionHandlerGeneratorResponse = SyncInteractionGenerator | AsyncInteractionGenerator;
-
-export type InteractionHandlerResponse = Awaitable<InteractionResponseWithFiles | InteractionHandlerGeneratorResponse>;
-export type AsyncInteractionHandlerResponse = Promise<InteractionResponseWithFiles | InteractionHandlerGeneratorResponse>;

@@ -1,7 +1,7 @@
 import { Collection } from '@discordjs/collection';
 import { Backend } from '@skyra/i18next-backend';
 import { Locale, type LocaleString } from 'discord-api-types/v10';
-import i18next, { getFixedT, InitOptions, TFunction } from 'i18next';
+import i18next, { getFixedT, type InitOptions, type TFunction } from 'i18next';
 import type { PathLike } from 'node:fs';
 import { opendir } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -33,16 +33,17 @@ export async function init(options?: InitOptions) {
 		ns: [...loadedNamespaces],
 		preload: [...loadedLocales],
 		initImmediate: false,
+		ignoreJSONStructure: false,
+		...options,
 		interpolation: {
 			escapeValue: false,
 			skipOnVariables: false,
 			...options?.interpolation
-		},
-		ignoreJSONStructure: false,
-		...options
+		}
 	});
 
 	for (const { name, format } of loadedFormatters) {
+		// @ts-expect-error TS says services doesn't exist, but it does
 		i18next.services.formatter!.add(name, format);
 	}
 }
@@ -67,7 +68,7 @@ export async function load(directory: PathLike) {
 		await loadLocale(join(dir.path, entry.name), '');
 	}
 
-	loadedPaths.add(dir.path);
+	loadedPaths.add(join(dir.path, '{{lng}}', '{{ns}}.json'));
 }
 
 async function loadLocale(directory: string, ns: string) {
@@ -82,7 +83,7 @@ async function loadLocale(directory: string, ns: string) {
 }
 
 const fixedCache = new Collection<LocaleString, TFunction>();
-export function getT(locale: LocaleString) {
+export function getT(locale: LocaleString): TFunction<'translation', undefined, 'translation'> {
 	if (!loadedLocales.has(locale)) throw new ReferenceError(`Invalid language (${locale})`);
 	return fixedCache.ensure(locale, () => getFixedT(locale));
 }

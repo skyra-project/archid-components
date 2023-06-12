@@ -6,149 +6,115 @@
 import {
 	ContextMenuCommandBuilder,
 	SlashCommandBuilder,
-	SlashCommandOptionsOnlyBuilder,
 	SlashCommandSubcommandBuilder,
 	SlashCommandSubcommandGroupBuilder,
-	SlashCommandSubcommandsOnlyBuilder
+	type ContextMenuCommandType
 } from '@discordjs/builders';
+import { isJSONEncodable, type JSONEncodable } from '@discordjs/util';
 import { isFunction } from '@sapphire/utilities';
 import {
-	APIApplicationCommandSubcommandGroupOption,
-	APIApplicationCommandSubcommandOption,
 	ApplicationCommandOptionType,
 	ApplicationCommandType,
+	type APIApplicationCommandSubcommandGroupOption,
+	type APIApplicationCommandSubcommandOption,
 	type RESTPostAPIChatInputApplicationCommandsJSONBody,
 	type RESTPostAPIContextMenuApplicationCommandsJSONBody
 } from 'discord-api-types/v10';
-import type { ContextMenuOptions } from '../interactions/context-menu/shared';
 
-function isBuilder(
-	command: unknown
-): command is
-	| SlashCommandBuilder
-	| SlashCommandSubcommandsOnlyBuilder
-	| SlashCommandOptionsOnlyBuilder
-	| SlashCommandSubcommandBuilder
-	| SlashCommandSubcommandGroupBuilder
-	| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'> {
-	return (
-		command instanceof SlashCommandBuilder ||
-		command instanceof SlashCommandSubcommandBuilder ||
-		command instanceof SlashCommandSubcommandGroupBuilder
-	);
-}
+export type ChatInputCommandDataResolvable =
+	| Omit<RESTPostAPIChatInputApplicationCommandsJSONBody, 'type'>
+	| JSONEncodable<RESTPostAPIChatInputApplicationCommandsJSONBody>;
 
 export function normalizeChatInputCommand(
-	command:
-		| RESTPostAPIChatInputApplicationCommandsJSONBody
-		| SlashCommandBuilder
-		| SlashCommandSubcommandsOnlyBuilder
-		| SlashCommandOptionsOnlyBuilder
-		| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>
-		| ((
-				builder: SlashCommandBuilder
-		  ) =>
-				| SlashCommandBuilder
-				| SlashCommandSubcommandsOnlyBuilder
-				| SlashCommandOptionsOnlyBuilder
-				| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>)
+	command: ChatInputCommandDataResolvable | ((builder: SlashCommandBuilder) => ChatInputCommandDataResolvable)
 ): RESTPostAPIChatInputApplicationCommandsJSONBody {
 	if (isFunction(command)) {
 		const builder = new SlashCommandBuilder();
-		command(builder);
-		const json = builder.toJSON() as RESTPostAPIChatInputApplicationCommandsJSONBody;
-
-		return json;
+		const json = command(builder) ?? builder;
+		return isJSONEncodable(json) ? json.toJSON() : { type: ApplicationCommandType.ChatInput, ...json };
 	}
 
-	if (isBuilder(command)) {
-		const json = command.toJSON() as RESTPostAPIChatInputApplicationCommandsJSONBody;
-		return json;
+	if (isJSONEncodable(command)) {
+		return command.toJSON();
 	}
 
 	const finalObject: RESTPostAPIChatInputApplicationCommandsJSONBody = {
-		description: command.description,
-		name: command.name,
-		default_permission: command.default_permission,
 		type: ApplicationCommandType.ChatInput,
-		options: command.options
+		...command
 	};
 
 	return finalObject;
 }
 
-export function normalizeChatInputSubCommandGroup(
-	subCommandGroup:
-		| APIApplicationCommandSubcommandGroupOption
-		| SlashCommandSubcommandGroupBuilder
-		| ((builder: SlashCommandSubcommandGroupBuilder) => SlashCommandSubcommandGroupBuilder)
-): APIApplicationCommandSubcommandGroupOption {
-	if (isFunction(subCommandGroup)) {
-		const builder = new SlashCommandSubcommandGroupBuilder();
-		subCommandGroup(builder);
-		const json = builder.toJSON() as APIApplicationCommandSubcommandGroupOption;
+export type ChatInputCommandSubCommandGroupDataResolvable =
+	| Omit<APIApplicationCommandSubcommandGroupOption, 'type'>
+	| JSONEncodable<APIApplicationCommandSubcommandGroupOption>;
 
-		return json;
+export function normalizeChatInputSubCommandGroup(
+	data:
+		| ChatInputCommandSubCommandGroupDataResolvable
+		| ((builder: SlashCommandSubcommandGroupBuilder) => ChatInputCommandSubCommandGroupDataResolvable)
+): APIApplicationCommandSubcommandGroupOption {
+	if (isFunction(data)) {
+		const builder = new SlashCommandSubcommandGroupBuilder();
+		const json = data(builder) ?? builder;
+		return isJSONEncodable(json) ? json.toJSON() : { type: ApplicationCommandOptionType.SubcommandGroup, ...json };
 	}
 
-	if (isBuilder(subCommandGroup)) {
-		const json = subCommandGroup.toJSON() as APIApplicationCommandSubcommandGroupOption;
-		return json;
+	if (isJSONEncodable(data)) {
+		return data.toJSON();
 	}
 
 	const finalObject: APIApplicationCommandSubcommandGroupOption = {
-		name: subCommandGroup.name,
-		description: subCommandGroup.description,
 		type: ApplicationCommandOptionType.SubcommandGroup,
-		options: subCommandGroup.options,
-		required: subCommandGroup.required
+		...data
 	};
 
 	return finalObject;
 }
 
-export function normalizeChatInputSubCommand(
-	subCommand:
-		| APIApplicationCommandSubcommandOption
-		| SlashCommandSubcommandBuilder
-		| ((builder: SlashCommandSubcommandBuilder) => SlashCommandSubcommandBuilder)
-): APIApplicationCommandSubcommandOption {
-	if (isFunction(subCommand)) {
-		const builder = new SlashCommandSubcommandBuilder();
-		subCommand(builder);
-		const json = builder.toJSON() as APIApplicationCommandSubcommandOption;
+export type ChatInputCommandSubCommandDataResolvable =
+	| Omit<APIApplicationCommandSubcommandOption, 'type'>
+	| JSONEncodable<APIApplicationCommandSubcommandOption>;
 
-		return json;
+export function normalizeChatInputSubCommand(
+	data: ChatInputCommandSubCommandDataResolvable | ((builder: SlashCommandSubcommandBuilder) => ChatInputCommandSubCommandDataResolvable)
+): APIApplicationCommandSubcommandOption {
+	if (isFunction(data)) {
+		const builder = new SlashCommandSubcommandBuilder();
+		const json = data(builder) ?? builder;
+		return isJSONEncodable(json) ? json.toJSON() : { type: ApplicationCommandOptionType.Subcommand, ...json };
 	}
 
-	if (isBuilder(subCommand)) {
-		const json = subCommand.toJSON() as APIApplicationCommandSubcommandOption;
-		return json;
+	if (isJSONEncodable(data)) {
+		return data.toJSON();
 	}
 
 	const finalObject: APIApplicationCommandSubcommandOption = {
-		description: subCommand.description,
-		name: subCommand.name,
-		options: subCommand.options,
 		type: ApplicationCommandOptionType.Subcommand,
-		required: subCommand.required
+		...data
 	};
 
 	return finalObject;
 }
 
+export type ContextMenuCommandDataResolvable =
+	| Omit<RESTPostAPIContextMenuApplicationCommandsJSONBody, 'type'>
+	| JSONEncodable<RESTPostAPIContextMenuApplicationCommandsJSONBody>;
+
 export function normalizeContextMenuCommand(
-	command: ContextMenuOptions | ContextMenuCommandBuilder | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandBuilder)
-): ContextMenuOptions {
-	if (isFunction(command)) {
-		const builder = new ContextMenuCommandBuilder();
-		command(builder);
-		return builder.toJSON() as RESTPostAPIContextMenuApplicationCommandsJSONBody;
+	data: ContextMenuCommandDataResolvable | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandDataResolvable),
+	type: ContextMenuCommandType
+): RESTPostAPIContextMenuApplicationCommandsJSONBody {
+	if (isFunction(data)) {
+		const builder = new ContextMenuCommandBuilder().setType(type);
+		const json = data(builder) ?? builder;
+		return isJSONEncodable(json) ? json.toJSON() : { type, ...json };
 	}
 
-	if (command instanceof ContextMenuCommandBuilder) {
-		return command.toJSON() as RESTPostAPIContextMenuApplicationCommandsJSONBody;
+	if (isJSONEncodable(data)) {
+		return data.toJSON();
 	}
 
-	return command;
+	return { type, ...data };
 }

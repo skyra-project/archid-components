@@ -6,15 +6,15 @@ import {
 	type RESTPostAPIContextMenuApplicationCommandsJSONBody
 } from 'discord-api-types/v10';
 import {
-	chatInputCommandRegistry,
 	Command,
-	contextMenuCommandRegistry,
 	RegisterCommand,
 	RegisterMessageCommand,
 	RegisterSubCommand,
-	RegisterUserCommand
-} from '../src';
-import { buildSubcommand } from './util/util';
+	RegisterUserCommand,
+	chatInputCommandRegistry,
+	contextMenuCommandRegistry
+} from '../src/index.js';
+import { buildSubcommand } from './util/util.js';
 
 describe('User Context Menu Command', () => {
 	afterEach(() => contextMenuCommandRegistry.clear());
@@ -22,16 +22,15 @@ describe('User Context Menu Command', () => {
 	test('GIVEN new instance of ContextMenuCommandBuilder THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterUserCommand(new ContextMenuCommandBuilder().setName('name').setType(ApplicationCommandType.User))
-			public userName(): Command.Response {
-				return this.message({ content: 'Pong!' });
+			public userName(interaction: Command.UserInteraction) {
+				return interaction.reply({ content: 'Pong!' });
 			}
 		}
 
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
-			default_permission: undefined,
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'name',
 			type: ApplicationCommandType.User
 		});
@@ -40,16 +39,15 @@ describe('User Context Menu Command', () => {
 	test('GIVEN ContextMenuCommandBuilder callback THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterUserCommand((builder) => builder.setName('name').setType(ApplicationCommandType.User))
-			public userName(): Command.Response {
-				return this.message({ content: 'Pong!' });
+			public userName(interaction: Command.UserInteraction) {
+				return interaction.reply({ content: 'Pong!' });
 			}
 		}
 
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
-			default_permission: undefined,
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'name',
 			type: ApplicationCommandType.User
 		});
@@ -58,15 +56,15 @@ describe('User Context Menu Command', () => {
 	test('GIVEN command with raw object THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterUserCommand({ name: 'name' })
-			public userName(): Command.Response {
-				return this.message({ content: 'Pong!' });
+			public userName(interaction: Command.UserInteraction) {
+				return interaction.reply({ content: 'Pong!' });
 			}
 		}
 
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'name',
 			type: ApplicationCommandType.User
 		});
@@ -79,16 +77,15 @@ describe('Message Context Menu Command', () => {
 	test('GIVEN new instance of ContextMenuCommandBuilder THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterMessageCommand(new ContextMenuCommandBuilder().setName('quote').setType(ApplicationCommandType.Message))
-			public userName(): Command.Response {
-				return this.message({ content: 'Some content' });
+			public userName(interaction: Command.MessageInteraction) {
+				return interaction.reply({ content: 'Some content' });
 			}
 		}
 
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
-			default_permission: undefined,
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'quote',
 			type: ApplicationCommandType.Message
 		});
@@ -97,16 +94,15 @@ describe('Message Context Menu Command', () => {
 	test('GIVEN ContextMenuCommandBuilder callback THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterMessageCommand((builder) => builder.setName('quote').setType(ApplicationCommandType.Message))
-			public userName(): Command.Response {
-				return this.message({ content: 'Pong!' });
+			public userName(interaction: Command.MessageInteraction) {
+				return interaction.reply({ content: 'Pong!' });
 			}
 		}
 
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
-			default_permission: undefined,
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'quote',
 			type: ApplicationCommandType.Message
 		});
@@ -115,15 +111,15 @@ describe('Message Context Menu Command', () => {
 	test('GIVEN command with raw object THEN returns expected body', () => {
 		class UserCommand extends Command {
 			@RegisterMessageCommand({ name: 'quote' })
-			public userName(): Command.Response {
-				return this.message({ content: 'Pong!' });
+			public userName(interaction: Command.MessageInteraction) {
+				return interaction.reply({ content: 'Pong!' });
 			}
 		}
 
 		const entries = contextMenuCommandRegistry.get(UserCommand);
 		expect(entries).toBeDefined();
 		expect(entries).toHaveLength(1);
-		expect(entries![0]).toStrictEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
+		expect(entries![0]).toEqual<RESTPostAPIContextMenuApplicationCommandsJSONBody>({
 			name: 'quote',
 			type: ApplicationCommandType.Message
 		});
@@ -137,17 +133,15 @@ describe('Chat Input Commands', () => {
 		test('GIVEN command without options THEN returns expected body', () => {
 			@RegisterCommand({ name: 'ping', description: 'Runs a network connection test with me' })
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
-				options: undefined,
 				type: ApplicationCommandType.ChatInput
 			});
 		});
@@ -157,16 +151,15 @@ describe('Chat Input Commands', () => {
 		test('GIVEN new instance of SlashCommandBuilder THEN returns expected body', () => {
 			@RegisterCommand(new SlashCommandBuilder().setName('ping').setDescription('Runs a network connection test with me'))
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
-				name: 'ping',
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				description: 'Runs a network connection test with me',
+				name: 'ping',
 				options: [],
 				type: ApplicationCommandType.ChatInput
 			});
@@ -175,14 +168,13 @@ describe('Chat Input Commands', () => {
 		test('GIVEN SlashCommandBuilder callback THEN returns expected body', () => {
 			@RegisterCommand((builder) => builder.setName('ping').setDescription('Runs a network connection test with me'))
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
 				options: [],
@@ -207,14 +199,13 @@ describe('Chat Input Commands', () => {
 					.addUserOption((option) => option.setName('user').setDescription('A user'))
 			)
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'test',
 				description: 'Tests all options',
 				options: [
@@ -225,18 +216,13 @@ describe('Chat Input Commands', () => {
 						type: ApplicationCommandOptionType.Boolean
 					},
 					{
-						channel_types: undefined,
 						description: 'A channel',
 						name: 'channel',
 						required: false,
 						type: ApplicationCommandOptionType.Channel
 					},
 					{
-						autocomplete: undefined,
-						choices: undefined,
 						description: 'An integer',
-						max_value: undefined,
-						min_value: undefined,
 						name: 'integer',
 						required: false,
 						type: ApplicationCommandOptionType.Integer
@@ -248,11 +234,7 @@ describe('Chat Input Commands', () => {
 						type: ApplicationCommandOptionType.Mentionable
 					},
 					{
-						autocomplete: undefined,
-						choices: undefined,
 						description: 'A number',
-						max_value: undefined,
-						min_value: undefined,
 						name: 'number',
 						required: false,
 						type: ApplicationCommandOptionType.Number
@@ -264,8 +246,6 @@ describe('Chat Input Commands', () => {
 						type: ApplicationCommandOptionType.Role
 					},
 					{
-						autocomplete: undefined,
-						choices: undefined,
 						description: 'A string',
 						name: 'string',
 						required: false,
@@ -296,20 +276,18 @@ describe('Chat Input Commands', () => {
 					)
 			)
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'tag',
 				description: 'Send a tag by name or by alias',
 				options: [
 					{
-						autocomplete: true as any,
-						choices: undefined,
+						autocomplete: true,
 						description: 'The name or alias of the tag to send',
 						name: 'query',
 						required: true,
@@ -333,20 +311,17 @@ describe('Chat Input Commands', () => {
 					)
 			)
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'tag',
 				description: 'Send a tag by name or by alias',
 				options: [
 					{
-						autocomplete: undefined,
-						choices: undefined,
 						description: 'The name or alias of the tag to send',
 						name: 'query',
 						required: true,
@@ -382,19 +357,17 @@ describe('Chat Input Commands', () => {
 					)
 			)
 			class UserCommand extends Command {
-				public override chatInputRun(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public override chatInputRun(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'random',
 				description: 'Does something',
 				options: [
 					{
-						autocomplete: undefined,
 						choices: [
 							{
 								name: 'foo',
@@ -411,7 +384,6 @@ describe('Chat Input Commands', () => {
 						type: ApplicationCommandOptionType.String
 					},
 					{
-						autocomplete: undefined,
 						choices: [
 							{
 								name: 'half',
@@ -423,14 +395,11 @@ describe('Chat Input Commands', () => {
 							}
 						],
 						description: 'A number',
-						max_value: undefined,
-						min_value: undefined,
 						name: 'query',
 						required: false,
 						type: ApplicationCommandOptionType.Number
 					},
 					{
-						autocomplete: undefined,
 						choices: [
 							{
 								name: 'one',
@@ -442,8 +411,6 @@ describe('Chat Input Commands', () => {
 							}
 						],
 						description: 'An integer',
-						max_value: undefined,
-						min_value: undefined,
 						name: 'query',
 						required: false,
 						type: ApplicationCommandOptionType.Integer
@@ -459,14 +426,13 @@ describe('Chat Input Commands', () => {
 			@RegisterCommand({ name: 'ping', description: 'Runs a network connection test with me' })
 			class UserCommand extends Command {
 				@RegisterSubCommand((builder) => builder.setName('latency').setDescription('Runs a network latency test with me'))
-				public latency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public latency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
 				options: [
@@ -485,19 +451,18 @@ describe('Chat Input Commands', () => {
 			@RegisterCommand({ name: 'ping', description: 'Runs a network connection test with me' })
 			class UserCommand extends Command {
 				@RegisterSubCommand((builder) => builder.setName('latency').setDescription('Runs a network latency test with me'))
-				public latency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public latency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand((builder) => builder.setName('dashboard').setDescription('Runs a network latency test with my dashboard'))
-				public dashboard(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public dashboard(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
 				options: [
@@ -529,14 +494,13 @@ describe('Chat Input Commands', () => {
 			)
 			class UserCommand extends Command {
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with me'), 'network')
-				public networkLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public networkLatency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
 				options: [
@@ -567,19 +531,18 @@ describe('Chat Input Commands', () => {
 			)
 			class UserCommand extends Command {
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with me'), 'network')
-				public discordLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public discordLatency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand(buildSubcommand('dashboard', 'Runs a network latency test with my dashboard'), 'network')
-				public dashboardLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public dashboardLatency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
 				options: [
@@ -619,19 +582,18 @@ describe('Chat Input Commands', () => {
 			)
 			class UserCommand extends Command {
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with me'), 'discord')
-				public discordLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public discordLatency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with my dashboard'), 'dashboard')
-				public dashboardLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public dashboardLatency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
 				options: [
@@ -676,29 +638,28 @@ describe('Chat Input Commands', () => {
 			)
 			class UserCommand extends Command {
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with me'), 'discord')
-				public discordLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public discordLatency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand(buildSubcommand('status', 'Checks whether or not Discord is ok'), 'discord')
-				public discordStatus(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public discordStatus(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand(buildSubcommand('latency', 'Runs a network latency test with my dashboard'), 'dashboard')
-				public dashboardLatency(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public dashboardLatency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 
 				@RegisterSubCommand(buildSubcommand('status', 'Checks whether or not my dashboard is ok'), 'dashboard')
-				public dashboardStatus(): Command.Response {
-					return this.message({ content: 'Pong!' });
+				public dashboardStatus(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
 				}
 			}
 
 			const entry = chatInputCommandRegistry.get(UserCommand);
-			expect(entry).toStrictEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
-				default_permission: undefined,
+			expect(entry).toEqual<RESTPostAPIChatInputApplicationCommandsJSONBody>({
 				name: 'ping',
 				description: 'Runs a network connection test with me',
 				options: [

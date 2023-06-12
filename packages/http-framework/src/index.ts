@@ -1,25 +1,29 @@
 export {
 	AliasPiece,
 	AliasStore,
-	container,
 	LoaderError,
 	MissingExportsError,
 	Piece,
 	Store,
 	StoreRegistry,
+	container,
 	type AliasPieceOptions,
 	type PieceContext,
 	type PieceOptions,
 	type StoreOptions,
 	type StoreRegistryEntries
 } from '@sapphire/pieces';
-export * from './lib/api/HttpCodes';
-export * from './lib/Client';
-export * from './lib/components/IIdParser';
-export * from './lib/components/StringIdParser';
-export * from './lib/interactions';
-export * from './lib/Registry';
-export * from './lib/structures/Command';
-export * from './lib/structures/CommandStore';
-export * from './lib/structures/InteractionHandler';
-export * from './lib/structures/InteractionHandlerStore';
+export * from './lib/Client.js';
+export * from './lib/ClientEvents.js';
+export * from './lib/Registry.js';
+export * from './lib/api/HttpCodes.js';
+export * from './lib/components/IIdParser.js';
+export * from './lib/components/StringIdParser.js';
+export * from './lib/interactions/index.js';
+export type * from './lib/interactions/utils/util-types.js';
+export * from './lib/structures/Command.js';
+export * from './lib/structures/CommandStore.js';
+export * from './lib/structures/InteractionHandler.js';
+export * from './lib/structures/InteractionHandlerStore.js';
+export * from './lib/structures/Listener.js';
+export * from './lib/structures/ListenerStore.js';

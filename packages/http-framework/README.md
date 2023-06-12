@@ -2,14 +2,12 @@
 
 Some stuff to fill in later.
 
-## TODO
+## Features
 
 -   Support for reloading and unloading commands
--   Logging integration similar to @sapphire/plugin-logger.
-    -   Log levels
-    -   Colorette powered Colours
-    -   Timestamps
-    -   Logging similar to framework (registering commands, errors, successes, etc)
+-   Support for attachment responses
+-   Seamless integration with low-level libraries
+-   Thin wrapper on top of raw data for maximum performance
 
 ## Usage
 
@@ -21,7 +19,6 @@ The Command is a piece that runs for all chat input and context-menu interaction
 
 ```typescript
 import { Command, RegisterCommand } from '@skyra/http-framework';
-import type { Command.Interaction, Command.Response } from 'discord-api-types/v10';
 
 @RegisterCommand((builder) =>
 	builder //
@@ -29,10 +26,8 @@ import type { Command.Interaction, Command.Response } from 'discord-api-types/v1
 		.setDescription('Runs a network connection test with me')
 )
 export class UserCommand extends Command {
-	public override chatInputRun(interaction: Command.Interaction): Command.Response {
-		return this.message({
-			content: 'Pong!'
-		});
+	public override chatInputRun(interaction: Command.ChatInputInteraction) {
+		return interaction.sendMessage({ content: 'Pong!' });
 	}
 }
 ```
@@ -41,7 +36,6 @@ You can also register subcommands via decorators:
 
 ```typescript
 import { Command, RegisterCommand, RegisterSubCommand } from '@skyra/http-framework';
-import type { Command.Interaction, Command.Response } from 'discord-api-types/v10';
 
 @RegisterCommand((builder) =>
 	builder //
@@ -50,15 +44,15 @@ import type { Command.Interaction, Command.Response } from 'discord-api-types/v1
 )
 export class UserCommand extends Command {
 	@RegisterSubCommand(buildSubcommandBuilders('add', 'Adds the first number to the second number'))
-	public add(interaction: Command.Interaction, { first, second }: Args): Command.Response {
-		return this.message({
+	public add(interaction: Command.ChatInputInteraction, { first, second }: Args) {
+		return interaction.sendMessage({
 			content: `The result is: ${first + second}`
 		});
 	}
 
 	@RegisterSubCommand(buildSubcommandBuilders('subtract', 'Subtracts the second number from the first number'))
-	public subtract(interaction: Command.Interaction, { first, second }: Args): Command.Response {
-		return this.message({
+	public subtract(interaction: Command.ChatInputInteraction, { first, second }: Args) {
+		return interaction.sendMessage({
 			content: `The result is: ${first - second}`
 		});
 	}
@@ -90,7 +84,7 @@ interface Args {
 
 ### Client
 
-The `Client` class contains the HTTP server, powered by [`fastify`], it also registers a handler which processes whether or not the HTTP request comes from Discord, then processes the information accordingly, handling the heavy weight in the background.
+The `Client` class contains the HTTP server, powered by [`node:http`], it also registers a handler which processes whether or not the HTTP request comes from Discord, then processes the information accordingly, handling the heavy weight in the background.
 
 ```typescript
 import { Client } from '@skyra/http-framework';
@@ -127,5 +121,5 @@ await registry.registerGlobalCommands();
 await registry.registerGuildRestrictedCommands();
 ```
 
-[`fastify`]: https://www.npmjs.com/package/fastify
+[`node:http`]: https://nodejs.org/api/http.html
 [`@discordjs/rest`]: https://www.npmjs.com/package/@discordjs/rest

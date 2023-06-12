@@ -1,4 +1,8 @@
 {
-	"extends": "../../tsconfig.base.json",
+	"extends": "../../tsconfig.eslint.json",
+	"compilerOptions": {
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
+	},
 	"include": ["src", "tsup.config.ts"]
 }

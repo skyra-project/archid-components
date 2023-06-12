@@ -12,13 +12,17 @@
 			"dependsOn": [],
 			"outputs": []
 		},
-		"changelog": {
-			"dependsOn": ["^build"],
-			"outputs": ["CHANGELOG.md"]
+		"typecheck": {
+			"dependsOn": [],
+			"outputs": []
+		},
+		"bump": {
+			"dependsOn": [],
+			"outputs": []
 		},
 		"check-update": {
-			"dependsOn": ["^build"],
-			"outputs": ["CHANGELOG.md"]
+			"dependsOn": [],
+			"outputs": []
 		}
 	}
 }

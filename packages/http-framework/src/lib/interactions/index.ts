@@ -1,8 +1,10 @@
-export * from './chat-input/decorators';
-export * from './chat-input/shared';
-export * from './context-menu/decorators';
-export * from './context-menu/shared';
-export * from './context-menu/util';
-export * from './resolvers/InteractionOptions';
-export * from './shared/decorators';
-export { patchMessage, postMessage, runner, type InteractionResponseWithFiles, type PostMessageOptions } from './utils/util';
+export * from './chat-input/decorators.js';
+export * from './chat-input/shared.js';
+export * from './context-menu/decorators.js';
+export * from './context-menu/shared.js';
+export * from './resolvers/InteractionOptions.js';
+export * from './shared/decorators.js';
+export * from './structures/Message.js';
+export * from './structures/interactions/index.js';
+export type * from './utils/util-types.js';
+export { makeInteraction } from './utils/util.js';

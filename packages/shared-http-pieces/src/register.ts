@@ -1,4 +1,5 @@
 import { container } from '@skyra/http-framework';
-import { fileURLToPath } from 'node:url';
+import { load } from '@skyra/http-framework-i18n';
 
-container.stores.registerPath(fileURLToPath(import.meta.url));
+container.stores.registerPath(new URL('.', import.meta.url));
+await load(new URL('../src/locales', import.meta.url));

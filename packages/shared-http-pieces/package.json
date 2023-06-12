@@ -1,33 +1,44 @@
 {
 	"name": "@skyra/shared-http-pieces",
-	"version": "0.0.20",
+	"version": "1.0.2",
 	"description": "The common pieces for ArchId Network's HTTP-only bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/index.js",
-	"module": "dist/index.mjs",
+	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"type": "module",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"types": "./dist/index.d.ts"
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./register": {
+			"import": "./dist/register.js",
+			"types": "./dist/register.d.ts"
+		}
 	},
-	"sideEffects": false,
+	"sideEffects": [
+		"./dist/register.js"
+	],
 	"scripts": {
 		"build": "tsc -b src",
 		"watch": "tsc -b src --watch",
-		"watch:types": "tsc -b src -w",
+		"typecheck": "tsc -p tsconfig.eslint.json",
 		"lint": "eslint src --ext ts --fix -c ../../package.json",
-		"prepublishOnly": "yarn build",
-		"bump": "standard-version --no-verify",
-		"changelog": "git cliff --prepend ./CHANGELOG.md -l -c ./cliff.toml -r ../../ --include-path 'packages/shared-http-pieces/*'",
-		"check-update": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/shared-http-pieces/*'",
-		"release": "yarn bump && git push --follow-tags origin main && yarn npm publish"
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "0.13.0-dev.1649937819-b01f414",
+		"@discordjs/builders": "^1.6.3",
+		"@discordjs/collection": "^1.5.1",
+		"@sentry/integrations": "^7.54.0",
+		"@sentry/node": "^7.54.0",
 		"@skyra/http-framework": "workspace:^",
-		"discord-api-types": "^0.29.0",
-		"tslib": "^2.3.1"
+		"@skyra/http-framework-i18n": "workspace:^",
+		"discord-api-types": "^0.37.43",
+		"tslib": "^2.5.3"
 	},
 	"repository": {
 		"type": "git",
@@ -35,8 +46,8 @@
 		"directory": "packages/shared-http-pieces"
 	},
 	"files": [
-		"dist/**/*.mjs*",
-		"dist/**/*.d.ts"
+		"dist/",
+		"src/locales/**/*.json"
 	],
 	"engines": {
 		"node": ">=16.9.0",
@@ -56,5 +67,9 @@
 	},
 	"publishConfig": {
 		"access": "public"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^2.1.0",
+		"typescript": "^5.1.3"
 	}
 }
