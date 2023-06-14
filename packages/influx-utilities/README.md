@@ -18,7 +18,7 @@ const client = new Client({ url: 'https://example.org', token: 'my-secret-token'
 
 Or defining the options via environment variables, they are:
 
-**Client
+**Client**:
 
 -   `INFLUX_URL`: `ConnectionOptions.url`, the base URL to be used.
 -   `INFLUX_PROXY_URL`: `ConnectionOptions.proxyUrl`, the full HTTP web proxy URL including schema.
@@ -28,9 +28,7 @@ Or defining the options via environment variables, they are:
 **API**:
 
 -   `INFLUX_ORG`: `Client.Options.org`, the organization to use for the query and write APIs.
+    > **Note**: If `Client.Options.org` is unset, none of the APIs will be created.
 -   `INFLUX_WRITE_BUCKET`: `Client.Options.writeBucket`, the bucket to write to in the write API.
+    > **Note**: If `Client.Options.writeBucket` is unset, the Write API will not be created.
 -   `INFLUX_WRITE_PRECISION`: `Client.Options.writePrecision`, the write precision to use in the write API.
-
-> **Note**: If `Client.Options.org` is unset, none of the APIs will be created.
-
-> **Note**: If `Client.Options.writeBucket` is unset, the Write API will not be created.
