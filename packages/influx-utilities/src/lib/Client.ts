@@ -3,38 +3,32 @@ import { tryNumberParse } from './common.js';
 
 export class Client {
 	public readonly influx: InfluxDB;
-	public readonly queryApi: QueryApi | null;
-	public readonly writeApi: WriteApi | null;
+	public readonly queryApi: QueryApi;
+	public readonly writeApi: WriteApi;
 
 	private readonly injectedTags: [name: string, value: string][] = [];
 
 	public constructor(options: Client.Options);
-	public constructor({ org, writeBucket, writePrecision, ...options }: Client.Options = {}) {
-		this.influx = new InfluxDB(
-			process.env.INFLUX_OPTIONS_STRING ?? {
-				...options,
-				url: options.url ?? process.env.INFLUX_URL!,
-				proxyUrl: options.proxyUrl ?? process.env.INFLUX_PROXY_URL,
-				timeout: options.timeout ?? tryNumberParse(process.env.INFLUX_TIMEOUT),
-				token: options.token ?? process.env.INFLUX_TOKEN
-			}
-		);
+	public constructor({
+		url = process.env.INFLUX_URL,
+		token = process.env.INFLUX_TOKEN,
+		org = process.env.INFLUX_ORG,
+		writeBucket = process.env.INFLUX_WRITE_BUCKET,
+		writePrecision = process.env.INFLUX_WRITE_PRECISION,
+		proxyUrl = process.env.INFLUX_PROXY_URL,
+		timeout = tryNumberParse(process.env.INFLUX_TIMEOUT),
+		...options
+	}: Client.Options = {}) {
+		if (!url) throw new TypeError('No Influx URL was provided');
+		if (!token) throw new TypeError('No Influx Token was provided');
 
-		const _org = org ?? process.env.INFLUX_ORG;
-		if (_org) {
-			this.queryApi = this.influx.getQueryApi(_org);
+		this.influx = new InfluxDB({ ...options, url, token, proxyUrl, timeout });
 
-			const _bucket = writeBucket ?? process.env.INFLUX_WRITE_BUCKET;
-			if (_bucket) {
-				const _precision = writePrecision ?? (process.env.INFLUX_WRITE_PRECISION as WritePrecisionType | undefined);
-				this.writeApi = this.influx.getWriteApi(_org, _bucket, _precision);
-			} else {
-				this.writeApi = null;
-			}
-		} else {
-			this.queryApi = null;
-			this.writeApi = null;
-		}
+		if (!org) throw new TypeError('No Influx Org was provided');
+		if (!writeBucket) throw new TypeError('No Influx Write Bucket was provided');
+
+		this.queryApi = this.influx.getQueryApi(org);
+		this.writeApi = this.influx.getWriteApi(org, writeBucket, writePrecision);
 	}
 
 	/**

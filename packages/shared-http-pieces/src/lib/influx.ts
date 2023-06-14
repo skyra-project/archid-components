@@ -8,7 +8,11 @@ export function isInfluxInitialized() {
 export function initializeInflux(options: Client.Options = {}) {
 	if (!process.env.INFLUX_URL) return;
 
-	container.analytics = new Client(options);
+	const influx = new Client(options);
+
+	if (!influx.writeApi || !influx.queryApi) return;
+
+	container.analytics = influx;
 }
 
 declare module '@sapphire/pieces' {
