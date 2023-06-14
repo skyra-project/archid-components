@@ -18,7 +18,7 @@ const client = new Client({ url: 'https://example.org', token: 'my-secret-token'
 
 Or defining the options via environment variables, they are:
 
-**Client**:
+**Client
 
 -   `INFLUX_URL`: `ConnectionOptions.url`, the base URL to be used.
 -   `INFLUX_PROXY_URL`: `ConnectionOptions.proxyUrl`, the full HTTP web proxy URL including schema.

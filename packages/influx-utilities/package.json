@@ -35,9 +35,7 @@
 		"url": "git+https://github.com/skyra-project/archid-components.git",
 		"directory": "packages/influx-utilities"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"engines": {
 		"node": ">=16.9.0",
 		"npm": ">=8.0.0"
