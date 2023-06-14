@@ -1,2 +1,2 @@
 export type { InfluxDB, Point, QueryApi, WriteApi, WritePrecisionType } from '@influxdata/influxdb-client';
-export * from './lib/Client';
+export * from './lib/Client.js';

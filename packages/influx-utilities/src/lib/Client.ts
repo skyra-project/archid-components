@@ -1,5 +1,5 @@
 import { InfluxDB, Point, type QueryApi, type WriteApi, type WritePrecisionType, type ClientOptions } from '@influxdata/influxdb-client';
-import { tryNumberParse } from './common';
+import { tryNumberParse } from './common.js';
 
 export class Client {
 	public readonly influx: InfluxDB;
