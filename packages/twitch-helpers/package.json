@@ -57,7 +57,7 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.1.1",
 		"esbuild-plugin-version-injector": "^1.1.0",
-		"tsup": "^6.7.0",
+		"tsup": "^7.0.0",
 		"typescript": "^5.1.3"
 	}
 }
