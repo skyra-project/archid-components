@@ -7,7 +7,7 @@ import {
 	type APIApplicationCommandInteractionDataSubcommandGroupOption,
 	type APIApplicationCommandInteractionDataSubcommandOption,
 	type APIAttachment,
-	type APIChatInputApplicationCommandInteractionDataResolved,
+	type APIInteractionDataResolved,
 	type APIInteractionDataResolvedChannel,
 	type APIInteractionDataResolvedGuildMember,
 	type APIMessage,
@@ -18,7 +18,7 @@ import {
 } from 'discord-api-types/v10';
 
 export function transformInteraction<T extends NonNullObject>(
-	resolved: APIChatInputApplicationCommandInteractionDataResolved,
+	resolved: APIInteractionDataResolved,
 	options: readonly APIApplicationCommandInteractionDataOption[]
 ): InteractionArguments<T> {
 	const extracted = extractTopLevelOptions(options);
@@ -42,7 +42,7 @@ export type InteractionArguments<T extends NonNullObject> = T & {
 };
 
 export function transformAutocompleteInteraction<T extends NonNullObject>(
-	resolved: APIChatInputApplicationCommandInteractionDataResolved,
+	resolved: APIInteractionDataResolved,
 	options: readonly APIApplicationCommandInteractionDataOption[]
 ): AutocompleteInteractionArguments<T> {
 	const extracted = extractTopLevelOptions(options);
@@ -97,34 +97,31 @@ export interface ExtractedOptions {
 }
 
 function transformArguments(
-	resolved: APIChatInputApplicationCommandInteractionDataResolved,
+	resolved: APIInteractionDataResolved,
 	options: readonly APIApplicationCommandInteractionDataBasicOption[]
 ): NonNullObject {
 	return Object.fromEntries(options.map((option) => [option.name, transformArgument(resolved, option)]));
 }
 
-function transformArgument(
-	resolved: APIChatInputApplicationCommandInteractionDataResolved,
-	option: APIApplicationCommandInteractionDataBasicOption
-): TransformedArguments.Any {
+function transformArgument(resolved: APIInteractionDataResolved, option: APIApplicationCommandInteractionDataBasicOption): TransformedArguments.Any {
 	switch (option.type) {
 		case ApplicationCommandOptionType.Attachment:
-			return resolved.attachments![option.value];
+			return resolved.attachments?.[option.value] ?? { id: option.value };
 		case ApplicationCommandOptionType.Channel:
-			return resolved.channels![option.value];
+			return resolved.channels?.[option.value] ?? { id: option.value };
 		case ApplicationCommandOptionType.Mentionable:
 			return transformMentionable(resolved, option);
 		case ApplicationCommandOptionType.Role:
-			return resolved.roles![option.value];
+			return resolved.roles?.[option.value] ?? { id: option.value };
 		case ApplicationCommandOptionType.User:
-			return { user: resolved.users![option.value], member: resolved.members?.[option.value] ?? null };
+			return { id: option.value, user: resolved.users?.[option.value] ?? null, member: resolved.members?.[option.value] ?? null };
 		default:
 			return option.value;
 	}
 }
 
 function transformMentionable(
-	resolved: APIChatInputApplicationCommandInteractionDataResolved,
+	resolved: APIInteractionDataResolved,
 	option: APIApplicationCommandInteractionDataMentionableOption
 ): TransformedArguments.Mentionable {
 	const id = option.value;
@@ -142,19 +139,23 @@ function transformMentionable(
 }
 
 export function transformUserInteraction(data: APIUserApplicationCommandInteractionData): TransformedArguments.User {
-	return { user: data.resolved.users[data.target_id], member: data.resolved.members?.[data.target_id] ?? null };
+	return { id: data.target_id, user: data.resolved.users[data.target_id], member: data.resolved.members?.[data.target_id] ?? null };
 }
 
 export function transformMessageInteraction(data: APIMessageApplicationCommandInteractionData): TransformedArguments.Message {
-	return { message: data.resolved.messages[data.target_id] };
+	return { id: data.target_id, message: data.resolved.messages[data.target_id] };
 }
 
 export namespace TransformedArguments {
-	export interface Message {
+	export interface BasePartial {
+		id: string;
+	}
+
+	export interface Message extends BasePartial {
 		message: APIMessage;
 	}
 
-	export interface User {
+	export interface User extends BasePartial {
 		user: APIUser;
 		member: APIInteractionDataResolvedGuildMember | null;
 	}
@@ -164,12 +165,22 @@ export namespace TransformedArguments {
 	export type Attachment = APIAttachment;
 
 	export type Mentionable =
-		| ({ id: string } & User) //
-		| { id: string; channel: Channel }
-		| { id: string; role: Role }
-		| { id: string };
+		| (BasePartial & User) //
+		| (BasePartial & { channel: Channel })
+		| (BasePartial & { role: Role })
+		| BasePartial;
 
-	export type Any = User | Channel | Role | Mentionable | number | string | boolean | Attachment;
+	export type Any = User | Channel | Role | Mentionable | number | string | boolean | Attachment | PartialAny;
+
+	export interface PartialUser extends Omit<User, 'user'> {
+		user: User['user'] | null;
+	}
+
+	export type PartialAttachment = BasePartial;
+	export type PartialChannel = BasePartial;
+	export type PartialRole = BasePartial;
+
+	export type PartialAny = PartialUser | PartialChannel | PartialRole | PartialAttachment;
 }
 
 /**
