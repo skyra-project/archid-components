@@ -33,7 +33,8 @@ export const UserData: Readonly<APIUser> = {
 	discriminator: '7023',
 	public_flags: 65536,
 	bot: true,
-	verified: true
+	verified: true,
+	global_name: 'Skyra'
 };
 
 export const InteractionGuildMemberData: Readonly<APIInteractionGuildMember> = {
