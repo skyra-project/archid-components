@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@1.0.3](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.0.2...@skyra/http-framework@1.0.3) - (2023-06-17)
+
+## 🐛 Bug Fixes
+
+- Bump discord-api-types dependency ([599da0b](https://github.com/skyra-project/archid-components/commit/599da0b4cdf3332e1e3b869505512ddde1d61adb))
+- Handle `resolved`'s keys being `undefined` (#258) ([507aa58](https://github.com/skyra-project/archid-components/commit/507aa58ede6918a6ea78cba5781533d1b61d95a1))
+- Update discord-api-types ([b4b02fa](https://github.com/skyra-project/archid-components/commit/b4b02fa1600993786bb325e464547cda3e619ae2))
+- **deps:** Update all non-major dependencies ([098ea85](https://github.com/skyra-project/archid-components/commit/098ea85e886440a54d56698d985fc3964b424bda))
+- **deps:** Update all non-major dependencies ([7310840](https://github.com/skyra-project/archid-components/commit/7310840db053586c42ab55026bb098b75df64003))
+
 # [@skyra/http-framework@1.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.0.1...@skyra/http-framework@1.0.2) - (2023-05-06)
 
 ## 🐛 Bug Fixes
