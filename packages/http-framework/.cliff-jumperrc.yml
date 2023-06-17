@@ -1,3 +1,4 @@
 name: http-framework
 org: skyra
+install: true
 packagePath: packages/http-framework

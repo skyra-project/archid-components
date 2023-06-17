@@ -1,3 +1,4 @@
 name: env-utilities
 org: skyra
+install: true
 packagePath: packages/env-utilities

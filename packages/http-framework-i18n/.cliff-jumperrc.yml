@@ -1,3 +1,4 @@
 name: http-framework-i18n
 org: skyra
+install: true
 packagePath: packages/http-framework-i18n
