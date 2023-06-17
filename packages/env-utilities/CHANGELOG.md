@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/env-utilities@1.2.1](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.2.0...@skyra/env-utilities@1.2.1) - (2023-06-17)
+
+## 🐛 Bug Fixes
+
+- **env-utilities:** Bump dotenv dependency ([70676fb](https://github.com/skyra-project/archid-components/commit/70676fb19c4955b25d678c28fb66233f2629cce0))
+- **deps:** Update all non-major dependencies ([098ea85](https://github.com/skyra-project/archid-components/commit/098ea85e886440a54d56698d985fc3964b424bda))
+
 # [@skyra/env-utilities@1.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.1.0...@skyra/env-utilities@1.2.0) - (2023-04-12)
 
 ## 🏠 Refactor
