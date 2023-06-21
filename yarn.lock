@@ -601,6 +601,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@influxdata/influxdb-client@npm:^1.33.2":
+  version: 1.33.2
+  resolution: "@influxdata/influxdb-client@npm:1.33.2"
+  checksum: f3f054ddc180adfe114cbcc51ac1b9eb22daca4aecf678778fccf5241398fbda87e8d1a405ae5d73b293e2ef3d26e73789e245287bf29050d4bb9437b5a1990c
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -976,7 +983,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@skyra/influx-utilities@workspace:packages/influx-utilities":
+"@skyra/influx-utilities@workspace:^, @skyra/influx-utilities@workspace:packages/influx-utilities":
   version: 0.0.0-use.local
   resolution: "@skyra/influx-utilities@workspace:packages/influx-utilities"
   dependencies:
@@ -1022,6 +1029,20 @@ __metadata:
     "@sentry/node": ^7.54.0
     "@skyra/http-framework": "workspace:^"
     "@skyra/http-framework-i18n": "workspace:^"
+    "@skyra/influx-utilities": "workspace:^"
+    discord-api-types: ^0.37.43
+    tslib: ^2.5.3
+    typescript: ^5.1.3
+  languageName: unknown
+  linkType: soft
+
+"@skyra/shared-influx-pieces@workspace:packages/shared-influx-pieces":
+  version: 0.0.0-use.local
+  resolution: "@skyra/shared-influx-pieces@workspace:packages/shared-influx-pieces"
+  dependencies:
+    "@favware/cliff-jumper": ^2.1.0
+    "@skyra/http-framework": "workspace:^"
+    "@skyra/influx-utilities": "workspace:^"
     discord-api-types: ^0.37.43
     tslib: ^2.5.3
     typescript: ^5.1.3
@@ -1687,6 +1708,7 @@ __metadata:
     "@commitlint/config-conventional": ^17.6.5
     "@favware/cliff-jumper": ^2.1.0
     "@favware/npm-deprecate": ^1.0.7
+    "@influxdata/influxdb-client": ^1.33.2
     "@sapphire/eslint-config": ^4.4.2
     "@sapphire/prettier-config": ^1.4.5
     "@sapphire/ts-config": ^4.0.0

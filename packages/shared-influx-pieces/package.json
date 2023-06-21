@@ -1,0 +1,70 @@
+{
+	"name": "@skyra/shared-influx-pieces",
+	"version": "1.0.0",
+	"description": "The influx pieces for ArchId Network's HTTP-only bots",
+	"author": "@skyra",
+	"license": "Apache-2.0",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./register": {
+			"import": "./dist/register.js",
+			"types": "./dist/register.d.ts"
+		}
+	},
+	"sideEffects": [
+		"./dist/register.js"
+	],
+	"scripts": {
+		"build": "tsc -b src",
+		"watch": "tsc -b src --watch",
+		"typecheck": "tsc -p tsconfig.eslint.json",
+		"lint": "eslint src --ext ts --fix -c ../../package.json",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"dependencies": {
+		"@skyra/http-framework": "workspace:^",
+		"@skyra/influx-utilities": "workspace:^",
+		"discord-api-types": "^0.37.43",
+		"tslib": "^2.5.3"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/skyra-project/archid-components.git",
+		"directory": "packages/shared-influx-pieces"
+	},
+	"files": [
+		"dist/"
+	],
+	"engines": {
+		"node": ">=16.9.0",
+		"npm": ">=8.0.0"
+	},
+	"keywords": [
+		"discord",
+		"api",
+		"http",
+		"skyra",
+		"typescript",
+		"ts",
+		"yarn"
+	],
+	"bugs": {
+		"url": "https://github.com/skyra-project/archid-components/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^2.1.0",
+		"typescript": "^5.1.3"
+	}
+}

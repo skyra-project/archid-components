@@ -6,4 +6,5 @@ package:
   - '@skyra/i18next-backend'
   - '@skyra/logger'
   - '@skyra/shared-http-pieces'
+  - '@skyra/shared-influx-pieces'
   - '@skyra/start-banner'
