@@ -23,7 +23,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@influxdata/influxdb-client": "^1.24.0"
+		"@influxdata/influxdb-client": "^1.33.2"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.1.0",
@@ -35,7 +35,9 @@
 		"url": "git+https://github.com/skyra-project/archid-components.git",
 		"directory": "packages/influx-utilities"
 	},
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"engines": {
 		"node": ">=16.9.0",
 		"npm": ">=8.0.0"

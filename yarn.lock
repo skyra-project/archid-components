@@ -594,13 +594,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@influxdata/influxdb-client@npm:^1.24.0":
-  version: 1.24.0
-  resolution: "@influxdata/influxdb-client@npm:1.24.0"
-  checksum: 3f2eeb46720d7fc7e6490fc052feddef2271fe2f6315875407b899192d94cdb9c20794e88f7d6d7be6f241f91297663116adde3db28c9577f80538137ff2a60d
-  languageName: node
-  linkType: hard
-
 "@influxdata/influxdb-client@npm:^1.33.2":
   version: 1.33.2
   resolution: "@influxdata/influxdb-client@npm:1.33.2"
@@ -988,7 +981,7 @@ __metadata:
   resolution: "@skyra/influx-utilities@workspace:packages/influx-utilities"
   dependencies:
     "@favware/cliff-jumper": ^2.1.0
-    "@influxdata/influxdb-client": ^1.24.0
+    "@influxdata/influxdb-client": ^1.33.2
     tsup: ^6.7.0
     typescript: ^5.1.3
   languageName: unknown
@@ -1708,7 +1701,6 @@ __metadata:
     "@commitlint/config-conventional": ^17.6.5
     "@favware/cliff-jumper": ^2.1.0
     "@favware/npm-deprecate": ^1.0.7
-    "@influxdata/influxdb-client": ^1.33.2
     "@sapphire/eslint-config": ^4.4.2
     "@sapphire/prettier-config": ^1.4.5
     "@sapphire/ts-config": ^4.0.0
