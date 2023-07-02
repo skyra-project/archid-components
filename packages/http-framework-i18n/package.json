@@ -28,7 +28,7 @@
 		"@skyra/i18next-backend": "workspace:^",
 		"discord-api-types": "^0.37.45",
 		"i18next": "^22.5.1",
-		"tslib": "^2.5.3"
+		"tslib": "^2.6.0"
 	},
 	"repository": {
 		"type": "git",
@@ -60,6 +60,6 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.1.1",
 		"tsup": "^7.1.0",
-		"typescript": "^5.1.3"
+		"typescript": "^5.1.6"
 	}
 }
