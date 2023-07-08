@@ -106,6 +106,7 @@ export type TransformRaw<T extends BaseInteractionType> = T extends Autocomplete
 export function handleError(response: ServerResponse, error: unknown): ServerResponse {
 	container.client.emit('error', error);
 
+	if (container.client.suppressErrorHandling) return response;
 	if (response.closed) return response;
 
 	response.statusCode = HttpCodes.InternalServerError;
