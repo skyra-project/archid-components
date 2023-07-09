@@ -23,13 +23,13 @@ container.stores.register(new ListenerStore());
 export class Client extends AsyncEventEmitter<MappedClientEvents> {
 	public server!: Server;
 	public readonly bodySizeLimit: number;
-	public readonly suppressErrorHandling: boolean;
+	public readonly httpReplyOnError: boolean;
 	#discordPublicKey: string;
 
 	public constructor(options: ClientOptions = {}) {
 		super();
 		this.bodySizeLimit = options.bodySizeLimit ?? 1024 * 1024;
-		this.suppressErrorHandling = options.suppressErrorHandling ?? false;
+		this.httpReplyOnError = options.httpReplyOnError ?? true;
 
 		const discordPublicKey = options.discordPublicKey ?? process.env.DISCORD_PUBLIC_KEY;
 		if (!discordPublicKey) throw new Error('The discordPublicKey cannot be empty');
@@ -155,10 +155,10 @@ export interface ClientOptions {
 	bodySizeLimit?: number;
 
 	/**
-	 * Whether to suppress automatically sending a 500 status to Discord if errors occur in an interaction.
-	 * @default false
+	 * Whether to reply with a 500 status code to Discord if an error occurs while processing an interaction.
+	 * @default true
 	 */
-	suppressErrorHandling?: boolean;
+	httpReplyOnError?: boolean;
 }
 
 export interface LoadOptions {
