@@ -153,6 +153,7 @@ export interface ClientOptions {
 	 * @default `1024 * 1024` (1 MiB)
 	 */
 	bodySizeLimit?: number;
+
 	/**
 	 * Whether to suppress automatically sending a 500 status to Discord if errors occur in an interaction.
 	 * @default false
