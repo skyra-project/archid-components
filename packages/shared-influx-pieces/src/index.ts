@@ -8,7 +8,7 @@ import { Client } from '@skyra/influx-utilities';
 let interactionCount: number;
 
 export function isInfluxInitialized() {
-	return container.analytics ? true : false;
+	return Boolean(container.analytics);
 }
 
 export function initializeInflux(options: Client.Options = {}) {
