@@ -2,11 +2,12 @@ import { Collection } from '@discordjs/collection';
 import type { NonNullObject } from '@sapphire/utilities';
 import { lazy } from '@sapphire/utilities';
 import type { APIInteraction, APIPingInteraction, LocaleString, LocalizationMap } from 'discord-api-types/v10';
-import type { TFunction, TOptions, TOptionsBase } from 'i18next';
+import type { DefaultNamespace, Namespace, TFunction, TypeOptions } from 'i18next';
 import { getT, loadedLocales } from './registry.js';
-import type { LocalePrefixKey, TypedFT, TypedT } from './types.js';
 
 export type Interaction = Pick<Exclude<APIInteraction, APIPingInteraction>, 'locale' | 'guild_locale' | 'guild_id'>;
+export type LocaleSeparator = TypeOptions['nsSeparator'];
+export type LocalePrefixKey = `${string}${LocaleSeparator}${string}`;
 
 export function getSupportedUserLanguageName(interaction: Interaction): LocaleString {
 	if (loadedLocales.has(interaction.locale)) return interaction.locale;
@@ -14,8 +15,8 @@ export function getSupportedUserLanguageName(interaction: Interaction): LocaleSt
 	return 'en-US';
 }
 
-export function getSupportedUserLanguageT(interaction: Interaction): TFunction {
-	return getT(getSupportedUserLanguageName(interaction));
+export function getSupportedUserLanguageT<const Ns extends Namespace = DefaultNamespace>(interaction: Interaction, namespace?: Ns): TFunction<Ns> {
+	return getT(getSupportedUserLanguageName(interaction), namespace);
 }
 
 export function getSupportedLanguageName(interaction: Interaction): LocaleString {
@@ -27,47 +28,8 @@ export function getSupportedLanguageName(interaction: Interaction): LocaleString
 	return 'en-US';
 }
 
-export function getSupportedLanguageT(interaction: Interaction): TFunction {
-	return getT(getSupportedLanguageName(interaction));
-}
-
-export function resolveUserKey<TReturn>(interaction: Interaction, key: TypedT<TReturn>, options?: TOptionsBase | string): TReturn;
-export function resolveUserKey<TReturn>(
-	interaction: Interaction,
-	key: TypedT<TReturn>,
-	defaultValue: TReturn,
-	options?: TOptionsBase | string
-): TReturn;
-export function resolveUserKey<TArgs extends NonNullObject, TReturn>(
-	interaction: Interaction,
-	key: TypedFT<TArgs, TReturn>,
-	options?: TOptions<TArgs>
-): TReturn;
-export function resolveUserKey<TArgs extends NonNullObject, TReturn>(
-	interaction: Interaction,
-	key: TypedFT<TArgs, TReturn>,
-	defaultValue: TReturn,
-	options?: TOptions<TArgs>
-): TReturn;
-export function resolveUserKey(interaction: Interaction, ...args: [any, any, any?]) {
-	return getSupportedUserLanguageT(interaction)(...args);
-}
-
-export function resolveKey<TReturn>(interaction: Interaction, key: TypedT<TReturn>, options?: TOptionsBase | string): TReturn;
-export function resolveKey<TReturn>(interaction: Interaction, key: TypedT<TReturn>, defaultValue: TReturn, options?: TOptionsBase | string): TReturn;
-export function resolveKey<TArgs extends NonNullObject, TReturn>(
-	interaction: Interaction,
-	key: TypedFT<TArgs, TReturn>,
-	options?: TOptions<TArgs>
-): TReturn;
-export function resolveKey<TArgs extends NonNullObject, TReturn>(
-	interaction: Interaction,
-	key: TypedFT<TArgs, TReturn>,
-	defaultValue: TReturn,
-	options?: TOptions<TArgs>
-): TReturn;
-export function resolveKey(interaction: Interaction, ...args: [any, any, any?]) {
-	return getSupportedLanguageT(interaction)(...args);
+export function getSupportedLanguageT<const Ns extends Namespace = DefaultNamespace>(interaction: Interaction, namespace?: Ns): TFunction<Ns> {
+	return getT(getSupportedLanguageName(interaction), namespace);
 }
 
 const getLocales = lazy(() => new Collection([...loadedLocales].map((locale) => [locale, getT(locale)])));
@@ -83,7 +45,7 @@ const getDefaultT = lazy(() => {
  * @returns The retrieved data.
  * @remarks This should be called **strictly** after loading the locales.
  */
-export function getLocalizedData(key: TypedT): LocalizedData {
+export function getLocalizedData(key: LocalePrefixKey): LocalizedData {
 	const locales = getLocales();
 	const defaultT = getDefaultT();
 
@@ -99,7 +61,7 @@ export function getLocalizedData(key: TypedT): LocalizedData {
  * @param key The key to get the localizations from.
  * @returns The updated builder.
  */
-export function applyNameLocalizedBuilder<T extends BuilderWithName>(builder: T, key: TypedT) {
+export function applyNameLocalizedBuilder<T extends BuilderWithName>(builder: T, key: LocalePrefixKey) {
 	const result = getLocalizedData(key);
 	return builder.setName(result.value).setNameLocalizations(result.localizations);
 }
@@ -110,7 +72,7 @@ export function applyNameLocalizedBuilder<T extends BuilderWithName>(builder: T,
  * @param key The key to get the localizations from.
  * @returns The updated builder.
  */
-export function applyDescriptionLocalizedBuilder<T extends BuilderWithDescription>(builder: T, key: TypedT) {
+export function applyDescriptionLocalizedBuilder<T extends BuilderWithDescription>(builder: T, key: LocalePrefixKey) {
 	const result = getLocalizedData(key);
 	return builder.setDescription(result.value).setDescriptionLocalizations(result.localizations);
 }
@@ -126,16 +88,16 @@ export function applyDescriptionLocalizedBuilder<T extends BuilderWithDescriptio
  */
 export function applyLocalizedBuilder<T extends BuilderWithNameAndDescription>(
 	builder: T,
-	...params: [root: LocalePrefixKey] | [name: TypedT, description: TypedT]
+	...params: [root: LocalePrefixKey] | [name: LocalePrefixKey, description: LocalePrefixKey]
 ): T {
-	const [localeName, localeDescription] = params.length === 1 ? [`${params[0]}Name` as TypedT, `${params[0]}Description` as TypedT] : params;
+	const [localeName, localeDescription] = params.length === 1 ? [`${params[0]}Name` as const, `${params[0]}Description` as const] : params;
 
 	applyNameLocalizedBuilder(builder, localeName);
 	applyDescriptionLocalizedBuilder(builder, localeDescription);
 	return builder;
 }
 
-export function createSelectMenuChoiceName<V extends NonNullObject>(key: TypedT, value?: V): createSelectMenuChoiceName.Result<V> {
+export function createSelectMenuChoiceName<V extends NonNullObject>(key: LocalePrefixKey, value?: V): createSelectMenuChoiceName.Result<V> {
 	const result = getLocalizedData(key);
 	return {
 		...value,
