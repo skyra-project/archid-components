@@ -17,6 +17,7 @@ const defaultConfigOptions: ConfigOptions = {
 
 export const createTsupConfig = ({
 	globalName = undefined,
+	entry = ['src/index.ts'],
 	format = ['esm', 'cjs'],
 	target = 'es2021',
 	sourcemap = true,
@@ -32,7 +33,7 @@ export const createTsupConfig = ({
 	defineConfig({
 		clean: true,
 		dts: true,
-		entry: ['src/index.ts'],
+		entry,
 		format,
 		minify: false,
 		skipNodeModulesBundle: true,
@@ -45,4 +46,4 @@ export const createTsupConfig = ({
 		esbuildOptions
 	});
 
-type ConfigOptions = Pick<Options, 'esbuildOptions' | 'esbuildPlugins' | 'sourcemap' | 'target' | 'format' | 'globalName'>;
+type ConfigOptions = Pick<Options, 'esbuildOptions' | 'esbuildPlugins' | 'sourcemap' | 'target' | 'format' | 'globalName' | 'entry'>;

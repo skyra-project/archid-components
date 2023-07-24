@@ -1,0 +1,64 @@
+{
+	"name": "@skyra/i18next-type-generator",
+	"version": "1.0.0",
+	"description": "A fast utility that generates the TypeScript augmentation for i18next.",
+	"author": "@skyra",
+	"license": "Apache-2.0",
+	"type": "module",
+	"main": "dist/cli.js",
+	"bin": {
+		"i18next-type-generator": "./dist/cli.js"
+	},
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsup",
+		"watch": "tsup --watch",
+		"typecheck": "tsc -p tsconfig.eslint.json",
+		"lint": "eslint src --ext ts --fix -c ../../package.json",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"dependencies": {
+		"colorette": "^2.0.20",
+		"commander": "^11.0.0",
+		"tslib": "^2.6.0"
+	},
+	"optionalDependencies": {
+		"prettier": "^3.0.0"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^2.1.1",
+		"@types/node": "^18.17.0",
+		"i18next": "^23.2.11",
+		"tsup": "^7.1.0",
+		"typescript": "^5.1.6"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/skyra-project/archid-components.git",
+		"directory": "packages/i18next-type-generator"
+	},
+	"files": [
+		"dist/"
+	],
+	"engines": {
+		"node": ">=16.9.0",
+		"npm": ">=8.0.0"
+	},
+	"keywords": [
+		"discord",
+		"api",
+		"http",
+		"skyra",
+		"typescript",
+		"ts",
+		"yarn"
+	],
+	"bugs": {
+		"url": "https://github.com/skyra-project/archid-components/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

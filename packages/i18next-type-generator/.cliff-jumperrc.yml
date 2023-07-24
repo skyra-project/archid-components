@@ -1,0 +1,4 @@
+name: i18next-type-generator
+org: skyra
+install: true
+packagePath: packages/i18next-type-generator

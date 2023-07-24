@@ -974,6 +974,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@skyra/i18next-type-generator@workspace:packages/i18next-type-generator":
+  version: 0.0.0-use.local
+  resolution: "@skyra/i18next-type-generator@workspace:packages/i18next-type-generator"
+  dependencies:
+    "@favware/cliff-jumper": ^2.1.1
+    "@types/node": ^18.17.0
+    colorette: ^2.0.20
+    commander: ^11.0.0
+    i18next: ^23.2.11
+    prettier: ^3.0.0
+    tslib: ^2.6.0
+    tsup: ^7.1.0
+    typescript: ^5.1.6
+  dependenciesMeta:
+    prettier:
+      optional: true
+  bin:
+    i18next-type-generator: ./dist/cli.js
+  languageName: unknown
+  linkType: soft
+
 "@skyra/logger@workspace:packages/logger":
   version: 0.0.0-use.local
   resolution: "@skyra/logger@workspace:packages/logger"
@@ -1241,7 +1262,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.17.4":
+"@types/node@npm:^18.17.0, @types/node@npm:^18.17.4":
   version: 18.17.6
   resolution: "@types/node@npm:18.17.6"
   checksum: 70bc92adde47d569f25c5ed40b55040cdf189518d6149e0c3041c6e60b1098cad9c48a856f0b7868ebd74d4098a0ca508b0ec4373dd96216eb8a387ee898e14c
@@ -2130,7 +2151,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:11.0.0":
+"commander@npm:11.0.0, commander@npm:^11.0.0":
   version: 11.0.0
   resolution: "commander@npm:11.0.0"
   checksum: 6621954e1e1d078b4991c1f5bbd9439ad37aa7768d6ab4842de1dbd4d222c8a27e1b8e62108b3a92988614af45031d5bb2a2aaa92951f4d0c934d1a1ac564bb4
@@ -3572,7 +3593,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^23.4.4":
+"i18next@npm:^23.2.11, i18next@npm:^23.4.4":
   version: 23.4.4
   resolution: "i18next@npm:23.4.4"
   dependencies:
@@ -6006,7 +6027,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^7.2.0":
+"tsup@npm:^7.1.0, tsup@npm:^7.2.0":
   version: 7.2.0
   resolution: "tsup@npm:7.2.0"
   dependencies:
