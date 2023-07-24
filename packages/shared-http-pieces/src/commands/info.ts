@@ -1,6 +1,6 @@
 import { EmbedBuilder, time, TimestampStyles } from '@discordjs/builders';
 import { Command, RegisterCommand } from '@skyra/http-framework';
-import { applyLocalizedBuilder, getSupportedUserLanguageT, type TFunction } from '@skyra/http-framework-i18n';
+import { applyLocalizedBuilder, getSupportedUserLanguageName, getT, type TFunction } from '@skyra/http-framework-i18n';
 import {
 	ButtonStyle,
 	ComponentType,
@@ -10,48 +10,50 @@ import {
 	type APIMessageActionRowComponent
 } from 'discord-api-types/v10';
 import { cpus, uptime, type CpuInfo } from 'node:os';
-import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
 import { getInvite, getRepository } from '../lib/information.js';
+
+type TranslateFn = TFunction<'commands/shared'>;
 
 @RegisterCommand((builder) => applyLocalizedBuilder(builder, 'commands/shared:info'))
 export class UserCommand extends Command {
 	public override chatInputRun(interaction: Command.ChatInputInteraction) {
-		const t = getSupportedUserLanguageT(interaction);
+		const lng = getSupportedUserLanguageName(interaction);
+		const t = getT(lng, 'commands/shared');
 		const embed = new EmbedBuilder()
-			.setDescription(t(LanguageKeys.Commands.Shared.InfoEmbedDescription))
-			.addFields(this.getUptimeStatistics(t), this.getServerUsageStatistics(t));
+			.setDescription(t('infoEmbedDescription'))
+			.addFields(this.getUptimeStatistics(t), this.getServerUsageStatistics(t, lng));
 		const components = this.getComponents(t);
 
 		return interaction.reply({ embeds: [embed.toJSON()], components, flags: MessageFlags.Ephemeral });
 	}
 
-	private getUptimeStatistics(t: TFunction): APIEmbedField {
+	private getUptimeStatistics(t: TranslateFn): APIEmbedField {
 		const now = Date.now();
 		const nowSeconds = Math.round(now / 1000);
 
 		return {
-			name: t(LanguageKeys.Commands.Shared.InfoFieldUptimeTitle),
-			value: t(LanguageKeys.Commands.Shared.InfoFieldUptimeValue, {
+			name: t('infoFieldUptimeTitle'),
+			value: t('infoFieldUptimeValue', {
 				host: time(Math.round(nowSeconds - uptime()), TimestampStyles.RelativeTime),
 				client: time(Math.round(nowSeconds - process.uptime()), TimestampStyles.RelativeTime)
 			})
 		};
 	}
 
-	private getServerUsageStatistics(t: TFunction): APIEmbedField {
+	private getServerUsageStatistics(t: TranslateFn, lng: string): APIEmbedField {
 		const usage = process.memoryUsage();
 
 		return {
-			name: t(LanguageKeys.Commands.Shared.InfoFieldServerUsageTitle),
-			value: t(LanguageKeys.Commands.Shared.InfoFieldServerUsageValue, {
+			name: t('infoFieldServerUsageTitle'),
+			value: t('infoFieldServerUsageValue', {
 				cpu: cpus().map(UserCommand.formatCpuInfo.bind(null)).join(' | '),
-				heapUsed: (usage.heapUsed / 1048576).toLocaleString(t.lng, { maximumFractionDigits: 2 }),
-				heapTotal: (usage.heapTotal / 1048576).toLocaleString(t.lng, { maximumFractionDigits: 2 })
+				heapUsed: (usage.heapUsed / 1048576).toLocaleString(lng, { maximumFractionDigits: 2 }),
+				heapTotal: (usage.heapTotal / 1048576).toLocaleString(lng, { maximumFractionDigits: 2 })
 			})
 		};
 	}
 
-	private getComponents(t: TFunction) {
+	private getComponents(t: TranslateFn) {
 		const url = getInvite();
 		const support = this.getSupportComponent(t);
 		const github = this.getGitHubComponent(t);
@@ -67,41 +69,41 @@ export class UserCommand extends Command {
 		return { type: ComponentType.ActionRow, components };
 	}
 
-	private getSupportComponent(t: TFunction): APIMessageActionRowComponent {
+	private getSupportComponent(t: TranslateFn): APIMessageActionRowComponent {
 		return {
 			type: ComponentType.Button,
 			style: ButtonStyle.Link,
-			label: t(LanguageKeys.Commands.Shared.InfoButtonSupport),
+			label: t('infoButtonSupport'),
 			emoji: { name: '🆘' },
 			url: 'https://discord.gg/6gakFR2'
 		};
 	}
 
-	private getInviteComponent(t: TFunction, url: string): APIMessageActionRowComponent {
+	private getInviteComponent(t: TranslateFn, url: string): APIMessageActionRowComponent {
 		return {
 			type: ComponentType.Button,
 			style: ButtonStyle.Link,
-			label: t(LanguageKeys.Commands.Shared.InfoButtonInvite),
+			label: t('infoButtonInvite'),
 			emoji: { name: '🎉' },
 			url
 		};
 	}
 
-	private getGitHubComponent(t: TFunction): APIMessageActionRowComponent {
+	private getGitHubComponent(t: TranslateFn): APIMessageActionRowComponent {
 		return {
 			type: ComponentType.Button,
 			style: ButtonStyle.Link,
-			label: t(LanguageKeys.Commands.Shared.InfoButtonGitHub),
+			label: t('infoButtonGitHub'),
 			emoji: { id: '950888087188283422', name: 'github2' },
 			url: getRepository()
 		};
 	}
 
-	private getDonateComponent(t: TFunction): APIMessageActionRowComponent {
+	private getDonateComponent(t: TranslateFn): APIMessageActionRowComponent {
 		return {
 			type: ComponentType.Button,
 			style: ButtonStyle.Link,
-			label: t(LanguageKeys.Commands.Shared.InfoButtonDonate),
+			label: t('infoButtonDonate'),
 			emoji: { name: '🧡' },
 			url: 'https://donate.skyra.pw'
 		};
