@@ -26,9 +26,9 @@
 		"@discordjs/collection": "^1.5.2",
 		"@sapphire/utilities": "^3.13.0",
 		"@skyra/i18next-backend": "workspace:^",
-		"discord-api-types": "^0.37.52",
-		"i18next": "^22.5.1",
-		"tslib": "^2.6.1"
+		"discord-api-types": "^0.37.54",
+		"i18next": "^23.4.4",
+		"tslib": "^2.6.2"
 	},
 	"repository": {
 		"type": "git",

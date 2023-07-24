@@ -37,8 +37,8 @@
 		"@sentry/node": "^7.61.1",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
-		"discord-api-types": "^0.37.52",
-		"tslib": "^2.6.1"
+		"discord-api-types": "^0.37.54",
+		"tslib": "^2.6.2"
 	},
 	"repository": {
 		"type": "git",
