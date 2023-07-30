@@ -28,7 +28,7 @@
 		"@skyra/i18next-backend": "workspace:^",
 		"discord-api-types": "^0.37.50",
 		"i18next": "^22.5.1",
-		"tslib": "^2.6.0"
+		"tslib": "^2.6.1"
 	},
 	"repository": {
 		"type": "git",
