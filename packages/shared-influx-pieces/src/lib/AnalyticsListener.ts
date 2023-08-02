@@ -1,17 +1,18 @@
 import type { Point } from '@influxdata/influxdb-client';
-import { envParseBoolean, envParseString } from '@skyra/env-utilities';
+import { envParseString } from '@skyra/env-utilities';
 import { Listener, type PieceContext } from '@skyra/http-framework';
 import { Tags } from './AnalyticsSchema.js';
+import { isInfluxInitialized } from 'index.js';
 
 export abstract class AnalyticsListener extends Listener {
 	public tags: [Tags, string][] = [];
 
 	public constructor(context: PieceContext, options: AnalyticsListener.Options) {
-		super(context, { ...options, enabled: envParseBoolean('INFLUX_ENABLED') });
+		super(context, { enabled: isInfluxInitialized(), ...options });
 	}
 
 	public override onLoad() {
-		void this.initTags();
+		this.initTags();
 		return super.onLoad();
 	}
 
@@ -19,7 +20,7 @@ export abstract class AnalyticsListener extends Listener {
 		return this.container.analytics!.writeApi.writePoint(this.injectTags(point));
 	}
 
-	public writePoints(points: Point[]) {
+	public writePoints(points: readonly Point[]) {
 		points = points.map((point) => this.injectTags(point));
 		return this.container.analytics!.writeApi.writePoints(points);
 	}
@@ -44,5 +45,5 @@ export abstract class AnalyticsListener extends Listener {
 }
 
 export namespace AnalyticsListener {
-	export type Options = Omit<Listener.Options, 'enabled'>;
+	export type Options = Listener.Options;
 }

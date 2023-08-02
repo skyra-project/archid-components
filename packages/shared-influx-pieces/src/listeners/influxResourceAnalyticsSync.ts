@@ -10,29 +10,29 @@ export class UserAnalyticsEvent extends AnalyticsListener {
 	}
 
 	public run() {
-		this.writePoints([
-			this.syncPerCoreLoad(), //
-			this.syncMem()
-		]);
-
-		return this.flush();
+		this.writeCoreUsagePoint();
+		this.writeMemoryUsagePoint();
+		this.flush();
 	}
 
-	private syncPerCoreLoad() {
+	private writeCoreUsagePoint() {
 		const point = new Point(Points.PerCoreCPULoad) //
 			.tag(Tags.Action, Actions.Sync);
 
-		let index = 0;
-		for (const { times } of cpus()) point.floatField(`cpu_${index++}`, (times.user + times.nice + times.sys + times.irq) / times.idle);
+		for (const [index, { times }] of cpus().entries()) {
+			point.floatField(`cpu_${index}`, (times.user + times.nice + times.sys + times.irq) / times.idle);
+		}
 
-		return point;
+		this.writePoint(point);
 	}
 
-	private syncMem() {
+	private writeMemoryUsagePoint() {
 		const usage = process.memoryUsage();
-		return new Point(Points.Memory) //
+		const point = new Point(Points.Memory) //
 			.tag(Tags.Action, Actions.Sync)
 			.floatField('total', usage.heapTotal)
 			.floatField('used', usage.heapUsed);
+
+		this.writePoint(point);
 	}
 }

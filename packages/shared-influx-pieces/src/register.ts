@@ -1,6 +1,6 @@
 import { container } from '@skyra/http-framework';
 import { registerSchedule } from 'lib/utils/schedule.js';
+import { resolve } from 'path';
 
-container.stores.registerPath(new URL('.', import.meta.url));
-
-registerSchedule().catch((err) => console.log(err));
+container.stores.get('listeners')?.registerPath(resolve('listeners'));
+registerSchedule();

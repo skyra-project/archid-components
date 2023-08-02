@@ -21,12 +21,10 @@ export class Client {
 	}: Client.Options = {}) {
 		if (!url) throw new TypeError('No Influx URL was provided');
 		if (!token) throw new TypeError('No Influx Token was provided');
-
-		this.influx = new InfluxDB({ ...options, url, token, proxyUrl, timeout });
-
 		if (!org) throw new TypeError('No Influx Org was provided');
 		if (!writeBucket) throw new TypeError('No Influx Write Bucket was provided');
 
+		this.influx = new InfluxDB({ ...options, url, token, proxyUrl, timeout });
 		this.queryApi = this.influx.getQueryApi(org);
 		this.writeApi = this.influx.getWriteApi(org, writeBucket, writePrecision);
 	}

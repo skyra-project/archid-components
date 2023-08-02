@@ -758,22 +758,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/cron@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@sapphire/cron@npm:1.1.0"
-  dependencies:
-    "@sapphire/utilities": ^3.11.0
-  checksum: 71bc8b91dd42c93fa3b11c66bff31133105389a1b3a2cf5d3f02294c6bba14163b70ea69165e2be6a83ec5a036d630eb7fa1a856dd5ee6829315f71291f8ee83
-  languageName: node
-  linkType: hard
-
-"@sapphire/duration@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@sapphire/duration@npm:1.1.0"
-  checksum: bf145249804560e20621fb593110dc4084a7597f04669695250921ccc7ca2e867a1f0a914c3fdfc9d120ee13689668a104b86861f312ffcce293e9551f4359c9
-  languageName: node
-  linkType: hard
-
 "@sapphire/eslint-config@npm:^4.4.2":
   version: 4.4.2
   resolution: "@sapphire/eslint-config@npm:4.4.2"
@@ -842,29 +826,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/time-utilities@npm:1.7.9":
-  version: 1.7.9
-  resolution: "@sapphire/time-utilities@npm:1.7.9"
-  dependencies:
-    "@sapphire/cron": ^1.1.0
-    "@sapphire/duration": ^1.1.0
-    "@sapphire/timer-manager": ^1.0.0
-    "@sapphire/timestamp": ^1.0.1
-  checksum: 73df8eda681407722f4fcc8dfa7e05f159cfba92b65430eb15e3335fb31e18449581b51224548b0a40703aa1db6678153cf8664b7e53da1f2c68afe522d89441
-  languageName: node
-  linkType: hard
-
 "@sapphire/timer-manager@npm:^1.0.0":
   version: 1.0.0
   resolution: "@sapphire/timer-manager@npm:1.0.0"
   checksum: 2f131c2bf1882528c80e6a4aa8f0d3078ae1e2e3d1afc054878fbdb946dc987073d037dad5122e67d20b98e0ec6a37a8e4da7f9c0a91b9711819ad54bbedd6a4
-  languageName: node
-  linkType: hard
-
-"@sapphire/timestamp@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@sapphire/timestamp@npm:1.0.1"
-  checksum: 40320946cb8fcbbb610b94019882eb39c900b9af87e4a2d173299efaa062921662d950780c273fd44f4ec9877983d725d28f0b999314f338f3bfc0ab3c45a8cb
   languageName: node
   linkType: hard
 
@@ -1075,7 +1040,7 @@ __metadata:
   resolution: "@skyra/shared-influx-pieces@workspace:packages/shared-influx-pieces"
   dependencies:
     "@favware/cliff-jumper": ^2.1.0
-    "@sapphire/time-utilities": 1.7.9
+    "@sapphire/timer-manager": ^1.0.0
     "@skyra/http-framework": "workspace:^"
     "@skyra/influx-utilities": "workspace:^"
     discord-api-types: ^0.37.43

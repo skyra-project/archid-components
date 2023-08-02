@@ -1,12 +1,12 @@
 {
 	"extends": "../../../tsconfig.base.json",
 	"compilerOptions": {
-		"rootDir": "../../shared-influx-pieces/src",
-		"baseUrl": "../../shared-influx-pieces/src",
-		"outDir": "../../shared-influx-pieces/dist",
+		"rootDir": ".",
+		"baseUrl": ".",
+		"outDir": "../dist",
 		"noEmit": false,
 		"incremental": true,
-		"tsBuildInfoFile": "../../shared-influx-pieces/dist/.tsbuildinfo"
+		"tsBuildInfoFile": "../dist/.tsbuildinfo"
 	},
-	"include": ["../../shared-influx-pieces/src"]
+	"include": ["."]
 }
