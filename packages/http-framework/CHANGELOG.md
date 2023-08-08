@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.0.3...@skyra/http-framework@1.1.0) - (2023-08-08)
+
+## 🐛 Bug Fixes
+
+- **http-framework:** Update discord dependencies ([916560c](https://github.com/skyra-project/archid-components/commit/916560caaf943eb5ef182538623bc1e2dc1f4023))
+- **deps:** Update all non-major dependencies ([c4035a1](https://github.com/skyra-project/archid-components/commit/c4035a1b8d37c9b73abaa9217e29246ce615df94))
+- **deps:** Update all non-major dependencies ([aed5a61](https://github.com/skyra-project/archid-components/commit/aed5a615be59d88e082eefe7a700337e7b3e1637))
+
+## 🚀 Features
+
+- **hfx:** Option to suppress sending 500's on error (#264) ([f54d047](https://github.com/skyra-project/archid-components/commit/f54d047c1c6a79f5587e28c3cdbc377755ea2f48))
+
 # [@skyra/http-framework@1.0.3](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.0.2...@skyra/http-framework@1.0.3) - (2023-06-17)
 
 ## 🐛 Bug Fixes
