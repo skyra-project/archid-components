@@ -24,12 +24,12 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"tslib": "^2.6.1"
+		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.1.1",
 		"@types/node": "^18.17.4",
-		"i18next": "^22.5.1",
+		"i18next": "^23.4.4",
 		"tsup": "^7.2.0",
 		"typescript": "^5.1.6"
 	},

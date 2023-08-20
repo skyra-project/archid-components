@@ -1,16 +1,13 @@
 {
-	"name": "@skyra/http-framework-i18n",
-	"version": "1.0.3",
-	"description": "An internationalization layer powered by i18next and @skyra/i18next-backend for @skyra/http-framework",
+	"name": "@skyra/i18next-type-generator",
+	"version": "1.0.0",
+	"description": "A fast utility that generates the TypeScript augmentation for i18next.",
 	"author": "@skyra",
 	"license": "Apache-2.0",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
-	"types": "dist/index.d.ts",
 	"type": "module",
-	"exports": {
-		"import": "./dist/index.js",
-		"types": "./dist/index.d.ts"
+	"main": "dist/cli.js",
+	"bin": {
+		"i18next-type-generator": "./dist/cli.js"
 	},
 	"sideEffects": false,
 	"scripts": {
@@ -23,17 +20,24 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/collection": "^1.5.2",
-		"@sapphire/utilities": "^3.13.0",
-		"@skyra/i18next-backend": "workspace:^",
-		"discord-api-types": "^0.37.54",
-		"i18next": "^23.4.4",
-		"tslib": "^2.6.2"
+		"colorette": "^2.0.20",
+		"commander": "^11.0.0",
+		"tslib": "^2.6.0"
+	},
+	"optionalDependencies": {
+		"prettier": "^3.0.0"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^2.1.1",
+		"@types/node": "^18.17.0",
+		"i18next": "^23.2.11",
+		"tsup": "^7.1.0",
+		"typescript": "^5.1.6"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/skyra-project/archid-components.git",
-		"directory": "packages/http-framework-i18n"
+		"directory": "packages/i18next-type-generator"
 	},
 	"files": [
 		"dist/"
@@ -56,10 +60,5 @@
 	},
 	"publishConfig": {
 		"access": "public"
-	},
-	"devDependencies": {
-		"@favware/cliff-jumper": "^2.1.1",
-		"tsup": "^7.2.0",
-		"typescript": "^5.1.6"
 	}
 }

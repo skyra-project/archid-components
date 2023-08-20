@@ -1,7 +1,6 @@
-import { Collection } from '@discordjs/collection';
 import { Backend } from '@skyra/i18next-backend';
 import { Locale, type LocaleString } from 'discord-api-types/v10';
-import i18next, { getFixedT, type InitOptions, type TFunction } from 'i18next';
+import i18next, { getFixedT, type DefaultNamespace, type InitOptions, type Namespace, type TFunction } from 'i18next';
 import type { PathLike } from 'node:fs';
 import { opendir } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -82,8 +81,7 @@ async function loadLocale(directory: string, ns: string) {
 	}
 }
 
-const fixedCache = new Collection<LocaleString, TFunction>();
-export function getT(locale: LocaleString): TFunction<'translation', undefined, 'translation'> {
+export function getT<const Ns extends Namespace = DefaultNamespace>(locale: LocaleString, namespace?: Ns): TFunction<Ns> {
 	if (!loadedLocales.has(locale)) throw new ReferenceError(`Invalid language (${locale})`);
-	return fixedCache.ensure(locale, () => getFixedT(locale));
+	return getFixedT<Ns>(locale, namespace);
 }

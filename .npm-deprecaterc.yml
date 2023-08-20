@@ -4,6 +4,7 @@ package:
   - '@skyra/http-framework'
   - '@skyra/http-framework-i18n'
   - '@skyra/i18next-backend'
+  - '@skyra/i18next-type-generator'
   - '@skyra/logger'
   - '@skyra/shared-http-pieces'
   - '@skyra/start-banner'

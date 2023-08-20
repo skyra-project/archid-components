@@ -34,6 +34,8 @@ addFormatters(
 await init();
 ```
 
+> **Note**: If you want to customize the options, please check [i18next's TypeScript guide](https://www.i18next.com/overview/typescript) to improve the experience.
+
 ### Definition
 
 ```typescript
