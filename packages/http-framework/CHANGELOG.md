@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@1.1.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.1.0...@skyra/http-framework@1.1.1) - (2023-09-03)
+
+## 🐛 Bug Fixes
+
+- **hfx:** Bump transitive dependencies ([dddd2dc](https://github.com/skyra-project/archid-components/commit/dddd2dcbcea3d457cc3602e79e09ce02b9e6d96d))
+
 # [@skyra/http-framework@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.0.3...@skyra/http-framework@1.1.0) - (2023-08-08)
 
 ## 🐛 Bug Fixes
