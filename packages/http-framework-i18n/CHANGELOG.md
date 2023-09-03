@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@1.0.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@1.0.3...@skyra/http-framework-i18n@1.0.4) - (2023-09-03)
+
+## 🐛 Bug Fixes
+
+- **hfx-i18n:** Remove unnecessary ts-expect-error ([348e5f8](https://github.com/skyra-project/archid-components/commit/348e5f895b81adc82c4d056ad44ee71fa0a8b16d))
+- **hfx-i18n:** Bump transitive dependencies ([c22f8cd](https://github.com/skyra-project/archid-components/commit/c22f8cdc56dc047dac3a0fc2335e0e27c91491d9))
+
 # [@skyra/http-framework-i18n@1.0.3](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@1.0.2...@skyra/http-framework-i18n@1.0.3) - (2023-08-08)
 
 ## 🐛 Bug Fixes
