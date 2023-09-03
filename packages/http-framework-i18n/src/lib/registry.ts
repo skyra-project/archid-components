@@ -43,7 +43,6 @@ export async function init(options?: InitOptions) {
 	});
 
 	for (const { name, format } of loadedFormatters) {
-		// @ts-expect-error TS says services doesn't exist, but it does
 		i18next.services.formatter!.add(name, format);
 	}
 }
