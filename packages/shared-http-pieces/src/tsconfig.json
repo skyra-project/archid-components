@@ -1,14 +1,14 @@
 {
-	"extends": "../../../tsconfig.base.json",
+	"extends": ["../../../tsconfig.base.json", "@sapphire/ts-config/decorators"],
 	"compilerOptions": {
 		"rootDir": ".",
 		"baseUrl": ".",
+		"module": "Node16",
+		"moduleResolution": "Node16",
 		"outDir": "../dist",
 		"noEmit": false,
 		"incremental": true,
-		"tsBuildInfoFile": "../dist/.tsbuildinfo",
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true
+		"tsBuildInfoFile": "../dist/.tsbuildinfo"
 	},
 	"include": ["."]
 }
