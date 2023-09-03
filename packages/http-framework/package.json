@@ -24,15 +24,15 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "^1.6.4",
-		"@discordjs/collection": "^1.5.2",
-		"@discordjs/rest": "^2.0.0",
-		"@discordjs/util": "^1.0.0",
+		"@discordjs/builders": "^1.6.5",
+		"@discordjs/collection": "^1.5.3",
+		"@discordjs/rest": "^2.0.1",
+		"@discordjs/util": "^1.0.1",
 		"@sapphire/pieces": "^3.7.0",
 		"@sapphire/result": "^2.6.4",
 		"@sapphire/utilities": "^3.13.0",
 		"@vladfrangu/async_event_emitter": "^2.2.2",
-		"discord-api-types": "^0.37.52"
+		"discord-api-types": "^0.37.56"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.1.2",
