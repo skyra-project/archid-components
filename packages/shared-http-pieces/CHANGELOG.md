@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@1.0.5](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@1.0.4...@skyra/shared-http-pieces@1.0.5) - (2023-09-03)
+
+## 🐛 Bug Fixes
+
+- **shared-http-pieces:** Bump transitive dependencies ([fb67b2a](https://github.com/skyra-project/archid-components/commit/fb67b2ad68db1ccdee5f897403bf1923b9c71949))
+
 # [@skyra/shared-http-pieces@1.0.4](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@1.0.3...@skyra/shared-http-pieces@1.0.4) - (2023-08-08)
 
 ## 🐛 Bug Fixes
