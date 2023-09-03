@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/i18next-backend@2.0.4](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@2.0.3...@skyra/i18next-backend@2.0.4) - (2023-09-03)
+
+## 🐛 Bug Fixes
+
+- **i18next-backend:** Bump transitive dependencies ([a70a6f9](https://github.com/skyra-project/archid-components/commit/a70a6f9c8a8f884bb3f2ebf6ff441d4552b17759))
+- **deps:** Update all non-major dependencies ([fd90832](https://github.com/skyra-project/archid-components/commit/fd9083230dc93ccf5f0d7b6aa402f5ed537f6338))
+- **deps:** Update all non-major dependencies ([aed5a61](https://github.com/skyra-project/archid-components/commit/aed5a615be59d88e082eefe7a700337e7b3e1637))
+- **deps:** Update all non-major dependencies ([098ea85](https://github.com/skyra-project/archid-components/commit/098ea85e886440a54d56698d985fc3964b424bda))
+- **deps:** Update all non-major dependencies ([7310840](https://github.com/skyra-project/archid-components/commit/7310840db053586c42ab55026bb098b75df64003))
+- **deps:** Update all non-major dependencies ([77e8936](https://github.com/skyra-project/archid-components/commit/77e893661e6b933c175dd1ca06ce3feb1998859b))
+- **deps:** Update all non-major dependencies ([f7b68b7](https://github.com/skyra-project/archid-components/commit/f7b68b79e09779ae8e922cb1deec43018a224ea6))
+
 # [@skyra/i18next-backend@2.0.3](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@2.0.2...@skyra/i18next-backend@2.0.3) - (2023-04-12)
 
 ## 🐛 Bug Fixes
