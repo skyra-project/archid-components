@@ -15,7 +15,6 @@
 		"build": "turbo run build",
 		"typecheck": "turbo run typecheck",
 		"update": "yarn upgrade-interactive",
-		"postinstall": "husky install .github/husky",
 		"check-update": "turbo run check-update"
 	},
 	"devDependencies": {
@@ -36,7 +35,6 @@
 		"eslint": "^8.48.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-prettier": "^5.0.0",
-		"husky": "^8.0.3",
 		"lint-staged": "^15.0.0",
 		"prettier": "^3.0.3",
 		"tsup": "^7.2.0",
