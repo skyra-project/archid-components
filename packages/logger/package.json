@@ -54,10 +54,10 @@
 		"colorette": "^2.0.20"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^2.1.2",
-		"@vitest/coverage-v8": "^0.34.3",
+		"@favware/cliff-jumper": "^2.2.0",
+		"@vitest/coverage-v8": "^0.34.6",
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2",
-		"vitest": "^0.34.3"
+		"vitest": "^0.34.6"
 	}
 }

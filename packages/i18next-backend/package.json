@@ -27,8 +27,8 @@
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^2.1.2",
-		"@types/node": "^20.5.9",
+		"@favware/cliff-jumper": "^2.2.0",
+		"@types/node": "^20.8.7",
 		"i18next": "^22.5.1",
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"

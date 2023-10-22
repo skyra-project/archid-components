@@ -55,7 +55,7 @@
 		"@sapphire/result": "^2.6.4"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^2.1.2",
+		"@favware/cliff-jumper": "^2.2.0",
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	}

@@ -55,8 +55,8 @@
 		"@skyra/safe-fetch": "workspace:^"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^2.1.2",
-		"esbuild-plugin-version-injector": "^1.2.0",
+		"@favware/cliff-jumper": "^2.2.0",
+		"esbuild-plugin-version-injector": "^1.2.1",
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	}
