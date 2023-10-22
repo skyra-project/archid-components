@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@1.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.2.0...@skyra/http-framework@1.2.0) - (2023-10-22)
+
+## 🚀 Features
+
+- **hfx:** Update discord-api-types ([17abfe1](https://github.com/skyra-project/archid-components/commit/17abfe1e84029eb7c03f9e8a9727bf196fe46195))
+
 # [@skyra/http-framework@1.1.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.1.0...@skyra/http-framework@1.1.1) - (2023-09-03)
 
 ## 🐛 Bug Fixes
