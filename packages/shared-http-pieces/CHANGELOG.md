@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@1.1.0...@skyra/shared-http-pieces@1.1.0) - (2023-10-22)
+
+## 🚀 Features
+
+- **shared-http-pieces:** Update discord-api-types ([fedb1da](https://github.com/skyra-project/archid-components/commit/fedb1dab9949fee7a4e0ecc94cdc290549071782))
+
 # [@skyra/shared-http-pieces@1.0.5](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@1.0.4...@skyra/shared-http-pieces@1.0.5) - (2023-09-03)
 
 ## 🐛 Bug Fixes
