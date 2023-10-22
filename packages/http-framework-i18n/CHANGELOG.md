@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@1.1.0...@skyra/http-framework-i18n@1.1.0) - (2023-10-22)
+
+## 🚀 Features
+
+- **hfx-i18n:** Update discord-api-types ([9d1d621](https://github.com/skyra-project/archid-components/commit/9d1d621f5e73b928cc169bb8b22cdcb4db27f195))
+
 # [@skyra/http-framework-i18n@1.0.4](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@1.0.3...@skyra/http-framework-i18n@1.0.4) - (2023-09-03)
 
 ## 🐛 Bug Fixes
