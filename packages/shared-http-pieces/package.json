@@ -10,12 +10,12 @@
 	"type": "module",
 	"exports": {
 		".": {
-			"import": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
 		},
 		"./register": {
-			"import": "./dist/register.js",
-			"types": "./dist/register.d.ts"
+			"types": "./dist/register.d.ts",
+			"import": "./dist/register.js"
 		}
 	},
 	"sideEffects": [
