@@ -9,9 +9,14 @@
 	"types": "dist/index.d.ts",
 	"type": "commonjs",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js",
-		"types": "./dist/index.d.ts"
+		"import": {
+			"types": "./dist/index.d.mts",
+			"default": "./dist/index.mjs"
+		},
+		"require": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
 	},
 	"sideEffects": false,
 	"scripts": {
@@ -27,8 +32,8 @@
 		"tslib": "^2.6.2"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^2.2.0",
-		"@types/node": "^20.8.9",
+		"@favware/cliff-jumper": "^2.2.3",
+		"@types/node": "^20.9.0",
 		"i18next": "^22.5.1",
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"

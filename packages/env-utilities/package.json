@@ -9,9 +9,14 @@
 	"types": "dist/index.d.ts",
 	"type": "commonjs",
 	"exports": {
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js",
-		"types": "./dist/index.d.ts"
+		"import": {
+			"types": "./dist/index.d.mts",
+			"default": "./dist/index.mjs"
+		},
+		"require": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
 	},
 	"sideEffects": false,
 	"scripts": {
@@ -56,7 +61,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^2.2.0",
+		"@favware/cliff-jumper": "^2.2.3",
 		"@vitest/coverage-v8": "^0.34.6",
 		"esbuild-plugin-version-injector": "^1.2.1",
 		"tsup": "^7.2.0",

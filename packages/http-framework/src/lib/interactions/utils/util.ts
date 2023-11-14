@@ -69,26 +69,26 @@ export function makeInteraction(response: ServerResponse, interaction: BaseInter
 export type TransformRaw<T extends BaseInteractionType> = T extends AutocompleteInteraction.Type
 	? AutocompleteInteraction
 	: T extends ChatInputCommandInteraction.Type
-	? ChatInputCommandInteraction
-	: T extends UserContextMenuCommandInteraction.Type
-	? UserContextMenuCommandInteraction
-	: T extends MessageContextMenuCommandInteraction.Type
-	? MessageContextMenuCommandInteraction
-	: T extends MessageComponentButtonInteraction.Type
-	? MessageComponentButtonInteraction
-	: T extends MessageComponentChannelSelectInteraction.Type
-	? MessageComponentChannelSelectInteraction
-	: T extends MessageComponentMentionableSelectInteraction.Type
-	? MessageComponentMentionableSelectInteraction
-	: T extends MessageComponentRoleSelectInteraction.Type
-	? MessageComponentRoleSelectInteraction
-	: T extends MessageComponentStringSelectInteraction.Type
-	? MessageComponentStringSelectInteraction
-	: T extends MessageComponentUserSelectInteraction.Type
-	? MessageComponentUserSelectInteraction
-	: T extends ModalSubmitInteraction.Type
-	? ModalSubmitInteraction
-	: never;
+	  ? ChatInputCommandInteraction
+	  : T extends UserContextMenuCommandInteraction.Type
+	    ? UserContextMenuCommandInteraction
+	    : T extends MessageContextMenuCommandInteraction.Type
+	      ? MessageContextMenuCommandInteraction
+	      : T extends MessageComponentButtonInteraction.Type
+	        ? MessageComponentButtonInteraction
+	        : T extends MessageComponentChannelSelectInteraction.Type
+	          ? MessageComponentChannelSelectInteraction
+	          : T extends MessageComponentMentionableSelectInteraction.Type
+	            ? MessageComponentMentionableSelectInteraction
+	            : T extends MessageComponentRoleSelectInteraction.Type
+	              ? MessageComponentRoleSelectInteraction
+	              : T extends MessageComponentStringSelectInteraction.Type
+	                ? MessageComponentStringSelectInteraction
+	                : T extends MessageComponentUserSelectInteraction.Type
+	                  ? MessageComponentUserSelectInteraction
+	                  : T extends ModalSubmitInteraction.Type
+	                    ? ModalSubmitInteraction
+	                    : never;
 
 /**
  * Handles a received error. This function must only be called if the HTTP

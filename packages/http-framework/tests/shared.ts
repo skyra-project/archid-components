@@ -14,7 +14,8 @@ import {
 	type APIUser,
 	type APIUserApplicationCommandInteraction,
 	type LocaleString,
-	type Permissions
+	type Permissions,
+	type APIEntitlement
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
 import { Writable } from 'node:stream';
@@ -76,7 +77,8 @@ export const BaseInteractionData = {
 	app_permissions: PermissionsData,
 	locale: LocaleData,
 	guild_locale: LocaleData,
-	guild_id: '737141877803057244'
+	guild_id: '737141877803057244',
+	entitlements: [] as APIEntitlement[]
 } as const;
 
 export const ApplicationCommandAutocompleteInteractionData: APIApplicationCommandAutocompleteInteraction = {
