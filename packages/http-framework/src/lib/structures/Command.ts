@@ -15,9 +15,13 @@ import {
 import { getMethod } from '../interactions/shared/link.js';
 import type { CommandStore } from './CommandStore.js';
 
-export abstract class Command extends Piece {
+export abstract class Command<Options extends Command.Options = Command.Options> extends Piece<Options, 'commands'> {
 	private chatInputRouter = new Collection<string, string | Collection<string, string>>();
 	private contextMenuRouter = new Collection<string, string>();
+
+	public constructor(context: Command.LoaderContext, options: Options = {} as Options) {
+		super(context, options);
+	}
 
 	public override onLoad() {
 		this.populateChatInputRouter();
@@ -137,7 +141,9 @@ export namespace Command {
 	export type InteractionData = Interaction['data'];
 
 	// Piece re-exports
-	export type Context = Piece.Context;
+	/** @deprecated Use {@linkcode LoaderContext} instead. */
+	export type Context = LoaderContext;
+	export type LoaderContext = Piece.LoaderContext<'commands'>;
 	export type JSON = Piece.JSON;
 	export type LocationJSON = Piece.LocationJSON;
 	export type Options = Piece.Options;

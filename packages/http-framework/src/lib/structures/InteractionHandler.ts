@@ -1,7 +1,14 @@
 import { Piece } from '@sapphire/pieces';
 import type { Interactions } from '../interactions/index.js';
 
-export abstract class InteractionHandler extends Piece {
+export abstract class InteractionHandler<Options extends InteractionHandler.Options = InteractionHandler.Options> extends Piece<
+	Options,
+	'interaction-handlers'
+> {
+	public constructor(context: InteractionHandler.LoaderContext, options: Options = {} as Options) {
+		super(context, options);
+	}
+
 	public abstract run(interaction: InteractionHandler.Interaction, customIdValue: unknown): Awaited<unknown>;
 }
 
@@ -18,7 +25,9 @@ export namespace InteractionHandler {
 	export type InteractionData = Interaction['data'];
 
 	// Piece re-exports
-	export type Context = Piece.Context;
+	/** @deprecated Use {@linkcode LoaderContext} instead. */
+	export type Context = LoaderContext;
+	export type LoaderContext = Piece.LoaderContext<'interaction-handlers'>;
 	export type JSON = Piece.JSON;
 	export type LocationJSON = Piece.LocationJSON;
 	export type Options = Piece.Options;

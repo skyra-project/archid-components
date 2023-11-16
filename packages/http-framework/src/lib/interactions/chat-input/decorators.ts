@@ -53,7 +53,7 @@ function mergeOption(existing: APIApplicationCommandOption | undefined, data: AP
 export function RegisterCommand(data: ChatInputCommandDataResolvable | ((builder: SlashCommandBuilder) => ChatInputCommandDataResolvable)) {
 	const builtData = normalizeChatInputCommand(data);
 
-	return function decorate(target: typeof Command) {
+	return function decorate(target: typeof Command<Command.Options>) {
 		chatInputCommandRegistry.set(target, { type: ApplicationCommandType.ChatInput, ...merge(chatInputCommandRegistry.get(target), builtData) });
 	};
 }
