@@ -9,6 +9,7 @@ export {
 	container,
 	type AliasPieceOptions,
 	type PieceContext,
+	type LoaderPieceContext,
 	type PieceOptions,
 	type StoreOptions,
 	type StoreRegistryEntries
