@@ -1,5 +1,5 @@
 import { EmbedBuilder, time, TimestampStyles } from '@discordjs/builders';
-import { Command, RegisterCommand } from '@skyra/http-framework';
+import { Command, container, RegisterCommand } from '@skyra/http-framework';
 import { applyLocalizedBuilder, getSupportedUserLanguageT, type TFunction } from '@skyra/http-framework-i18n';
 import {
 	ButtonStyle,
@@ -14,7 +14,7 @@ import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
 import { getInvite, getRepository } from '../lib/information.js';
 
 @RegisterCommand((builder) => applyLocalizedBuilder(builder, 'commands/shared:info'))
-export class UserCommand extends Command {
+export class SharedCommand extends Command {
 	public override chatInputRun(interaction: Command.ChatInputInteraction) {
 		const t = getSupportedUserLanguageT(interaction);
 		const embed = new EmbedBuilder()
@@ -44,7 +44,7 @@ export class UserCommand extends Command {
 		return {
 			name: t(LanguageKeys.Commands.Shared.InfoFieldServerUsageTitle),
 			value: t(LanguageKeys.Commands.Shared.InfoFieldServerUsageValue, {
-				cpu: cpus().map(UserCommand.formatCpuInfo.bind(null)).join(' | '),
+				cpu: cpus().map(SharedCommand.formatCpuInfo.bind(null)).join(' | '),
 				heapUsed: (usage.heapUsed / 1048576).toLocaleString(t.lng, { maximumFractionDigits: 2 }),
 				heapTotal: (usage.heapTotal / 1048576).toLocaleString(t.lng, { maximumFractionDigits: 2 })
 			})
@@ -111,3 +111,5 @@ export class UserCommand extends Command {
 		return `${Math.round(((times.user + times.nice + times.sys + times.irq) / times.idle) * 10000) / 100}%`;
 	}
 }
+
+void container.stores.loadPiece({ name: 'info', piece: SharedCommand, store: 'commands' });
