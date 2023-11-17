@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/logger@2.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/logger@2.0.2...@skyra/logger@2.0.2) - (2023-11-17)
+
+## 🐛 Bug Fixes
+
+- Replace `const enum` with `enum` (#286) ([f7c7f64](https://github.com/skyra-project/archid-components/commit/f7c7f64143d035e89b187014073da2c1278d0380))
+- **deps:** Update all non-major dependencies ([aed5a61](https://github.com/skyra-project/archid-components/commit/aed5a615be59d88e082eefe7a700337e7b3e1637))
+- **deps:** Update all non-major dependencies ([098ea85](https://github.com/skyra-project/archid-components/commit/098ea85e886440a54d56698d985fc3964b424bda))
+- **deps:** Update all non-major dependencies ([f7b68b7](https://github.com/skyra-project/archid-components/commit/f7b68b79e09779ae8e922cb1deec43018a224ea6))
+
 # [@skyra/logger@2.0.1](https://github.com/skyra-project/archid-components/compare/@skyra/logger@2.0.0...@skyra/logger@2.0.1) - (2023-04-21)
 
 ## 🐛 Bug Fixes
