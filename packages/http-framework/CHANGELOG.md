@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@1.2.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.2.1...@skyra/http-framework@1.2.1) - (2023-11-17)
+
+## 🏠 Refactor
+
+- Update to latest `@sapphire/pieces` ([4bf54ec](https://github.com/skyra-project/archid-components/commit/4bf54ec25f0c1f9350cccfd875a44fad3cfccb63))
+
 # [@skyra/http-framework@1.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.2.0...@skyra/http-framework@1.2.0) - (2023-10-22)
 
 ## 🚀 Features
