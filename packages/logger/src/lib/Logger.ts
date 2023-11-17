@@ -91,7 +91,7 @@ export namespace Logger {
 		levels?: Partial<Record<Level, LevelContext>>;
 	}
 
-	export const enum Level {
+	export enum Level {
 		Trace,
 		Debug,
 		Info,
