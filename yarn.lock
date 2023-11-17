@@ -783,14 +783,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/pieces@npm:^3.7.1":
-  version: 3.7.1
-  resolution: "@sapphire/pieces@npm:3.7.1"
+"@sapphire/pieces@npm:^3.10.0":
+  version: 3.10.0
+  resolution: "@sapphire/pieces@npm:3.10.0"
   dependencies:
     "@discordjs/collection": "npm:^1.5.3"
     "@sapphire/utilities": "npm:^3.13.0"
     tslib: "npm:^2.6.2"
-  checksum: 11d2a04860987dc52144851e2c484cfbb83d8b0924c0de7c1fb93eb348dc3820a6cfa046fc22bc3a0a4df0dce1d291fdd749c26a8e5c19b116aa1ec87715a62c
+  checksum: 70c227989967f02de72150eebc4815bd884ab490c76b5ef0a240cec23871a4426f355cb855d891ef5b9170e0fd04618c8c0415a8ffd6e1d468661af0c4572ce6
   languageName: node
   linkType: hard
 
@@ -953,7 +953,7 @@ __metadata:
     "@discordjs/rest": "npm:^2.1.0"
     "@discordjs/util": "npm:^1.0.2"
     "@favware/cliff-jumper": "npm:^2.2.3"
-    "@sapphire/pieces": "npm:^3.7.1"
+    "@sapphire/pieces": "npm:^3.10.0"
     "@sapphire/result": "npm:^2.6.4"
     "@sapphire/utilities": "npm:^3.13.0"
     "@vitest/coverage-v8": "npm:^0.34.6"

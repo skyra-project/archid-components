@@ -20,7 +20,7 @@ import { handleError, makeInteraction } from '../interactions/utils/util.js';
 import { ErrorMessages } from '../utils/constants.js';
 import { Command } from './Command.js';
 
-export class CommandStore extends Store<Command> {
+export class CommandStore extends Store<Command, 'commands'> {
 	public contextMenuCommands = new Collection<string, Command>();
 
 	public constructor() {

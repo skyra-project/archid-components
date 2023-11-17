@@ -4,12 +4,12 @@
 import { Piece, type Container } from '@sapphire/pieces';
 import type { Awaitable } from '@sapphire/utilities';
 
-export abstract class Listener extends Piece<Listener.Options> {
+export abstract class Listener<Options extends Listener.Options = Listener.Options> extends Piece<Options, 'listeners'> {
 	public emitter: Listener.Emitter;
 	public event: string;
 	private _listener: (...args: readonly any[]) => unknown;
 
-	public constructor(context: Listener.Context, options: Listener.Options) {
+	public constructor(context: Listener.LoaderContext, options: Options) {
 		super(context, options);
 
 		this.emitter = typeof options.emitter === 'string' ? this.container[options.emitter] : options.emitter ?? this.container.client;
@@ -37,11 +37,15 @@ export abstract class Listener extends Piece<Listener.Options> {
 }
 
 export namespace Listener {
+	/** @deprecated Use {@linkcode LoaderContext} instead. */
+	export type Context = LoaderContext;
+	export type LoaderContext = Piece.LoaderContext<'listeners'>;
+	export type JSON = Piece.JSON;
+	export type LocationJSON = Piece.LocationJSON;
 	export interface Options extends Piece.Options {
 		emitter: Emitter | { [K in keyof Container]: Container[K] extends Emitter ? K : never }[keyof Container];
 		event?: string;
 	}
-	export type Context = Piece.Context;
 
 	export interface Emitter {
 		on(eventName: string, listener: (...args: any[]) => void): this;

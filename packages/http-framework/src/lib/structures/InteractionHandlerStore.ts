@@ -7,7 +7,7 @@ import { handleError, makeInteraction } from '../interactions/utils/util.js';
 import { ErrorMessages } from '../utils/constants.js';
 import { InteractionHandler } from './InteractionHandler.js';
 
-export class InteractionHandlerStore extends Store<InteractionHandler> {
+export class InteractionHandlerStore extends Store<InteractionHandler, 'interaction-handlers'> {
 	public constructor() {
 		super(InteractionHandler, { name: 'interaction-handlers' });
 	}

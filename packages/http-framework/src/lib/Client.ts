@@ -203,6 +203,7 @@ declare module '@sapphire/pieces' {
 	export interface StoreRegistryEntries {
 		commands: CommandStore;
 		'interaction-handlers': InteractionHandlerStore;
+		listeners: ListenerStore;
 	}
 
 	export interface Container {
