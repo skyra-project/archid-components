@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@1.1.1](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@1.1.1...@skyra/shared-http-pieces@1.1.1) - (2023-11-17)
+
+## 🏠 Refactor
+
+- Make all pieces virtual ([35f1ccc](https://github.com/skyra-project/archid-components/commit/35f1ccc743b5309d2779cda17ca9ae18d725a93f))
+
 # [@skyra/shared-http-pieces@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@1.1.0...@skyra/shared-http-pieces@1.1.0) - (2023-10-22)
 
 ## 🚀 Features
