@@ -1,8 +1,4 @@
 {
-	"extends": "../../tsconfig.eslint.json",
-	"compilerOptions": {
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true
-	},
+	"extends": ["../../tsconfig.eslint.json", "@sapphire/ts-config/decorators"],
 	"include": ["src", "tests", "tsup.config.ts"]
 }
