@@ -6,6 +6,7 @@ import {
 	MessageType,
 	type APIApplicationCommandAutocompleteInteraction,
 	type APIChatInputApplicationCommandInteraction,
+	type APIEntitlement,
 	type APIInteractionGuildMember,
 	type APIMessage,
 	type APIMessageApplicationCommandInteraction,
@@ -14,10 +15,9 @@ import {
 	type APIUser,
 	type APIUserApplicationCommandInteraction,
 	type LocaleString,
-	type Permissions,
-	type APIEntitlement
+	type Permissions
 } from 'discord-api-types/v10';
-import type { ServerResponse } from 'node:http';
+import type { EventHandlerRequest, H3Event } from 'h3';
 import { Writable } from 'node:stream';
 import type {
 	MessageComponentChannelSelectInteraction,
@@ -185,8 +185,8 @@ export const ModalSubmitInteractionData: APIModalSubmitInteraction = {
 	message: MessageData
 };
 
-export function makeResponse() {
+export function makeResponse(): H3Event<EventHandlerRequest> {
 	const response = new Writable();
 	response._write = (_chunk: any, _encoding: BufferEncoding, callback: (error?: Error | null) => void) => callback();
-	return response as ServerResponse;
+	return response as H3Event<EventHandlerRequest>;
 }
