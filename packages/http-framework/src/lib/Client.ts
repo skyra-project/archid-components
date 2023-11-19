@@ -5,10 +5,11 @@ import { AsyncEventEmitter } from '@vladfrangu/async_event_emitter';
 import { InteractionType, type APIInteraction } from 'discord-api-types/v10';
 import { createServer, type IncomingMessage, type Server, type ServerOptions, type ServerResponse } from 'node:http';
 import type { ListenOptions as NetListenOptions } from 'node:net';
-import { HttpCodes } from './api/HttpCodes.js';
 import type { MappedClientEvents } from './ClientEvents.js';
+import { HttpCodes } from './api/HttpCodes.js';
 import type { IIdParser } from './components/IIdParser.js';
 import { StringIdParser } from './components/StringIdParser.js';
+import type { ApplicationCommandRegistry, RequestAuthPrefix } from './interactions/shared/ApplicationCommandRegistry.js';
 import { CommandStore } from './structures/CommandStore.js';
 import { InteractionHandlerStore } from './structures/InteractionHandlerStore.js';
 import { ListenerStore } from './structures/ListenerStore.js';
@@ -36,11 +37,27 @@ export class Client extends AsyncEventEmitter<MappedClientEvents> {
 		this.#discordPublicKey = discordPublicKey;
 
 		container.rest = new REST(options.restOptions);
-		const discordToken = options.discordToken ?? process.env.DISCORD_TOKEN;
-		if (discordToken) container.rest.setToken(discordToken);
+		const token = options.discordToken ?? process.env.DISCORD_TOKEN;
+		if (!token) throw new Error('The discordToken cannot be empty');
 
-		container.idParser ??= new StringIdParser();
 		container.client = this;
+		container.rest.setToken(token);
+		container.idParser ??= new StringIdParser();
+		container.applicationCommandRegistry.setup({
+			clientId: options.clientId ?? process.env.DISCORD_CLIENT_ID ?? Buffer.from(token.split('.')[0], 'base64').toString(),
+			rest: container.rest,
+			authPrefix: options.authPrefix
+		});
+	}
+
+	/**
+	 * Gets the application command registry.
+	 *
+	 * @since 2.0.0
+	 * @returns The application command registry.
+	 */
+	public get registry() {
+		return container.applicationCommandRegistry;
 	}
 
 	/**
@@ -159,6 +176,19 @@ export interface ClientOptions {
 	 * @default true
 	 */
 	httpReplyOnError?: boolean;
+
+	/**
+	 * The ID of the client.
+	 * @default process.env.DISCORD_CLIENT_ID ?? Buffer.from(token.split('.')[0], 'base64').toString()
+	 */
+	clientId?: string;
+
+	/**
+	 * The prefix to use for authentication in REST calls.
+	 * @default 'Bot'
+	 * @since 2.0.0
+	 */
+	authPrefix?: RequestAuthPrefix;
 }
 
 export interface LoadOptions {
@@ -210,5 +240,6 @@ declare module '@sapphire/pieces' {
 		client: Client;
 		idParser: IIdParser;
 		rest: REST;
+		applicationCommandRegistry: ApplicationCommandRegistry;
 	}
 }

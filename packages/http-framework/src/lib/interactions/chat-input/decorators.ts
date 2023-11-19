@@ -1,118 +1,103 @@
-import type { SlashCommandBuilder, SlashCommandSubcommandBuilder, SlashCommandSubcommandGroupBuilder } from '@discordjs/builders';
-import {
-	ApplicationCommandOptionType,
-	ApplicationCommandType,
-	type APIApplicationCommandOption,
-	type APIApplicationCommandSubcommandGroupOption,
-	type RESTPostAPIChatInputApplicationCommandsJSONBody
-} from 'discord-api-types/v10';
+import { container } from '@sapphire/pieces';
 import type { Command } from '../../structures/Command.js';
-import {
-	normalizeChatInputCommand,
-	normalizeChatInputSubCommand,
-	normalizeChatInputSubCommandGroup,
-	type ChatInputCommandDataResolvable,
-	type ChatInputCommandSubCommandDataResolvable,
-	type ChatInputCommandSubCommandGroupDataResolvable
-} from '../../utils/normalizeInput.js';
-import { link } from '../shared/link.js';
-import { chatInputCommandRegistry } from './shared.js';
+import { ChatInputCommandResolver } from './ChatInputCommandResolver.js';
 
-function merge(
-	existing: RESTPostAPIChatInputApplicationCommandsJSONBody | undefined,
-	data: RESTPostAPIChatInputApplicationCommandsJSONBody
-): RESTPostAPIChatInputApplicationCommandsJSONBody {
-	if (!existing) return data;
-	return { ...existing, ...data, options: mergeOptions(existing.options, data.options) };
+function ensureChatInputCommandResolver(target: typeof Command<Command.Options>): ChatInputCommandResolver {
+	return container.applicationCommandRegistry.ensure(target).makeChatInput();
 }
 
-function mergeOptions(
-	existing: APIApplicationCommandOption[] | undefined,
-	data: APIApplicationCommandOption[] | undefined
-): APIApplicationCommandOption[] {
-	if (!existing?.length) return data ?? [];
-	if (!data?.length) return existing;
-
-	const entries = new Map(existing.map((option) => [option.name, option]));
-	for (const option of data) {
-		entries.set(option.name, mergeOption(entries.get(option.name), option));
-	}
-
-	return [...entries.values()];
-}
-
-function mergeOption(existing: APIApplicationCommandOption | undefined, data: APIApplicationCommandOption): APIApplicationCommandOption {
-	if (!existing) return data;
-	if (existing.type !== data.type) throw new TypeError(`Mismatching types, expected ${existing.type}, but received ${data.type}`);
-	if ('options' in existing) {
-		if ('options' in data) return { ...existing, ...data, options: mergeOptions(existing.options, data.options) as any[] };
-	}
-	return { ...existing, ...data } as any;
-}
-
-export function RegisterCommand<Options extends Command.Options = Command.Options>(
-	data: ChatInputCommandDataResolvable | ((builder: SlashCommandBuilder) => ChatInputCommandDataResolvable)
-) {
-	const builtData = normalizeChatInputCommand(data);
-
+/**
+ * Registers a command for the chat input.
+ *
+ * @template Options - The options type for the command.
+ * @param data - The command data.
+ * @example
+ * ```typescript
+ * import { Command, RegisterCommand } from '@skyra/http-framework';
+ *
+ * (at)RegisterCommand({
+ * 	name: 'ping',
+ * 	description: 'A simple ping pong command'
+ * })
+ * export class UserCommand extends Command {
+ * 	public async run(interaction: Command.ChatInputInteraction) {
+ * 		return interaction.reply('Pong!');
+ * 	}
+ * }
+ * ```
+ */
+export function RegisterCommand<Options extends Command.Options = Command.Options>(data: ChatInputCommandResolver.CommandData) {
 	return function decorate(target: typeof Command<Options>) {
-		chatInputCommandRegistry.set(target, { type: ApplicationCommandType.ChatInput, ...merge(chatInputCommandRegistry.get(target), builtData) });
+		ensureChatInputCommandResolver(target).setCommand(data);
 	};
 }
 
-export function RegisterSubCommandGroup<Options extends Command.Options = Command.Options>(
-	data:
-		| ChatInputCommandSubCommandGroupDataResolvable
-		| ((builder: SlashCommandSubcommandGroupBuilder) => ChatInputCommandSubCommandGroupDataResolvable)
-) {
-	const builtData = normalizeChatInputSubCommandGroup(data);
-
+/**
+ * Registers a subcommand group for a chat input command.
+ *
+ * @remarks This decorator must be used in conjunction with {@link RegisterSubcommand}.
+ * @template Options - The options type for the command.
+ * @param data - The subcommand group data.
+ * @example
+ * ```typescript
+ * import { Command, RegisterCommand, RegisterSubcommand, RegisterSubcommandGroup } from '@skyra/http-framework';
+ *
+ * (at)RegisterCommand({
+ * 	name: 'ping',
+ * 	description: 'A simple ping pong command'
+ * })
+ * export class UserCommand extends Command {
+ * 	(at)RegisterSubcommandGroup({
+ * 		name: 'subcommand-group',
+ * 		description: 'A simple subcommand group'
+ * 	})
+ * 	(at)RegisterSubcommand(
+ * 		{ name: 'subcommand', description: 'A simple subcommand' },
+ * 		'subcommand-group'
+ * 	)
+ * 	public async run(interaction: Command.ChatInputInteraction) {
+ * 		return interaction.reply('Pong!');
+ * 	}
+ * }
+ * ```
+ */
+export function RegisterSubcommandGroup<Options extends Command.Options = Command.Options>(data: ChatInputCommandResolver.SubcommandGroupData) {
 	return function decorate(target: Command<Options>, method: string) {
-		const existing = chatInputCommandRegistry.ensure(target.constructor as typeof Command<Options>, () => ({
-			type: ApplicationCommandType.ChatInput,
-			name: '',
-			description: ''
-		}));
-
-		existing.options ??= [];
-		existing.options.push(link(builtData, method));
+		ensureChatInputCommandResolver(target.constructor as typeof Command).addSubcommandGroup(data, method);
 	};
 }
 
-export function RegisterSubCommand<Options extends Command.Options = Command.Options>(
-	subCommand: ChatInputCommandSubCommandDataResolvable | ((builder: SlashCommandSubcommandBuilder) => ChatInputCommandSubCommandDataResolvable),
+/**
+ * Registers a subcommand for a chat input command.
+ *
+ * @remarks This decorator must be used in conjunction with {@link RegisterSubcommand}.
+ * @param data - The subcommand data.
+ * @param subCommandGroupName - Optional name of the subcommand group.
+ * @returns A decorator function that adds the subcommand to the target command.
+ * @example
+ * ```typescript
+ * import { Command, RegisterCommand, RegisterSubcommand, RegisterSubcommandGroup } from '@skyra/http-framework';
+ *
+ * (at)RegisterCommand({
+ * 	name: 'ping',
+ * 	description: 'A simple ping pong command'
+ * })
+ * export class UserCommand extends Command {
+ * 	(at)RegisterSubcommand({
+ * 		name: 'subcommand',
+ * 		description: 'A simple subcommand'
+ * 	})
+ * 	public async run(interaction: Command.ChatInputInteraction) {
+ * 		return interaction.reply('Pong!');
+ * 	}
+ * }
+ * ```
+ */
+export function RegisterSubcommand<Options extends Command.Options = Command.Options>(
+	data: ChatInputCommandResolver.SubcommandData,
 	subCommandGroupName?: string | null
 ) {
-	const builtData = normalizeChatInputSubCommand(subCommand);
-
 	return function decorate(target: Command<Options>, method: string) {
-		const existing = chatInputCommandRegistry.ensure(target.constructor as typeof Command<Options>, () => ({
-			type: ApplicationCommandType.ChatInput,
-			name: '',
-			description: ''
-		}));
-
-		if (subCommandGroupName) {
-			existing.options ??= [];
-
-			const subCommandGroup = existing.options.find(
-				(option) => option.type === ApplicationCommandOptionType.SubcommandGroup && option.name === subCommandGroupName
-			) as APIApplicationCommandSubcommandGroupOption | undefined;
-
-			if (subCommandGroup) {
-				subCommandGroup.options ??= [];
-				subCommandGroup.options.push(link(builtData, method));
-			} else {
-				existing.options.push({
-					type: ApplicationCommandOptionType.SubcommandGroup,
-					name: subCommandGroupName,
-					description: '',
-					options: [link(builtData, method)]
-				});
-			}
-		} else {
-			existing.options ??= [];
-			existing.options.push(link(builtData, method));
-		}
+		ensureChatInputCommandResolver(target.constructor as typeof Command).addSubcommand(data, method, subCommandGroupName);
 	};
 }

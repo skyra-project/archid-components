@@ -1,4 +1,3 @@
-import { Collection } from '@discordjs/collection';
 import { container, Store } from '@sapphire/pieces';
 import { Result } from '@sapphire/result';
 import type { Awaitable } from '@sapphire/utilities';
@@ -19,20 +18,31 @@ import {
 import { handleError, makeInteraction } from '../interactions/utils/util.js';
 import { ErrorMessages } from '../utils/constants.js';
 import { Command } from './Command.js';
+import { CommandLoaderStrategy } from './CommandLoaderStrategy.js';
+import { CommandStoreRouter } from './CommandStoreRouter.js';
 
 export class CommandStore extends Store<Command, 'commands'> {
-	public contextMenuCommands = new Collection<string, Command>();
+	/**
+	 * The router instance for handling commands in the CommandStore.
+	 *
+	 * @since 2.0.0
+	 */
+	public router = new CommandStoreRouter();
 
 	public constructor() {
-		super(Command, { name: 'commands' });
+		super(Command, { name: 'commands', strategy: new CommandLoaderStrategy() });
 	}
 
+	/**
+	 * Runs an application command.
+	 *
+	 * @since 1.0.0
+	 * @param response - The server response object.
+	 * @param interaction - The API application command interaction object.
+	 * @returns A promise that resolves to the server response.
+	 */
 	public async runApplicationCommand(response: ServerResponse, interaction: APIApplicationCommandInteraction): Promise<ServerResponse> {
-		const command =
-			interaction.data.type === ApplicationCommandType.ChatInput
-				? this.get(interaction.data.name)
-				: this.contextMenuCommands.get(interaction.data.name);
-
+		const command = this.router.get(interaction);
 		if (!command) {
 			container.client.emit('commandNameUnknown', interaction, response);
 			response.statusCode = HttpCodes.NotImplemented;
@@ -40,7 +50,7 @@ export class CommandStore extends Store<Command, 'commands'> {
 		}
 
 		const context = { command, interaction, response };
-		const method = this.routeCommandMethodName(command, interaction.data);
+		const method = this.#routeCommandMethodName(command, interaction.data);
 		if (!method) {
 			container.client.emit('commandMethodUnknown', context);
 			response.statusCode = HttpCodes.NotImplemented;
@@ -48,7 +58,7 @@ export class CommandStore extends Store<Command, 'commands'> {
 		}
 
 		container.client.emit('commandRun', context);
-		const result = await Result.fromAsync(() => this.runCommandMethod(command, method, makeInteraction(response, interaction)));
+		const result = await Result.fromAsync(() => this.#runCommandMethod(command, method, makeInteraction(response, interaction)));
 		result
 			.inspect((value) => container.client.emit('commandSuccess', context, value))
 			.inspectErr((error) => (container.client.emit('commandError', error, context), handleError(response, error)));
@@ -57,6 +67,14 @@ export class CommandStore extends Store<Command, 'commands'> {
 		return response;
 	}
 
+	/**
+	 * Runs the application command autocomplete.
+	 *
+	 * @since 1.0.0
+	 * @param response - The server response object.
+	 * @param interaction - The API application command autocomplete interaction object.
+	 * @returns A promise that resolves to the server response.
+	 */
 	public async runApplicationCommandAutocomplete(
 		response: ServerResponse,
 		interaction: APIApplicationCommandAutocompleteInteraction
@@ -67,7 +85,7 @@ export class CommandStore extends Store<Command, 'commands'> {
 			return response.end(ErrorMessages.MissingCommandName);
 		}
 
-		const command = this.get(interaction.data.name);
+		const command = this.router.getChatInput(interaction.data.name);
 		if (!command) {
 			container.client.emit('commandNameUnknown', interaction, response);
 			response.statusCode = HttpCodes.NotImplemented;
@@ -78,8 +96,7 @@ export class CommandStore extends Store<Command, 'commands'> {
 		const options = transformAutocompleteInteraction(interaction.data.resolved ?? {}, interaction.data.options);
 
 		container.client.emit('autocompleteRun', context);
-		// eslint-disable-next-line @typescript-eslint/dot-notation
-		const result = await Result.fromAsync(() => command['autocompleteRun'](makeInteraction(response, interaction), options));
+		const result = await Result.fromAsync(() => command.autocompleteRun(makeInteraction(response, interaction), options));
 		result
 			.inspect((value) => container.client.emit('autocompleteSuccess', context, value))
 			.inspectErr((error) => (container.client.emit('autocompleteError', error, context), handleError(response, error)));
@@ -88,25 +105,49 @@ export class CommandStore extends Store<Command, 'commands'> {
 		return response;
 	}
 
-	private runCommandMethod(command: Command, method: string, interaction: Command.ApplicationCommandInteraction): Awaitable<unknown> {
-		return Reflect.apply(Reflect.get(command, method), command, [interaction, this.createArguments(interaction.data)]);
+	/**
+	 * Executes a command method on a command object.
+	 *
+	 * @since 1.0.0
+	 * @param command - The command object.
+	 * @param method - The name of the method to execute.
+	 * @param interaction - The application command interaction.
+	 * @returns A promise that resolves to the result of the method execution.
+	 */
+	#runCommandMethod(command: Command, method: string, interaction: Command.ApplicationCommandInteraction): Awaitable<unknown> {
+		return Reflect.apply(Reflect.get(command, method), command, [interaction, this.#createArguments(interaction.data)]);
 	}
 
-	private routeCommandMethodName(command: Command, data: Command.ApplicationCommandInteraction['data']): string | null | undefined {
+	/**
+	 * Determines the method name to route a command based on the type of interaction data.
+	 *
+	 * @since 1.0.0
+	 * @param command - The command object.
+	 * @param data - The interaction data.
+	 * @returns The method name to route the command, or null if no method is found.
+	 * @throws Error - If the interaction data type is not recognized.
+	 */
+	#routeCommandMethodName(command: Command, data: Command.ApplicationCommandInteraction['data']): string | null {
 		switch (data.type) {
-			case ApplicationCommandType.ChatInput: {
-				// eslint-disable-next-line @typescript-eslint/dot-notation
-				return command['routeChatInputInteraction'](data);
-			}
+			case ApplicationCommandType.ChatInput:
+				return command.router.routeChatInputInteraction(data);
 			case ApplicationCommandType.User:
-			case ApplicationCommandType.Message: {
-				// eslint-disable-next-line @typescript-eslint/dot-notation
-				return command['routeContextMenuInteraction'](data);
-			}
+			case ApplicationCommandType.Message:
+				return command.router.routeContextMenuInteraction(data);
+			default:
+				throw new Error('Unreachable');
 		}
 	}
 
-	private createArguments(data: APIApplicationCommandInteractionData) {
+	/**
+	 * Creates arguments based on the provided {@linkcode APIApplicationCommandInteractionData}.
+	 *
+	 * @since 1.0.0
+	 * @param data The {@linkcode APIApplicationCommandInteractionData} object.
+	 * @returns The transformed arguments based on the interaction data.
+	 * @throws Error - If the {@linkcode ApplicationCommandType} is unsupported.
+	 */
+	#createArguments(data: APIApplicationCommandInteractionData) {
 		switch (data.type) {
 			case ApplicationCommandType.ChatInput:
 				return transformInteraction(data.resolved ?? {}, data.options ?? []);

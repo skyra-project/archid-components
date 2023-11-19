@@ -16,6 +16,9 @@ const paths = [
 	new URL('start-banner/dist/', packagesDir),
 	new URL('twitch-helpers/dist/', packagesDir),
 
+	// Turbo main cache folder
+	new URL('node_modules/.cache/turbo', rootDir),
+
 	// Turbo folders
 	new URL('env-utilities/.turbo/', packagesDir),
 	new URL('http-framework/.turbo/', packagesDir),
