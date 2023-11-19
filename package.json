@@ -40,7 +40,6 @@
 		"tsup": "^7.3.0",
 		"turbo": "^1.10.16",
 		"typescript": "^5.2.2",
-		"vite": "^5.0.0",
 		"vitest": "^0.34.6"
 	},
 	"resolutions": {
