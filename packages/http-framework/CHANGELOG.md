@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@1.2.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.2.2...@skyra/http-framework@1.2.2) - (2023-11-19)
+
+## 🐛 Bug Fixes
+
+- Pass option generics to decorators (#293) ([bd39857](https://github.com/skyra-project/archid-components/commit/bd398574b369ced809f6b849268253274633fee6))
+
 # [@skyra/http-framework@1.2.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.2.1...@skyra/http-framework@1.2.1) - (2023-11-17)
 
 ## 🏠 Refactor
