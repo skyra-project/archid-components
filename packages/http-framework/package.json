@@ -26,7 +26,7 @@
 	"dependencies": {
 		"@discordjs/builders": "^1.7.0",
 		"@discordjs/collection": "^1.5.3",
-		"@discordjs/rest": "^2.1.0",
+		"@discordjs/rest": "^2.2.0",
 		"@discordjs/util": "^1.0.2",
 		"@sapphire/pieces": "^3.10.0",
 		"@sapphire/result": "^2.6.4",
@@ -37,7 +37,7 @@
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.2.3",
 		"@vitest/coverage-v8": "^0.34.6",
-		"tsup": "^7.2.0",
+		"tsup": "^7.3.0",
 		"typescript": "^5.2.2",
 		"vitest": "^0.34.6"
 	},
