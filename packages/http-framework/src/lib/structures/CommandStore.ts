@@ -8,7 +8,7 @@ import {
 	type APIApplicationCommandInteraction,
 	type APIApplicationCommandInteractionData
 } from 'discord-api-types/v10';
-import type { ServerResponse } from 'node:http';
+import { createError, sendError, type EventHandlerRequest, type H3Event } from 'h3';
 import { HttpCodes } from '../api/HttpCodes.js';
 import {
 	transformAutocompleteInteraction,
@@ -27,65 +27,83 @@ export class CommandStore extends Store<Command, 'commands'> {
 		super(Command, { name: 'commands' });
 	}
 
-	public async runApplicationCommand(response: ServerResponse, interaction: APIApplicationCommandInteraction): Promise<ServerResponse> {
+	public async runApplicationCommand(event: H3Event<EventHandlerRequest>, interaction: APIApplicationCommandInteraction): Promise<void> {
 		const command =
 			interaction.data.type === ApplicationCommandType.ChatInput
 				? this.get(interaction.data.name)
 				: this.contextMenuCommands.get(interaction.data.name);
 
 		if (!command) {
-			container.client.emit('commandNameUnknown', interaction, response);
-			response.statusCode = HttpCodes.NotImplemented;
-			return response.end(ErrorMessages.UnknownCommandName);
+			container.client.emit('commandNameUnknown', interaction, event);
+			return sendError(
+				event,
+				createError({
+					statusCode: HttpCodes.NotImplemented,
+					message: ErrorMessages.UnknownCommandName
+				})
+			);
 		}
 
-		const context = { command, interaction, response };
+		const context = { command, interaction, event };
 		const method = this.routeCommandMethodName(command, interaction.data);
 		if (!method) {
 			container.client.emit('commandMethodUnknown', context);
-			response.statusCode = HttpCodes.NotImplemented;
-			return response.end(ErrorMessages.UnknownCommandHandler);
+			return sendError(
+				event,
+				createError({
+					statusCode: HttpCodes.NotImplemented,
+					message: ErrorMessages.UnknownCommandHandler
+				})
+			);
 		}
 
 		container.client.emit('commandRun', context);
-		const result = await Result.fromAsync(() => this.runCommandMethod(command, method, makeInteraction(response, interaction)));
+		const result = await Result.fromAsync(() => this.runCommandMethod(command, method, makeInteraction(event, interaction)));
 		result
 			.inspect((value) => container.client.emit('commandSuccess', context, value))
-			.inspectErr((error) => (container.client.emit('commandError', error, context), handleError(response, error)));
+			.inspectErr((error) => (container.client.emit('commandError', error, context), handleError(event, error)));
 
 		container.client.emit('commandFinish', context);
-		return response;
 	}
 
 	public async runApplicationCommandAutocomplete(
-		response: ServerResponse,
+		event: H3Event<EventHandlerRequest>,
 		interaction: APIApplicationCommandAutocompleteInteraction
-	): Promise<ServerResponse> {
+	): Promise<void> {
 		if (!interaction.data?.name) {
-			container.client.emit('commandNameMissing', interaction, response);
-			response.statusCode = HttpCodes.BadRequest;
-			return response.end(ErrorMessages.MissingCommandName);
+			container.client.emit('commandNameMissing', interaction, event);
+			return sendError(
+				event,
+				createError({
+					statusCode: HttpCodes.BadRequest,
+					message: ErrorMessages.MissingCommandName
+				})
+			);
 		}
 
 		const command = this.get(interaction.data.name);
 		if (!command) {
-			container.client.emit('commandNameUnknown', interaction, response);
-			response.statusCode = HttpCodes.NotImplemented;
-			return response.end(ErrorMessages.UnknownCommandName);
+			container.client.emit('commandNameUnknown', interaction, event);
+			return sendError(
+				event,
+				createError({
+					statusCode: HttpCodes.NotImplemented,
+					message: ErrorMessages.UnknownCommandName
+				})
+			);
 		}
 
-		const context = { command, interaction, response };
+		const context = { command, interaction, event };
 		const options = transformAutocompleteInteraction(interaction.data.resolved ?? {}, interaction.data.options);
 
 		container.client.emit('autocompleteRun', context);
 		// eslint-disable-next-line @typescript-eslint/dot-notation
-		const result = await Result.fromAsync(() => command['autocompleteRun'](makeInteraction(response, interaction), options));
+		const result = await Result.fromAsync(() => command['autocompleteRun'](makeInteraction(event, interaction), options));
 		result
 			.inspect((value) => container.client.emit('autocompleteSuccess', context, value))
-			.inspectErr((error) => (container.client.emit('autocompleteError', error, context), handleError(response, error)));
+			.inspectErr((error) => (container.client.emit('autocompleteError', error, context), handleError(event, error)));
 
 		container.client.emit('autocompleteFinish', context);
-		return response;
 	}
 
 	private runCommandMethod(command: Command, method: string, interaction: Command.ApplicationCommandInteraction): Awaitable<unknown> {

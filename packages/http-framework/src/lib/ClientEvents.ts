@@ -4,32 +4,35 @@ import type {
 	APIMessageComponentInteraction,
 	APIModalSubmitInteraction
 } from 'discord-api-types/v10';
-import type { ServerResponse } from 'node:http';
+import type { EventHandlerRequest, H3Event } from 'h3';
 import type { Command } from './structures/Command.js';
 import type { InteractionHandler } from './structures/InteractionHandler.js';
 
 export interface ClientEventCommandContext {
 	command: Command;
 	interaction: APIApplicationCommandInteraction;
-	response: ServerResponse;
+	event: H3Event<EventHandlerRequest>;
 }
 
 export interface ClientEventAutocompleteContext {
 	command: Command;
 	interaction: APIApplicationCommandAutocompleteInteraction;
-	response: ServerResponse;
+	event: H3Event<EventHandlerRequest>;
 }
 
 export interface ClientEventInteractionHandlerContext {
 	handler: InteractionHandler;
 	interaction: APIMessageComponentInteraction | APIModalSubmitInteraction;
-	response: ServerResponse;
+	event: H3Event<EventHandlerRequest>;
 }
 
 export interface ClientEvents {
 	error: [error: unknown];
-	commandNameMissing: [interaction: APIApplicationCommandAutocompleteInteraction, response: ServerResponse];
-	commandNameUnknown: [interaction: APIApplicationCommandInteraction | APIApplicationCommandAutocompleteInteraction, response: ServerResponse];
+	commandNameMissing: [interaction: APIApplicationCommandAutocompleteInteraction, event: H3Event<EventHandlerRequest>];
+	commandNameUnknown: [
+		interaction: APIApplicationCommandInteraction | APIApplicationCommandAutocompleteInteraction,
+		event: H3Event<EventHandlerRequest>
+	];
 	commandMethodUnknown: [context: ClientEventCommandContext];
 	commandRun: [context: ClientEventCommandContext];
 	commandSuccess: [context: ClientEventCommandContext, value: unknown];
@@ -39,8 +42,8 @@ export interface ClientEvents {
 	autocompleteSuccess: [context: ClientEventAutocompleteContext, value: unknown];
 	autocompleteError: [error: unknown, context: ClientEventAutocompleteContext];
 	autocompleteFinish: [context: ClientEventAutocompleteContext];
-	interactionHandlerNameInvalid: [interaction: APIMessageComponentInteraction | APIModalSubmitInteraction, response: ServerResponse];
-	interactionHandlerNameUnknown: [interaction: APIMessageComponentInteraction | APIModalSubmitInteraction, response: ServerResponse];
+	interactionHandlerNameInvalid: [interaction: APIMessageComponentInteraction | APIModalSubmitInteraction, event: H3Event<EventHandlerRequest>];
+	interactionHandlerNameUnknown: [interaction: APIMessageComponentInteraction | APIModalSubmitInteraction, event: H3Event<EventHandlerRequest>];
 	interactionHandlerRun: [context: ClientEventInteractionHandlerContext];
 	interactionHandlerSuccess: [context: ClientEventInteractionHandlerContext, value: unknown];
 	interactionHandlerError: [error: unknown, context: ClientEventInteractionHandlerContext];

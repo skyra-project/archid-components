@@ -10,25 +10,25 @@ import {
 	type RESTGetAPIChannelResult,
 	type RESTGetAPIGuildResult
 } from 'discord-api-types/v10';
-import type { ServerResponse } from 'node:http';
+import { send, setResponseStatus, type EventHandlerRequest, type H3Event } from 'h3';
 import { HttpCodes } from '../../../../api/HttpCodes.js';
 import type { DiscordResult } from '../../../utils/util-types.js';
 import { resultFromDiscord } from '../../../utils/util.js';
-import { Data, Response } from '../../common/symbols.js';
+import { Data, Response as Event } from '../../common/symbols.js';
 
 export type BaseInteractionType = Exclude<APIInteraction, APIPingInteraction>;
 
 export abstract class BaseInteraction<T extends BaseInteractionType = BaseInteractionType> {
 	protected readonly [Data]: T;
-	protected readonly [Response]: ServerResponse;
+	protected readonly [Event]: H3Event<EventHandlerRequest>;
 
-	public constructor(response: ServerResponse, data: T) {
+	public constructor(event: H3Event<EventHandlerRequest>, data: T) {
 		this[Data] = data;
-		this[Response] = response;
+		this[Event] = event;
 	}
 
 	public get replied() {
-		return this[Response].writableEnded;
+		return this[Event].node.res.writableEnded;
 	}
 
 	/**
@@ -208,11 +208,11 @@ export abstract class BaseInteraction<T extends BaseInteractionType = BaseIntera
 	}
 
 	protected _sendReply(data: NonNullObject) {
-		const response = this[Response];
-		if (response.writableEnded) throw new Error('Cannot send response, the request has already been replied.');
+		const event = this[Event];
+		if (event.node.res.writableEnded) throw new Error('Cannot send response, the request has already been replied.');
 
-		response.statusCode = HttpCodes.OK;
-		return new Promise<void>((resolve) => response.end(JSON.stringify(data), resolve));
+		setResponseStatus(event, HttpCodes.OK);
+		return send(event, JSON.stringify(data));
 	}
 }
 

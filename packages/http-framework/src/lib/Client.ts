@@ -3,10 +3,29 @@ import { container } from '@sapphire/pieces';
 import { isNullishOrEmpty } from '@sapphire/utilities';
 import { AsyncEventEmitter } from '@vladfrangu/async_event_emitter';
 import { InteractionType, type APIInteraction } from 'discord-api-types/v10';
-import { createServer, type IncomingMessage, type Server, type ServerOptions, type ServerResponse } from 'node:http';
-import type { ListenOptions as NetListenOptions } from 'node:net';
-import { HttpCodes } from './api/HttpCodes.js';
+import {
+	H3Event,
+	createApp,
+	createError,
+	createRouter,
+	eventHandler,
+	getRequestHeader,
+	getRequestURL,
+	send,
+	sendError,
+	setResponseHeader,
+	setResponseStatus,
+	toNodeListener,
+	type App,
+	type AppOptions,
+	type CreateRouterOptions,
+	type EventHandlerRequest,
+	type EventHandlerResponse,
+	type Router
+} from 'h3';
+import { listen as listhen, type ListenOptions as ListhenOptions, type Listener as Listhener } from 'listhen';
 import type { MappedClientEvents } from './ClientEvents.js';
+import { HttpCodes } from './api/HttpCodes.js';
 import type { IIdParser } from './components/IIdParser.js';
 import { StringIdParser } from './components/StringIdParser.js';
 import { CommandStore } from './structures/CommandStore.js';
@@ -21,7 +40,8 @@ container.stores.register(new InteractionHandlerStore());
 container.stores.register(new ListenerStore());
 
 export class Client extends AsyncEventEmitter<MappedClientEvents> {
-	public server!: Server;
+	public app!: App;
+	public router!: Router;
 	public readonly bodySizeLimit: number;
 	public readonly httpReplyOnError: boolean;
 	#discordPublicKey: string;
@@ -60,57 +80,86 @@ export class Client extends AsyncEventEmitter<MappedClientEvents> {
 	 * Starts the HTTP server, listening for HTTP interactions.
 	 * @param options The listen options.
 	 */
-	public async listen({ serverOptions, postPath, port, address, ...listenOptions }: ListenOptions) {
+	public async listen({ appOptions, postPath, port, address, ...listenOptions }: ListenOptions): Promise<Listhener> {
 		const key = await makeKey(this.#discordPublicKey);
 		const path = postPath ?? process.env.HTTP_POST_PATH ?? '/';
 
-		this.server = createServer(serverOptions ?? {});
-		this.server.on('request', (request, response) => this.handleRawHttpMessage(request, response, path, key));
+		this.app = createApp(appOptions);
+		this.router = createRouter().post(
+			path,
+			eventHandler((event) => this.handleRawHttpMessage(event, path, key))
+		);
+		this.app.use(this.router);
 
-		return new Promise<void>((resolve) => this.server.listen({ ...listenOptions, port, host: address }, resolve));
+		return listhen(toNodeListener(this.app), {
+			qr: false,
+			...listenOptions,
+			port,
+			hostname: address
+		});
 	}
 
-	protected async handleRawHttpMessage(request: IncomingMessage, response: ServerResponse, path: string, key: Key) {
-		response.setHeader('Content-Type', 'application/json');
+	protected async handleRawHttpMessage(event: H3Event<EventHandlerRequest>, path: string, key: Key): Promise<void> {
+		setResponseHeader(event, 'Content-Type', 'application/json');
 
-		if (request.url !== path) {
-			response.statusCode = HttpCodes.NotFound;
-			return response.end(ErrorMessages.NotFound);
+		if (getRequestURL(event).pathname !== path) {
+			return sendError(
+				event,
+				createError({
+					status: HttpCodes.NotFound,
+					message: ErrorMessages.NotFound
+				})
+			);
 		}
 
-		if (request.method !== 'POST') {
-			response.statusCode = HttpCodes.MethodNotAllowed;
-			return response.end(ErrorMessages.UnsupportedHttpMethod);
+		if (event.method !== 'POST') {
+			return sendError(
+				event,
+				createError({
+					status: HttpCodes.MethodNotAllowed,
+					message: ErrorMessages.UnsupportedHttpMethod
+				})
+			);
 		}
 
-		const signature = request.headers['x-signature-ed25519'];
-		const timestamp = request.headers['x-signature-timestamp'];
+		const signature = getRequestHeader(event, 'x-signature-ed25519');
+		const timestamp = getRequestHeader(event, 'x-signature-timestamp');
 
 		if (isNullishOrEmpty(signature) || isNullishOrEmpty(timestamp)) {
-			response.statusCode = HttpCodes.Unauthorized;
-			return response.end(ErrorMessages.MissingSignatureInformation);
+			return sendError(
+				event,
+				createError({
+					status: HttpCodes.Unauthorized,
+					message: ErrorMessages.MissingSignatureInformation
+				})
+			);
 		}
 
-		const result = await getSafeTextBody(request);
+		const result = await getSafeTextBody(event);
 		if (result.isErr()) {
-			response.statusCode = HttpCodes.BadRequest;
-			return response.end(result.unwrapErr());
+			return sendError(
+				event,
+				createError({
+					status: HttpCodes.BadRequest,
+					message: result.unwrapErr()
+				})
+			);
 		}
 
 		const body = result.unwrap();
 		const valid = await verifyBody(body, signature, timestamp, key);
 		if (!valid) {
-			response.statusCode = HttpCodes.Unauthorized;
-			return response.end(ErrorMessages.InvalidSignature);
+			setResponseStatus(event, HttpCodes.Unauthorized);
+			return send(event, ErrorMessages.InvalidSignature);
 		}
 
-		return this.handleHttpMessage(JSON.parse(body) as APIInteraction, response);
+		return this.handleHttpMessage(JSON.parse(body) as APIInteraction, event);
 	}
 
-	protected async handleHttpMessage(interaction: APIInteraction, response: ServerResponse): Promise<ServerResponse> {
+	protected async handleHttpMessage(interaction: APIInteraction, response: H3Event<EventHandlerResponse>): Promise<void> {
 		if (interaction.type === InteractionType.Ping) {
-			response.statusCode = HttpCodes.OK;
-			return response.end(Payloads.Pong);
+			setResponseStatus(response, HttpCodes.OK);
+			return send(response, Payloads.Pong);
 		}
 
 		switch (interaction.type) {
@@ -122,8 +171,8 @@ export class Client extends AsyncEventEmitter<MappedClientEvents> {
 			case InteractionType.ModalSubmit:
 				return container.stores.get('interaction-handlers').runHandler(response, interaction);
 			default: {
-				response.statusCode = HttpCodes.NotImplemented;
-				return response.end(ErrorMessages.UnknownInteractionType);
+				setResponseStatus(response, HttpCodes.NotImplemented);
+				return send(response, ErrorMessages.UnknownInteractionType);
 			}
 		}
 	}
@@ -170,7 +219,7 @@ export interface LoadOptions {
 	baseUserDirectory?: string | null;
 }
 
-export interface ListenOptions extends Omit<NetListenOptions, 'path' | 'readableAll' | 'writableAll'> {
+export interface ListenOptions extends Partial<ListhenOptions> {
 	/**
 	 * The port at which the server will listen for requests.
 	 */
@@ -188,9 +237,14 @@ export interface ListenOptions extends Omit<NetListenOptions, 'path' | 'readable
 	postPath?: `/${string}`;
 
 	/**
-	 * The options to pass to the `createServer` function.
+	 * The options to pass to the {@link createApp} function.
 	 */
-	serverOptions?: ServerOptions;
+	appOptions?: AppOptions;
+
+	/**
+	 * The options to pass to the {@link createRouter} function.
+	 */
+	routerOptions?: CreateRouterOptions;
 }
 
 export namespace Client {
