@@ -50,23 +50,25 @@ function mergeOption(existing: APIApplicationCommandOption | undefined, data: AP
 	return { ...existing, ...data } as any;
 }
 
-export function RegisterCommand(data: ChatInputCommandDataResolvable | ((builder: SlashCommandBuilder) => ChatInputCommandDataResolvable)) {
+export function RegisterCommand<Options extends Command.Options = Command.Options>(
+	data: ChatInputCommandDataResolvable | ((builder: SlashCommandBuilder) => ChatInputCommandDataResolvable)
+) {
 	const builtData = normalizeChatInputCommand(data);
 
-	return function decorate(target: typeof Command<Command.Options>) {
+	return function decorate(target: typeof Command<Options>) {
 		chatInputCommandRegistry.set(target, { type: ApplicationCommandType.ChatInput, ...merge(chatInputCommandRegistry.get(target), builtData) });
 	};
 }
 
-export function RegisterSubCommandGroup(
+export function RegisterSubCommandGroup<Options extends Command.Options = Command.Options>(
 	data:
 		| ChatInputCommandSubCommandGroupDataResolvable
 		| ((builder: SlashCommandSubcommandGroupBuilder) => ChatInputCommandSubCommandGroupDataResolvable)
 ) {
 	const builtData = normalizeChatInputSubCommandGroup(data);
 
-	return function decorate(target: Command, method: string) {
-		const existing = chatInputCommandRegistry.ensure(target.constructor as typeof Command, () => ({
+	return function decorate(target: Command<Options>, method: string) {
+		const existing = chatInputCommandRegistry.ensure(target.constructor as typeof Command<Options>, () => ({
 			type: ApplicationCommandType.ChatInput,
 			name: '',
 			description: ''
@@ -77,14 +79,14 @@ export function RegisterSubCommandGroup(
 	};
 }
 
-export function RegisterSubCommand(
+export function RegisterSubCommand<Options extends Command.Options = Command.Options>(
 	subCommand: ChatInputCommandSubCommandDataResolvable | ((builder: SlashCommandSubcommandBuilder) => ChatInputCommandSubCommandDataResolvable),
 	subCommandGroupName?: string | null
 ) {
 	const builtData = normalizeChatInputSubCommand(subCommand);
 
-	return function decorate(target: Command, method: string) {
-		const existing = chatInputCommandRegistry.ensure(target.constructor as typeof Command, () => ({
+	return function decorate(target: Command<Options>, method: string) {
+		const existing = chatInputCommandRegistry.ensure(target.constructor as typeof Command<Options>, () => ({
 			type: ApplicationCommandType.ChatInput,
 			name: '',
 			description: ''

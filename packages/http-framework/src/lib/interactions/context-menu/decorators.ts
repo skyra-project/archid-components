@@ -19,13 +19,13 @@ import { contextMenuCommandRegistry } from './shared.js';
  * ```
  * @returns A method decorator function, does not override the method.
  */
-export function RegisterUserCommand(
+export function RegisterUserCommand<Options extends Command.Options = Command.Options>(
 	data: ContextMenuCommandDataResolvable | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandDataResolvable)
 ) {
 	const builtData = normalizeContextMenuCommand(data, ApplicationCommandType.User);
 
-	return function decorate(target: Command, method: string) {
-		const commands = contextMenuCommandRegistry.ensure(target.constructor as typeof Command, () => []);
+	return function decorate(target: Command<Options>, method: string) {
+		const commands = contextMenuCommandRegistry.ensure(target.constructor as typeof Command<Options>, () => []);
 		commands.push(link(builtData, method));
 	};
 }
@@ -44,13 +44,13 @@ export function RegisterUserCommand(
  * ```
  * @returns A method decorator function, does not override the method.
  */
-export function RegisterMessageCommand(
+export function RegisterMessageCommand<Options extends Command.Options = Command.Options>(
 	data: ContextMenuCommandDataResolvable | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandDataResolvable)
 ) {
 	const builtData = normalizeContextMenuCommand(data, ApplicationCommandType.Message);
 
-	return function decorate(target: Command, method: string) {
-		const commands = contextMenuCommandRegistry.ensure(target.constructor as typeof Command, () => []);
+	return function decorate(target: Command<Options>, method: string) {
+		const commands = contextMenuCommandRegistry.ensure(target.constructor as typeof Command<Options>, () => []);
 		commands.push(link(builtData, method));
 	};
 }
