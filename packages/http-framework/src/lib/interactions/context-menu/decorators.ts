@@ -1,13 +1,17 @@
-import type { ContextMenuCommandBuilder } from '@discordjs/builders';
+import { container } from '@sapphire/pieces';
 import { ApplicationCommandType } from 'discord-api-types/v10';
 import type { Command } from '../../structures/Command.js';
-import { normalizeContextMenuCommand, type ContextMenuCommandDataResolvable } from '../../utils/normalizeInput.js';
-import { link } from '../shared/link.js';
-import { contextMenuCommandRegistry } from './shared.js';
+import type { ContextMenuCommandResolver } from './ContextMenuCommandResolver.js';
+
+function ensureContextMenuCommandResolver(target: typeof Command<Command.Options>): ContextMenuCommandResolver {
+	return container.applicationCommandRegistry.ensure(target).makeContextMenu();
+}
 
 /**
  * Registers a user command.
- * @param data The command to register.
+ *
+ * @template Options - The options type for the command.
+ * @param data - The command to register.
  * @example
  * ```typescript
  * export class UserCommand extends Command {
@@ -19,20 +23,17 @@ import { contextMenuCommandRegistry } from './shared.js';
  * ```
  * @returns A method decorator function, does not override the method.
  */
-export function RegisterUserCommand<Options extends Command.Options = Command.Options>(
-	data: ContextMenuCommandDataResolvable | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandDataResolvable)
-) {
-	const builtData = normalizeContextMenuCommand(data, ApplicationCommandType.User);
-
+export function RegisterUserCommand<Options extends Command.Options = Command.Options>(data: ContextMenuCommandResolver.CommandData) {
 	return function decorate(target: Command<Options>, method: string) {
-		const commands = contextMenuCommandRegistry.ensure(target.constructor as typeof Command<Options>, () => []);
-		commands.push(link(builtData, method));
+		ensureContextMenuCommandResolver(target.constructor as typeof Command).setCommand(data, ApplicationCommandType.User, method);
 	};
 }
 
 /**
  * Registers a message command.
- * @param data The command to register.
+ *
+ * @template Options - The options type for the command.
+ * @param data - The command to register.
  * @example
  * ```typescript
  * export class UserCommand extends Command {
@@ -44,13 +45,8 @@ export function RegisterUserCommand<Options extends Command.Options = Command.Op
  * ```
  * @returns A method decorator function, does not override the method.
  */
-export function RegisterMessageCommand<Options extends Command.Options = Command.Options>(
-	data: ContextMenuCommandDataResolvable | ((builder: ContextMenuCommandBuilder) => ContextMenuCommandDataResolvable)
-) {
-	const builtData = normalizeContextMenuCommand(data, ApplicationCommandType.Message);
-
+export function RegisterMessageCommand<Options extends Command.Options = Command.Options>(data: ContextMenuCommandResolver.CommandData) {
 	return function decorate(target: Command<Options>, method: string) {
-		const commands = contextMenuCommandRegistry.ensure(target.constructor as typeof Command<Options>, () => []);
-		commands.push(link(builtData, method));
+		ensureContextMenuCommandResolver(target.constructor as typeof Command).setCommand(data, ApplicationCommandType.Message, method);
 	};
 }
