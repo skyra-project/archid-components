@@ -1,10 +1,8 @@
 {
-	"extends": "../../../tsconfig.base.json",
+	"extends": ["../../../tsconfig.base.json", "@sapphire/ts-config/decorators"],
 	"compilerOptions": {
 		"noEmit": true,
-		"types": ["vitest/globals"],
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true
+		"types": ["vitest/globals"]
 	},
 	"include": ["."]
 }
