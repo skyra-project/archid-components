@@ -1,4 +1,4 @@
-import type { ServerResponse } from 'node:http';
+import type { EventHandlerRequest, H3Event } from 'h3';
 import {
 	AutocompleteInteraction,
 	ChatInputCommandInteraction,
@@ -29,70 +29,70 @@ import {
 
 describe('util', () => {
 	describe('makeInteraction', () => {
-		const response = null! as ServerResponse;
+		const event = null! as H3Event<EventHandlerRequest>;
 
 		test('GIVEN THEN returns AutocompleteInteraction instance', () => {
-			const interaction = makeInteraction(response, ApplicationCommandAutocompleteInteractionData);
+			const interaction = makeInteraction(event, ApplicationCommandAutocompleteInteractionData);
 
 			expect<AutocompleteInteraction>(interaction).toBeInstanceOf(AutocompleteInteraction);
 		});
 
 		test('GIVEN THEN returns ChatInputCommandInteraction instance', () => {
-			const interaction = makeInteraction(response, ChatInputApplicationCommandInteractionData);
+			const interaction = makeInteraction(event, ChatInputApplicationCommandInteractionData);
 
 			expect<ChatInputCommandInteraction>(interaction).toBeInstanceOf(ChatInputCommandInteraction);
 		});
 
 		test('GIVEN THEN returns MessageContextMenuCommandInteraction instance', () => {
-			const interaction = makeInteraction(response, MessageApplicationCommandInteractionData);
+			const interaction = makeInteraction(event, MessageApplicationCommandInteractionData);
 
 			expect<MessageContextMenuCommandInteraction>(interaction).toBeInstanceOf(MessageContextMenuCommandInteraction);
 		});
 
 		test('GIVEN THEN returns UserContextMenuCommandInteraction instance', () => {
-			const interaction = makeInteraction(response, UserApplicationCommandInteractionData);
+			const interaction = makeInteraction(event, UserApplicationCommandInteractionData);
 
 			expect<UserContextMenuCommandInteraction>(interaction).toBeInstanceOf(UserContextMenuCommandInteraction);
 		});
 
 		test('GIVEN THEN returns MessageComponentButtonInteraction instance', () => {
-			const interaction = makeInteraction(response, MessageComponentButtonInteractionData);
+			const interaction = makeInteraction(event, MessageComponentButtonInteractionData);
 
 			expect<MessageComponentButtonInteraction>(interaction).toBeInstanceOf(MessageComponentButtonInteraction);
 		});
 
 		test('GIVEN THEN returns MessageComponentChannelSelectInteraction instance', () => {
-			const interaction = makeInteraction(response, MessageComponentChannelSelectInteractionData);
+			const interaction = makeInteraction(event, MessageComponentChannelSelectInteractionData);
 
 			expect<MessageComponentChannelSelectInteraction>(interaction).toBeInstanceOf(MessageComponentChannelSelectInteraction);
 		});
 
 		test('GIVEN THEN returns MessageComponentMentionableSelectInteraction instance', () => {
-			const interaction = makeInteraction(response, MessageComponentMentionableSelectInteractionData);
+			const interaction = makeInteraction(event, MessageComponentMentionableSelectInteractionData);
 
 			expect<MessageComponentMentionableSelectInteraction>(interaction).toBeInstanceOf(MessageComponentMentionableSelectInteraction);
 		});
 
 		test('GIVEN THEN returns MessageComponentRoleSelectInteraction instance', () => {
-			const interaction = makeInteraction(response, MessageComponentRoleSelectInteractionData);
+			const interaction = makeInteraction(event, MessageComponentRoleSelectInteractionData);
 
 			expect<MessageComponentRoleSelectInteraction>(interaction).toBeInstanceOf(MessageComponentRoleSelectInteraction);
 		});
 
 		test('GIVEN THEN returns MessageComponentStringSelectInteraction instance', () => {
-			const interaction = makeInteraction(response, MessageComponentStringSelectInteractionData);
+			const interaction = makeInteraction(event, MessageComponentStringSelectInteractionData);
 
 			expect<MessageComponentStringSelectInteraction>(interaction).toBeInstanceOf(MessageComponentStringSelectInteraction);
 		});
 
 		test('GIVEN THEN returns MessageComponentUserSelectInteraction instance', () => {
-			const interaction = makeInteraction(response, MessageComponentUserSelectInteractionData);
+			const interaction = makeInteraction(event, MessageComponentUserSelectInteractionData);
 
 			expect<MessageComponentUserSelectInteraction>(interaction).toBeInstanceOf(MessageComponentUserSelectInteraction);
 		});
 
 		test('GIVEN THEN returns ModalSubmitInteraction instance', () => {
-			const interaction = makeInteraction(response, ModalSubmitInteractionData);
+			const interaction = makeInteraction(event, ModalSubmitInteractionData);
 
 			expect<ModalSubmitInteraction>(interaction).toBeInstanceOf(ModalSubmitInteraction);
 		});
