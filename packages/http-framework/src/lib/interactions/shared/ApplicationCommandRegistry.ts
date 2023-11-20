@@ -12,8 +12,8 @@ import {
 	type Snowflake
 } from 'discord-api-types/v10';
 import type { Command } from '../../structures/Command.js';
+import { restrictedGuildIdRegistry } from '../decorators/RestrictGuildIds.js';
 import { ApplicationCommandRegistryEntry } from './ApplicationCommandRegistryEntry.js';
-import { restrictedGuildIdRegistry } from './decorators.js';
 
 export type RequestAuthPrefix = RequestData['authPrefix'];
 

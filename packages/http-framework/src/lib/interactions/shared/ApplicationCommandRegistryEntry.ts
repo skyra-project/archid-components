@@ -1,8 +1,8 @@
 import { Collection } from '@discordjs/collection';
 import type { JSONEncodable } from '@discordjs/util';
 import type { RESTPostAPIApplicationCommandsJSONBody, Snowflake } from 'discord-api-types/v10';
-import { ChatInputCommandResolver } from '../chat-input/ChatInputCommandResolver.js';
-import { ContextMenuCommandResolver } from '../context-menu/ContextMenuCommandResolver.js';
+import { ChatInputCommandResolver } from '../resolvers/ChatInputCommandResolver.js';
+import { ContextMenuCommandResolver } from '../resolvers/ContextMenuCommandResolver.js';
 
 /**
  * Represents an entry in the application command registry.

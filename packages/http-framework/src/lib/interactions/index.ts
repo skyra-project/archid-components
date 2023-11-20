@@ -1,9 +1,12 @@
-export * from './chat-input/decorators.js';
-export * from './context-menu/decorators.js';
+export * from './decorators/RegisterCommand.js';
+export * from './decorators/RegisterMessageCommand.js';
+export * from './decorators/RegisterSubcommand.js';
+export * from './decorators/RegisterSubcommandGroup.js';
+export * from './decorators/RegisterUserCommand.js';
+export * from './decorators/RestrictGuildIds.js';
 export * from './resolvers/InteractionOptions.js';
 export * from './shared/ApplicationCommandRegistry.js';
 export * from './shared/ApplicationCommandRegistryEntry.js';
-export * from './shared/decorators.js';
 export * from './structures/Message.js';
 export * from './structures/interactions/index.js';
 export type * from './utils/util-types.js';

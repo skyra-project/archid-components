@@ -150,12 +150,14 @@ export interface ClientOptions {
 	/**
 	 * The public key from Discord, available under "General Information" after opening an application from
 	 * [Discord's applications](https://discord.com/developers/applications).
+	 *
 	 * @default process.env.DISCORD_PUBLIC_KEY
 	 */
 	discordPublicKey?: string;
 
 	/**
 	 * The Discord token used for authenticating requests outside of interaction responses.
+	 *
 	 * @default process.env.DISCORD_TOKEN
 	 */
 	discordToken?: string;
@@ -167,7 +169,7 @@ export interface ClientOptions {
 
 	/**
 	 * The body size limit in bytes.
-	 * @default `1024 * 1024` (1 MiB)
+	 * @default 1024 * 1024 // (1 MiB)
 	 */
 	bodySizeLimit?: number;
 
@@ -179,6 +181,7 @@ export interface ClientOptions {
 
 	/**
 	 * The ID of the client.
+	 *
 	 * @default process.env.DISCORD_CLIENT_ID ?? Buffer.from(token.split('.')[0], 'base64').toString()
 	 */
 	clientId?: string;
