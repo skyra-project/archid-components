@@ -769,6 +769,80 @@ describe('RegisterCommand', () => {
 	});
 
 	describe('edge cases', () => {
+		test('GIVEN a duplicated subcommand THEN merges', () => {
+			@RegisterCommand((builder) =>
+				builder
+					.setName('ping')
+					.setDescription('Runs a network connection test with me')
+					.addSubcommand((subcommand) =>
+						subcommand
+							.setName('latency')
+							.setDescription('-')
+							.addBooleanOption((option) => option.setName('boolean').setDescription('A boolean'))
+					)
+			)
+			class UserCommand extends Command {
+				@RegisterSubcommand((builder) => builder.setName('latency').setDescription('Runs a network latency test with me'))
+				public latency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
+				}
+			}
+
+			const entry = validate(getAndDelete(UserCommand));
+			const json: RESTPostAPIChatInputApplicationCommandsJSONBody = {
+				name: 'ping',
+				description: 'Runs a network connection test with me',
+				options: [
+					{
+						name: 'latency',
+						description: 'Runs a network latency test with me',
+						type: ApplicationCommandOptionType.Subcommand,
+						options: [{ name: 'boolean', description: 'A boolean', required: false, type: ApplicationCommandOptionType.Boolean }]
+					}
+				],
+				type: ApplicationCommandType.ChatInput
+			};
+			expect(entry.toJSON()).toEqual([json]);
+			expect(entry.chatInput!.toJSON()).toEqual(json);
+		});
+
+		test('GIVEN a duplicated subcommand group THEN merges', () => {
+			@RegisterCommand((builder) =>
+				builder
+					.setName('ping')
+					.setDescription('Runs a network connection test with me')
+					.addSubcommandGroup((group) =>
+						group
+							.setName('group')
+							.setDescription('-')
+							.addSubcommand((subcommand) => subcommand.setName('sub').setDescription('A subcommand'))
+					)
+			)
+			class UserCommand extends Command {
+				@RegisterSubcommandGroup((builder) => builder.setName('group').setDescription('Tests a group'))
+				public latency(interaction: Command.ChatInputInteraction) {
+					return interaction.reply({ content: 'Pong!' });
+				}
+			}
+
+			const entry = validate(getAndDelete(UserCommand));
+			const json: RESTPostAPIChatInputApplicationCommandsJSONBody = {
+				name: 'ping',
+				description: 'Runs a network connection test with me',
+				options: [
+					{
+						name: 'group',
+						description: 'Tests a group',
+						type: ApplicationCommandOptionType.SubcommandGroup,
+						options: [{ name: 'sub', description: 'A subcommand', type: ApplicationCommandOptionType.Subcommand, options: [] }]
+					}
+				],
+				type: ApplicationCommandType.ChatInput
+			};
+			expect(entry.toJSON()).toEqual([json]);
+			expect(entry.chatInput!.toJSON()).toEqual(json);
+		});
+
 		test("GIVEN command with RegisterSubcommand's target being a property THEN throws an error", () => {
 			@RegisterCommand({ name: 'network', description: 'Runs a network connection test with me' })
 			class UserCommand extends Command {

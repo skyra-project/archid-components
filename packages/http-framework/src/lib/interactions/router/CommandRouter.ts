@@ -8,8 +8,8 @@ import {
 	type APIContextMenuInteractionData
 } from 'discord-api-types/v10';
 import type { Command } from '../../structures/Command.js';
-import type { ChatInputCommandResolver } from '../chat-input/ChatInputCommandResolver.js';
-import type { ContextMenuCommandResolver } from '../context-menu/ContextMenuCommandResolver.js';
+import type { ChatInputCommandResolver } from '../resolvers/ChatInputCommandResolver.js';
+import type { ContextMenuCommandResolver } from '../resolvers/ContextMenuCommandResolver.js';
 import { getLinkedMethod } from '../shared/link.js';
 import { CommandRouterSubcommand } from './CommandRouterSubcommand.js';
 import { CommandRouterSubcommandGroup } from './CommandRouterSubcommandGroup.js';

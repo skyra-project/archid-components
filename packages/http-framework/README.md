@@ -1,6 +1,6 @@
 # `@skyra/http-framework`
 
-Some stuff to fill in later.
+A powerful HTTP framework for building your Discord bots, powered by [`node:http`], [`@discordjs/rest`], and [`@sapphire/pieces`].
 
 ## Features
 
@@ -11,11 +11,11 @@ Some stuff to fill in later.
 
 ## Usage
 
-This library can do both handling HTTP interactions and registering commands both globally and per guild using an integrated design.
+This library can handle both HTTP interactions and registering commands both globally and per guild using an integrated design powered by decorators.
 
 ### Command
 
-The Command is a piece that runs for all chat input and context-menu interactions, including auto-complete (since this one is sort of part of context-menu). Registering the commands happens with decorators:
+The Command is a piece that runs for all chat input and context menu interactions, including auto-complete (since this one is sort of part of the former). Registering the commands happens with decorators:
 
 ```typescript
 import { Command, RegisterCommand } from '@skyra/http-framework';
@@ -35,7 +35,7 @@ export class UserCommand extends Command {
 You can also register subcommands via decorators:
 
 ```typescript
-import { Command, RegisterCommand, RegisterSubCommand } from '@skyra/http-framework';
+import { Command, RegisterCommand, RegisterSubcommand } from '@skyra/http-framework';
 
 @RegisterCommand((builder) =>
 	builder //
@@ -43,14 +43,14 @@ import { Command, RegisterCommand, RegisterSubCommand } from '@skyra/http-framew
 		.setDescription('Does some maths.')
 )
 export class UserCommand extends Command {
-	@RegisterSubCommand(buildSubcommandBuilders('add', 'Adds the first number to the second number'))
+	@RegisterSubcommand(buildSubcommandBuilders('add', 'Adds the first number to the second number'))
 	public add(interaction: Command.ChatInputInteraction, { first, second }: Args) {
 		return interaction.sendMessage({
 			content: `The result is: ${first + second}`
 		});
 	}
 
-	@RegisterSubCommand(buildSubcommandBuilders('subtract', 'Subtracts the second number from the first number'))
+	@RegisterSubcommand(buildSubcommandBuilders('subtract', 'Subtracts the second number from the first number'))
 	public subtract(interaction: Command.ChatInputInteraction, { first, second }: Args) {
 		return interaction.sendMessage({
 			content: `The result is: ${first - second}`
@@ -84,12 +84,13 @@ interface Args {
 
 ### Client
 
-The `Client` class contains the HTTP server, powered by [`node:http`], it also registers a handler which processes whether or not the HTTP request comes from Discord, then processes the information accordingly, handling the heavy weight in the background.
+The `Client` class contains the HTTP server, powered by [`node:http`], it also registers a handler that processes whether or not the HTTP request comes from Discord and processes the information accordingly, handling the heavyweight in the background.
 
 ```typescript
 import { Client } from '@skyra/http-framework';
 
 const client = new Client({
+	discordToken: process.env.DISCORD_TOKEN,
 	discordPublicKey: process.env.DISCORD_PUBLIC_KEY
 });
 
@@ -100,26 +101,44 @@ await client.load();
 await client.listen({ port: 3000 });
 ```
 
-### Registry
+### ApplicationCommandRegistry
 
-The `Registry` class is a wrapper around `@skyra/http-framework`'s internal registries and uses [`@discordjs/rest`] to register them in Discord.
+The `ApplicationCommandRegistry` is `@skyra/http-framework`'s centralized registry and uses [`@discordjs/rest`] to register them in Discord.
 
 ```typescript
-import { Registry } from '@skyra/http-framework';
-
-const registry = new Registry({
-	token: process.env.DISCORD_TOKEN
-});
-
-// Load all the commands and message component handlers:
-await registry.load();
+// Assuming you have the code above, and that you called `client.load()`:
 
 // Register all global commands:
-await registry.registerGlobalCommands();
+await client.registry.pushGlobalCommands();
 
 // Register all the guild-restricted commands:
-await registry.registerGuildRestrictedCommands();
+await client.registry.pushGuildRestrictedCommands();
 ```
+
+However, if you want to use the registry without the client, you can do so:
+
+```typescript
+import { applicationCommandRegistry } from '@skyra/http-framework';
+import { REST } from '@discordjs/rest';
+
+applicationCommandRegistry.setup({
+	rest: new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN),
+	clientId: process.env.DISCORD_CLIENT_ID
+});
+
+// Load all the commands:
+await applicationCommandRegistry.loadCommands();
+
+// Register all global commands:
+await applicationCommandRegistry.pushGlobalCommands();
+
+// Register all the guild-restricted commands:
+await applicationCommandRegistry.pushGuildRestrictedCommands();
+```
+
+> **Note**: calling `applicationCommandRegistry.setup()` is not needed if you are using the `Client` class because it is
+> already called automatically for you.
 
 [`node:http`]: https://nodejs.org/api/http.html
 [`@discordjs/rest`]: https://www.npmjs.com/package/@discordjs/rest
+[`@sapphire/pieces`]: https://www.npmjs.com/package/@sapphire/pieces

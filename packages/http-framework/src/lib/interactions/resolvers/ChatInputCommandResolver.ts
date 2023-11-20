@@ -95,7 +95,7 @@ export class ChatInputCommandResolver implements JSONEncodable<ChatInputCommandR
 			if (index === -1) {
 				command.options.push(data);
 			} else {
-				data = this.#mergeOption(command.options[index], data) as ChatInputCommandResolver.ResolvedSubcommandGroup;
+				data = this.#mergeOption(command.options[index], data);
 				command.options[index] = data;
 			}
 
@@ -136,7 +136,7 @@ export class ChatInputCommandResolver implements JSONEncodable<ChatInputCommandR
 			if (index === -1) {
 				parent.options.push(data);
 			} else {
-				data = this.#mergeOption(parent.options[index], data) as ChatInputCommandResolver.ResolvedSubcommand;
+				data = this.#mergeOption(parent.options[index], data);
 				parent.options[index] = data;
 			}
 
@@ -242,7 +242,7 @@ export class ChatInputCommandResolver implements JSONEncodable<ChatInputCommandR
 	 * @param data - The data {@linkcode APIApplicationCommandOption} object.
 	 * @returns The merged {@linkcode APIApplicationCommandOption} object.
 	 */
-	#mergeOption(existing: APIApplicationCommandOption | undefined, data: APIApplicationCommandOption): APIApplicationCommandOption {
+	#mergeOption<Option extends APIApplicationCommandOption>(existing: APIApplicationCommandOption | undefined, data: Option): Option {
 		if (!existing) return data;
 		if (existing.type !== data.type) {
 			const existingType = ApplicationCommandOptionType[existing.type];
@@ -252,8 +252,8 @@ export class ChatInputCommandResolver implements JSONEncodable<ChatInputCommandR
 
 		const merged =
 			'options' in existing && 'options' in data
-				? ({ ...existing, ...data, options: this.#mergeOptions(existing.options, data.options) } as APIApplicationCommandOption)
-				: ({ ...existing, ...data } as APIApplicationCommandOption);
+				? { ...existing, ...data, options: this.#mergeOptions(existing.options, data.options) }
+				: { ...existing, ...data };
 
 		const method = getLinkedMethod(data) ?? getLinkedMethod(existing);
 		return method ? linkMethod(merged, method) : merged;
