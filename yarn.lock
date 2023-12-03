@@ -1021,7 +1021,7 @@ __metadata:
     "@sapphire/result": "npm:^2.6.4"
     "@sapphire/utilities": "npm:^3.13.0"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    "@vladfrangu/async_event_emitter": "npm:^2.2.2"
+    "@vladfrangu/async_event_emitter": "npm:^2.2.3"
     discord-api-types: "npm:^0.37.65"
     tsup: "npm:^8.0.1"
     typescript: "npm:^5.3.2"
@@ -1517,10 +1517,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vladfrangu/async_event_emitter@npm:^2.2.2":
-  version: 2.2.2
-  resolution: "@vladfrangu/async_event_emitter@npm:2.2.2"
-  checksum: 1c1fcee04aecfa3cceb05e9bcd3a8aae053ce0512e79e7f878a5d2b8458a926aa3e6da553be0a431e7acb58d9aec3df435a845653a642b864c6b67e2a44ec40c
+"@vladfrangu/async_event_emitter@npm:^2.2.2, @vladfrangu/async_event_emitter@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "@vladfrangu/async_event_emitter@npm:2.2.3"
+  checksum: edb989c690145cb39517c2b9e1f125f4e217e57950b4bf300d581f56b2252c05f5d86094eac03162439511edf95b7d278aea0a6677e0f3f54b265a4d7ac234cb
   languageName: node
   linkType: hard
 
