@@ -4,13 +4,15 @@
 	"description": "A banner generator utility for your CLI",
 	"author": "@skyra",
 	"license": "Apache-2.0",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "dist/esm/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/esm/index.d.ts",
 	"type": "module",
 	"exports": {
-		"types": "./dist/index.d.ts",
-		"import": "./dist/index.js"
+		"import": {
+			"types": "./dist/esm/index.d.ts",
+			"default": "./dist/esm/index.js"
+		}
 	},
 	"sideEffects": false,
 	"scripts": {
@@ -32,8 +34,7 @@
 		"dist/"
 	],
 	"engines": {
-		"node": ">=16.9.0",
-		"npm": ">=8.0.0"
+		"node": ">=18"
 	},
 	"keywords": [
 		"discord",

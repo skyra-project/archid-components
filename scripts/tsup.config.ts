@@ -1,48 +1,44 @@
 import { relative, resolve as resolveDir } from 'node:path';
 import { defineConfig, type Options } from 'tsup';
 
-const defaultConfigOptions: ConfigOptions = {
-	globalName: undefined,
-	format: ['esm', 'cjs'],
-	target: 'es2021',
+const baseOptions: Options = {
+	clean: true,
+	dts: true,
+	entry: ['src/index.ts'],
+	minify: false,
+	skipNodeModulesBundle: true,
 	sourcemap: true,
-	esbuildOptions: (options, context) => {
-		if (context.format === 'cjs') {
-			options.banner = {
-				js: '"use strict";'
-			};
-		}
-	}
+	target: 'es2021',
+	tsconfig: relative(__dirname, resolveDir(process.cwd(), 'src', 'tsconfig.json')),
+	keepNames: true,
+	treeshake: true
 };
 
-export const createTsupConfig = ({
-	globalName = undefined,
-	format = ['esm', 'cjs'],
-	target = 'es2021',
-	sourcemap = true,
-	esbuildPlugins,
-	esbuildOptions = (options, context) => {
-		if (context.format === 'cjs') {
-			options.banner = {
-				js: '"use strict";'
-			};
-		}
-	}
-}: ConfigOptions = defaultConfigOptions) =>
-	defineConfig({
-		clean: true,
-		dts: true,
-		entry: ['src/index.ts'],
-		format,
-		minify: false,
-		skipNodeModulesBundle: true,
-		sourcemap,
-		target,
-		tsconfig: relative(__dirname, resolveDir(process.cwd(), 'src', 'tsconfig.json')),
-		keepNames: true,
-		globalName,
-		esbuildPlugins,
-		esbuildOptions
-	});
+export function createTsupConfig(options?: EnhancedTsupOptions) {
+	return [
+		...(options?.cjsOptions?.disabled
+			? []
+			: [
+					defineConfig({
+						...baseOptions,
+						outDir: 'dist/cjs',
+						format: 'cjs',
+						outExtension: () => ({ js: '.cjs' }),
+						...options?.cjsOptions
+					})
+			  ]),
+		defineConfig({
+			...baseOptions,
+			outDir: 'dist/esm',
+			format: 'esm',
+			...options?.esmOptions
+		})
+	];
+}
 
-type ConfigOptions = Pick<Options, 'esbuildOptions' | 'esbuildPlugins' | 'sourcemap' | 'target' | 'format' | 'globalName'>;
+interface EnhancedTsupOptions {
+	cjsOptions?: Options & {
+		disabled?: boolean;
+	};
+	esmOptions?: Options;
+}
