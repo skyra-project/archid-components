@@ -1,7 +1,7 @@
 import { chmodSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-import { EnvLoaderOptions, loadEnvFiles } from '../src/lib/env-loader';
+import { loadEnvFiles, type EnvLoaderOptions } from '../src/lib/env-loader';
 
 const originalNodeEnv = process.env.NODE_ENV;
 const fixturesDirectory = resolve(__dirname, 'fixtures');
