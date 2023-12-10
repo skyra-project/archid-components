@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@2.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@2.0.0...@skyra/http-framework@2.0.0) - (2023-12-10)
+
+## 🏠 Refactor
+
+- Moved command routing operations to its own class ([6105ae5](https://github.com/skyra-project/archid-components/commit/6105ae51d8be250e6187e6de8fa0f3b84033d092))
+  - 💥 **BREAKING CHANGE:** refactor: `@RegisterCommand` is now lazy and its arguments now resolve in the command's constructor
+  - 💥 **BREAKING CHANGE:** refactor: `@RegisterMessageCommand` is now lazy and its arguments now resolve in the command's constructor
+  - 💥 **BREAKING CHANGE:** refactor: `@RegisterSubcommand` is now lazy and its arguments now resolve in the command's constructor
+  - 💥 **BREAKING CHANGE:** refactor: `@RegisterSubcommandGroup` is now lazy and its arguments now resolve in the command's constructor
+  - 💥 **BREAKING CHANGE:** refactor: `@RegisterUserCommand` is now lazy and its arguments now resolve in the command's constructor
+  - 💥 **BREAKING CHANGE:** refactor: `Command#autocompleteRun` now throws by default
+  - 💥 **BREAKING CHANGE:** refactor: `Command#chatInputRun` now throws by default
+  - 💥 **BREAKING CHANGE:** refactor: `RegisterSubCommand` has been renamed to `RegisterSubcommand`
+  - 💥 **BREAKING CHANGE:** refactor: `RegisterSubCommandGroup` has been renamed to `RegisterSubcommandGroup`
+  - 💥 **BREAKING CHANGE:** refactor: changed `CommandStore`'s routing from command names to registered command names
+  - 💥 **BREAKING CHANGE:** refactor: made token required in `Client`
+  - 💥 **BREAKING CHANGE:** refactor: removed `Registry`, use `client.registry` or `applicationCommandRegistry` instead
+- New registry ([afc6faf](https://github.com/skyra-project/archid-components/commit/afc6fafcdd0e0e937083ab486dba16f53ff500aa))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([d64478a](https://github.com/skyra-project/archid-components/commit/d64478a87defafe5b2e7cf1454fbd17801913721))
+- **http-framework:** Update transitive dependencies ([2dad7b9](https://github.com/skyra-project/archid-components/commit/2dad7b92ca2706dc0a14689bbeeee10a75e58958))
+- Fixed registry system losing track of linked methods when merging ([154c23f](https://github.com/skyra-project/archid-components/commit/154c23f2b5427fdf4c29834a0ca97257ff947b4e))
+- Fixed message commands and user commands being registered in the same collection ([b755515](https://github.com/skyra-project/archid-components/commit/b75551552d380ea281b7e06ca17010c369d9d784))
+- **deps:** Update dependency @vladfrangu/async_event_emitter to ^2.2.3 ([b4b9282](https://github.com/skyra-project/archid-components/commit/b4b9282cc76541d8f6f067a97b179a643250395a))
+
+## 📝 Documentation
+
+- Documented the entire library ([129def2](https://github.com/skyra-project/archid-components/commit/129def219548a76d8f4bc0459d8501d0864b3bf0))
+
+## 🚀 Features
+
+- Added support for retrieving the pushed guild command IDs from the registry ([24910e0](https://github.com/skyra-project/archid-components/commit/24910e0bb6fdebd470453ad522c4c6b12dc8c4f1))
+- Added support for retrieving the pushed global command ID from the registry ([13881a3](https://github.com/skyra-project/archid-components/commit/13881a35db1646efb339516cffe7c70a812740fd))
+- Added `applicationCommandRegistry` to `container` ([a6f8119](https://github.com/skyra-project/archid-components/commit/a6f811963a9933b5333caa9c6191358dfc4f62d0))
+
+## 🧪 Testing
+
+- Added more extensive tests, handle more edge cases ([e056d0e](https://github.com/skyra-project/archid-components/commit/e056d0ee8f6bfa65bd523bd075ba22721d5e676e))
+- Add more tests ([938deaf](https://github.com/skyra-project/archid-components/commit/938deaf1a024d2179cf29920ec257902fa1bfdd4))
+
 # [@skyra/http-framework@1.2.2](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@1.2.2...@skyra/http-framework@1.2.2) - (2023-11-19)
 
 ## 🐛 Bug Fixes
