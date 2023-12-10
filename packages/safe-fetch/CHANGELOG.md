@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/safe-fetch@1.1.3](https://github.com/skyra-project/archid-components/compare/@skyra/safe-fetch@1.1.3...@skyra/safe-fetch@1.1.3) - (2023-12-10)
+
+## 🐛 Bug Fixes
+
+- **safe-fetch:** Update transitive dependencies ([ed87d0c](https://github.com/skyra-project/archid-components/commit/ed87d0c6bb1d8eb16689ee5f50485a78dfcfb3d4))
+- **safe-fetch:** Mark source as esm ([7583fc7](https://github.com/skyra-project/archid-components/commit/7583fc7d49f0e457dd53dcceefbe5b212214b606))
+- **deps:** Update all non-major dependencies ([aed5a61](https://github.com/skyra-project/archid-components/commit/aed5a615be59d88e082eefe7a700337e7b3e1637))
+- **deps:** Update all non-major dependencies ([7310840](https://github.com/skyra-project/archid-components/commit/7310840db053586c42ab55026bb098b75df64003))
+
 # [@skyra/safe-fetch@1.1.2](https://github.com/skyra-project/archid-components/compare/@skyra/safe-fetch@1.1.1...@skyra/safe-fetch@1.1.2) - (2023-05-06)
 
 ## 🐛 Bug Fixes
