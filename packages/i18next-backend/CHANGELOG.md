@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/i18next-backend@2.0.5](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@2.0.5...@skyra/i18next-backend@2.0.5) - (2023-12-10)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([7e1e2c1](https://github.com/skyra-project/archid-components/commit/7e1e2c1096cd1182f31888c2024dda4072545cdc))
+- **i18next-backend:** Mark source as esm ([294e667](https://github.com/skyra-project/archid-components/commit/294e6674a3b7e4379bfd61ecc9246d2a6c3a98e0))
+
 # [@skyra/i18next-backend@2.0.4](https://github.com/skyra-project/archid-components/compare/@skyra/i18next-backend@2.0.3...@skyra/i18next-backend@2.0.4) - (2023-09-03)
 
 ## 🐛 Bug Fixes
