@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/shared-http-pieces",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "The common pieces for ArchId Network's HTTP-only bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
