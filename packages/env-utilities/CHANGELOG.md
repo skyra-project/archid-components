@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/env-utilities@1.2.2](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.2.2...@skyra/env-utilities@1.2.2) - (2023-12-10)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([d64478a](https://github.com/skyra-project/archid-components/commit/d64478a87defafe5b2e7cf1454fbd17801913721))
+- **env-utilities:** Mark source as esm ([59a9a1f](https://github.com/skyra-project/archid-components/commit/59a9a1fec2f69f78441a3488be3e53aa8ace05eb))
+- **deps:** Update all non-major dependencies ([c4035a1](https://github.com/skyra-project/archid-components/commit/c4035a1b8d37c9b73abaa9217e29246ce615df94))
+- **deps:** Update all non-major dependencies ([aed5a61](https://github.com/skyra-project/archid-components/commit/aed5a615be59d88e082eefe7a700337e7b3e1637))
+- **deps:** Update dependency dotenv to ^16.3.1 ([f15fae6](https://github.com/skyra-project/archid-components/commit/f15fae670c7977c1db039d3dc7d35391150bb2ed))
+
 # [@skyra/env-utilities@1.2.1](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.2.0...@skyra/env-utilities@1.2.1) - (2023-06-17)
 
 ## 🐛 Bug Fixes
