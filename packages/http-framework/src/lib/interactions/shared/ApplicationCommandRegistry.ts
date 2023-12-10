@@ -266,10 +266,10 @@ container.applicationCommandRegistry = applicationCommandRegistry;
 type BodyOf<GuildId extends Snowflake | null> = Snowflake | null extends GuildId
 	? RESTPutAPIApplicationCommandsJSONBody | RESTPutAPIApplicationGuildCommandsJSONBody
 	: Snowflake extends GuildId
-	  ? RESTPutAPIApplicationGuildCommandsJSONBody
-	  : RESTPutAPIApplicationCommandsJSONBody;
+		? RESTPutAPIApplicationGuildCommandsJSONBody
+		: RESTPutAPIApplicationCommandsJSONBody;
 type ResultOf<GuildId extends Snowflake | null> = Snowflake | null extends GuildId
 	? RESTPutAPIApplicationCommandsResult | RESTPutAPIApplicationGuildCommandsResult
 	: Snowflake extends GuildId
-	  ? RESTPutAPIApplicationGuildCommandsResult
-	  : RESTPutAPIApplicationCommandsResult;
+		? RESTPutAPIApplicationGuildCommandsResult
+		: RESTPutAPIApplicationCommandsResult;
