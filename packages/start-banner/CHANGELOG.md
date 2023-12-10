@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/start-banner@2.0.1](https://github.com/skyra-project/archid-components/compare/@skyra/start-banner@2.0.1...@skyra/start-banner@2.0.1) - (2023-12-10)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([d64478a](https://github.com/skyra-project/archid-components/commit/d64478a87defafe5b2e7cf1454fbd17801913721))
+- **deps:** Update all non-major dependencies ([aed5a61](https://github.com/skyra-project/archid-components/commit/aed5a615be59d88e082eefe7a700337e7b3e1637))
+- **deps:** Update all non-major dependencies ([098ea85](https://github.com/skyra-project/archid-components/commit/098ea85e886440a54d56698d985fc3964b424bda))
+
 # [@skyra/start-banner@2.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/start-banner@1.0.2...@skyra/start-banner@2.0.0) - (2023-04-12)
 
 ## 🏠 Refactor
