@@ -28,7 +28,7 @@
 		"@discordjs/collection": "^1.5.3",
 		"@discordjs/rest": "^2.2.0",
 		"@discordjs/util": "^1.0.2",
-		"@sapphire/pieces": "^4.0.2",
+		"@sapphire/pieces": "^4.1.0",
 		"@sapphire/result": "^2.6.5",
 		"@sapphire/utilities": "^3.14.0",
 		"@vladfrangu/async_event_emitter": "^2.2.4",
@@ -36,10 +36,10 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^2.2.3",
-		"@vitest/coverage-v8": "^1.0.2",
+		"@vitest/coverage-v8": "^1.0.4",
 		"tsup": "^8.0.1",
 		"typescript": "^5.3.3",
-		"vitest": "^1.0.2"
+		"vitest": "^1.0.4"
 	},
 	"repository": {
 		"type": "git",
