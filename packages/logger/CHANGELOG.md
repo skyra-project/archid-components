@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/logger@2.0.3](https://github.com/skyra-project/archid-components/compare/@skyra/logger@2.0.3...@skyra/logger@2.0.3) - (2023-12-10)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([d64478a](https://github.com/skyra-project/archid-components/commit/d64478a87defafe5b2e7cf1454fbd17801913721))
+
 # [@skyra/logger@2.0.2](https://github.com/skyra-project/archid-components/compare/@skyra/logger@2.0.2...@skyra/logger@2.0.2) - (2023-11-17)
 
 ## 🐛 Bug Fixes
