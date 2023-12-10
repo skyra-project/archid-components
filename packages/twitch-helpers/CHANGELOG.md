@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/twitch-helpers@1.0.4](https://github.com/skyra-project/archid-components/compare/@skyra/twitch-helpers@1.0.4...@skyra/twitch-helpers@1.0.4) - (2023-12-10)
+
+## 🐛 Bug Fixes
+
+- **twitch-helpers:** Update transitive dependencies ([a33a524](https://github.com/skyra-project/archid-components/commit/a33a524a7bf636f32eab9c56dcc37770483af216))
+- **deps:** Update all non-major dependencies ([c4035a1](https://github.com/skyra-project/archid-components/commit/c4035a1b8d37c9b73abaa9217e29246ce615df94))
+- **deps:** Update all non-major dependencies ([aed5a61](https://github.com/skyra-project/archid-components/commit/aed5a615be59d88e082eefe7a700337e7b3e1637))
+- **deps:** Update all non-major dependencies ([7310840](https://github.com/skyra-project/archid-components/commit/7310840db053586c42ab55026bb098b75df64003))
+
 # [@skyra/twitch-helpers@1.0.3](https://github.com/skyra-project/archid-components/compare/@skyra/twitch-helpers@1.0.2...@skyra/twitch-helpers@1.0.3) - (2023-05-06)
 
 ## 🐛 Bug Fixes
