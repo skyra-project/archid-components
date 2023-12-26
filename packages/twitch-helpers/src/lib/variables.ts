@@ -51,6 +51,16 @@ export function areClientCredentialsSet() {
 	return getClientId() !== null && getClientSecret() !== null;
 }
 
+/**
+ * Checks if the Twitch EventSub credentials are set in the environment variables `TWITCH_EVENT_SUB_SECRET` and
+ * `TWITCH_EVENT_SUB_CALLBACK` or in the variables set by `setVariables`.
+ *
+ * @returns If the Twitch EventSub credentials are set
+ */
+export function areEventSubCredentialsSet() {
+	return getEventSubSecret() !== null && getEventSubCallback() !== null;
+}
+
 export type Headers = Record<string, string>;
 
 /**
