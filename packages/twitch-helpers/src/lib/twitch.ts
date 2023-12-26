@@ -1,8 +1,6 @@
 import { none, some, type Option } from '@sapphire/result';
-import { envParseString } from '@skyra/env-utilities';
 import { Json, safeFetch, type FetchResult } from '@skyra/safe-fetch';
 import { createHmac, type BinaryLike } from 'node:crypto';
-import { platform, release } from 'node:os';
 import { URL } from 'node:url';
 import { BaseUrlHelix } from './constants.js';
 import { TwitchEventSubTypes } from './enums.js';
@@ -17,46 +15,29 @@ import type {
 	TwitchHelixUserFollowsResult,
 	TwitchHelixUsersSearchResult
 } from './types.js';
-
-// eslint-disable-next-line @typescript-eslint/no-inferrable-types
-const packageVersion: string = '[VI]{{inject}}[/VI]';
-
-const ClientId = envParseString('TWITCH_CLIENT_ID');
-const ClientSecret = envParseString('TWITCH_TOKEN');
-const EventSubSecret = envParseString('TWITCH_EVENTSUB_SECRET', null);
-
-/**
- * The default Twitch Request headers that we sent to the API
- */
-const TwitchRequestHeaders = {
-	'Content-Type': 'application/json',
-	Accept: 'application/json',
-	'Client-ID': ClientId,
-	'User-Agent': `@skyra/twitch-helpers/${packageVersion} (NodeJS) ${platform()}/${release()} (https://github.com/skyra-project/archid-components/tree/main/packages/twitch-helpers)`
-};
+import {
+	getClientId,
+	getClientSecret,
+	getRequiredEventSubCallback,
+	getRequiredEventSubSecret,
+	getTwitchBearerTokenUrl,
+	getTwitchRequestHeaders,
+	type Headers
+} from './variables.js';
 
 let BearerToken: Option<TwitchHelixBearerToken> = none;
 
 /**
- * Fetches a Bearer token from the Twitch API.
+ * Checks if the Twitch credentials are set in the environment variables `TWITCH_CLIENT_ID` and `TWITCH_CLIENT_SECRET`
  *
- * This requires `process.env.TWITCH_CLIENT_ID`, `process.env.TWITCH_EVENTSUB_SECRET`,
- * and `process.env.TWITCH_TOKEN` to be set
- *
- * @returns The bearer token
+ * @returns If the Twitch credentials are set
  */
-export function fetchBearer() {
-	return BearerToken.match({
-		some: (value) => (value.expiresAt < Date.now() ? generateBearerToken() : value.token),
-		none: generateBearerToken
-	});
+export function areTwitchCredentialsSet() {
+	return getClientId() !== null && getClientSecret() !== null;
 }
 
 /**
  * Fetches the user data for lists of User IDs and/or login names.
- *
- * This requires `process.env.TWITCH_CLIENT_ID`, `process.env.TWITCH_EVENTSUB_SECRET`,
- * and `process.env.TWITCH_TOKEN` to be set
  *
  * @param params An object with lists of Twitch User IDs and/or Twitch User Logins.
  * @returns The Twitch user data for every provided ID and/or login that matches a valid user.
@@ -71,11 +52,8 @@ export async function fetchUsers({ ids = [], logins = [] }: TwitchFetchUsersPara
 /**
  * Retrieves the data of the current stream of a channel.
  *
- * This requires `process.env.TWITCH_CLIENT_ID`, `process.env.TWITCH_EVENTSUB_SECRET`,
- * and `process.env.TWITCH_TOKEN` to be set
- *
  * @param streamerId The Twitch User ID of the streamer.
- * @returns Either hte data of the current stream if online, or `null` if the streamer is offline.
+ * @returns Either the data of the current stream if online, or `null` if the streamer is offline.
  */
 export async function fetchStream(streamerId: string): Promise<TwitchHelixStreamsResult | null> {
 	const search = `user_id=${encodeURIComponent(streamerId)}`;
@@ -102,9 +80,6 @@ export async function fetchStream(streamerId: string): Promise<TwitchHelixStream
 /**
  * Check if {@link followerId} follows {@link streamerId} and returns the followage data.
  *
- * This requires `process.env.TWITCH_CLIENT_ID`, `process.env.TWITCH_EVENTSUB_SECRET`,
- * and `process.env.TWITCH_TOKEN` to be set
- *
  * @param followerId The Twitch User ID of the user of whom you want to check if they are following {@link streamerId}.
  * @param streamerId The Twitch User ID of the user of whom you want to check if they are followed by {@link followerId}.
  * @returns A {@link FetchResult} that contains the object with details of whether {@link followerId} follows {@link streamerId}
@@ -118,9 +93,9 @@ export async function fetchUserFollowage(followerId: string, streamerId: string)
 /**
  * This method can be used to verify the Twitch signature when receiving an event sub request.
  * @param algorithm The algorithm to use
- * @param signature
- * @param data
- * @returns
+ * @param signature The signature to verify
+ * @param data The data to verify
+ * @returns Whether or not the signature is valid
  *
  * @example
  * ```typescript
@@ -150,32 +125,23 @@ export async function fetchUserFollowage(followerId: string, streamerId: string)
  * ```
  */
 export function checkSignature(algorithm: string, signature: string, data: BinaryLike) {
-	if (EventSubSecret === null) throw new Error('Environment variable TWITCH_EVENTSUB_SECRET was not set');
-
-	const hash = createHmac(algorithm, EventSubSecret).update(data).digest('hex');
+	const hash = createHmac(algorithm, getRequiredEventSubSecret()).update(data).digest('hex');
 	return hash === signature;
 }
 
 /**
- * Adds a new Twitch subscription
+ * Adds a new Twitch subscription.
  *
- * This requires `process.env.TWITCH_CALLBACK`, `process.env.TWITCH_CLIENT_ID`,
- * `process.env.TWITCH_EVENTSUB_SECRET`, and `process.env.TWITCH_TOKEN`
- * to be set
- *
- * @param streamerId The Twitch ID of the streamer to subscribe to.
- * You can use {@link fetchUsers} to get the ID.
- * @param subscriptionType	The type of subscription to add.
- * @returns If successful the result of the Twitch subscription,
- * this contains the `id` that can be stored in a database for reference.
- * If not successful then an {@link HttpError} is thrown.
+ * @remarks This requires `process.env.TWITCH_EVENTSUB_CALLBACK` and `process.env.TWITCH_EVENTSUB_SECRET` to be set.
+ * @param streamerId The Twitch ID of the streamer to subscribe to. You can use {@link fetchUsers} to get the user information.
+ * @param subscriptionType The type of subscription to add.
+ * @returns If successful the result of the Twitch subscription, this contains the `id` that can be stored in a database
+ * for reference. Otherwise an {@link HttpError} is thrown.
  */
 export async function addEventSubscription(
 	streamerId: string,
 	subscriptionType: TwitchEventSubTypes = TwitchEventSubTypes.StreamOnline
 ): Promise<TwitchEventSubResult> {
-	if (EventSubSecret === null) throw new Error('Environment variable TWITCH_EVENTSUB_SECRET was not set');
-
 	const result = await Json<TwitchHelixResponse<TwitchEventSubResult>>(
 		safeFetch(`${BaseUrlHelix}/eventsub/subscriptions`, {
 			body: JSON.stringify({
@@ -186,15 +152,12 @@ export async function addEventSubscription(
 				},
 				transport: {
 					method: 'webhook',
-					callback: envParseString('TWITCH_CALLBACK'),
-					secret: EventSubSecret
+					callback: getRequiredEventSubCallback(),
+					secret: getRequiredEventSubSecret()
 				}
 			}),
-			headers: {
-				...TwitchRequestHeaders,
-				Authorization: `Bearer ${await fetchBearer()}`
-			},
-			method: 'POST'
+			method: 'POST',
+			headers: await getHeaders()
 		})
 	);
 
@@ -202,30 +165,21 @@ export async function addEventSubscription(
 }
 
 /**
- * Removes a Twitch subscription based on its ID
+ * Removes a Twitch subscription based on its ID.
  *
- * This requires `process.env.TWITCH_CLIENT_ID`, `process.env.TWITCH_EVENTSUB_SECRET`,
- * and `process.env.TWITCH_TOKEN` to be set
- *
+ * @remarks This requires `process.env.TWITCH_EVENTSUB_SECRET` to be set.
  * @param subscriptionId the ID to remove. This ID should be saved from {@link addEventSubscription}
  */
 export async function removeEventSubscription(subscriptionId: string): Promise<void> {
-	if (EventSubSecret === null) throw new Error('Environment variable TWITCH_EVENTSUB_SECRET was not set');
-
 	const url = new URL(`${BaseUrlHelix}/eventsub/subscriptions`);
 	url.searchParams.append('id', subscriptionId);
 
-	await safeFetch(url, {
-		headers: {
-			...TwitchRequestHeaders,
-			Authorization: `Bearer ${await fetchBearer()}`
-		},
-		method: 'DELETE'
-	});
+	await safeFetch(url, { method: 'DELETE', headers: await getHeaders() });
 }
 
 /**
  * Retrieves the current Twitch subscriptions from the API.
+ *
  * @returns The current subscriptions
  */
 export async function getCurrentTwitchSubscriptions(): Promise<FetchResult<TwitchHelixResponse<TwitchEventSubResult>>> {
@@ -233,36 +187,48 @@ export async function getCurrentTwitchSubscriptions(): Promise<FetchResult<Twitc
 }
 
 /**
- * A tiny wrapper around {@link Json}({@link safeFetch}) that implements
- * {@link fetchBearer} to set the proper headers and adds the {@link BaseUrlHelix} for the base path
+ * A tiny wrapper around {@link Json}({@link safeFetch}) that implements {@link fetchBearer} to set the proper headers
+ * and adds the {@link BaseUrlHelix} for the base path.
  * @param path The Twitch Path to fetch
  * @returns The response to the request
  */
 export async function getRequest<T extends object>(path: string): Promise<FetchResult<T>> {
-	return Json<T>(
-		safeFetch(`${BaseUrlHelix}/${path}`, {
-			headers: {
-				...TwitchRequestHeaders,
-				Authorization: `Bearer ${await fetchBearer()}`
-			}
-		})
-	);
+	return Json<T>(safeFetch(`${BaseUrlHelix}/${path}`, { headers: await getHeaders() }));
 }
 
-const bearerTokenUrl = new URL('https://id.twitch.tv/oauth2/token');
-bearerTokenUrl.searchParams.append('client_secret', ClientSecret);
-bearerTokenUrl.searchParams.append('client_id', ClientId);
-bearerTokenUrl.searchParams.append('grant_type', 'client_credentials');
 /**
- * Generates a Twitch bearer token
+ * Retrieves the headers for a Twitch request
  *
- * This requires `process.env.TWITCH_CLIENT_ID`, `process.env.TWITCH_EVENTSUB_SECRET`,
- * and `process.env.TWITCH_TOKEN` to be set
+ * @returns The headers for a Twitch request
+ */
+export async function getHeaders(): Promise<Headers> {
+	return { ...getTwitchRequestHeaders(), Authorization: `Bearer ${await fetchBearer()}` };
+}
+
+/**
+ * Fetches a Bearer token from the Twitch API.
+ *
+ * @returns The bearer token
+ */
+export async function fetchBearer() {
+	if (!areTwitchCredentialsSet()) {
+		throw new Error('Environment variable TWITCH_CLIENT_ID or TWITCH_CLIENT_SECRET was not set');
+	}
+
+	return BearerToken.match({
+		some: (value) => (value.expiresAt < Date.now() ? generateBearerToken() : value.token),
+		none: generateBearerToken
+	});
+}
+
+/**
+ * Generates a Twitch bearer token.
  *
  * @returns The bearer token, or an error if the request failed.
+ * @internal
  */
 async function generateBearerToken() {
-	const data = (await Json<TwitchHelixOauth2Result>(safeFetch(bearerTokenUrl.href, { method: 'POST' }))).unwrap();
+	const data = (await Json<TwitchHelixOauth2Result>(safeFetch(getTwitchBearerTokenUrl(), { method: 'POST' }))).unwrap();
 	const expires = Date.now() + data.expires_in * 1000;
 
 	BearerToken = some({ token: data.access_token, expiresAt: expires });

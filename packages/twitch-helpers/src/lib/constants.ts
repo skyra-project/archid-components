@@ -12,3 +12,6 @@ export const TwitchBrandingColor = 0x6441a4;
  * The official Twitch branding logo re-hosted on the Skyra CDN for consistent access
  */
 export const TwitchLogoUrl = 'https://cdn.skyra.pw/skyra-assets/twitch_logo.png';
+
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+export const version: string = '[VI]{{inject}}[/VI]';
