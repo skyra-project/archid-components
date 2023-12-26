@@ -41,6 +41,16 @@ export interface TwitchVariables {
 	eventSubCallback?: string | undefined;
 }
 
+/**
+ * Checks if the Twitch client credentials are set in the environment variables `TWITCH_CLIENT_ID` and
+ * `TWITCH_CLIENT_SECRET` or in the variables set by `setVariables`.
+ *
+ * @returns If the Twitch client credentials are set
+ */
+export function areClientCredentialsSet() {
+	return getClientId() !== null && getClientSecret() !== null;
+}
+
 export type Headers = Record<string, string>;
 
 /**
