@@ -37,8 +37,8 @@ export function envParseBoolean(key: EnvBoolean, defaultValue?: boolean | null):
 		return defaultValue;
 	}
 
-	if (value === 'true') return true;
-	if (value === 'false') return false;
+	if (value.length === 4 && value.toLowerCase() === 'true') return true;
+	if (value.length === 5 && value.toLowerCase() === 'false') return false;
 	throw new TypeError(`[ENV] ${key} - The key must be a boolean, but received '${value}'.`);
 }
 
