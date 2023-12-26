@@ -19,9 +19,9 @@ export type {
 
 declare module '@skyra/env-utilities' {
 	interface Env {
-		TWITCH_CALLBACK: string;
 		TWITCH_CLIENT_ID: string;
-		TWITCH_EVENTSUB_SECRET: string;
-		TWITCH_TOKEN: string;
+		TWITCH_CLIENT_SECRET: string;
+		TWITCH_EVENT_SUB_SECRET: string;
+		TWITCH_EVENT_SUB_CALLBACK: string;
 	}
 }
