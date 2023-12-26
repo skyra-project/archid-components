@@ -7,6 +7,40 @@ let ClientSecret: string | null | undefined = undefined;
 let EventSubSecret: string | null | undefined = undefined;
 let EventSubCallback: string | null | undefined = undefined;
 
+/**
+ * Sets the variables required to interact with the Twitch API.
+ *
+ * @param variables The variables to set
+ */
+export function setVariables(variables: Readonly<TwitchVariables>) {
+	if (variables.clientId !== undefined) setClientId(variables.clientId);
+	if (variables.clientSecret !== undefined) setClientSecret(variables.clientSecret);
+	if (variables.eventSubSecret) EventSubSecret = variables.eventSubSecret;
+	if (variables.eventSubCallback) EventSubCallback = variables.eventSubCallback;
+}
+
+export interface TwitchVariables {
+	/**
+	 * The Twitch Client ID, otherwise set in the environment variable `TWITCH_CLIENT_ID`
+	 */
+	clientId?: string | undefined;
+
+	/**
+	 * The Twitch Client Secret, otherwise set in the environment variable `TWITCH_CLIENT_SECRET`
+	 */
+	clientSecret?: string | undefined;
+
+	/**
+	 * The Twitch EventSub Secret, otherwise set in the environment variable `TWITCH_EVENT_SUB_SECRET`
+	 */
+	eventSubSecret?: string | undefined;
+
+	/**
+	 * The Twitch EventSub Callback, otherwise set in the environment variable `TWITCH_EVENT_SUB_CALLBACK`
+	 */
+	eventSubCallback?: string | undefined;
+}
+
 export type Headers = Record<string, string>;
 
 /**
