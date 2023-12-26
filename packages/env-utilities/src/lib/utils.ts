@@ -66,9 +66,48 @@ export function envParseArray(key: EnvArray, defaultValue?: string[] | null): st
 	return value.split(' ');
 }
 
+/**
+ * Checks if the value of the specified environment variable is null.
+ * @param key - The name of the environment variable.
+ * @returns Whether the value of the specified environment variable is:
+ * - The string `"0"`
+ * - The string `"null"`, case insensitive
+ */
+export function envIsNull(key: EnvAny): boolean {
+	const value = process.env[key];
+	return typeof value === 'string' && (value === '0' || (value.length === 4 && value.toLowerCase() === 'null'));
+}
+
+/**
+ * Checks if the value of the specified environment variable is undefined.
+ * @param key - The name of the environment variable.
+ * @returns Whether the value of the specified environment variable is:
+ * - `undefined`
+ * - An empty string (`""`)
+ */
+export function envIsUndefined(key: EnvAny): boolean {
+	const value = process.env[key];
+	return value === undefined || value.length === 0;
+}
+
+/**
+ * Checks if the value of the specified environment variable is nullish.
+ * @param key - The name of the environment variable.
+ * @returns Whether the value of the specified environment variable is:
+ * - `undefined`
+ * - An empty string (`""`)
+ * - The string `"0"`
+ * - The string `"null"`, case insensitive
+ */
+export function envIsNullish(key: EnvAny): boolean {
+	return envIsUndefined(key) || envIsNull(key);
+}
+
+/**
+ * Checks if any of the specified environment variables is defined.
+ * @param key - The name of the environment variable.
+ * @returns Whether the value of any of the specified environment variables is a non-empty string
+ */
 export function envIsDefined(...keys: readonly EnvAny[]): boolean {
-	return keys.every((key) => {
-		const value = process.env[key];
-		return value !== undefined && value.length !== 0;
-	});
+	return keys.every((key) => !envIsUndefined(key));
 }
