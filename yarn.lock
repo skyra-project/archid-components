@@ -1109,6 +1109,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^2.2.3"
     "@sentry/integrations": "npm:^7.91.0"
     "@sentry/node": "npm:^7.91.0"
+    "@skyra/env-utilities": "workspace:^"
     "@skyra/http-framework": "workspace:^"
     "@skyra/http-framework-i18n": "workspace:^"
     discord-api-types: "npm:^0.37.66"
