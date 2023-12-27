@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/twitch-helpers@2.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/twitch-helpers@2.0.0...@skyra/twitch-helpers@2.0.0) - (2023-12-27)
+
+## 🏠 Refactor
+
+- Lazy load Twitch credentials ([e68bb9d](https://github.com/skyra-project/archid-components/commit/e68bb9d6fefeb3499a33852ee88e590968234739))
+  - 💥 **BREAKING CHANGE:** `TWITCH_TOKEN` has been renamed to `TWITCH_CLIENT_SECRET`
+  - 💥 **BREAKING CHANGE:** `TWITCH_EVENTSUB_SECRET` has been renamed to `TWITCH_EVENT_SUB_SECRET`
+  - 💥 **BREAKING CHANGE:** `TWITCH_CALLBACK` has been renamed to `TWITCH_EVENT_SUB_CALLBACK`
+- Switch to properly split CJS and ESM (#298) ([1a07da4](https://github.com/skyra-project/archid-components/commit/1a07da4ae9ddbf9fbf8caf550ddb3e1cea1f2209))
+
+## 🚀 Features
+
+- Added `areEventSubCredentialsSet` helper function ([cc9b067](https://github.com/skyra-project/archid-components/commit/cc9b067ff2172dbff7c715a0d11e8d52c1df8816))
+- Added `areClientCredentialsSet` helper function ([4df60d9](https://github.com/skyra-project/archid-components/commit/4df60d9d7dee1a8b634832f6f085548e3ceb4bb5))
+- Added `setVariables` as an alternative to environment variables ([6d7c457](https://github.com/skyra-project/archid-components/commit/6d7c457e51ddaa62810238c365976a9925deed4c))
+
 # [@skyra/twitch-helpers@1.0.4](https://github.com/skyra-project/archid-components/compare/@skyra/twitch-helpers@1.0.4...@skyra/twitch-helpers@1.0.4) - (2023-12-10)
 
 ## 🐛 Bug Fixes
