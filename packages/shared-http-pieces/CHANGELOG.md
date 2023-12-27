@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/shared-http-pieces@1.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@1.2.0...@skyra/shared-http-pieces@1.2.0) - (2023-12-27)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([e6c2cb4](https://github.com/skyra-project/archid-components/commit/e6c2cb43b4123e3a3d70eb4795a991ca6b9902b5))
+- **deps:** Update all non-major dependencies ([9562773](https://github.com/skyra-project/archid-components/commit/9562773a55df76f072f58ba3e247279c28af3d40))
+
+## 🚀 Features
+
+- **utils:** Add `registerCommands` helper ([95e8c07](https://github.com/skyra-project/archid-components/commit/95e8c073836c466f47f94aa73d38e50ff01686da))
+
 # [@skyra/shared-http-pieces@1.1.2](https://github.com/skyra-project/archid-components/compare/@skyra/shared-http-pieces@1.1.2...@skyra/shared-http-pieces@1.1.2) - (2023-12-10)
 
 ## 🐛 Bug Fixes
