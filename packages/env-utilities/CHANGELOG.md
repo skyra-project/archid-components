@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/env-utilities@1.3.0](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.3.0...@skyra/env-utilities@1.3.0) - (2023-12-27)
+
+## 🏠 Refactor
+
+- Switch to properly split CJS and ESM (#298) ([1a07da4](https://github.com/skyra-project/archid-components/commit/1a07da4ae9ddbf9fbf8caf550ddb3e1cea1f2209))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([e6c2cb4](https://github.com/skyra-project/archid-components/commit/e6c2cb43b4123e3a3d70eb4795a991ca6b9902b5))
+
+## 🚀 Features
+
+- **utils:** Add case insensitive boolean support ([3caa118](https://github.com/skyra-project/archid-components/commit/3caa118ffb9f830fc833df977b3fb27b0504e641))
+- **utils:** Add `envIs{Null,Nullish,Undefined}` ([4fe7382](https://github.com/skyra-project/archid-components/commit/4fe738287eeb19094c9aaa9b9dc6e075f2255517))
+
 # [@skyra/env-utilities@1.2.2](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.2.2...@skyra/env-utilities@1.2.2) - (2023-12-10)
 
 ## 🐛 Bug Fixes
