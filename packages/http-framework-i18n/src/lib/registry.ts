@@ -34,6 +34,10 @@ export async function init(options?: InitOptions) {
 		preload: [...loadedLocales],
 		initImmediate: false,
 		ignoreJSONStructure: false,
+		fallbackLng: {
+			'es-419': ['es-ES', 'en-US'],
+			default: ['en-US']
+		},
 		...options,
 		interpolation: {
 			escapeValue: false,
