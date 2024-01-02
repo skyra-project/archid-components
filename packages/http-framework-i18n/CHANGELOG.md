@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework-i18n@1.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@1.2.0...@skyra/http-framework-i18n@1.2.0) - (2024-01-02)
+
+## 🏠 Refactor
+
+- Switch to properly split CJS and ESM (#298) ([1a07da4](https://github.com/skyra-project/archid-components/commit/1a07da4ae9ddbf9fbf8caf550ddb3e1cea1f2209))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([d84f786](https://github.com/skyra-project/archid-components/commit/d84f786a3434b47d7e2288a12da6964499629a50))
+
+## 🚀 Features
+
+- **registry:** Define language fallback for `es-419` (#313) ([6a64b43](https://github.com/skyra-project/archid-components/commit/6a64b4315814fd4de17a77fbf51f32e3d7ac33c2))
+
 # [@skyra/http-framework-i18n@1.1.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework-i18n@1.1.1...@skyra/http-framework-i18n@1.1.1) - (2023-12-10)
 
 ## 🐛 Bug Fixes
