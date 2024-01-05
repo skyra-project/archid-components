@@ -15,6 +15,7 @@ const paths = [
 	new URL('shared-http-pieces/dist/', packagesDir),
 	new URL('start-banner/dist/', packagesDir),
 	new URL('twitch-helpers/dist/', packagesDir),
+	new URL('reddit-helpers/dist/', packagesDir),
 
 	// Turbo main cache folder
 	new URL('node_modules/.cache/turbo', rootDir),
@@ -28,7 +29,8 @@ const paths = [
 	new URL('safe-fetch/.turbo/', packagesDir),
 	new URL('shared-http-pieces/.turbo/', packagesDir),
 	new URL('start-banner/.turbo/', packagesDir),
-	new URL('twitch-helpers/.turbo/', packagesDir)
+	new URL('twitch-helpers/.turbo/', packagesDir),
+	new URL('reddit-helpers/.turbo/', packagesDir)
 ];
 
 await Promise.all(paths.map((path) => rm(path, options)));

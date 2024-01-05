@@ -1,0 +1,4 @@
+name: reddit-helpers
+org: skyra
+install: true
+packagePath: packages/reddit-helpers
