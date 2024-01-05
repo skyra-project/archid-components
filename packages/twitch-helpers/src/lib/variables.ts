@@ -47,7 +47,7 @@ export interface TwitchVariables {
  *
  * @returns If the Twitch client credentials are set
  */
-export function areClientCredentialsSet() {
+export function areTwitchClientCredentialsSet() {
 	return getClientId() !== null && getClientSecret() !== null;
 }
 
@@ -57,7 +57,7 @@ export function areClientCredentialsSet() {
  *
  * @returns If the Twitch EventSub credentials are set
  */
-export function areEventSubCredentialsSet() {
+export function areTwitchEventSubCredentialsSet() {
 	return getEventSubSecret() !== null && getEventSubCallback() !== null;
 }
 

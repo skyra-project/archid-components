@@ -16,7 +16,7 @@ export type {
 	TwitchHelixUsersSearchResult,
 	TwitchOnlineEmbedData
 } from './lib/types.js';
-export { areClientCredentialsSet, areEventSubCredentialsSet, setVariables, type TwitchVariables } from './lib/variables.js';
+export { areTwitchClientCredentialsSet, areTwitchEventSubCredentialsSet, setVariables, type TwitchVariables } from './lib/variables.js';
 
 declare module '@skyra/env-utilities' {
 	interface Env {
