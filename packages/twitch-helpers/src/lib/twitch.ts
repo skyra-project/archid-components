@@ -16,8 +16,7 @@ import type {
 	TwitchHelixUsersSearchResult
 } from './types.js';
 import {
-	getClientId,
-	getClientSecret,
+	areTwitchClientCredentialsSet,
 	getRequiredEventSubCallback,
 	getRequiredEventSubSecret,
 	getTwitchBearerTokenUrl,
@@ -26,15 +25,6 @@ import {
 } from './variables.js';
 
 let BearerToken: Option<TwitchHelixBearerToken> = none;
-
-/**
- * Checks if the Twitch credentials are set in the environment variables `TWITCH_CLIENT_ID` and `TWITCH_CLIENT_SECRET`
- *
- * @returns If the Twitch credentials are set
- */
-export function areTwitchCredentialsSet() {
-	return getClientId() !== null && getClientSecret() !== null;
-}
 
 /**
  * Fetches the user data for lists of User IDs and/or login names.
@@ -211,7 +201,7 @@ export async function getHeaders(): Promise<Headers> {
  * @returns The bearer token
  */
 export async function fetchBearer() {
-	if (!areTwitchCredentialsSet()) {
+	if (!areTwitchClientCredentialsSet()) {
 		throw new Error('Environment variable TWITCH_CLIENT_ID or TWITCH_CLIENT_SECRET was not set');
 	}
 
