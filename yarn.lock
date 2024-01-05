@@ -1089,6 +1089,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@skyra/reddit-helpers@workspace:packages/reddit-helpers":
+  version: 0.0.0-use.local
+  resolution: "@skyra/reddit-helpers@workspace:packages/reddit-helpers"
+  dependencies:
+    "@discordjs/formatters": "npm:^0.3.3"
+    "@favware/cliff-jumper": "npm:^2.2.3"
+    "@sapphire/result": "npm:^2.6.5"
+    "@sapphire/utilities": "npm:^3.15.1"
+    "@skyra/env-utilities": "workspace:^"
+    "@skyra/safe-fetch": "workspace:^"
+    "@types/he": "npm:^1.2.3"
+    esbuild-plugin-version-injector: "npm:^1.2.1"
+    he: "npm:^1.2.0"
+    tsup: "npm:^8.0.1"
+    typescript: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
 "@skyra/safe-fetch@workspace:^, @skyra/safe-fetch@workspace:packages/safe-fetch":
   version: 0.0.0-use.local
   resolution: "@skyra/safe-fetch@workspace:packages/safe-fetch"
@@ -1278,6 +1296,13 @@ __metadata:
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
   checksum: ad87447820dd3f24825d2d947ebc03072b20a42bfc96cbafec16bff8bbda6c1a81fcb0be56d5b21968560c5359a0af4038a68ba150c3e1694fe4c109a063bed8
+  languageName: node
+  linkType: hard
+
+"@types/he@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "@types/he@npm:1.2.3"
+  checksum: e77851c73dd7b9902d92fe0118a26246a7f3676a3a1c6eb1408305187ef73b57c22550b1435946b983267f961d935554d5d0e1b458416932552f31e763e1aa41
   languageName: node
   linkType: hard
 
@@ -3503,6 +3528,15 @@ __metadata:
   dependencies:
     function-bind: "npm:^1.1.2"
   checksum: c330f8d93f9d23fe632c719d4db3d698ef7d7c367d51548b836069e06a90fa9151e868c8e67353cfe98d67865bf7354855db28fa36eb1b18fa5d4a3f4e7f1c90
+  languageName: node
+  linkType: hard
+
+"he@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "he@npm:1.2.0"
+  bin:
+    he: bin/he
+  checksum: d09b2243da4e23f53336e8de3093e5c43d2c39f8d0d18817abfa32ce3e9355391b2edb4bb5edc376aea5d4b0b59d6a0482aab4c52bc02ef95751e4b818e847f1
   languageName: node
   linkType: hard
 
