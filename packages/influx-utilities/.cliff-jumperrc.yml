@@ -1,0 +1,4 @@
+name: influx-utilities
+org: skyra
+install: true
+packagePath: packages/influx-utilities
