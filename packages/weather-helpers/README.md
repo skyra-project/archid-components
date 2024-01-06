@@ -24,23 +24,18 @@ console.log(result);
 {
 	"current_condition": [
 		{
-			"FeelsLikeC": "-4",
-			"FeelsLikeF": "25",
+			"FeelsLikeC": "-2",
+			"FeelsLikeF": "28",
 			"cloudcover": "75",
-			"humidity": "86",
-			"lang_fr": [
-				{
-					"value": "Partiellement couvert"
-				}
-			],
-			"localObsDateTime": "2024-01-06 11:02 PM",
-			"observation_time": "10:02 PM",
+			"humidity": "80",
+			"localObsDateTime": "2024-01-06 11:21 PM",
+			"observation_time": "10:21 PM",
 			"precipInches": "0.0",
 			"precipMM": "0.0",
 			"pressure": "1017",
 			"pressureInches": "30",
-			"temp_C": "1",
-			"temp_F": "34",
+			"temp_C": "2",
+			"temp_F": "36",
 			"uvIndex": "1",
 			"visibility": "10",
 			"visibilityMiles": "6",
@@ -57,8 +52,8 @@ console.log(result);
 			],
 			"winddir16Point": "NNE",
 			"winddirDegree": "30",
-			"windspeedKmph": "19",
-			"windspeedMiles": "12"
+			"windspeedKmph": "22",
+			"windspeedMiles": "14"
 		}
 	],
 	"nearest_area": [
