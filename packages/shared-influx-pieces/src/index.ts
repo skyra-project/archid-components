@@ -31,8 +31,6 @@ declare module '@sapphire/pieces' {
 
 declare module '@skyra/env-utilities' {
 	interface Env {
-		CLIENT_ID: string;
-		CLIENT_NAME: string;
 		INFLUX_ENABLED: BooleanString;
 	}
 }
