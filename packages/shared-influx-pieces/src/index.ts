@@ -1,6 +1,6 @@
-import { envParseBoolean, envParseString, type BooleanString } from '@skyra/env-utilities';
+import { envIsNullish, envParseString, type BooleanString } from '@skyra/env-utilities';
 import { container } from '@skyra/http-framework';
-import { Client } from '@skyra/influx-utilities';
+import { Client, areInfluxCredentialsSet, getInfluxConnectionOptions } from '@skyra/influx-utilities';
 
 let interactionCount: number;
 let initialized = false;
@@ -10,13 +10,13 @@ export function isInfluxInitialized() {
 }
 
 export function initializeInflux() {
-	if (!envParseBoolean('INFLUX_ENABLED', true) || !envParseString('INFLUX_TOKEN', null)) return;
+	if (envIsNullish('INFLUX_ENABLED') || !areInfluxCredentialsSet()) return;
 
 	container.analytics = new Client({
-		url: 'https://influx.skyra.pw',
-		org: 'Skyra-Project',
+		...getInfluxConnectionOptions(),
 		writeBucket: envParseString('INFLUX_BUCKET', process.env.CLIENT_NAME)
 	});
+
 	initialized = true;
 }
 
