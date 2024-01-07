@@ -10,9 +10,14 @@ export const createVitestConfig = (options: UserConfig = {}) =>
 			coverage: {
 				...options.test?.coverage,
 				provider: 'v8',
-				enabled: true,
+				enabled: false,
 				reporter: ['text', 'lcov', 'clover'],
 				exclude: [...(configDefaults.coverage.exclude ?? []), ...(options.test?.coverage?.exclude ?? [])]
+			},
+			poolOptions: {
+				threads: {
+					singleThread: true
+				}
 			}
 		},
 		esbuild: {
