@@ -4,9 +4,9 @@ export { type ConnectionOptions } from './lib/types.js';
 
 declare module '@skyra/env-utilities' {
 	interface Env {
-		INFLUX_URL: string;
-		INFLUX_ORG: string;
-		INFLUX_TOKEN: string;
-		INFLUX_BUCKET: string;
+		INFLUX_URL?: string;
+		INFLUX_ORG?: string;
+		INFLUX_TOKEN?: string;
+		INFLUX_BUCKET?: string;
 	}
 }
