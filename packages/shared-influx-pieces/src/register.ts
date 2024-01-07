@@ -1,4 +1,7 @@
+import { initializeInflux } from 'index';
 import { registerSchedule } from './lib/utils/schedule';
+
 import './listeners/_load';
 
-registerSchedule();
+void registerSchedule();
+void initializeInflux();

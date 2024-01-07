@@ -8,7 +8,7 @@ export function isInfluxInitialized() {
 	return Boolean(container.analytics) ?? envParseBoolean('INFLUX_ENABLED', true);
 }
 
-export function initializeInflux(options: ConnectionOptions) {
+export function initializeInflux(options: ConnectionOptions = {}) {
 	if (!envParseBoolean('INFLUX_ENABLED', true) || !envParseString('INFLUX_URL')) return;
 	container.analytics = new Client(options);
 }
