@@ -10,7 +10,7 @@ export function isInfluxInitialized() {
 }
 
 export function initializeInflux() {
-	if (!envParseBoolean('INFLUX_ENABLED', true) || !envParseString('INFLUX_TOKEN')) return;
+	if (!envParseBoolean('INFLUX_ENABLED', true) || !envParseString('INFLUX_TOKEN', null)) return;
 
 	container.analytics = new Client({
 		url: 'https://influx.skyra.pw',
