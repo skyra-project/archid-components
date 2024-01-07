@@ -18,14 +18,14 @@ const client = new Client();
 ```sh
 # .env
 INFLUX_URL="https://influx.skyra.pw";
-INFLUX_ORG: "153231";
+INFLUX_ORG: "Skyra-Project";
 INFLUX_TOKEN: "my-secret-token";
 INFLUX_BUCKET: "analytics";
 ```
 
 -   `INFLUX_URL`: `ConnectionOptions.url`, the base URL to be used.
--   `INFLUX_PROXY_URL`: `ConnectionOptions.proxyUrl`, the full HTTP web proxy URL including schema.
--   `INFLUX_TIMEOUT`: `ConnectionOptions.timeout`, the socket timeout, defaults to 10 seconds. If defined, this will be parsed and validated to a number.
+-   `INFLUX_ORG`: `ConnectionOptions.org`, the organization to use for the query and write APIs.
+-   `INFLUX_BUCKET`: `ConnectionOptions.writeBucket`, the bucket to write to in the write API.
 -   `INFLUX_TOKEN`: `ConnectionOptions.token`, the authentication token.
 
 ### `setInfluxVariables`
@@ -36,7 +36,7 @@ import { Client, setInfluxVariables } from '@skyra/influx-utilities';
 
 setInfluxVariables({
 	influxUrl: 'https://influx.skyra.pw',
-	influxOrg: '153231',
+	influxOrg: 'Skyra-Project',
 	influxToken: 'my-secret-token',
 	influxBucket: 'analytics'
 });
@@ -52,7 +52,7 @@ import { Client } from '@skyra/influx-utilities';
 const client = new Client({
 	url: 'https://influx.skyra.pw',
 	token: 'my-secret-token',
-	org: '153231',
+	org: 'Skyra-Project',
 	writeBucket: 'analytics'
 });
 ```
