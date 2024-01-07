@@ -7,12 +7,12 @@ The shared influx piece used for ArchId Network's HTTP-only bots.
 You can either register after setting environment parameters:
 
 ```typescript
-process.env.INFLUX_URL="https://influx.skyra.pw";
-process.env.INFLUX_ORG: "153231";
-process.env.INFLUX_TOKEN: "my-secret-token";
-process.env.INFLUX_BUCKET: "teryl";
+process.env.INFLUX_URL = 'https://influx.skyra.pw';
+process.env.INFLUX_TOKEN = 'my-secret-token';
+process.env.INFLUX_ORG = 'Skyra-Project';
+process.env.INFLUX_BUCKET = 'analytics';
 
-import '@skyra/shared-http-pieces/register';
+import '@skyra/shared-influx-pieces/register';
 ```
 
 Or import its utilities as well as registering:
@@ -23,8 +23,8 @@ import '@skyra/shared-influx-pieces/register';
 
 initializeInflux({
 	url: 'https://influx.skyra.pw',
-	org: '153231',
 	token: 'my-secret-token',
-	writeBucket: 'teryl'
+	org: 'Skyra-Project',
+	writeBucket: 'analytics'
 });
 ```
