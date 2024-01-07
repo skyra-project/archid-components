@@ -1,10 +1,10 @@
-import { container, type ClientEvents } from '@skyra/http-framework';
+import { container } from '@skyra/http-framework';
 import { incrementInteractionCount } from '../index';
 import { AnalyticsListener } from '../lib/AnalyticsListener';
 
 export class SharedListener extends AnalyticsListener {
 	public constructor(context: AnalyticsListener.LoaderContext, options: AnalyticsListener) {
-		super(context, { ...options, event: 'interactionHandlerRun' satisfies keyof ClientEvents });
+		super(context, { ...options, event: 'interactionHandlerRun' });
 	}
 
 	public run() {
@@ -12,4 +12,4 @@ export class SharedListener extends AnalyticsListener {
 	}
 }
 
-void container.stores.loadPiece({ name: 'SharedInteractionHandler', piece: SharedListener, store: 'listeners' });
+void container.stores.loadPiece({ name: 'influxInteractionHandler', piece: SharedListener, store: 'listeners' });

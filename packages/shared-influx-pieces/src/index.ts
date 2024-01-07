@@ -3,14 +3,16 @@ import { container } from '@skyra/http-framework';
 import { Client, type ConnectionOptions } from '@skyra/influx-utilities';
 
 let interactionCount: number;
+let initialized = false;
 
 export function isInfluxInitialized() {
-	return Boolean(container.analytics) ?? envParseBoolean('INFLUX_ENABLED', true);
+	return initialized;
 }
 
 export function initializeInflux(options: ConnectionOptions = {}) {
 	if (!envParseBoolean('INFLUX_ENABLED', true) || !envParseString('INFLUX_URL')) return;
 	container.analytics = new Client(options);
+	initialized = true;
 }
 
 export const getInteractionCount = () => interactionCount;

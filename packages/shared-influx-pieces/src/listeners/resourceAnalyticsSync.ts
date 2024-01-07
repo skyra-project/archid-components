@@ -5,10 +5,6 @@ import { AnalyticsListener } from '../lib/AnalyticsListener';
 import { Actions, Points, Tags } from '../lib/AnalyticsSchema';
 
 export class SharedListener extends AnalyticsListener {
-	public constructor(context: AnalyticsListener.LoaderContext, options: AnalyticsListener.Options) {
-		super(context, { ...options, event: 'resourceAnalyticsSync' });
-	}
-
 	public run() {
 		this.writeCoreUsagePoint();
 		this.writeMemoryUsagePoint();
@@ -37,4 +33,4 @@ export class SharedListener extends AnalyticsListener {
 	}
 }
 
-void container.stores.loadPiece({ name: 'SharedResourceAnalyticsSync', piece: SharedListener, store: 'listeners' });
+void container.stores.loadPiece({ name: 'influxResourceAnalyticsSync', piece: SharedListener, store: 'listeners' });
