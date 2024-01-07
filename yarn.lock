@@ -923,6 +923,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/timer-manager@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "@sapphire/timer-manager@npm:1.0.1"
+  checksum: a5883f9a7e11f1ef0696e263cd58905a578451d71f57e3b5d8dcd7197dd41863c291a4a3d4ea5105104b7cc622a8fbe277e3d648e0443365146dfdc6635f3152
+  languageName: node
+  linkType: hard
+
 "@sapphire/ts-config@npm:^5.0.0":
   version: 5.0.0
   resolution: "@sapphire/ts-config@npm:5.0.0"
@@ -1081,7 +1088,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@skyra/influx-utilities@workspace:packages/influx-utilities":
+"@skyra/influx-utilities@workspace:^, @skyra/influx-utilities@workspace:packages/influx-utilities":
   version: 0.0.0-use.local
   resolution: "@skyra/influx-utilities@workspace:packages/influx-utilities"
   dependencies:
@@ -1149,6 +1156,20 @@ __metadata:
     "@skyra/http-framework": "workspace:^"
     "@skyra/http-framework-i18n": "workspace:^"
     discord-api-types: "npm:^0.37.67"
+    tslib: "npm:^2.6.2"
+    typescript: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
+"@skyra/shared-influx-pieces@workspace:packages/shared-influx-pieces":
+  version: 0.0.0-use.local
+  resolution: "@skyra/shared-influx-pieces@workspace:packages/shared-influx-pieces"
+  dependencies:
+    "@favware/cliff-jumper": "npm:^2.2.3"
+    "@sapphire/timer-manager": "npm:^1.0.0"
+    "@skyra/http-framework": "workspace:^"
+    "@skyra/influx-utilities": "workspace:^"
+    discord-api-types: "npm:^0.37.43"
     tslib: "npm:^2.6.2"
     typescript: "npm:^5.3.3"
   languageName: unknown
@@ -2598,7 +2619,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.67":
+"discord-api-types@npm:^0.37.43, discord-api-types@npm:^0.37.67":
   version: 0.37.67
   resolution: "discord-api-types@npm:0.37.67"
   checksum: 5b474544a82148179e3d50f3092b9aa90b4142b470df397d3e6e211bd9c0b1f99724c618d7136fccdbe9cd931d8f48b1bdcd10599c7a08a92b76408c05829692
