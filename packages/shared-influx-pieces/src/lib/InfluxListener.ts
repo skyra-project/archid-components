@@ -46,4 +46,6 @@ export abstract class InfluxListener extends Listener {
 export namespace InfluxListener {
 	export type Options = Listener.Options;
 	export type LoaderContext = Listener.LoaderContext;
+	export type JSON = Listener.JSON;
+	export type LocationJSON = Listener.LocationJSON;
 }
