@@ -34,7 +34,7 @@
 		"@sapphire/timer-manager": "^1.0.0",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/influx-utilities": "workspace:^",
-		"discord-api-types": "^0.37.43",
+		"discord-api-types": "^0.37.67",
 		"tslib": "^2.6.2"
 	},
 	"repository": {
