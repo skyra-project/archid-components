@@ -1,10 +1,10 @@
 import { container, type ClientEventCommandContext } from '@skyra/http-framework';
 import { Point } from '@skyra/influx-utilities';
-import { AnalyticsListener } from '../lib/AnalyticsListener';
-import { Actions, Points, Tags } from '../lib/AnalyticsSchema';
+import { InfluxListener } from '../lib/InfluxListener';
+import { Actions, Points, Tags } from '../lib/enum';
 
-export class SharedListener extends AnalyticsListener {
-	public constructor(context: AnalyticsListener.LoaderContext, options: AnalyticsListener.Options) {
+export class SharedListener extends InfluxListener {
+	public constructor(context: InfluxListener.LoaderContext, options: InfluxListener.Options) {
 		super(context, { ...options, event: 'commandSuccess' });
 	}
 

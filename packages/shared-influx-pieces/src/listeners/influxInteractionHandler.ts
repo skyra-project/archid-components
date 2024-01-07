@@ -1,9 +1,9 @@
 import { container } from '@skyra/http-framework';
 import { incrementInteractionCount } from '../index';
-import { AnalyticsListener } from '../lib/AnalyticsListener';
+import { InfluxListener } from '../lib/InfluxListener';
 
-export class SharedListener extends AnalyticsListener {
-	public constructor(context: AnalyticsListener.LoaderContext, options: AnalyticsListener) {
+export class SharedListener extends InfluxListener {
+	public constructor(context: InfluxListener.LoaderContext, options: InfluxListener) {
 		super(context, { ...options, event: 'interactionHandlerRun' });
 	}
 

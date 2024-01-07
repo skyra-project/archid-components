@@ -1,10 +1,10 @@
 import { container } from '@skyra/http-framework';
 import { Point } from '@skyra/influx-utilities';
 import { getInteractionCount, setInteractionCount } from '../index';
-import { AnalyticsListener } from '../lib/AnalyticsListener';
-import { Actions, Points, Tags } from '../lib/AnalyticsSchema';
+import { InfluxListener } from '../lib/InfluxListener';
+import { Actions, Points, Tags } from '../lib/enum';
 
-export class SharedListener extends AnalyticsListener {
+export class SharedListener extends InfluxListener {
 	public run(guilds: number) {
 		this.writeGuildCountPoint(guilds);
 		this.writeInteractionCountPoint();

@@ -1,13 +1,13 @@
 import type { Point } from '@influxdata/influxdb-client';
 import { Listener } from '@skyra/http-framework';
-import { Tags } from './AnalyticsSchema.js';
-import { getClientId } from './utils/api.js';
 import { isInfluxInitialized } from '../index.js';
+import { getClientId } from './api.js';
+import { Tags } from './enum.js';
 
-export abstract class AnalyticsListener extends Listener {
+export abstract class InfluxListener extends Listener {
 	public tags: [Tags, string][] = [];
 
-	public constructor(context: Listener.LoaderContext, options: AnalyticsListener.Options) {
+	public constructor(context: Listener.LoaderContext, options: InfluxListener.Options) {
 		super(context, { enabled: isInfluxInitialized(), ...options });
 	}
 
@@ -43,7 +43,7 @@ export abstract class AnalyticsListener extends Listener {
 	}
 }
 
-export namespace AnalyticsListener {
+export namespace InfluxListener {
 	export type Options = Listener.Options;
 	export type LoaderContext = Listener.LoaderContext;
 }
