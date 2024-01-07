@@ -1,6 +1,6 @@
 import { Result, err } from '@sapphire/result';
 import { Text, isAbortError, safeTimedFetch, type FetchError } from '@skyra/safe-fetch';
-import { BaseUrl } from './constants';
+import { BaseUrl, getWeatherRequestHeaders } from './constants';
 import { Identifiers, WeatherCode } from './enums';
 import { type Weather, type WeatherName } from './types';
 
@@ -78,7 +78,7 @@ export async function getWeatherData(query: string, lang: string): Promise<Resul
 	url.searchParams.append('format', 'j1');
 	url.searchParams.append('lang', lang);
 
-	const result = await Text(safeTimedFetch(url, 2000));
+	const result = await Text(safeTimedFetch(url, 2000, { headers: getWeatherRequestHeaders() }));
 	return result.match({
 		ok: (value) => getDataOk(value),
 		err: (error) => getDataErr(error)
