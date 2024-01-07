@@ -3,12 +3,34 @@ import { Point } from '@skyra/influx-utilities';
 import { getInteractionCount, setInteractionCount } from '../index';
 import { InfluxListener } from '../lib/InfluxListener';
 import { Actions, Points, Tags } from '../lib/enum';
+import { getApproximateGuildCount } from 'lib/api';
+
+const Minute = 60_000;
 
 export class SharedListener extends InfluxListener {
+	public interval: NodeJS.Timeout | null = null;
+
+	public override onLoad() {
+		this.interval = setInterval(() => void this.onIntervalTick(), Minute * 10);
+		return super.onLoad();
+	}
+
+	public override onUnload() {
+		clearInterval(this.interval!);
+		return super.onUnload();
+	}
+
 	public run(guilds: number) {
 		this.writeGuildCountPoint(guilds);
 		this.writeInteractionCountPoint();
 		void this.flush();
+	}
+
+	private async onIntervalTick() {
+		if (!this.enabled) return;
+
+		const guilds = await getApproximateGuildCount();
+		if (guilds) this.run(guilds);
 	}
 
 	private writeGuildCountPoint(value: number) {

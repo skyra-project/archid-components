@@ -21,8 +21,6 @@ export const getInteractionCount = () => interactionCount;
 export const setInteractionCount = (count: number) => (interactionCount = count);
 export const incrementInteractionCount = () => interactionCount++;
 
-export { getAnalyticsSyncInterval, destroyIntervals } from './lib/schedule.js';
-
 declare module '@sapphire/pieces' {
 	export interface Container {
 		analytics?: Client;
