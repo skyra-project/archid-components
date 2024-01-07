@@ -1,4 +1,4 @@
-import './listeners/_load';
+import './listeners/_load.js';
 
 import { initializeInflux } from './index.js';
 

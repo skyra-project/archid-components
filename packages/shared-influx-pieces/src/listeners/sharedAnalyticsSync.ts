@@ -1,9 +1,9 @@
 import { container } from '@skyra/http-framework';
 import { Point } from '@skyra/influx-utilities';
-import { getInteractionCount, setInteractionCount } from '../index';
-import { InfluxListener } from '../lib/InfluxListener';
-import { Actions, Points, Tags } from '../lib/enum';
-import { getApproximateGuildCount } from 'lib/api';
+import { getApproximateGuildCount } from '../lib/api.js';
+import { getInteractionCount, setInteractionCount } from '../index.js';
+import { InfluxListener } from '../lib/InfluxListener.js';
+import { Actions, Points, Tags } from '../lib/enum.js';
 
 const Minute = 60_000;
 

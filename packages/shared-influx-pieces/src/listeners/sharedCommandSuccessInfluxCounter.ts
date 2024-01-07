@@ -1,7 +1,7 @@
 import { container, type ClientEventCommandContext } from '@skyra/http-framework';
 import { Point } from '@skyra/influx-utilities';
-import { InfluxListener } from '../lib/InfluxListener';
-import { Actions, Points, Tags } from '../lib/enum';
+import { InfluxListener } from '../lib/InfluxListener.js';
+import { Actions, Points, Tags } from '../lib/enum.js';
 
 export class SharedListener extends InfluxListener {
 	public constructor(context: InfluxListener.LoaderContext, options: InfluxListener.Options) {
