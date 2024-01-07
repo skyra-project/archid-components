@@ -24,7 +24,7 @@ export function getResourceAnalyticsSyncInterval() {
 	return resourceAnalyticsSyncInterval;
 }
 
-export function stopIntervals() {
+export function destroyIntervals() {
 	if (analyticsSyncInterval) {
 		analyticsSyncInterval.unref();
 		analyticsSyncInterval = null;
