@@ -1,9 +1,9 @@
 import { Result } from '@sapphire/result';
 import { container } from '@skyra/http-framework';
-import type { APIApplication } from 'discord-api-types/v10';
+import { Routes, type APIApplication } from 'discord-api-types/v10';
 
 export async function getApproximateGuildCount() {
-	const result = await Result.fromAsync(() => container.rest.get('/applications/@me') as Promise<Application>);
+	const result = await Result.fromAsync(() => container.rest.get(Routes.currentApplication()) as Promise<Application>);
 
 	return result.match({
 		ok: (value) => value.approximate_guild_count ?? null,
@@ -12,7 +12,7 @@ export async function getApproximateGuildCount() {
 }
 
 export async function getClientId() {
-	const result = await Result.fromAsync(() => container.rest.get('/applications/@me') as Promise<Application>);
+	const result = await Result.fromAsync(() => container.rest.get(Routes.currentApplication()) as Promise<Application>);
 
 	return result.match({
 		ok: (value) => value.id ?? null,
