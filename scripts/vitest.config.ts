@@ -10,7 +10,7 @@ export const createVitestConfig = (options: UserConfig = {}) =>
 			coverage: {
 				...options.test?.coverage,
 				provider: 'v8',
-				enabled: false,
+				enabled: true,
 				reporter: ['text', 'lcov', 'clover'],
 				exclude: [...(configDefaults.coverage.exclude ?? []), ...(options.test?.coverage?.exclude ?? [])]
 			},
