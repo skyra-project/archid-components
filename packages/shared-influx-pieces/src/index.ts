@@ -1,25 +1,8 @@
-import { envIsNullish, type BooleanString } from '@skyra/env-utilities';
-import { container } from '@skyra/http-framework';
-import { Client, areInfluxCredentialsSet, getInfluxConnectionOptions } from '@skyra/influx-utilities';
+import { type BooleanString } from '@skyra/env-utilities';
+import { Client } from '@skyra/influx-utilities';
 
-let interactionCount: number;
-let initialized = false;
-
-export function isInfluxInitialized() {
-	return initialized;
-}
-
-export function initializeInflux() {
-	if (envIsNullish('INFLUX_ENABLED') || !areInfluxCredentialsSet()) return;
-
-	container.analytics = new Client(getInfluxConnectionOptions());
-
-	initialized = true;
-}
-
-export const getInteractionCount = () => interactionCount;
-export const setInteractionCount = (count: number) => (interactionCount = count);
-export const incrementInteractionCount = () => interactionCount++;
+export { InfluxListener } from './lib/InfluxListener.js';
+export { initializeInflux, getInteractionCount, setInteractionCount, incrementInteractionCount } from './lib/functions.js';
 
 declare module '@sapphire/pieces' {
 	export interface Container {
@@ -30,12 +13,5 @@ declare module '@sapphire/pieces' {
 declare module '@skyra/env-utilities' {
 	interface Env {
 		INFLUX_ENABLED: BooleanString;
-	}
-}
-
-declare module '@skyra/http-framework' {
-	interface ClientEvents {
-		analyticsSync: [guild: number];
-		resourceAnalyticsSync: [];
 	}
 }

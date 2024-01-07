@@ -1,8 +1,8 @@
 import type { Point } from '@influxdata/influxdb-client';
 import { Listener } from '@skyra/http-framework';
-import { isInfluxInitialized } from '../index.js';
 import { getClientId } from './api.js';
 import { Tags } from './enum.js';
+import { isInfluxInitialized } from './functions.js';
 
 export abstract class InfluxListener extends Listener {
 	public tags: [Tags, string][] = [];
