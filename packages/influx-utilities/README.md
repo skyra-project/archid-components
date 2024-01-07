@@ -27,12 +27,7 @@ Or, from the environment variables:
 // index.ts
 import { Client } from '@skyra/influx-utilities';
 
-const client = new Client({
-	url: 'https://influx.skyra.pw',
-	token: 'my-secret-token',
-	org: '153231',
-	writeBucket: 'analytics'
-});
+const client = new Client();
 ```
 
 ```sh
