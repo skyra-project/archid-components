@@ -4,7 +4,6 @@ import { getApproximateGuildCount } from './api.js';
 const Minute = 60_000;
 
 let analyticsSyncInterval: NodeJS.Timeout | null = null;
-let resourceAnalyticsSyncInterval: NodeJS.Timeout | null = null;
 
 export function registerSchedule() {
 	analyticsSyncInterval = setInterval(async () => {
@@ -12,26 +11,15 @@ export function registerSchedule() {
 		if (!guilds) return;
 		return container.client.emit('analyticsSync', guilds);
 	}, Minute * 10);
-
-	resourceAnalyticsSyncInterval = setInterval(() => container.client.emit('resourceAnalyticsSync'), Minute);
 }
 
 export function getAnalyticsSyncInterval() {
 	return analyticsSyncInterval;
 }
 
-export function getResourceAnalyticsSyncInterval() {
-	return resourceAnalyticsSyncInterval;
-}
-
 export function destroyIntervals() {
 	if (analyticsSyncInterval) {
 		analyticsSyncInterval.unref();
 		analyticsSyncInterval = null;
-	}
-
-	if (resourceAnalyticsSyncInterval) {
-		resourceAnalyticsSyncInterval.unref();
-		resourceAnalyticsSyncInterval = null;
 	}
 }
