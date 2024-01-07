@@ -1,4 +1,3 @@
-import { TimerManager } from '@sapphire/timer-manager';
 import { container } from '@skyra/http-framework';
 import { getApproximateGuildCount } from './api.js';
 
@@ -8,13 +7,13 @@ let analyticsSyncInterval: NodeJS.Timeout | null = null;
 let resourceAnalyticsSyncInterval: NodeJS.Timeout | null = null;
 
 export function registerSchedule() {
-	analyticsSyncInterval = TimerManager.setInterval(async () => {
+	analyticsSyncInterval = setInterval(async () => {
 		const guilds = await getApproximateGuildCount();
 		if (!guilds) return;
 		return container.client.emit('analyticsSync', guilds);
 	}, Minute * 10);
 
-	resourceAnalyticsSyncInterval = TimerManager.setInterval(() => container.client.emit('resourceAnalyticsSync'), Minute);
+	resourceAnalyticsSyncInterval = setInterval(() => container.client.emit('resourceAnalyticsSync'), Minute);
 }
 
 export function getAnalyticsSyncInterval() {

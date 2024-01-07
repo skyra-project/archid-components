@@ -31,7 +31,6 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@sapphire/timer-manager": "^1.0.0",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/influx-utilities": "workspace:^",
 		"discord-api-types": "^0.37.67",
