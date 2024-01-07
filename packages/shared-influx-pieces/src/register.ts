@@ -1,7 +1,7 @@
-import { initializeInflux } from 'index';
-import { registerSchedule } from './lib/utils/schedule';
-
 import './listeners/_load';
+
+import { initializeInflux } from './index.js';
+import { registerSchedule } from './lib/utils/schedule';
 
 void registerSchedule();
 void initializeInflux();
