@@ -12,4 +12,4 @@ export class SharedListener extends InfluxListener {
 	}
 }
 
-void container.stores.loadPiece({ name: 'influxInteractionHandler', piece: SharedListener, store: 'listeners' });
+void container.stores.loadPiece({ name: 'sharedInteractionHandlerRunInfluxCounter', piece: SharedListener, store: 'listeners' });

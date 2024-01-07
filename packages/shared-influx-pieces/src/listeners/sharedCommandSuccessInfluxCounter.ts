@@ -17,4 +17,4 @@ export class SharedListener extends InfluxListener {
 	}
 }
 
-void container.stores.loadPiece({ name: 'influxCommandSuccess', piece: SharedListener, store: 'listeners' });
+void container.stores.loadPiece({ name: 'sharedCommandSuccessInfluxCounter', piece: SharedListener, store: 'listeners' });

@@ -1,4 +1,4 @@
-import './analyticsSync.js';
-import './influxCommandSuccess.js';
-import './influxInteractionHandler.js';
+import './sharedAnalyticsSync.js';
+import './sharedCommandSuccessInfluxCounter.js';
+import './sharedInteractionHandlerRunInfluxCounter.js';
 import './resourceAnalyticsSync.js';

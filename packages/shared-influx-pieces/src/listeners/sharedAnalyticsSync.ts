@@ -53,4 +53,4 @@ export class SharedListener extends InfluxListener {
 	}
 }
 
-void container.stores.loadPiece({ name: 'influxAnalyticsSync', piece: SharedListener, store: 'listeners' });
+void container.stores.loadPiece({ name: 'sharedAnalyticsSync', piece: SharedListener, store: 'listeners' });
