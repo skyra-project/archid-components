@@ -7,7 +7,7 @@ import type { Awaitable } from '@sapphire/utilities';
 export abstract class Listener<Options extends Listener.Options = Listener.Options> extends Piece<Options, 'listeners'> {
 	public emitter: Listener.Emitter;
 	public event: string;
-	private _listener: (...args: readonly any[]) => unknown;
+	protected _listener: (...args: readonly any[]) => unknown;
 
 	public constructor(context: Listener.LoaderContext, options: Options) {
 		super(context, options);
@@ -18,22 +18,6 @@ export abstract class Listener<Options extends Listener.Options = Listener.Optio
 	}
 
 	public abstract run(...args: readonly any[]): Awaitable<unknown>;
-
-	public override onLoad() {
-		const count = this.emitter.getMaxListeners();
-		if (count !== 0) this.emitter.setMaxListeners(count + 1);
-
-		this.emitter.on(this.event, this._listener);
-		return super.onLoad();
-	}
-
-	public override onUnload() {
-		const count = this.emitter.getMaxListeners();
-		if (count !== 0) this.emitter.setMaxListeners(count - 1);
-
-		this.emitter.off(this.event, this._listener);
-		return super.onUnload();
-	}
 }
 
 export namespace Listener {
