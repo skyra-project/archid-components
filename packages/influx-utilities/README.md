@@ -6,27 +6,24 @@ A tiny opinionated abstraction layer for InfluxDB for interacting with a single 
 
 You can provide the configuration for the Influx client in several ways.
 
-### Environment Variables
-
-```typescript
-// index.ts
-import { Client } from '@skyra/influx-utilities';
-
-const client = new Client();
-```
-
-```sh
-# .env
-INFLUX_URL="https://influx.skyra.pw";
-INFLUX_ORG: "Skyra-Project";
-INFLUX_TOKEN: "my-secret-token";
-INFLUX_BUCKET: "analytics";
-```
-
 -   `INFLUX_URL`: `ConnectionOptions.url`, the base URL to be used.
 -   `INFLUX_ORG`: `ConnectionOptions.org`, the organization to use for the query and write APIs.
 -   `INFLUX_BUCKET`: `ConnectionOptions.writeBucket`, the bucket to write to in the write API.
 -   `INFLUX_TOKEN`: `ConnectionOptions.token`, the authentication token.
+
+### Environment Variables
+
+```typescript
+// index.ts
+process.env.INFLUX_URL="https://influx.skyra.pw";
+process.env.INFLUX_ORG: "Skyra-Project";
+process.env.INFLUX_TOKEN: "my-secret-token";
+process.env.INFLUX_BUCKET: "analytics";
+
+import { Client } from '@skyra/influx-utilities';
+
+const client = new Client();
+```
 
 ### `setInfluxVariables`
 
@@ -56,3 +53,5 @@ const client = new Client({
 	writeBucket: 'analytics'
 });
 ```
+
+
