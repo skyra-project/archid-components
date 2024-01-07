@@ -1,8 +1,12 @@
 import type { WeatherCode } from './enums';
 
+/** Represents a stringified bigint */
 export type IntegerString = `${bigint}`;
+
+/** Represents a stringified number */
 export type FloatString = `${number}`;
 
+/** Represents a weather object */
 export interface Weather {
 	current_condition: CurrentCondition[];
 	nearest_area: NearestArea[];
@@ -10,6 +14,7 @@ export interface Weather {
 	weather: WeatherElement[];
 }
 
+/** Represents the current weather conditions */
 export interface CurrentCondition {
 	FeelsLikeC: IntegerString;
 	FeelsLikeF: IntegerString;
@@ -35,10 +40,12 @@ export interface CurrentCondition {
 	windspeedMiles: IntegerString;
 }
 
+/** Represents a weather description */
 export interface WeatherDescription {
 	value: WeatherName;
 }
 
+/** Represents different possible weather conditions */
 export type WeatherName =
 	| 'Cloudy'
 	| 'Fog'
@@ -59,6 +66,7 @@ export type WeatherName =
 	| 'ThunderySnowShowers'
 	| 'VeryCloudy';
 
+/** Represents the nearest area */
 export interface NearestArea {
 	areaName: ValueWrapper[];
 	country: ValueWrapper[];
@@ -69,19 +77,23 @@ export interface NearestArea {
 	weatherUrl: Url[];
 }
 
+/** Represents a value wrapper */
 export interface ValueWrapper {
 	value: string;
 }
 
+/** Represents a URL */
 export interface Url {
 	value: string;
 }
 
+/** Represents a request */
 export interface Request {
 	query: string;
 	type: 'LatLon';
 }
 
+/** Represents a weather element */
 export interface WeatherElement {
 	astronomy: Astronomy[];
 	avgtempC: IntegerString;
@@ -97,6 +109,7 @@ export interface WeatherElement {
 	uvIndex: IntegerString;
 }
 
+/** Represents astronomy data */
 export interface Astronomy {
 	moon_illumination: IntegerString;
 	moon_phase: MoonPhase;
@@ -106,6 +119,7 @@ export interface Astronomy {
 	sunset: Hour;
 }
 
+/** Represents different moon phases */
 export type MoonPhase =
 	| 'New Moon'
 	| 'Waxing Crescent'
@@ -116,8 +130,10 @@ export type MoonPhase =
 	| 'Last Quarter'
 	| 'Waning Crescent';
 
+/** Represents a time in the format of hours and minutes */
 export type Hour = `${bigint}:${bigint} ${'AM' | 'PM'}`;
 
+/** Represents hourly weather data */
 export interface Hourly {
 	DewPointC: IntegerString;
 	DewPointF: IntegerString;
@@ -160,14 +176,31 @@ export interface Hourly {
 	windspeedMiles: IntegerString;
 }
 
+/** Represents wind direction from the north */
 export type WindDirectionNorth = 'N' | 'NNE';
+
+/** Represents wind direction from the northeast */
 export type WindDirectionNorthEast = 'NE' | 'ENE';
+
+/** Represents wind direction from the east */
 export type WindDirectionEast = 'E' | 'ESE';
+
+/** Represents wind direction from the southeast */
 export type WindDirectionSouthEast = 'SE' | 'SSE';
+
+/** Represents wind direction from the south */
 export type WindDirectionSouth = 'S' | 'SSW';
+
+/** Represents wind direction from the southwest */
 export type WindDirectionSouthWest = 'SW' | 'WSW';
+
+/** Represents wind direction from the west */
 export type WindDirectionWest = 'W' | 'WNW';
+
+/** Represents wind direction from the northwest */
 export type WindDirectionNorthWest = 'NW' | 'NNW';
+
+/** Represents all possible wind directions */
 export type WindDirection =
 	| WindDirectionNorth
 	| WindDirectionNorthEast

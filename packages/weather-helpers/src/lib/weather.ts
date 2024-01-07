@@ -54,12 +54,25 @@ const getWeatherNameMap = new Map<WeatherCode, WeatherName>([
 	[WeatherCode.PatchyLightSnowInAreaWithThunder, 'ThunderySnowShowers'],
 	[WeatherCode.ModerateOrHeavySnowInAreaWithThunder, 'ThunderySnowShowers']
 ]);
+
+/**
+ * Retrieves the name of the weather based on the provided weather code.
+ * @param code The weather code.
+ * @returns The name of the weather.
+ * @throws Error if the provided code is not available.
+ */
 export function getWeatherName(code: WeatherCode): WeatherName {
 	const name = getWeatherNameMap.get(code);
 	if (name === undefined) throw new Error(`The code '${code}' is not available.`);
 	return name;
 }
 
+/**
+ * Retrieves weather data for a given query and language.
+ * @param query - The query string for the weather data.
+ * @param lang - The language code for the weather data.
+ * @returns A promise that resolves to a Result object containing either the weather data or an error identifier.
+ */
 export async function getWeatherData(query: string, lang: string): Promise<Result<Weather, Identifiers>> {
 	const url = new URL(`${BaseUrl}~${encodeURIComponent(query)}`);
 	url.searchParams.append('format', 'j1');

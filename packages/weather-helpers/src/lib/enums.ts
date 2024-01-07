@@ -1,3 +1,7 @@
+/**
+ * Enum representing weather codes.
+ * Each weather condition is associated with a specific code.
+ */
 export const enum WeatherCode {
 	ClearOrSunny = '113',
 	PartlyCloudy = '116',
@@ -49,6 +53,10 @@ export const enum WeatherCode {
 	ModerateOrHeavySnowInAreaWithThunder = '395'
 }
 
+/**
+ * Enum representing different types of identifiers.
+ * These identifiers are used to categorize different types of errors or events.
+ */
 export enum Identifiers {
 	AbortError = 'AbortError',
 	BlockedLocation = 'BlockedLocation',
