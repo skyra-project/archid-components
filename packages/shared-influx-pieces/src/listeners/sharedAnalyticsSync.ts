@@ -10,6 +10,12 @@ const Minute = 60_000;
 export class SharedListener extends InfluxListener {
 	public interval: NodeJS.Timeout | null = null;
 
+	public run(guilds: number) {
+		this.writeGuildCountPoint(guilds);
+		this.writeInteractionCountPoint();
+		void this.flush();
+	}
+
 	public override onLoad() {
 		this.interval = setInterval(() => void this.onIntervalTick(), Minute * 10);
 		return super.onLoad();
@@ -18,12 +24,6 @@ export class SharedListener extends InfluxListener {
 	public override onUnload() {
 		clearInterval(this.interval!);
 		return super.onUnload();
-	}
-
-	public run(guilds: number) {
-		this.writeGuildCountPoint(guilds);
-		this.writeInteractionCountPoint();
-		void this.flush();
 	}
 
 	private async onIntervalTick() {
