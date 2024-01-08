@@ -1,5 +1,4 @@
 import { envIsNullish, envParseString, type EnvString } from '@skyra/env-utilities';
-import type { ConnectionOptions } from './types.js';
 
 let Url: string | null | undefined = undefined;
 let Org: string | null | undefined = undefined;
