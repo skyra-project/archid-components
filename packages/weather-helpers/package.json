@@ -1,7 +1,7 @@
 {
-	"name": "@skyra/http-framework",
-	"version": "2.0.0",
-	"description": "The framework for ArchId Network's HTTP-only bots",
+	"name": "@skyra/weather-helpers",
+	"version": "1.1.0",
+	"description": "Very basic weather helper functions used across several ArchId bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
 	"main": "dist/esm/index.js",
@@ -16,7 +16,7 @@
 	},
 	"sideEffects": false,
 	"scripts": {
-		"test": "vitest run",
+		"test": "eslint src --ext ts -c ../../package.json",
 		"build": "tsup",
 		"watch": "tsup --watch",
 		"typecheck": "tsc -p tsconfig.eslint.json",
@@ -25,28 +25,10 @@
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
 	},
-	"dependencies": {
-		"@discordjs/builders": "^1.7.0",
-		"@discordjs/collection": "^1.5.3",
-		"@discordjs/rest": "^2.2.0",
-		"@discordjs/util": "^1.0.2",
-		"@sapphire/pieces": "^4.2.0",
-		"@sapphire/result": "^2.6.5",
-		"@sapphire/utilities": "^3.15.2",
-		"@vladfrangu/async_event_emitter": "^2.2.4",
-		"discord-api-types": "^0.37.67"
-	},
-	"devDependencies": {
-		"@favware/cliff-jumper": "^2.2.3",
-		"@vitest/coverage-v8": "^1.1.3",
-		"tsup": "^8.0.1",
-		"typescript": "^5.3.3",
-		"vitest": "^1.1.3"
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/skyra-project/archid-components.git",
-		"directory": "packages/http-framework"
+		"directory": "packages/weather-helpers"
 	},
 	"files": [
 		"dist/"
@@ -68,5 +50,17 @@
 	},
 	"publishConfig": {
 		"access": "public"
+	},
+	"dependencies": {
+		"@sapphire/result": "^2.6.5",
+		"@sapphire/utilities": "^3.15.2",
+		"@skyra/safe-fetch": "workspace:^"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^2.2.3",
+		"@types/he": "^1.2.3",
+		"esbuild-plugin-version-injector": "^1.2.1",
+		"tsup": "^8.0.1",
+		"typescript": "^5.3.3"
 	}
 }

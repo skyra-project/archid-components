@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/twitch-helpers@2.0.1](https://github.com/skyra-project/archid-components/compare/@skyra/twitch-helpers@2.0.1...@skyra/twitch-helpers@2.0.1) - (2024-01-06)
+
+## 🐛 Bug Fixes
+
+- **twitch-helpers:** Remove duplicate function (#314) ([8c39f14](https://github.com/skyra-project/archid-components/commit/8c39f144d05e641d254244d8222fa5299d0fb1c2))
+
 # [@skyra/twitch-helpers@2.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/twitch-helpers@2.0.0...@skyra/twitch-helpers@2.0.0) - (2023-12-27)
 
 ## 🏠 Refactor

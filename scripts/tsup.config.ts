@@ -26,7 +26,7 @@ export function createTsupConfig(options?: EnhancedTsupOptions) {
 						outExtension: () => ({ js: '.cjs' }),
 						...options?.cjsOptions
 					})
-			  ]),
+				]),
 		defineConfig({
 			...baseOptions,
 			outDir: 'dist/esm',
