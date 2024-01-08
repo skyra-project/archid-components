@@ -1,6 +1,5 @@
 import { container } from '@skyra/http-framework';
 import { InfluxListener } from '../lib/InfluxListener.js';
-import { incrementInteractionCount } from '../lib/functions.js';
 
 export class SharedListener extends InfluxListener {
 	public constructor(context: InfluxListener.LoaderContext, options: InfluxListener) {
@@ -8,7 +7,13 @@ export class SharedListener extends InfluxListener {
 	}
 
 	public run() {
-		incrementInteractionCount();
+		SharedListener.incrementInteractionCount();
+	}
+
+	public static interactionCount = 0;
+
+	private static incrementInteractionCount() {
+		SharedListener.interactionCount++;
 	}
 }
 

@@ -3,7 +3,7 @@ import { Point } from '@skyra/influx-utilities';
 import { InfluxListener } from '../lib/InfluxListener.js';
 import { getApproximateGuildCount } from '../lib/api.js';
 import { Actions, Points, Tags } from '../lib/enum.js';
-import { getInteractionCount, setInteractionCount } from '../lib/functions.js';
+import { SharedListener as SharedInteractionHandlerRunInfluxCounter } from './sharedInteractionHandlerRunInfluxCounter.js';
 
 const Minute = 60_000;
 
@@ -42,14 +42,22 @@ export class SharedListener extends InfluxListener {
 	}
 
 	private writeInteractionCountPoint() {
-		const value = getInteractionCount();
-		setInteractionCount(0);
+		const value = SharedListener.getInteractionCount();
+		SharedListener.resetInteractionCount();
 
 		const point = new Point(Points.InteractionCount) //
 			.tag(Tags.Action, Actions.Sync)
 			.intField('value', value);
 
 		this.writePoint(point);
+	}
+
+	private static getInteractionCount() {
+		return SharedInteractionHandlerRunInfluxCounter.interactionCount;
+	}
+
+	private static resetInteractionCount() {
+		SharedInteractionHandlerRunInfluxCounter.interactionCount = 0;
 	}
 }
 
