@@ -23,6 +23,7 @@ container.stores.register(new ListenerStore());
 
 export class Client extends AsyncEventEmitter<MappedClientEvents> {
 	public server!: Server;
+	public readonly clientId: string;
 	public readonly bodySizeLimit: number;
 	public readonly httpReplyOnError: boolean;
 	#discordPublicKey: string;
@@ -40,11 +41,13 @@ export class Client extends AsyncEventEmitter<MappedClientEvents> {
 		const token = options.discordToken ?? process.env.DISCORD_TOKEN;
 		if (!token) throw new Error('The discordToken cannot be empty');
 
+		this.clientId = options.clientId ?? process.env.DISCORD_CLIENT_ID ?? Buffer.from(token.split('.')[0], 'base64').toString();
+
 		container.client = this;
 		container.rest.setToken(token);
 		container.idParser ??= new StringIdParser();
 		container.applicationCommandRegistry.setup({
-			clientId: options.clientId ?? process.env.DISCORD_CLIENT_ID ?? Buffer.from(token.split('.')[0], 'base64').toString(),
+			clientId: this.clientId,
 			rest: container.rest,
 			authPrefix: options.authPrefix
 		});
