@@ -1,6 +1,5 @@
 import type { Point } from '@influxdata/influxdb-client';
-import { Listener } from '@skyra/http-framework';
-import { getClientId } from './api.js';
+import { Listener, container } from '@skyra/http-framework';
 import { Tags } from './enum.js';
 import { isInfluxInitialized } from './functions.js';
 
@@ -11,8 +10,8 @@ export abstract class InfluxListener extends Listener {
 		super(context, { enabled: isInfluxInitialized(), ...options });
 	}
 
-	public override async onLoad() {
-		await this.initTags();
+	public override onLoad() {
+		this.initTags();
 		return super.onLoad();
 	}
 
@@ -36,9 +35,8 @@ export abstract class InfluxListener extends Listener {
 		return point;
 	}
 
-	protected async initTags() {
-		const clientId = await getClientId();
-		if (clientId) this.tags.push([Tags.Client, clientId]);
+	protected initTags() {
+		this.tags.push([Tags.Client, container.client.id]);
 		this.tags.push([Tags.OriginEvent, this.event]);
 	}
 }

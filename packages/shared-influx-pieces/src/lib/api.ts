@@ -10,12 +10,3 @@ export async function getApproximateGuildCount() {
 		err: () => null
 	});
 }
-
-export async function getClientId() {
-	const result = await Result.fromAsync(() => container.rest.get(Routes.currentApplication()) as Promise<APIApplication>);
-
-	return result.match({
-		ok: (value) => value.id ?? null,
-		err: () => null
-	});
-}
