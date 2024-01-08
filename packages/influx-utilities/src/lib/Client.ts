@@ -1,6 +1,6 @@
 import { InfluxDB, type Point, type QueryApi, type WriteApi } from '@influxdata/influxdb-client';
-import { envParseString } from '@skyra/env-utilities';
 import type { ConnectionOptions } from './types';
+import { getRequiredBucket, getRequiredOrg, getRequiredToken, getRequiredUrl } from './variables';
 
 export class Client {
 	public readonly influx: InfluxDB;
@@ -10,10 +10,10 @@ export class Client {
 	private readonly injectedTags: [name: string, value: string][] = [];
 
 	public constructor(options: ConnectionOptions) {
-		const url = envParseString('INFLUX_URL', options.url);
-		const token = envParseString('INFLUX_TOKEN', options.token);
-		const bucket = envParseString('INFLUX_BUCKET', options.writeBucket);
-		const org = envParseString('INFLUX_ORG', options.org);
+		const url = options.url ?? getRequiredUrl();
+		const token = options.token ?? getRequiredToken();
+		const bucket = options.writeBucket ?? getRequiredBucket();
+		const org = options.org ?? getRequiredOrg();
 
 		this.influx = new InfluxDB({ url, token, ...options });
 		this.queryApi = this.influx.getQueryApi(org);
