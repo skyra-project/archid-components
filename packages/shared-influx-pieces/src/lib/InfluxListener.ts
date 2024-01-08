@@ -37,8 +37,8 @@ export abstract class InfluxListener extends Listener {
 	}
 
 	protected async initTags() {
-		const clientID = await getClientId();
-		if (clientID) this.tags.push([Tags.Client, clientID]);
+		const clientId = await getClientId();
+		if (clientId) this.tags.push([Tags.Client, clientId]);
 		this.tags.push([Tags.OriginEvent, this.event]);
 	}
 }
