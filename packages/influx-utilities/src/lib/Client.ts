@@ -9,7 +9,7 @@ export class Client {
 
 	private readonly injectedTags: [name: string, value: string][] = [];
 
-	public constructor(options: ConnectionOptions) {
+	public constructor(options: ConnectionOptions = {}) {
 		const url = options.url ?? getRequiredUrl();
 		const token = options.token ?? getRequiredToken();
 		const bucket = options.writeBucket ?? getRequiredBucket();

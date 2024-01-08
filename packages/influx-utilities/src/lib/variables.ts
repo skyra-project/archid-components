@@ -49,16 +49,6 @@ export function areInfluxCredentialsSet() {
 	return getUrl() !== null && getOrg() !== null && getToken() !== null && getBucket() !== null;
 }
 
-const InfluxConnectionOptions: ConnectionOptions = {};
-
-export function getInfluxConnectionOptions() {
-	getRequiredUrl();
-	getRequiredOrg();
-	getRequiredToken();
-	getRequiredBucket();
-	return InfluxConnectionOptions;
-}
-
 const URL_KEY = 'INFLUX_URL' satisfies EnvString;
 export function getUrl() {
 	return Url === undefined ? setInfluxUrl(getVariable(URL_KEY)) : Url;
@@ -67,10 +57,6 @@ export const getRequiredUrl = makeRequiredCallback(URL_KEY, getUrl);
 
 function setInfluxUrl(value: string | null) {
 	Url = value;
-	if (value !== null) {
-		InfluxConnectionOptions.url = value;
-	}
-
 	return Url;
 }
 
@@ -81,10 +67,6 @@ export function getOrg() {
 export const getRequiredOrg = makeRequiredCallback(ORG_KEY, getOrg);
 function setInfluxOrg(value: string | null) {
 	Org = value;
-	if (value !== null) {
-		InfluxConnectionOptions.org = value;
-	}
-
 	return Org;
 }
 
@@ -95,9 +77,6 @@ export function getToken() {
 export const getRequiredToken = makeRequiredCallback(TOKEN_KEY, getToken);
 function setInfluxToken(value: string | null) {
 	Token = value;
-	if (value !== null) {
-		InfluxConnectionOptions.token = value;
-	}
 
 	return Token;
 }
@@ -109,9 +88,6 @@ export function getBucket() {
 export const getRequiredBucket = makeRequiredCallback(BUCKET_KEY, getBucket);
 function setInfluxBucket(value: string | null) {
 	Bucket = value;
-	if (value !== null) {
-		InfluxConnectionOptions.writeBucket = value;
-	}
 
 	return Bucket;
 }
