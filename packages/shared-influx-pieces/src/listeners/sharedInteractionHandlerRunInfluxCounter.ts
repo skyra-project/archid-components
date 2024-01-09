@@ -7,13 +7,7 @@ export class SharedListener extends InfluxListener {
 	}
 
 	public run() {
-		SharedListener.incrementInteractionCount();
-	}
-
-	public static interactionCount = 0;
-
-	private static incrementInteractionCount() {
-		SharedListener.interactionCount++;
+		container.analytics!.incrementInteractionCount();
 	}
 }
 
