@@ -1,7 +1,7 @@
-import { container, type ClientEventCommandContext } from '@skyra/http-framework';
+import { type ClientEventCommandContext } from '@skyra/http-framework';
 import { Point } from '@skyra/influx-utilities';
-import { InfluxListener } from '../lib/InfluxListener.js';
 import { Actions, Points, Tags } from '../lib/enum.js';
+import { InfluxListener } from '../lib/structures/InfluxListener.js';
 
 export class SharedListener extends InfluxListener {
 	public constructor(context: InfluxListener.LoaderContext, options: InfluxListener.Options) {
@@ -16,5 +16,3 @@ export class SharedListener extends InfluxListener {
 		this.writePoint(point);
 	}
 }
-
-void container.stores.loadPiece({ name: 'sharedCommandSuccessInfluxCounter', piece: SharedListener, store: 'listeners' });

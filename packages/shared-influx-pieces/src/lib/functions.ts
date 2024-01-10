@@ -1,7 +1,7 @@
 import { envParseBoolean } from '@skyra/env-utilities';
 import { container } from '@skyra/http-framework';
 import { areInfluxCredentialsSet } from '@skyra/influx-utilities';
-import { InfluxClient } from './influxClient';
+import { InfluxClient } from './structures/InfluxClient.js';
 
 export function isInfluxInitialized() {
 	return container.analytics && envParseBoolean('INFLUX_ENABLED', true);

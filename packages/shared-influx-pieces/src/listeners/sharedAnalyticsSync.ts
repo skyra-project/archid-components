@@ -1,8 +1,8 @@
 import { container } from '@skyra/http-framework';
 import { Point } from '@skyra/influx-utilities';
-import { InfluxListener } from '../lib/InfluxListener.js';
 import { getApproximateGuildCount } from '../lib/api.js';
 import { Actions, Points, Tags } from '../lib/enum.js';
+import { InfluxListener } from '../lib/structures/InfluxListener.js';
 
 const Minute = 60_000;
 
@@ -51,5 +51,3 @@ export class SharedListener extends InfluxListener {
 		this.writePoint(point);
 	}
 }
-
-void container.stores.loadPiece({ name: 'sharedAnalyticsSync', piece: SharedListener, store: 'listeners' });

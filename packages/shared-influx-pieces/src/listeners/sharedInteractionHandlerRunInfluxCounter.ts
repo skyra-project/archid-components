@@ -1,5 +1,5 @@
 import { container } from '@skyra/http-framework';
-import { InfluxListener } from '../lib/InfluxListener.js';
+import { InfluxListener } from '../lib/structures/InfluxListener.js';
 
 export class SharedListener extends InfluxListener {
 	public constructor(context: InfluxListener.LoaderContext, options: InfluxListener) {
@@ -10,5 +10,3 @@ export class SharedListener extends InfluxListener {
 		container.analytics!.incrementInteractionCount();
 	}
 }
-
-void container.stores.loadPiece({ name: 'sharedInteractionHandlerRunInfluxCounter', piece: SharedListener, store: 'listeners' });
