@@ -7,7 +7,8 @@ export enum Points {
 export enum Tags {
 	Client = 'client_id',
 	Action = 'action',
-	OriginEvent = 'origin_event'
+	OriginEvent = 'origin_event',
+	InteractionType = 'interaction_type'
 }
 
 export enum Actions {

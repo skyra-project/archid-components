@@ -1,4 +1,4 @@
-import { container } from '@skyra/http-framework';
+import { container, type ClientEventInteractionHandlerContext } from '@skyra/http-framework';
 import { InfluxListener } from '../lib/structures/InfluxListener.js';
 
 export class SharedListener extends InfluxListener {
@@ -6,7 +6,7 @@ export class SharedListener extends InfluxListener {
 		super(context, { ...options, event: 'interactionHandlerRun' });
 	}
 
-	public run() {
-		container.analytics!.interactionCount++;
+	public run(context: ClientEventInteractionHandlerContext) {
+		container.analytics!.interactionCount[context.interaction.type] += 1;
 	}
 }

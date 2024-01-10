@@ -1,5 +1,6 @@
 import { container } from '@skyra/http-framework';
 import { Point } from '@skyra/influx-utilities';
+import type { InteractionType } from 'discord-api-types/v10';
 import { getApproximateGuildCount } from '../lib/api.js';
 import { Actions, Points, Tags } from '../lib/enum.js';
 import { InfluxListener } from '../lib/structures/InfluxListener.js';
@@ -11,7 +12,7 @@ export class SharedListener extends InfluxListener {
 
 	public run(guilds: number) {
 		this.writeGuildCountPoint(guilds);
-		this.writeInteractionCountPoint();
+		this.writeInteractionCountPoints();
 		void this.flush();
 	}
 
@@ -40,14 +41,20 @@ export class SharedListener extends InfluxListener {
 		this.writePoint(point);
 	}
 
-	private writeInteractionCountPoint() {
-		const value = container.analytics!.interactionCount;
-		container.analytics!.interactionCount = 0;
+	private writeInteractionCountPoints() {
+		const interactionCounts = Object.entries(container.analytics!.interactionCount);
 
-		const point = new Point(Points.InteractionCount) //
-			.tag(Tags.Action, Actions.Sync)
-			.intField('value', value);
+		const points = interactionCounts.map(([type, count]) => {
+			container.analytics!.interactionCount[Number(type) as InteractionType] = 0;
 
-		this.writePoint(point);
+			const point = new Point(Points.InteractionCount) //
+				.tag(Tags.Action, Actions.Sync)
+				.tag(Tags.InteractionType, type)
+				.intField('value', count);
+
+			return point;
+		});
+
+		this.writePoints(points);
 	}
 }
