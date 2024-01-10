@@ -1,7 +1,7 @@
 import type { Point } from '@influxdata/influxdb-client';
 import { Listener, container } from '@skyra/http-framework';
-import { Tags } from '../enum.js';
-import { isInfluxInitialized } from '../functions.js';
+import { Tags } from '../util/enum.js';
+import { isInfluxInitialized } from '../util/functions.js';
 
 export abstract class InfluxListener extends Listener {
 	public tags: [Tags, string][] = [];
@@ -16,16 +16,16 @@ export abstract class InfluxListener extends Listener {
 	}
 
 	public writePoint(point: Point) {
-		return this.container.analytics!.writeApi.writePoint(this.injectTags(point));
+		return this.container.influx!.writeApi.writePoint(this.injectTags(point));
 	}
 
 	public writePoints(points: readonly Point[]) {
 		points = points.map((point) => this.injectTags(point));
-		return this.container.analytics!.writeApi.writePoints(points);
+		return this.container.influx!.writeApi.writePoints(points);
 	}
 
 	public flush() {
-		return this.container.analytics!.writeApi.flush();
+		return this.container.influx!.writeApi.flush();
 	}
 
 	protected injectTags(point: Point) {

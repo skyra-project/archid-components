@@ -1,17 +1,21 @@
-import { container } from '@skyra/http-framework';
 import { Point } from '@skyra/influx-utilities';
 import { InteractionType } from 'discord-api-types/v10';
-import type { InteractionCounts } from '../lib/InfluxClient.js';
-import { getApproximateGuildCount } from '../lib/api.js';
-import { Actions, Points, Tags } from '../lib/enum.js';
+import type { InteractionCounterKey } from '../lib/InfluxClient.js';
 import { InfluxListener } from '../lib/structures/InfluxListener.js';
+import { getApproximateGuildCount } from '../lib/util/api.js';
+import { Actions, Points, Tags } from '../lib/util/enum.js';
 
 const Minute = 60_000;
 
 export class SharedListener extends InfluxListener {
 	public interval: NodeJS.Timeout | null = null;
 
-	private readonly InteractionTypes: readonly (keyof InteractionCounts)[] = [InteractionType.MessageComponent, InteractionType.ModalSubmit];
+	private readonly InteractionTypes = [
+		InteractionType.ApplicationCommand,
+		InteractionType.MessageComponent,
+		InteractionType.ApplicationCommandAutocomplete,
+		InteractionType.ModalSubmit
+	] as const satisfies readonly InteractionCounterKey[];
 
 	public run(guilds: number) {
 		this.writeGuildCountPoint(guilds);
@@ -45,7 +49,7 @@ export class SharedListener extends InfluxListener {
 	}
 
 	private writeInteractionCountPoints() {
-		const counts = container.analytics!.interactionCounts;
+		const counts = this.container.influx!.interactionCounters;
 		const points = this.InteractionTypes.map((type) => {
 			const point = new Point(Points.InteractionCount) //
 				.tag(Tags.Action, Actions.Sync)
