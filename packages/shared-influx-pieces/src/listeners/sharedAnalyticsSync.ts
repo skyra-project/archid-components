@@ -1,10 +1,10 @@
 import { container } from '@skyra/http-framework';
 import { Point } from '@skyra/influx-utilities';
 import { InteractionType } from 'discord-api-types/v10';
+import type { InteractionCounts } from '../lib/InfluxClient.js';
 import { getApproximateGuildCount } from '../lib/api.js';
 import { Actions, Points, Tags } from '../lib/enum.js';
 import { InfluxListener } from '../lib/structures/InfluxListener.js';
-import type { InteractionCounts } from 'lib/InfluxClient.js';
 
 const Minute = 60_000;
 
