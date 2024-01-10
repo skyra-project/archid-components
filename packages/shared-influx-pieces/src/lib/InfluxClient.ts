@@ -1,12 +1,12 @@
 import { Client, type ConnectionOptions } from '@skyra/influx-utilities';
-import { loadInfluxListeners } from '../../listeners/_load.js';
+import { loadInfluxListeners } from '../listeners/_load.js';
 import { InteractionType } from 'discord-api-types/v10';
 
 export class InfluxClient extends Client {
 	/**
 	 * Represents the count of different types of interactions.
 	 */
-	public interactionCount: Record<InteractionType, number> = {
+	public interactionCounts: Record<InteractionType, number> = {
 		[InteractionType.ApplicationCommand]: 0,
 		[InteractionType.MessageComponent]: 0,
 		[InteractionType.ApplicationCommandAutocomplete]: 0,

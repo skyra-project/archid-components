@@ -1,6 +1,6 @@
 import { container } from '@skyra/http-framework';
 import { Point } from '@skyra/influx-utilities';
-import type { InteractionType } from 'discord-api-types/v10';
+import { InteractionType } from 'discord-api-types/v10';
 import { getApproximateGuildCount } from '../lib/api.js';
 import { Actions, Points, Tags } from '../lib/enum.js';
 import { InfluxListener } from '../lib/structures/InfluxListener.js';
@@ -9,6 +9,11 @@ const Minute = 60_000;
 
 export class SharedListener extends InfluxListener {
 	public interval: NodeJS.Timeout | null = null;
+
+	/**
+	 * An array of interaction types.
+	 */
+	private readonly InteractionTypes = Object.values(InteractionType).filter((value) => typeof value === 'number') as readonly InteractionType[];
 
 	public run(guilds: number) {
 		this.writeGuildCountPoint(guilds);
@@ -42,15 +47,15 @@ export class SharedListener extends InfluxListener {
 	}
 
 	private writeInteractionCountPoints() {
-		const interactionCounts = Object.entries(container.analytics!.interactionCount);
-
-		const points = interactionCounts.map(([type, count]) => {
-			container.analytics!.interactionCount[Number(type) as InteractionType] = 0;
-
+		const counts = container.analytics!.interactionCounts;
+		const points = this.InteractionTypes.map((type) => {
 			const point = new Point(Points.InteractionCount) //
 				.tag(Tags.Action, Actions.Sync)
-				.tag(Tags.InteractionType, type)
-				.intField('value', count);
+				.tag(Tags.InteractionType, `${type}`)
+				.intField('value', counts[type]);
+
+			// Reset back to 0
+			counts[type] = 0;
 
 			return point;
 		});

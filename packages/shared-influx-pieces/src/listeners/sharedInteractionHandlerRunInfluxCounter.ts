@@ -7,6 +7,6 @@ export class SharedListener extends InfluxListener {
 	}
 
 	public run(context: ClientEventInteractionHandlerContext) {
-		container.analytics!.interactionCount[context.interaction.type] += 1;
+		container.analytics!.interactionCounts[context.interaction.type] += 1;
 	}
 }
