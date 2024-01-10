@@ -1,0 +1,4 @@
+name: shared-influx-pieces
+org: skyra
+install: true
+packagePath: packages/shared-influx-pieces

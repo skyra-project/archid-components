@@ -615,6 +615,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@influxdata/influxdb-client@npm:^1.24.0":
+  version: 1.33.2
+  resolution: "@influxdata/influxdb-client@npm:1.33.2"
+  checksum: 438a538ccd3ea7b8286b62e5ac9ef88b9c56b36465e889f088f5a210aa2fe638f4b5e255c383a12dec39cad979121e1743daeb163cfe46f60a70949a7f0bb49d
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -1074,6 +1081,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@skyra/influx-utilities@workspace:^, @skyra/influx-utilities@workspace:packages/influx-utilities":
+  version: 0.0.0-use.local
+  resolution: "@skyra/influx-utilities@workspace:packages/influx-utilities"
+  dependencies:
+    "@favware/cliff-jumper": "npm:^2.2.3"
+    "@influxdata/influxdb-client": "npm:^1.24.0"
+    "@skyra/env-utilities": "workspace:^"
+    esbuild-plugin-version-injector: "npm:^1.2.1"
+    tsup: "npm:^8.0.1"
+    typescript: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
 "@skyra/logger@workspace:packages/logger":
   version: 0.0.0-use.local
   resolution: "@skyra/logger@workspace:packages/logger"
@@ -1128,6 +1148,19 @@ __metadata:
     "@skyra/env-utilities": "workspace:^"
     "@skyra/http-framework": "workspace:^"
     "@skyra/http-framework-i18n": "workspace:^"
+    discord-api-types: "npm:^0.37.67"
+    tslib: "npm:^2.6.2"
+    typescript: "npm:^5.3.3"
+  languageName: unknown
+  linkType: soft
+
+"@skyra/shared-influx-pieces@workspace:packages/shared-influx-pieces":
+  version: 0.0.0-use.local
+  resolution: "@skyra/shared-influx-pieces@workspace:packages/shared-influx-pieces"
+  dependencies:
+    "@favware/cliff-jumper": "npm:^2.2.3"
+    "@skyra/http-framework": "workspace:^"
+    "@skyra/influx-utilities": "workspace:^"
     discord-api-types: "npm:^0.37.67"
     tslib: "npm:^2.6.2"
     typescript: "npm:^5.3.3"

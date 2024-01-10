@@ -1,0 +1,64 @@
+{
+	"name": "@skyra/influx-utilities",
+	"version": "1.0.0",
+	"description": "A tiny opinionated abstraction layer for InfluxDB for interacting with a single organization",
+	"author": "@skyra",
+	"license": "Apache-2.0",
+	"main": "dist/esm/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/esm/index.d.ts",
+	"type": "module",
+	"exports": {
+		"import": {
+			"types": "./dist/esm/index.d.ts",
+			"default": "./dist/esm/index.js"
+		}
+	},
+	"sideEffects": false,
+	"scripts": {
+		"test": "eslint src --ext ts -c ../../package.json",
+		"build": "tsup",
+		"watch": "tsup --watch",
+		"typecheck": "tsc -p tsconfig.eslint.json",
+		"lint": "eslint src --ext ts --fix -c ../../package.json",
+		"prepack": "yarn build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/skyra-project/archid-components.git",
+		"directory": "packages/influx-utilities"
+	},
+	"files": [
+		"dist/"
+	],
+	"engines": {
+		"node": ">=18"
+	},
+	"keywords": [
+		"discord",
+		"api",
+		"http",
+		"skyra",
+		"typescript",
+		"ts",
+		"yarn"
+	],
+	"bugs": {
+		"url": "https://github.com/skyra-project/archid-components/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@influxdata/influxdb-client": "^1.24.0",
+		"@skyra/env-utilities": "workspace:^"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^2.2.3",
+		"esbuild-plugin-version-injector": "^1.2.1",
+		"tsup": "^8.0.1",
+		"typescript": "^5.3.3"
+	}
+}
