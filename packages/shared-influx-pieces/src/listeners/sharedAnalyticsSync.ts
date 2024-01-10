@@ -42,7 +42,7 @@ export class SharedListener extends InfluxListener {
 
 	private writeInteractionCountPoint() {
 		const value = container.analytics!.interactionCount;
-		container.analytics!.setInteractionCount(0);
+		container.analytics!.interactionCount = 0;
 
 		const point = new Point(Points.InteractionCount) //
 			.tag(Tags.Action, Actions.Sync)

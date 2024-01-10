@@ -7,6 +7,6 @@ export class SharedListener extends InfluxListener {
 	}
 
 	public run() {
-		container.analytics!.incrementInteractionCount();
+		container.analytics!.interactionCount++;
 	}
 }

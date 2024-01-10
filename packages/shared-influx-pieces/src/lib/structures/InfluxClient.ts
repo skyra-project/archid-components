@@ -12,19 +12,4 @@ export class InfluxClient extends Client {
 
 		loadInfluxListeners();
 	}
-
-	/**
-	 * Increments the interaction count.
-	 */
-	public incrementInteractionCount() {
-		this.interactionCount++;
-	}
-
-	/**
-	 * Sets the interaction count.
-	 * @param count The interaction count to set. Defaults to 0.
-	 */
-	public setInteractionCount(count: number = 0) {
-		this.interactionCount = count;
-	}
 }
