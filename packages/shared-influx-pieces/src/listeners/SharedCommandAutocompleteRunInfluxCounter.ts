@@ -7,6 +7,6 @@ export class SharedListener extends InfluxListener {
 	}
 
 	public run({ interaction }: ClientEventAutocompleteContext) {
-		this.container.influx!.interactionCounters[interaction.type] += 1;
+		this.container.influx!.interactionCounters[interaction.type]++;
 	}
 }

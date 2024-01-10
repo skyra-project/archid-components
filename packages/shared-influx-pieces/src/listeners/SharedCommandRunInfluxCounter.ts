@@ -9,7 +9,7 @@ export class SharedListener extends InfluxListener {
 	}
 
 	public run({ command, interaction }: ClientEventCommandContext) {
-		this.container.influx!.interactionCounters[interaction.type] += 1;
+		this.container.influx!.interactionCounters[interaction.type]++;
 
 		const point = new Point(Points.Commands) //
 			.tag(Tags.Action, Actions.Addition)
