@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@2.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@2.1.0...@skyra/http-framework@2.1.0) - (2024-01-10)
+
+## 🏠 Refactor
+
+- **Listener:** Make loader hooks more resilient (#319) ([9d8fab1](https://github.com/skyra-project/archid-components/commit/9d8fab15c661b0d00c39b5a069d503b3e70d9f7b))
+- Switch to properly split CJS and ESM (#298) ([1a07da4](https://github.com/skyra-project/archid-components/commit/1a07da4ae9ddbf9fbf8caf550ddb3e1cea1f2209))
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([dfa7783](https://github.com/skyra-project/archid-components/commit/dfa7783ff0431a0d97a02ea8bb05dd13c490b796))
+- **deps:** Update all non-major dependencies ([d84f786](https://github.com/skyra-project/archid-components/commit/d84f786a3434b47d7e2288a12da6964499629a50))
+- **deps:** Update all non-major dependencies ([e6c2cb4](https://github.com/skyra-project/archid-components/commit/e6c2cb43b4123e3a3d70eb4795a991ca6b9902b5))
+
+## 🚀 Features
+
+- **Client:** Expose the client `id` (#320) ([c7354e8](https://github.com/skyra-project/archid-components/commit/c7354e8cf4b1fa7cdce3fc417c8f61fd9c05e5fb))
+
 # [@skyra/http-framework@2.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@2.0.0...@skyra/http-framework@2.0.0) - (2023-12-10)
 
 ## 🏠 Refactor
