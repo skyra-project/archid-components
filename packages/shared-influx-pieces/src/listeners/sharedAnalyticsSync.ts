@@ -4,16 +4,14 @@ import { InteractionType } from 'discord-api-types/v10';
 import { getApproximateGuildCount } from '../lib/api.js';
 import { Actions, Points, Tags } from '../lib/enum.js';
 import { InfluxListener } from '../lib/structures/InfluxListener.js';
+import type { InteractionCounts } from 'lib/InfluxClient.js';
 
 const Minute = 60_000;
 
 export class SharedListener extends InfluxListener {
 	public interval: NodeJS.Timeout | null = null;
 
-	/**
-	 * An array of interaction types.
-	 */
-	private readonly InteractionTypes = Object.values(InteractionType).filter((value) => typeof value === 'number') as readonly InteractionType[];
+	private readonly InteractionTypes: readonly (keyof InteractionCounts)[] = [InteractionType.MessageComponent, InteractionType.ModalSubmit];
 
 	public run(guilds: number) {
 		this.writeGuildCountPoint(guilds);
@@ -51,7 +49,7 @@ export class SharedListener extends InfluxListener {
 		const points = this.InteractionTypes.map((type) => {
 			const point = new Point(Points.InteractionCount) //
 				.tag(Tags.Action, Actions.Sync)
-				.tag(Tags.InteractionType, `${type}`)
+				.tag(Tags.InteractionType, InteractionType[type])
 				.intField('value', counts[type]);
 
 			// Reset back to 0

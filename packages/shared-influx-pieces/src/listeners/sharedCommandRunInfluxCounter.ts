@@ -5,7 +5,7 @@ import { InfluxListener } from '../lib/structures/InfluxListener.js';
 
 export class SharedListener extends InfluxListener {
 	public constructor(context: InfluxListener.LoaderContext, options: InfluxListener.Options) {
-		super(context, { ...options, event: 'commandSuccess' });
+		super(context, { ...options, event: 'commandRun' });
 	}
 
 	public run({ command }: ClientEventCommandContext) {
