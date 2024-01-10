@@ -29,4 +29,5 @@ export * from './lib/structures/CommandStoreRouter.js';
 export * from './lib/structures/InteractionHandler.js';
 export * from './lib/structures/InteractionHandlerStore.js';
 export * from './lib/structures/Listener.js';
+export * from './lib/structures/ListenerLoaderStrategy.js';
 export * from './lib/structures/ListenerStore.js';
