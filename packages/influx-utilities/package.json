@@ -52,7 +52,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@influxdata/influxdb-client": "^1.24.0",
+		"@influxdata/influxdb-client": "^1.33.2",
 		"@skyra/env-utilities": "workspace:^"
 	},
 	"devDependencies": {
