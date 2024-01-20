@@ -15,7 +15,7 @@ You can provide the configuration for the Influx client in several ways.
 
 ```typescript
 // index.ts
-process.env.INFLUX_URL = 'https://influx.skyra.pw';
+process.env.INFLUX_URL = 'https://influxdb.skyra.pw';
 process.env.INFLUX_TOKEN = 'my-secret-token';
 process.env.INFLUX_ORG = 'Skyra-Project';
 process.env.INFLUX_BUCKET = 'analytics';
@@ -32,7 +32,7 @@ const client = new Client();
 import { Client, setInfluxVariables } from '@skyra/influx-utilities';
 
 setInfluxVariables({
-	influxUrl: 'https://influx.skyra.pw',
+	influxUrl: 'https://influxdb.skyra.pw',
 	influxToken: 'my-secret-token',
 	influxOrg: 'Skyra-Project',
 	influxBucket: 'analytics'
@@ -47,7 +47,7 @@ const client = new Client();
 import { Client } from '@skyra/influx-utilities';
 
 const client = new Client({
-	url: 'https://influx.skyra.pw',
+	url: 'https://influxdb.skyra.pw',
 	token: 'my-secret-token',
 	org: 'Skyra-Project',
 	writeBucket: 'analytics'
