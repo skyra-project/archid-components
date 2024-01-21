@@ -52,8 +52,8 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/result": "^2.6.5",
-		"@sapphire/utilities": "^3.15.2",
+		"@sapphire/result": "^2.6.6",
+		"@sapphire/utilities": "^3.15.3",
 		"@skyra/safe-fetch": "workspace:^"
 	},
 	"devDependencies": {
