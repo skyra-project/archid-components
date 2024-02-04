@@ -3,7 +3,7 @@ import { expand } from 'dotenv-expand';
 import { basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export interface EnvLoaderOptions extends DotenvConfigOptions {
+export interface EnvLoaderOptions extends Omit<DotenvConfigOptions, 'path'> {
 	/**
 	 * You may specify a custom environment if `NODE_ENV` isn't sufficient.
 	 */
@@ -12,6 +12,25 @@ export interface EnvLoaderOptions extends DotenvConfigOptions {
 	 * You may specify a required prefix for your dotenv variables (ex. `APP_`).
 	 */
 	prefix?: string;
+	/**
+	 * Specify a custom path if your file containing environment variables is located elsewhere.
+	 * Can also be an array of strings, specifying multiple paths.
+	 *
+	 * @default `path.resolve(process.cwd(), '.env')`
+	 *
+	 * @example with CJS
+	 * ```typescript
+	 * require('@skyra/env-utilities').setup({ path: '/custom/path/to/.env' })
+	 * ```
+	 * @example with ESM
+	 * ```typescript
+	 * import { setup } from '@skyra/env-utilities';
+	 *
+	 * const envFile = new URL('../.env', import.meta.url);
+	 * setup({ path: envFile })
+	 * ```
+	 */
+	path?: string | URL;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-inferrable-types
