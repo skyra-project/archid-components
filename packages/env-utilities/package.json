@@ -31,7 +31,7 @@
 	},
 	"dependencies": {
 		"dotenv": "^16.4.4",
-		"dotenv-expand": "^11.0.4"
+		"dotenv-expand": "^11.0.6"
 	},
 	"repository": {
 		"type": "git",
