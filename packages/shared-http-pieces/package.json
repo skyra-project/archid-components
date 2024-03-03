@@ -33,12 +33,12 @@
 	"dependencies": {
 		"@discordjs/builders": "^1.7.0",
 		"@discordjs/collection": "^1.5.3",
-		"@sentry/integrations": "^7.102.1",
-		"@sentry/node": "^7.102.1",
+		"@sentry/integrations": "^7.104.0",
+		"@sentry/node": "^7.104.0",
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
-		"discord-api-types": "^0.37.70",
+		"discord-api-types": "^0.37.71",
 		"tslib": "^2.6.2"
 	},
 	"repository": {
