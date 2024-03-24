@@ -33,12 +33,12 @@
 	"dependencies": {
 		"@discordjs/builders": "^1.7.0",
 		"@discordjs/collection": "^1.5.3",
-		"@sentry/integrations": "^7.107.0",
-		"@sentry/node": "^7.107.0",
+		"@sentry/integrations": "^7.108.0",
+		"@sentry/node": "^7.108.0",
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
-		"discord-api-types": "^0.37.74",
+		"discord-api-types": "^0.37.76",
 		"tslib": "^2.6.2"
 	},
 	"repository": {
@@ -71,6 +71,6 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^3.0.1",
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.3"
 	}
 }

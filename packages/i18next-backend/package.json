@@ -36,7 +36,7 @@
 		"@types/node": "20.11.5",
 		"i18next": "^22.5.1",
 		"tsup": "^8.0.2",
-		"typescript": "^5.4.2"
+		"typescript": "^5.4.3"
 	},
 	"repository": {
 		"type": "git",

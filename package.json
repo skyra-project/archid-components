@@ -18,7 +18,7 @@
 		"check-update": "turbo run check-update"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^19.2.0",
+		"@commitlint/cli": "^19.2.1",
 		"@commitlint/config-conventional": "^19.1.0",
 		"@favware/cliff-jumper": "^3.0.1",
 		"@favware/npm-deprecate": "^1.0.7",
@@ -28,8 +28,8 @@
 		"@swc/core": "^1.4.8",
 		"@types/node": "20.11.5",
 		"@types/ws": "^8.5.10",
-		"@typescript-eslint/eslint-plugin": "^7.2.0",
-		"@typescript-eslint/parser": "^7.2.0",
+		"@typescript-eslint/eslint-plugin": "^7.3.1",
+		"@typescript-eslint/parser": "^7.3.1",
 		"@vitest/coverage-v8": "^1.4.0",
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.57.0",
@@ -38,8 +38,8 @@
 		"lint-staged": "^15.2.2",
 		"prettier": "^3.2.5",
 		"tsup": "^8.0.2",
-		"turbo": "^1.12.5",
-		"typescript": "^5.4.2",
+		"turbo": "^1.13.0",
+		"typescript": "^5.4.3",
 		"vitest": "^1.4.0"
 	},
 	"resolutions": {
