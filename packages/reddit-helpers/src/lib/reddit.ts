@@ -3,6 +3,7 @@ import { none, ok, some, type Option } from '@sapphire/result';
 import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { Json, safeFetch, type FetchResult } from '@skyra/safe-fetch';
 import he from 'he';
+import { RedditParseException } from './RedditParseException.js';
 import { BaseUrl } from './constants.js';
 import { Kind } from './enums.js';
 import type { CacheEntry, CacheHit, RedditBearerToken, RedditOauth2TokenResult, RedditResponse } from './types.js';
@@ -10,7 +11,11 @@ import { areRedditCredentialsSet, getRedditBearerTokenUrl, getRedditFormData, ge
 
 let BearerToken: Option<RedditBearerToken> = none;
 
-const cache = new Map<string, CacheHit>();
+/** A cache of subreddits already queried, the key is the name of the subreddit */
+const subredditCache = new Map<string, CacheHit>();
+
+/** A cache of posts already queried, the key is the `id` of the post */
+const postCache = new Map<string, CacheHit>();
 
 const SubRedditTitleBlockList = /nsfl/i;
 /**
@@ -27,11 +32,23 @@ const FiveMinutes = 1000 * 60 * 5;
  * @returns A promise that resolves to the RedditResponse object containing the fetched posts.
  */
 export async function fetchRedditPosts(subreddit: string, limit = 30) {
-	const existing = cache.get(subreddit);
+	const existing = subredditCache.get(subreddit);
 	if (!isNullish(existing)) return ok(existing);
 
 	const result = await getRequest<RedditResponse>(`r/${subreddit}/.json?limit=${limit}`);
-	return result.map((response) => handleResponse(subreddit, response));
+	return result.map((response) => handleResponse(subreddit, response, subredditCache));
+}
+
+export async function fetchRedditPost(link: string) {
+	const redditData = extractRedditDataFromLink(link);
+	if (!redditData) throw new RedditParseException('Unable to find a post key for provided link', link);
+
+	const existing = postCache.get(redditData.key);
+	if (!isNullish(existing)) return ok(existing);
+
+	const result = await getRequest<RedditResponse>(`r/${redditData.subreddit}/comments/${redditData.key}/.json`);
+
+	return result.map((response) => handleResponse(redditData.subreddit, response, postCache));
 }
 
 /**
@@ -71,13 +88,14 @@ export async function fetchBearer() {
 
 /**
  * Parses a Reddit response into a cache hit.
- * @param name The subreddit name
- * @param response The response from the API
+ * @param name - The subreddit name
+ * @param response - The response from the API
+ * @param writeableCache - The cache to write the response to
  * @returns A parsed response
  *
  * @interal
  */
-function handleResponse(name: string, response: RedditResponse): CacheHit {
+function handleResponse(name: string, response: RedditResponse, writeableCache: Map<string, CacheHit>): CacheHit {
 	if (isNullishOrEmpty(response.kind) || isNullish(response.data)) return Invalid;
 	if (isNullishOrEmpty(response.data.children)) return Invalid;
 
@@ -102,8 +120,8 @@ function handleResponse(name: string, response: RedditResponse): CacheHit {
 	}
 
 	const entry = { hasNsfw, hasNsfl, posts } satisfies CacheHit;
-	cache.set(name, entry);
-	setTimeout(() => cache.delete(name), FiveMinutes).unref();
+	writeableCache.set(name, entry);
+	setTimeout(() => writeableCache.delete(name), FiveMinutes).unref();
 	return entry;
 }
 
@@ -127,4 +145,21 @@ async function generateBearerToken() {
 
 	BearerToken = some({ token: unwrapped.access_token, expiresAt: expires });
 	return unwrapped.access_token;
+}
+
+const DataExtractRegex = /\/r\/(?<subreddit>[^\s/]+)\/comments\/(?<key>[a-z0-9]{6,})\//;
+/**
+ * Attempts to extract the subreddit name and unique post key from a Reddit post link.
+ * @param link The link to extract the post key from
+ * @returns The subreddit name and post key if they were both found, or null if one or both could not be found.
+ */
+function extractRedditDataFromLink(link: string) {
+	const match = DataExtractRegex.exec(link);
+
+	const key = match?.groups?.key;
+	const subreddit = match?.groups?.subreddit;
+
+	if (key && subreddit) return { key, subreddit };
+
+	return null;
 }
