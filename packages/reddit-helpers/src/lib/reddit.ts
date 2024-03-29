@@ -11,11 +11,13 @@ import { areRedditCredentialsSet, getRedditBearerTokenUrl, getRedditFormData, ge
 
 let BearerToken: Option<RedditBearerToken> = none;
 
-/** A cache of subreddits already queried, the key is the name of the subreddit */
-const subredditCache = new Map<string, CacheHit>();
-
-/** A cache of posts already queried, the key is the `id` of the post */
-const postCache = new Map<string, CacheHit>();
+/**
+ * A cache of already queried entries.
+ *
+ * - For subreddits the key is the name of the subreddit.
+ * - For posts the key is the subreddit name and the post key separated by a `/`.
+ */
+const cache = new Map<string, CacheHit>();
 
 const SubRedditTitleBlockList = /nsfl/i;
 /**
@@ -32,23 +34,25 @@ const FiveMinutes = 1000 * 60 * 5;
  * @returns A promise that resolves to the RedditResponse object containing the fetched posts.
  */
 export async function fetchRedditPosts(subreddit: string, limit = 30) {
-	const existing = subredditCache.get(subreddit);
+	const existing = cache.get(subreddit);
 	if (!isNullish(existing)) return ok(existing);
 
 	const result = await getRequest<RedditResponse>(`r/${subreddit}/.json?limit=${limit}`);
-	return result.map((response) => handleResponse(subreddit, response, subredditCache));
+	return result.map((response) => handleResponse(subreddit, response));
 }
 
 export async function fetchRedditPost(link: string) {
 	const redditData = extractRedditDataFromLink(link);
 	if (!redditData) throw new RedditParseException('Unable to find a post key for provided link', link);
 
-	const existing = postCache.get(redditData.key);
+	const cacheKey = `${redditData.subreddit}/${redditData.key}`;
+
+	const existing = cache.get(cacheKey);
 	if (!isNullish(existing)) return ok(existing);
 
 	const result = await getRequest<RedditResponse>(`r/${redditData.subreddit}/comments/${redditData.key}/.json`);
 
-	return result.map((response) => handleResponse(redditData.subreddit, response, postCache));
+	return result.map((response) => handleResponse(cacheKey, response));
 }
 
 /**
@@ -88,14 +92,13 @@ export async function fetchBearer() {
 
 /**
  * Parses a Reddit response into a cache hit.
- * @param name - The subreddit name
- * @param response - The response from the API
- * @param writeableCache - The cache to write the response to
+ * @param name The subreddit name
+ * @param response The response from the API
  * @returns A parsed response
  *
  * @interal
  */
-function handleResponse(name: string, response: RedditResponse, writeableCache: Map<string, CacheHit>): CacheHit {
+function handleResponse(name: string, response: RedditResponse): CacheHit {
 	if (isNullishOrEmpty(response.kind) || isNullish(response.data)) return Invalid;
 	if (isNullishOrEmpty(response.data.children)) return Invalid;
 
@@ -120,8 +123,8 @@ function handleResponse(name: string, response: RedditResponse, writeableCache: 
 	}
 
 	const entry = { hasNsfw, hasNsfl, posts } satisfies CacheHit;
-	writeableCache.set(name, entry);
-	setTimeout(() => writeableCache.delete(name), FiveMinutes).unref();
+	cache.set(name, entry);
+	setTimeout(() => cache.delete(name), FiveMinutes).unref();
 	return entry;
 }
 
@@ -152,6 +155,8 @@ const DataExtractRegex = /\/r\/(?<subreddit>[^\s/]+)\/comments\/(?<key>[a-z0-9]{
  * Attempts to extract the subreddit name and unique post key from a Reddit post link.
  * @param link The link to extract the post key from
  * @returns The subreddit name and post key if they were both found, or null if one or both could not be found.
+ *
+ * @internal
  */
 function extractRedditDataFromLink(link: string) {
 	const match = DataExtractRegex.exec(link);
