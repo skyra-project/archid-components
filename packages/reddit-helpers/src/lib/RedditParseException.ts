@@ -3,17 +3,16 @@
  */
 export class RedditParseException extends Error {
 	/**
-	 * The link that caused the exception
-	 */
-	public link: string;
-
-	/**
 	 * Represents an exception that occurs during parsing of Reddit data.
 	 * @param message - The message to display
-	 * @param link - The link that caused the exception
+	 * @param subreddit - The subreddit that was being parsed
+	 * @param key - The key that was being parsed
 	 */
-	public constructor(message: string, link: string) {
+	public constructor(
+		message: string,
+		public subreddit: string,
+		public key: string
+	) {
 		super(message);
-		this.link = link;
 	}
 }

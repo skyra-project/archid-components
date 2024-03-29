@@ -1,5 +1,5 @@
 import { spoiler } from '@discordjs/formatters';
-import { none, ok, some, type Option } from '@sapphire/result';
+import { err, none, ok, some, type Option } from '@sapphire/result';
 import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { Json, safeFetch, type FetchResult } from '@skyra/safe-fetch';
 import he from 'he';
@@ -31,7 +31,7 @@ const FiveMinutes = 1000 * 60 * 5;
  * Fetches Reddit posts from a specified subreddit.
  * @param subreddit - The name of the subreddit to fetch posts from.
  * @param limit - The amount of posts to fetch, defaults to `30`
- * @returns A promise that resolves to the RedditResponse object containing the fetched posts.
+ * @returns A promise that resolves to the {@link RedditResponse} object containing the fetched posts.
  */
 export async function fetchRedditPosts(subreddit: string, limit = 30) {
 	const existing = cache.get(subreddit);
@@ -41,18 +41,36 @@ export async function fetchRedditPosts(subreddit: string, limit = 30) {
 	return result.map((response) => handleResponse(subreddit, response));
 }
 
-export async function fetchRedditPost(link: string) {
-	const redditData = extractRedditDataFromLink(link);
-	if (!redditData) throw new RedditParseException('Unable to find a post key for provided link', link);
-
-	const cacheKey = `${redditData.subreddit}/${redditData.key}`;
+/**
+ * Fetches a Reddit post from a specified subreddit.
+ * @param subreddit - The name of the subreddit this post belongs to.
+ * @param key - The key of the post to fetch.
+ * @returns A promise that resolves to the {@link RedditResponse} object contained the fetched post.
+ */
+export async function fetchRedditPost(subreddit: string, key: string) {
+	const cacheKey = `${subreddit}/${key}`;
 
 	const existing = cache.get(cacheKey);
 	if (!isNullish(existing)) return ok(existing);
 
-	const result = await getRequest<RedditResponse>(`r/${redditData.subreddit}/comments/${redditData.key}/.json`);
+	const result = await getRequest<RedditResponse[]>(`r/${subreddit}/comments/${key}.json`);
 
-	return result.map((response) => handleResponse(cacheKey, response));
+	return result
+		.mapInto((value) => {
+			const parsedPostResponse = parsePostResponse(value);
+			if (parsedPostResponse) return ok(parsedPostResponse);
+			return err(new RedditParseException('Failed to find a post in the response', subreddit, key));
+		})
+		.map((response) => {
+			return handleResponse(cacheKey, response);
+		});
+}
+
+function parsePostResponse(response: RedditResponse[]): RedditResponse | null {
+	const possibleResponse = response.find((item) => item.data.children.some((child) => child.kind === 't3'));
+
+	if (possibleResponse) return possibleResponse;
+	return null;
 }
 
 /**
@@ -148,23 +166,4 @@ async function generateBearerToken() {
 
 	BearerToken = some({ token: unwrapped.access_token, expiresAt: expires });
 	return unwrapped.access_token;
-}
-
-const DataExtractRegex = /\/r\/(?<subreddit>[^\s/]+)\/comments\/(?<key>[a-z0-9]{6,})\//;
-/**
- * Attempts to extract the subreddit name and unique post key from a Reddit post link.
- * @param link The link to extract the post key from
- * @returns The subreddit name and post key if they were both found, or null if one or both could not be found.
- *
- * @internal
- */
-function extractRedditDataFromLink(link: string) {
-	const match = DataExtractRegex.exec(link);
-
-	const key = match?.groups?.key;
-	const subreddit = match?.groups?.subreddit;
-
-	if (key && subreddit) return { key, subreddit };
-
-	return null;
 }
