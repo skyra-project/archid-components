@@ -10,8 +10,8 @@ export class RedditParseException extends Error {
 	 */
 	public constructor(
 		message: string,
-		public subreddit: string,
-		public key: string
+		public readonly subreddit: string,
+		public readonly key: string
 	) {
 		super(message);
 	}

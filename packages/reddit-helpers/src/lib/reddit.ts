@@ -1,5 +1,5 @@
 import { spoiler } from '@discordjs/formatters';
-import { err, none, ok, some, type Option } from '@sapphire/result';
+import { Option, err, none, ok, some } from '@sapphire/result';
 import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { Json, safeFetch, type FetchResult } from '@skyra/safe-fetch';
 import he from 'he';
@@ -56,21 +56,17 @@ export async function fetchRedditPost(subreddit: string, key: string) {
 	const result = await getRequest<RedditResponse[]>(`r/${subreddit}/comments/${key}.json`);
 
 	return result
-		.mapInto((value) => {
-			const parsedPostResponse = parsePostResponse(value);
-			if (parsedPostResponse) return ok(parsedPostResponse);
-			return err(new RedditParseException('Failed to find a post in the response', subreddit, key));
-		})
-		.map((response) => {
-			return handleResponse(cacheKey, response);
-		});
+		.mapInto((value) =>
+			parsePostResponse(value).match({
+				some: (parsed) => ok(parsed),
+				none: () => err(new RedditParseException('Failed to find a post in the response', subreddit, key))
+			})
+		)
+		.map((response) => handleResponse(cacheKey, response));
 }
 
-function parsePostResponse(response: RedditResponse[]): RedditResponse | null {
-	const possibleResponse = response.find((item) => item.data.children.some((child) => child.kind === 't3'));
-
-	if (possibleResponse) return possibleResponse;
-	return null;
+function parsePostResponse(response: RedditResponse[]): Option<RedditResponse> {
+	return Option.from(response.find((item) => item.data.children.some((child) => child.kind === 't3')));
 }
 
 /**
