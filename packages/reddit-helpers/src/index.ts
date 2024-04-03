@@ -1,3 +1,4 @@
+export * from './lib/RedditParseException.js';
 export * from './lib/constants.js';
 export { ForbiddenType } from './lib/enums.js';
 export * from './lib/reddit.js';

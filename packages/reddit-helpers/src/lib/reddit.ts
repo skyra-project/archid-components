@@ -1,8 +1,9 @@
 import { spoiler } from '@discordjs/formatters';
-import { none, ok, some, type Option } from '@sapphire/result';
+import { Option, err, none, ok, some } from '@sapphire/result';
 import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { Json, safeFetch, type FetchResult } from '@skyra/safe-fetch';
 import he from 'he';
+import { RedditParseException } from './RedditParseException.js';
 import { BaseUrl } from './constants.js';
 import { Kind } from './enums.js';
 import type { CacheEntry, CacheHit, RedditBearerToken, RedditOauth2TokenResult, RedditResponse } from './types.js';
@@ -10,6 +11,12 @@ import { areRedditCredentialsSet, getRedditBearerTokenUrl, getRedditFormData, ge
 
 let BearerToken: Option<RedditBearerToken> = none;
 
+/**
+ * A cache of already queried entries.
+ *
+ * - For subreddits the key is the name of the subreddit.
+ * - For posts the key is the subreddit name and the post key separated by a `/`.
+ */
 const cache = new Map<string, CacheHit>();
 
 const SubRedditTitleBlockList = /nsfl/i;
@@ -24,7 +31,7 @@ const FiveMinutes = 1000 * 60 * 5;
  * Fetches Reddit posts from a specified subreddit.
  * @param subreddit - The name of the subreddit to fetch posts from.
  * @param limit - The amount of posts to fetch, defaults to `30`
- * @returns A promise that resolves to the RedditResponse object containing the fetched posts.
+ * @returns A promise that resolves to the {@link RedditResponse} object containing the fetched posts.
  */
 export async function fetchRedditPosts(subreddit: string, limit = 30) {
 	const existing = cache.get(subreddit);
@@ -32,6 +39,34 @@ export async function fetchRedditPosts(subreddit: string, limit = 30) {
 
 	const result = await getRequest<RedditResponse>(`r/${subreddit}/.json?limit=${limit}`);
 	return result.map((response) => handleResponse(subreddit, response));
+}
+
+/**
+ * Fetches a Reddit post from a specified subreddit.
+ * @param subreddit - The name of the subreddit this post belongs to.
+ * @param key - The key of the post to fetch.
+ * @returns A promise that resolves to the {@link RedditResponse} object contained the fetched post.
+ */
+export async function fetchRedditPost(subreddit: string, key: string) {
+	const cacheKey = `${subreddit}/${key}`;
+
+	const existing = cache.get(cacheKey);
+	if (!isNullish(existing)) return ok(existing);
+
+	const result = await getRequest<RedditResponse[]>(`r/${subreddit}/comments/${key}.json`);
+
+	return result
+		.mapInto((value) =>
+			parsePostResponse(value).match({
+				some: (parsed) => ok(parsed),
+				none: () => err(new RedditParseException('Failed to find a post in the response', subreddit, key))
+			})
+		)
+		.map((response) => handleResponse(cacheKey, response));
+}
+
+function parsePostResponse(response: RedditResponse[]): Option<RedditResponse> {
+	return Option.from(response.find((item) => item.data.children.some((child) => child.kind === 't3')));
 }
 
 /**
