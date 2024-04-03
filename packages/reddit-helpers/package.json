@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/reddit-helpers",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Very basic Reddit helper functions used across several ArchId bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
