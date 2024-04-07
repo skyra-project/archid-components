@@ -38,7 +38,7 @@
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
-		"discord-api-types": "^0.37.77",
+		"discord-api-types": "^0.37.79",
 		"tslib": "^2.6.2"
 	},
 	"repository": {
@@ -71,6 +71,6 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^3.0.1",
-		"typescript": "^5.4.3"
+		"typescript": "^5.4.4"
 	}
 }
