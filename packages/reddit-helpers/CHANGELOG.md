@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/reddit-helpers@1.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/reddit-helpers@1.1.1...@skyra/reddit-helpers@1.2.0) - (2024-04-11)
+
+## 🚀 Features
+
+- **reddit:** Function to get shortlink redirect url (#347) ([4ab7ee6](https://github.com/skyra-project/archid-components/commit/4ab7ee688bce2a60ad268b765398e5e4eaf1ba2b))
+
 # [@skyra/reddit-helpers@1.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/reddit-helpers@1.0.0...@skyra/reddit-helpers@1.1.0) - (2024-04-03)
 
 ## 🐛 Bug Fixes
