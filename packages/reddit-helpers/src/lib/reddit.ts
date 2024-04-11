@@ -42,6 +42,17 @@ export async function fetchRedditPosts(subreddit: string, limit = 30) {
 }
 
 /**
+ * Gets the proper URL of a reddit post in case an URL was provided that redirects to a post.
+ * This happens when the shortlink is provided from the official Reddit app.
+ * @param path - The shortlink path to get the redirect for.
+ * @returns The proper URL of the post from `headers.get('Location')`
+ */
+export async function getRedditRedirectPostUrl(path: string) {
+	const response = await fetch(path, { redirect: 'manual', headers: await getHeaders() });
+	return response.headers.get('Location');
+}
+
+/**
  * Fetches a Reddit post from a specified subreddit.
  * @param subreddit - The name of the subreddit this post belongs to.
  * @param key - The key of the post to fetch.
