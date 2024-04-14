@@ -59,8 +59,8 @@
 		"@sapphire/result": "^2.6.6"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^3.0.1",
+		"@favware/cliff-jumper": "^3.0.2",
 		"tsup": "^8.0.2",
-		"typescript": "^5.4.4"
+		"typescript": "^5.4.5"
 	}
 }
