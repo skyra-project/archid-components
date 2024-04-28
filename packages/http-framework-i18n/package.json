@@ -28,7 +28,7 @@
 		"@discordjs/collection": "^1.5.3",
 		"@sapphire/utilities": "^3.15.3",
 		"@skyra/i18next-backend": "workspace:^",
-		"discord-api-types": "^0.37.79",
+		"discord-api-types": "^0.37.83",
 		"i18next": "^22.5.1",
 		"tslib": "^2.6.2"
 	},
@@ -59,7 +59,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^3.0.2",
+		"@favware/cliff-jumper": "^3.0.3",
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.5"
 	}
