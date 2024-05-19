@@ -22,7 +22,7 @@ export function initializeSentry(options: SentryOptions = {}) {
 			Sentry.linkedErrorsIntegration(),
 			Sentry.modulesIntegration(),
 			Sentry.onUncaughtExceptionIntegration(),
-			Sentry.onUncaughtExceptionIntegration(),
+			Sentry.onUnhandledRejectionIntegration(),
 			Sentry.rewriteFramesIntegration({ root }),
 			...(typeof extractedIntegrations === 'function' ? extractedIntegrations(integrations) : extractedIntegrations)
 		]
