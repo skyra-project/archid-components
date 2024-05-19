@@ -78,6 +78,24 @@ export abstract class BaseInteraction<T extends BaseInteractionType = BaseIntera
 	}
 
 	/**
+	 * Mapping of installation contexts that the interaction was authorized for
+	 * to related user or guild IDs.
+	 */
+	public get authorizing_integration_owners(): T['authorizing_integration_owners'] {
+		return this[Data].authorizing_integration_owners;
+	}
+
+	/**
+	 * Mapping of installation contexts that the interaction was authorized for
+	 * to related user or guild IDs.
+	 *
+	 * @seealso {@link authorizing_integration_owners} for the raw data.
+	 */
+	public get authorizingIntegrationOwners(): T['authorizing_integration_owners'] {
+		return this.authorizing_integration_owners;
+	}
+
+	/**
 	 * The channel of the interaction.
 	 */
 	public get channel(): T['channel'] {
@@ -103,10 +121,25 @@ export abstract class BaseInteraction<T extends BaseInteractionType = BaseIntera
 	}
 
 	/**
+	 * Context where the interaction was triggered from.
+	 */
+	public get context(): T['context'] {
+		return this[Data].context;
+	}
+
+	/**
 	 * The command data payload.
 	 */
 	public get data(): T['data'] {
 		return this[Data].data;
+	}
+
+	/**
+	 * For monetized apps, any entitlements for the invoking user, representing
+	 * access to premium SKUs.
+	 */
+	public get entitlements(): T['entitlements'] {
+		return this[Data].entitlements;
 	}
 
 	/**
