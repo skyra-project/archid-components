@@ -1,4 +1,3 @@
-import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -18,14 +17,13 @@ export function initializeSentry(options: SentryOptions = {}) {
 		dsn: process.env.SENTRY_DSN,
 		...options,
 		integrations: (integrations) => [
-			new Sentry.Integrations.Console(),
-			new Sentry.Integrations.FunctionToString(),
-			new Sentry.Integrations.LinkedErrors(),
-			new Sentry.Integrations.Modules(),
-			new Sentry.Integrations.Modules(),
-			new Sentry.Integrations.OnUncaughtException(),
-			new Sentry.Integrations.OnUnhandledRejection(),
-			new RewriteFrames({ root }),
+			Sentry.consoleIntegration(),
+			Sentry.functionToStringIntegration(),
+			Sentry.linkedErrorsIntegration(),
+			Sentry.modulesIntegration(),
+			Sentry.onUncaughtExceptionIntegration(),
+			Sentry.onUncaughtExceptionIntegration(),
+			Sentry.rewriteFramesIntegration({ root }),
 			...(typeof extractedIntegrations === 'function' ? extractedIntegrations(integrations) : extractedIntegrations)
 		]
 	});
