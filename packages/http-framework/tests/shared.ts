@@ -15,7 +15,8 @@ import {
 	type APIUserApplicationCommandInteraction,
 	type LocaleString,
 	type Permissions,
-	type APIEntitlement
+	type APIEntitlement,
+	type APIAuthorizingIntegrationOwnersMap
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
 import { Writable } from 'node:stream';
@@ -78,7 +79,8 @@ export const BaseInteractionData = {
 	locale: LocaleData,
 	guild_locale: LocaleData,
 	guild_id: '737141877803057244',
-	entitlements: [] as APIEntitlement[]
+	entitlements: [] as APIEntitlement[],
+	authorizing_integration_owners: {} as APIAuthorizingIntegrationOwnersMap
 } as const;
 
 export const ApplicationCommandAutocompleteInteractionData: APIApplicationCommandAutocompleteInteraction = {
