@@ -32,9 +32,9 @@
 		"@discordjs/util": "^1.1.0",
 		"@sapphire/pieces": "^4.2.2",
 		"@sapphire/result": "^2.6.6",
-		"@sapphire/utilities": "^3.15.3",
+		"@sapphire/utilities": "^3.16.2",
 		"@vladfrangu/async_event_emitter": "^2.2.4",
-		"discord-api-types": "^0.37.84"
+		"discord-api-types": "^0.37.85"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^3.0.3",
