@@ -26,9 +26,9 @@
 	},
 	"dependencies": {
 		"@discordjs/collection": "^1.5.3",
-		"@sapphire/utilities": "^3.15.3",
+		"@sapphire/utilities": "^3.16.2",
 		"@skyra/i18next-backend": "workspace:^",
-		"discord-api-types": "^0.37.84",
+		"discord-api-types": "^0.37.85",
 		"i18next": "^22.5.1",
 		"tslib": "^2.6.2"
 	},
