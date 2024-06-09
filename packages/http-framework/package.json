@@ -26,7 +26,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "^1.8.1",
+		"@discordjs/builders": "^1.8.2",
 		"@discordjs/collection": "^1.5.3",
 		"@discordjs/rest": "^2.3.0",
 		"@discordjs/util": "^1.1.0",
@@ -34,12 +34,12 @@
 		"@sapphire/result": "^2.6.6",
 		"@sapphire/utilities": "^3.16.2",
 		"@vladfrangu/async_event_emitter": "^2.2.4",
-		"discord-api-types": "^0.37.86"
+		"discord-api-types": "^0.37.87"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^3.0.3",
 		"@vitest/coverage-v8": "^1.6.0",
-		"tsup": "^8.0.2",
+		"tsup": "^8.1.0",
 		"typescript": "^5.4.5",
 		"vitest": "^1.6.0"
 	},
