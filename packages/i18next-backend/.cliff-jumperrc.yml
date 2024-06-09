@@ -2,3 +2,8 @@ name: i18next-backend
 org: skyra
 install: true
 packagePath: packages/i18next-backend
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: skyra-project/archid-components

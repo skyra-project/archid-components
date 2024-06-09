@@ -2,3 +2,8 @@ name: http-framework
 org: skyra
 install: true
 packagePath: packages/http-framework
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: skyra-project/archid-components

@@ -2,3 +2,8 @@ name: start-banner
 org: skyra
 install: true
 packagePath: packages/start-banner
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: skyra-project/archid-components

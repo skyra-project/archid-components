@@ -2,3 +2,8 @@ name: env-utilities
 org: skyra
 install: true
 packagePath: packages/env-utilities
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: skyra-project/archid-components

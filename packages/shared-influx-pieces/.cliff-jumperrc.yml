@@ -2,3 +2,8 @@ name: shared-influx-pieces
 org: skyra
 install: true
 packagePath: packages/shared-influx-pieces
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: skyra-project/archid-components

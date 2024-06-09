@@ -2,3 +2,8 @@ name: logger
 org: skyra
 install: true
 packagePath: packages/logger
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: skyra-project/archid-components
