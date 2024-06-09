@@ -29,13 +29,13 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"tslib": "^2.6.2"
+		"tslib": "^2.6.3"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^3.0.3",
 		"@types/node": "20.12.10",
 		"i18next": "^22.5.1",
-		"tsup": "^8.0.2",
+		"tsup": "^8.1.0",
 		"typescript": "^5.4.5"
 	},
 	"repository": {
