@@ -33,11 +33,11 @@
 	"dependencies": {
 		"@discordjs/builders": "^1.8.2",
 		"@discordjs/collection": "^1.5.3",
-		"@sentry/node": "^8.8.0",
+		"@sentry/node": "^8.9.2",
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
-		"discord-api-types": "^0.37.87",
+		"discord-api-types": "^0.37.89",
 		"tslib": "^2.6.3"
 	},
 	"repository": {
