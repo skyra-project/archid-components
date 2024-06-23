@@ -60,6 +60,6 @@
 		"@favware/cliff-jumper": "^4.0.2",
 		"esbuild-plugin-version-injector": "^1.2.1",
 		"tsup": "^8.1.0",
-		"typescript": "^5.5.2"
+		"typescript": "~5.4.5"
 	}
 }
