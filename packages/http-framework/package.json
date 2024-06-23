@@ -33,14 +33,14 @@
 		"@sapphire/pieces": "^4.2.2",
 		"@sapphire/result": "^2.6.6",
 		"@sapphire/utilities": "^3.16.2",
-		"@vladfrangu/async_event_emitter": "^2.2.4",
-		"discord-api-types": "^0.37.89"
+		"@vladfrangu/async_event_emitter": "^2.3.0",
+		"discord-api-types": "^0.37.90"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.0.2",
 		"@vitest/coverage-v8": "^1.6.0",
 		"tsup": "^8.1.0",
-		"typescript": "^5.4.5",
+		"typescript": "^5.5.2",
 		"vitest": "^1.6.0"
 	},
 	"repository": {
