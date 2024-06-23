@@ -33,13 +33,10 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.0.2",
-		"@types/node": "20.13.0",
+		"@types/node": "20.14.2",
 		"i18next": "^22.5.1",
 		"tsup": "^8.1.0",
-		"typescript": "~5.4.5"
-	},
-	"resolutions": {
-		"@types/node": "20.14.2"
+		"typescript": "^5.5.2"
 	},
 	"repository": {
 		"type": "git",
