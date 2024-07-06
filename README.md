@@ -15,9 +15,15 @@
 [![npm](https://img.shields.io/npm/v/@skyra/http-framework?color=crimson&logo=npm&style=flat-square&label=@skyra/http-framework)](https://www.npmjs.com/package/@skyra/http-framework)
 [![npm](https://img.shields.io/npm/v/@skyra/http-framework-i18n?color=crimson&logo=npm&style=flat-square&label=@skyra/http-framework-i18n)](https://www.npmjs.com/package/@skyra/http-framework-i18n)
 [![npm](https://img.shields.io/npm/v/@skyra/i18next-backend?color=crimson&logo=npm&style=flat-square&label=@skyra/i18next-backend)](https://www.npmjs.com/package/@skyra/i18next-backend)
+[![npm](https://img.shields.io/npm/v/@skyra/influx-utilities?color=crimson&logo=npm&style=flat-square&label=@skyra/influx-utilities)](https://www.npmjs.com/package/@skyra/influx-utilities)
 [![npm](https://img.shields.io/npm/v/@skyra/logger?color=crimson&logo=npm&style=flat-square&label=@skyra/logger)](https://www.npmjs.com/package/@skyra/logger)
+[![npm](https://img.shields.io/npm/v/@skyra/reddit-helpers?color=crimson&logo=npm&style=flat-square&label=@skyra/reddit-helpers)](https://www.npmjs.com/package/@skyra/reddit-helpers)
+[![npm](https://img.shields.io/npm/v/@skyra/safe-fetch?color=crimson&logo=npm&style=flat-square&label=@skyra/safe-fetch)](https://www.npmjs.com/package/@skyra/safe-fetch)
 [![npm](https://img.shields.io/npm/v/@skyra/shared-http-pieces?color=crimson&logo=npm&style=flat-square&label=@skyra/shared-http-pieces)](https://www.npmjs.com/package/@skyra/shared-http-pieces)
+[![npm](https://img.shields.io/npm/v/@skyra/shared-influx-pieces?color=crimson&logo=npm&style=flat-square&label=@skyra/shared-influx-pieces)](https://www.npmjs.com/package/@skyra/shared-influx-pieces)
 [![npm](https://img.shields.io/npm/v/@skyra/start-banner?color=crimson&logo=npm&style=flat-square&label=@skyra/start-banner)](https://www.npmjs.com/package/@skyra/start-banner)
+[![npm](https://img.shields.io/npm/v/@skyra/twitch-helpers?color=crimson&logo=npm&style=flat-square&label=@skyra/twitch-helpers)](https://www.npmjs.com/package/@skyra/twitch-helpers)
+[![npm](https://img.shields.io/npm/v/@skyra/weather-helpers?color=crimson&logo=npm&style=flat-square&label=@skyra/weather-helpers)](https://www.npmjs.com/package/@skyra/weather-helpers)
 
 </div>
 
