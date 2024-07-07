@@ -30,11 +30,11 @@
 		"@discordjs/collection": "^1.5.3",
 		"@discordjs/rest": "^2.3.0",
 		"@discordjs/util": "^1.1.0",
-		"@sapphire/pieces": "^4.2.2",
+		"@sapphire/pieces": "^4.3.1",
 		"@sapphire/result": "^2.6.6",
 		"@sapphire/utilities": "^3.16.2",
-		"@vladfrangu/async_event_emitter": "^2.4.0",
-		"discord-api-types": "^0.37.91"
+		"@vladfrangu/async_event_emitter": "^2.4.1",
+		"discord-api-types": "^0.37.92"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.0.2",

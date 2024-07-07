@@ -1394,14 +1394,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/instrumentation@npm:5.16.0":
-  version: 5.16.0
-  resolution: "@prisma/instrumentation@npm:5.16.0"
+"@prisma/instrumentation@npm:5.16.1":
+  version: 5.16.1
+  resolution: "@prisma/instrumentation@npm:5.16.1"
   dependencies:
     "@opentelemetry/api": "npm:^1.8"
     "@opentelemetry/instrumentation": "npm:^0.49 || ^0.50 || ^0.51 || ^0.52.0"
     "@opentelemetry/sdk-trace-base": "npm:^1.22"
-  checksum: 10/17b8605e9a34edb8879d9a4a29ed386fb3af342a3102b98a63a553f1af7ad370e9738c8cf232e15673899e58a6a5e23c5e47b5f7ae679c5b085bb119b43ddd91
+  checksum: 10/46fd8e8e8e515b74042e22ac35761226aaa25c12d77c6031dc7207780d5496bfcf08db47cbf4aee94a9adfc3629adf33b3fd15688bb7d120a420e519db5abca1
   languageName: node
   linkType: hard
 
@@ -1548,14 +1548,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/pieces@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "@sapphire/pieces@npm:4.2.2"
+"@sapphire/pieces@npm:^4.3.1":
+  version: 4.3.1
+  resolution: "@sapphire/pieces@npm:4.3.1"
   dependencies:
     "@discordjs/collection": "npm:^1.5.3"
-    "@sapphire/utilities": "npm:^3.15.3"
-    tslib: "npm:^2.6.2"
-  checksum: 10/4553358a677aef4bb7062e8be4cd021dd993a96b3c9fad7e91ab423feb733e4cd56f57400b06b3e13e724d90009eb9b1c79ea5b14c0ac062fea68f7dc2dbfd53
+    "@sapphire/utilities": "npm:^3.16.2"
+    tslib: "npm:^2.6.3"
+  checksum: 10/ae3c347e203136ac01c8ae90e1bdb4b89e0b7abd2498993265561db656f32bc973c9d50fd63f78514c6c9b1748ad112a31e5404e290b97591b64866e893f5965
   languageName: node
   linkType: hard
 
@@ -1602,7 +1602,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/utilities@npm:3.16.2, @sapphire/utilities@npm:^3.11.0, @sapphire/utilities@npm:^3.15.3, @sapphire/utilities@npm:^3.16.2":
+"@sapphire/utilities@npm:3.16.2, @sapphire/utilities@npm:^3.11.0, @sapphire/utilities@npm:^3.16.2":
   version: 3.16.2
   resolution: "@sapphire/utilities@npm:3.16.2"
   checksum: 10/9801f26cc7c37f1c4d56231d2e3967e7ac072d037dbc11b577d1ecf09fe7c6e4141bd1d1a10490f3c51eeeaf81eac0373502d41366dc68627b490597ea6d1ebe
@@ -1616,19 +1616,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:8.13.0":
-  version: 8.13.0
-  resolution: "@sentry/core@npm:8.13.0"
+"@sentry/core@npm:8.15.0":
+  version: 8.15.0
+  resolution: "@sentry/core@npm:8.15.0"
   dependencies:
-    "@sentry/types": "npm:8.13.0"
-    "@sentry/utils": "npm:8.13.0"
-  checksum: 10/0d44008353114a2060a5130ea9dd8dc5b2671b1ff20305bad03e2d1afdb181cf2410da6bea7f2de9775bc4d99a5dd1fd4731bb30b2b0a81a62d3a7f863e6b52a
+    "@sentry/types": "npm:8.15.0"
+    "@sentry/utils": "npm:8.15.0"
+  checksum: 10/c649f5e0638a8541064f09cbe2848007084bab431f976478ab7cc211d7768a8281b85509b079cca049873571d2f71fd543fa70c4200bfee06911a7af6351d938
   languageName: node
   linkType: hard
 
-"@sentry/node@npm:^8.13.0":
-  version: 8.13.0
-  resolution: "@sentry/node@npm:8.13.0"
+"@sentry/node@npm:^8.15.0":
+  version: 8.15.0
+  resolution: "@sentry/node@npm:8.15.0"
   dependencies:
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/context-async-hooks": "npm:^1.25.1"
@@ -1652,49 +1652,49 @@ __metadata:
     "@opentelemetry/resources": "npm:^1.25.1"
     "@opentelemetry/sdk-trace-base": "npm:^1.25.1"
     "@opentelemetry/semantic-conventions": "npm:^1.25.1"
-    "@prisma/instrumentation": "npm:5.16.0"
-    "@sentry/core": "npm:8.13.0"
-    "@sentry/opentelemetry": "npm:8.13.0"
-    "@sentry/types": "npm:8.13.0"
-    "@sentry/utils": "npm:8.13.0"
+    "@prisma/instrumentation": "npm:5.16.1"
+    "@sentry/core": "npm:8.15.0"
+    "@sentry/opentelemetry": "npm:8.15.0"
+    "@sentry/types": "npm:8.15.0"
+    "@sentry/utils": "npm:8.15.0"
     opentelemetry-instrumentation-fetch-node: "npm:1.2.0"
   dependenciesMeta:
     opentelemetry-instrumentation-fetch-node:
       optional: true
-  checksum: 10/ae1ac7f9c746a675d80402965ba8447ad64af4d9f38fe45412d026aaba851073dd00f0b1a477e7ba904279a6defcd30142e05494d84231e3b4a712a2c76c5b57
+  checksum: 10/7cda27508383fd2fcecd7f9809215b134670ba42041a7837f2de6bf9ef250a94adae1c113c65d9abacb089cd698bd21196a2519cc36c01690b1b867e552dc0f7
   languageName: node
   linkType: hard
 
-"@sentry/opentelemetry@npm:8.13.0":
-  version: 8.13.0
-  resolution: "@sentry/opentelemetry@npm:8.13.0"
+"@sentry/opentelemetry@npm:8.15.0":
+  version: 8.15.0
+  resolution: "@sentry/opentelemetry@npm:8.15.0"
   dependencies:
-    "@sentry/core": "npm:8.13.0"
-    "@sentry/types": "npm:8.13.0"
-    "@sentry/utils": "npm:8.13.0"
+    "@sentry/core": "npm:8.15.0"
+    "@sentry/types": "npm:8.15.0"
+    "@sentry/utils": "npm:8.15.0"
   peerDependencies:
     "@opentelemetry/api": ^1.9.0
     "@opentelemetry/core": ^1.25.1
     "@opentelemetry/instrumentation": ^0.52.1
     "@opentelemetry/sdk-trace-base": ^1.25.1
     "@opentelemetry/semantic-conventions": ^1.25.1
-  checksum: 10/ab2a6c0f3ade17df3d6f46d955caa57bb543852539d1065dd0de1b8635bf66881f107f00a37a7b5ea013dcafea6973783c8d3b2b5c93e6b12108fbbe422cf8c8
+  checksum: 10/2509932fb5c3f6244ce510887d32722dfb97248c44af6a4248a5703ea5488414c580e354d1befe8829c803e030b37d1f35b4c5dee08a4cc4b3d2ee7a59dbb655
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:8.13.0":
-  version: 8.13.0
-  resolution: "@sentry/types@npm:8.13.0"
-  checksum: 10/8f792f8f03a5b505ce5648525bca39cce03e1822cd3c0f62eb00b27904ca239abd6ad5cd5e233acd19656f80b1f1e92b060bce2e72129e8c59debfdc576014d6
+"@sentry/types@npm:8.15.0":
+  version: 8.15.0
+  resolution: "@sentry/types@npm:8.15.0"
+  checksum: 10/8b8d27553d115fe6a0cc49528fcf587f5e6fe56b31b85a7ecbf8442bc8705d8c239972f34f17402e1eb8eadc3b5185235c3ab42cca2eec8f9e21e9f2b26471a5
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:8.13.0":
-  version: 8.13.0
-  resolution: "@sentry/utils@npm:8.13.0"
+"@sentry/utils@npm:8.15.0":
+  version: 8.15.0
+  resolution: "@sentry/utils@npm:8.15.0"
   dependencies:
-    "@sentry/types": "npm:8.13.0"
-  checksum: 10/e38b67ff85c33bcb4618de85891f96db80269cee6da6a3257a999cba4c4873c73affcdabd761b966155dbfdbdb6ccb602020639152be58b94789175a9f989090
+    "@sentry/types": "npm:8.15.0"
+  checksum: 10/26250d17781f46e27d9eb6015612a82bccd1595946094a45670e7329d81a7dd60e2ac1773f34a828c29a62fe8e9f1e9fb69d2f7f971ab4a0dd2e67bbbc1ad9ba
   languageName: node
   linkType: hard
 
@@ -1735,7 +1735,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^4.0.2"
     "@sapphire/utilities": "npm:^3.16.2"
     "@skyra/i18next-backend": "workspace:^"
-    discord-api-types: "npm:^0.37.91"
+    discord-api-types: "npm:^0.37.92"
     i18next: "npm:^22.5.1"
     tslib: "npm:^2.6.3"
     tsup: "npm:^8.1.0"
@@ -1752,12 +1752,12 @@ __metadata:
     "@discordjs/rest": "npm:^2.3.0"
     "@discordjs/util": "npm:^1.1.0"
     "@favware/cliff-jumper": "npm:^4.0.2"
-    "@sapphire/pieces": "npm:^4.2.2"
+    "@sapphire/pieces": "npm:^4.3.1"
     "@sapphire/result": "npm:^2.6.6"
     "@sapphire/utilities": "npm:^3.16.2"
     "@vitest/coverage-v8": "npm:^1.6.0"
-    "@vladfrangu/async_event_emitter": "npm:^2.4.0"
-    discord-api-types: "npm:^0.37.91"
+    "@vladfrangu/async_event_emitter": "npm:^2.4.1"
+    discord-api-types: "npm:^0.37.92"
     tsup: "npm:^8.1.0"
     typescript: "npm:~5.4.5"
     vitest: "npm:^1.6.0"
@@ -1839,11 +1839,11 @@ __metadata:
     "@discordjs/builders": "npm:^1.8.2"
     "@discordjs/collection": "npm:^1.5.3"
     "@favware/cliff-jumper": "npm:^4.0.2"
-    "@sentry/node": "npm:^8.13.0"
+    "@sentry/node": "npm:^8.15.0"
     "@skyra/env-utilities": "workspace:^"
     "@skyra/http-framework": "workspace:^"
     "@skyra/http-framework-i18n": "workspace:^"
-    discord-api-types: "npm:^0.37.91"
+    discord-api-types: "npm:^0.37.92"
     tslib: "npm:^2.6.3"
     typescript: "npm:~5.4.5"
   languageName: unknown
@@ -1856,7 +1856,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^4.0.2"
     "@skyra/http-framework": "workspace:^"
     "@skyra/influx-utilities": "workspace:^"
-    discord-api-types: "npm:^0.37.91"
+    discord-api-types: "npm:^0.37.92"
     tslib: "npm:^2.6.3"
     typescript: "npm:~5.4.5"
   languageName: unknown
@@ -1903,90 +1903,90 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@swc/core-darwin-arm64@npm:1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core-darwin-arm64@npm:1.6.6"
+"@swc/core-darwin-arm64@npm:1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core-darwin-arm64@npm:1.6.13"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core-darwin-x64@npm:1.6.6"
+"@swc/core-darwin-x64@npm:1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core-darwin-x64@npm:1.6.13"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.6.6"
+"@swc/core-linux-arm-gnueabihf@npm:1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.6.13"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.6.6"
+"@swc/core-linux-arm64-gnu@npm:1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.6.13"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core-linux-arm64-musl@npm:1.6.6"
+"@swc/core-linux-arm64-musl@npm:1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core-linux-arm64-musl@npm:1.6.13"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core-linux-x64-gnu@npm:1.6.6"
+"@swc/core-linux-x64-gnu@npm:1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core-linux-x64-gnu@npm:1.6.13"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core-linux-x64-musl@npm:1.6.6"
+"@swc/core-linux-x64-musl@npm:1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core-linux-x64-musl@npm:1.6.13"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.6.6"
+"@swc/core-win32-arm64-msvc@npm:1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.6.13"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.6.6"
+"@swc/core-win32-ia32-msvc@npm:1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.6.13"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core-win32-x64-msvc@npm:1.6.6"
+"@swc/core-win32-x64-msvc@npm:1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core-win32-x64-msvc@npm:1.6.13"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.6.6":
-  version: 1.6.6
-  resolution: "@swc/core@npm:1.6.6"
+"@swc/core@npm:^1.6.13":
+  version: 1.6.13
+  resolution: "@swc/core@npm:1.6.13"
   dependencies:
-    "@swc/core-darwin-arm64": "npm:1.6.6"
-    "@swc/core-darwin-x64": "npm:1.6.6"
-    "@swc/core-linux-arm-gnueabihf": "npm:1.6.6"
-    "@swc/core-linux-arm64-gnu": "npm:1.6.6"
-    "@swc/core-linux-arm64-musl": "npm:1.6.6"
-    "@swc/core-linux-x64-gnu": "npm:1.6.6"
-    "@swc/core-linux-x64-musl": "npm:1.6.6"
-    "@swc/core-win32-arm64-msvc": "npm:1.6.6"
-    "@swc/core-win32-ia32-msvc": "npm:1.6.6"
-    "@swc/core-win32-x64-msvc": "npm:1.6.6"
+    "@swc/core-darwin-arm64": "npm:1.6.13"
+    "@swc/core-darwin-x64": "npm:1.6.13"
+    "@swc/core-linux-arm-gnueabihf": "npm:1.6.13"
+    "@swc/core-linux-arm64-gnu": "npm:1.6.13"
+    "@swc/core-linux-arm64-musl": "npm:1.6.13"
+    "@swc/core-linux-x64-gnu": "npm:1.6.13"
+    "@swc/core-linux-x64-musl": "npm:1.6.13"
+    "@swc/core-win32-arm64-msvc": "npm:1.6.13"
+    "@swc/core-win32-ia32-msvc": "npm:1.6.13"
+    "@swc/core-win32-x64-msvc": "npm:1.6.13"
     "@swc/counter": "npm:^0.1.3"
     "@swc/types": "npm:^0.1.9"
   peerDependencies:
@@ -2015,7 +2015,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 10/9cb53c75a06ed82bdceb6f4b1118e26957c6de7b899927a2e455ea66725c79601dfc59cb56a8e8f4019557fcf062cdafa100ccc249dfcd9229b73a629922e7ea
+  checksum: 10/ccb9c11d5f2e8371f17fca33f7d702433684013fce685d0db06f0b3a6064db476b1c4378bb8f1e9d12841338fc745a6aed056137443cb370d4238b6f4fc5405c
   languageName: node
   linkType: hard
 
@@ -2532,10 +2532,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vladfrangu/async_event_emitter@npm:^2.2.4, @vladfrangu/async_event_emitter@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@vladfrangu/async_event_emitter@npm:2.4.0"
-  checksum: 10/038a2e69a3cb798f24b266eb37d4909be0610a10f427d700badc947071f27455a58214ef6a0e8d7fe3205669bf0af3f525d1d4c6587b2826d15fbb81562bff9c
+"@vladfrangu/async_event_emitter@npm:^2.2.4, @vladfrangu/async_event_emitter@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "@vladfrangu/async_event_emitter@npm:2.4.1"
+  checksum: 10/f8212e81c56d4994b1d5bf23f66bb47d4254c80f1dee7437a411a0b9cd942ae53bb3f21400590c3c70121b299457a77241535567a1de35822a35044740ccb48e
   languageName: node
   linkType: hard
 
@@ -2745,7 +2745,7 @@ __metadata:
     "@sapphire/eslint-config": "npm:^5.0.5"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@sapphire/ts-config": "npm:^5.0.1"
-    "@swc/core": "npm:^1.6.6"
+    "@swc/core": "npm:^1.6.13"
     "@types/node": "npm:20.14.8"
     "@types/ws": "npm:^8.5.10"
     "@typescript-eslint/eslint-plugin": "npm:^7.13.1"
@@ -3468,10 +3468,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.91":
-  version: 0.37.91
-  resolution: "discord-api-types@npm:0.37.91"
-  checksum: 10/046c2f42161e65bdd26d68869c4ceae4aa0937d6535f5ba62ab0e8ea0bcacbfa93f35d9b8cbccd5929ab0fb094e5f82d2600cc931637295030ebca5cd4d9647e
+"discord-api-types@npm:^0.37.92":
+  version: 0.37.92
+  resolution: "discord-api-types@npm:0.37.92"
+  checksum: 10/94666e98e4b74d51d443c0ea6b4704aceeed55681a7362a6bc0770fa7509d0cf7035d68f47c9cbd8f1c9c08fe7ba27f4d0edf074476591c6302e72e3547f5102
   languageName: node
   linkType: hard
 
