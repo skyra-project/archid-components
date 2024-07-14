@@ -75,7 +75,7 @@ export class CommandRouter<Options extends Command.Options = Command.Options> {
 
 		if (firstOption.type === ApplicationCommandOptionType.SubcommandGroup) {
 			const entry = this.#chatInputRouter.get(firstOption.name);
-			return entry?.isSubcommandGroup() ? entry.getSubcommandMapping(firstOption.options[0].name) ?? entry.getSubcommandGroupMapping() : null;
+			return entry?.isSubcommandGroup() ? (entry.getSubcommandMapping(firstOption.options[0].name) ?? entry.getSubcommandGroupMapping()) : null;
 		}
 
 		return 'chatInputRun';
