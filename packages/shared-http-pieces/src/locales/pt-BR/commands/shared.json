@@ -1,3 +1,12 @@
 {
-	"infoName": "info"
+	"infoName": "informações",
+	"infoDescription": "Envia algumas informações sobre mim, links para adicionar o bot e para entra no servidor de suporte",
+	"infoFieldUptimeTitle": "Tempo Ativo",
+	"infoFieldUptimeValue": "• **Servidor**: {{host}}\n• **Cliente**: {{client}}",
+	"infoFieldServerUsageTitle": "Uso de recursos",
+	"infoFieldServerUsageValue": "• **Uso da CPU**: {{cpu}}\n• **Memória Utilizada**: {{heapUsed}}MB (Total: {{heapTotal}}MB)",
+	"infoButtonInvite": "Me adicione no seu servidor!",
+	"infoButtonSupport": "Servidor de suporte",
+	"infoButtonGitHub": "Repositório do GitHub",
+	"infoButtonDonate": "Fazer uma doação"
 }
