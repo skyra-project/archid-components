@@ -33,15 +33,15 @@
 		"@sapphire/pieces": "^4.3.1",
 		"@sapphire/result": "^2.6.6",
 		"@sapphire/utilities": "^3.16.2",
-		"@vladfrangu/async_event_emitter": "^2.4.3",
+		"@vladfrangu/async_event_emitter": "^2.4.4",
 		"discord-api-types": "^0.37.92"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.0.2",
-		"@vitest/coverage-v8": "^2.0.2",
-		"tsup": "^8.1.0",
+		"@vitest/coverage-v8": "^2.0.3",
+		"tsup": "^8.2.1",
 		"typescript": "~5.4.5",
-		"vitest": "^2.0.2"
+		"vitest": "^2.0.3"
 	},
 	"repository": {
 		"type": "git",
