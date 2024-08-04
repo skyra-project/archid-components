@@ -61,10 +61,10 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.0.3",
-		"@vitest/coverage-v8": "^2.0.4",
+		"@vitest/coverage-v8": "^2.0.5",
 		"esbuild-plugin-version-injector": "^1.2.1",
-		"tsup": "^8.2.3",
+		"tsup": "^8.2.4",
 		"typescript": "~5.4.5",
-		"vitest": "^2.0.4"
+		"vitest": "^2.0.5"
 	}
 }
