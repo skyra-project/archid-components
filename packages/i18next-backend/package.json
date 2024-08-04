@@ -35,7 +35,7 @@
 		"@favware/cliff-jumper": "^4.0.3",
 		"@types/node": "20.14.8",
 		"i18next": "^22.5.1",
-		"tsup": "^8.2.3",
+		"tsup": "^8.2.4",
 		"typescript": "~5.4.5"
 	},
 	"repository": {
