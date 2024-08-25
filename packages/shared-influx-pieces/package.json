@@ -33,8 +33,8 @@
 	"dependencies": {
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/influx-utilities": "workspace:^",
-		"discord-api-types": "^0.37.94",
-		"tslib": "^2.6.3"
+		"discord-api-types": "^0.37.97",
+		"tslib": "^2.7.0"
 	},
 	"repository": {
 		"type": "git",
@@ -63,7 +63,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.0.3",
+		"@favware/cliff-jumper": "^4.1.0",
 		"typescript": "~5.4.5"
 	}
 }
