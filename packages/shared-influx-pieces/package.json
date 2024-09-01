@@ -33,7 +33,7 @@
 	"dependencies": {
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/influx-utilities": "workspace:^",
-		"discord-api-types": "^0.37.97",
+		"discord-api-types": "^0.37.98",
 		"tslib": "^2.7.0"
 	},
 	"repository": {
