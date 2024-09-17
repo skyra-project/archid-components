@@ -18,29 +18,29 @@
 		"check-update": "turbo run check-update"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^19.4.1",
-		"@commitlint/config-conventional": "^19.4.1",
+		"@commitlint/cli": "^19.5.0",
+		"@commitlint/config-conventional": "^19.5.0",
 		"@favware/cliff-jumper": "^4.1.0",
 		"@favware/npm-deprecate": "^1.0.7",
 		"@sapphire/eslint-config": "^5.0.5",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@sapphire/ts-config": "^5.0.1",
-		"@swc/core": "^1.7.22",
+		"@swc/core": "^1.7.26",
 		"@types/node": "20.14.8",
 		"@types/ws": "^8.5.12",
 		"@typescript-eslint/eslint-plugin": "^7.13.1",
 		"@typescript-eslint/parser": "^7.13.1",
-		"@vitest/coverage-v8": "^2.0.5",
+		"@vitest/coverage-v8": "^2.1.1",
 		"cz-conventional-changelog": "^3.3.0",
-		"eslint": "^8.57.0",
+		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.2.1",
-		"lint-staged": "^15.2.9",
+		"lint-staged": "^15.2.10",
 		"prettier": "^3.3.3",
-		"tsup": "^8.2.4",
-		"turbo": "^2.1.1",
+		"tsup": "^8.3.0",
+		"turbo": "^2.1.2",
 		"typescript": "~5.4.5",
-		"vitest": "^2.0.5"
+		"vitest": "^2.1.1"
 	},
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
@@ -67,5 +67,5 @@
 			"path": "./node_modules/cz-conventional-changelog"
 		}
 	},
-	"packageManager": "yarn@4.4.1"
+	"packageManager": "yarn@4.5.0"
 }
