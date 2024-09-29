@@ -1075,6 +1075,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@opentelemetry/instrumentation-amqplib@npm:^0.42.0":
+  version: 0.42.0
+  resolution: "@opentelemetry/instrumentation-amqplib@npm:0.42.0"
+  dependencies:
+    "@opentelemetry/core": "npm:^1.8.0"
+    "@opentelemetry/instrumentation": "npm:^0.53.0"
+    "@opentelemetry/semantic-conventions": "npm:^1.27.0"
+  peerDependencies:
+    "@opentelemetry/api": ^1.3.0
+  checksum: 10/c97a5738792095faec20847e3bb1cb229269af2b445331ca922468b80bc2da65a3107dfe0e2e706ab7fb5c25fc260c5d5ffccda1c332cebae7d464155e6bf20d
+  languageName: node
+  linkType: hard
+
 "@opentelemetry/instrumentation-connect@npm:0.39.0":
   version: 0.39.0
   resolution: "@opentelemetry/instrumentation-connect@npm:0.39.0"
@@ -1086,6 +1099,17 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ^1.3.0
   checksum: 10/76c62eead2d07673bdd0bf9e87302abf5b74f7a9c300d76e06743a94d591823fbd90b81abc92fb6321beb0aa707f175c501dd091f80f91d0e6d2ba86ef939618
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/instrumentation-dataloader@npm:0.12.0":
+  version: 0.12.0
+  resolution: "@opentelemetry/instrumentation-dataloader@npm:0.12.0"
+  dependencies:
+    "@opentelemetry/instrumentation": "npm:^0.53.0"
+  peerDependencies:
+    "@opentelemetry/api": ^1.3.0
+  checksum: 10/d560b519a6be6572a3bd3707f2035f4e1f8e50b95eee109ee138b9ebfadd1ec7bca288aeabb54e8299746eae9457001162dac6ccd92af5ba7449301e0bb139bd
   languageName: node
   linkType: hard
 
@@ -1668,25 +1692,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/core@npm:8.30.0":
-  version: 8.30.0
-  resolution: "@sentry/core@npm:8.30.0"
+"@sentry/core@npm:8.32.0":
+  version: 8.32.0
+  resolution: "@sentry/core@npm:8.32.0"
   dependencies:
-    "@sentry/types": "npm:8.30.0"
-    "@sentry/utils": "npm:8.30.0"
-  checksum: 10/c9260a38687ab7938f5838ff36876850ae8ca80f4dcad7422950006432cc06e246c618d33627bc0ca283f1ee3106cfdfa7a73da0657828f38baf60912d226c90
+    "@sentry/types": "npm:8.32.0"
+    "@sentry/utils": "npm:8.32.0"
+  checksum: 10/bec99d723ffa7eeb6ad99e7ebd5d3a38f8a6c3f46feb1af3961793bf1c2f93db37922ca0996cbcb7866e1fc9ca8be2eeffaf033378e815dce4ae6ac5b6936149
   languageName: node
   linkType: hard
 
-"@sentry/node@npm:^8.30.0":
-  version: 8.30.0
-  resolution: "@sentry/node@npm:8.30.0"
+"@sentry/node@npm:^8.32.0":
+  version: 8.32.0
+  resolution: "@sentry/node@npm:8.32.0"
   dependencies:
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/context-async-hooks": "npm:^1.25.1"
     "@opentelemetry/core": "npm:^1.25.1"
     "@opentelemetry/instrumentation": "npm:^0.53.0"
+    "@opentelemetry/instrumentation-amqplib": "npm:^0.42.0"
     "@opentelemetry/instrumentation-connect": "npm:0.39.0"
+    "@opentelemetry/instrumentation-dataloader": "npm:0.12.0"
     "@opentelemetry/instrumentation-express": "npm:0.42.0"
     "@opentelemetry/instrumentation-fastify": "npm:0.39.0"
     "@opentelemetry/instrumentation-fs": "npm:0.15.0"
@@ -1709,45 +1735,45 @@ __metadata:
     "@opentelemetry/sdk-trace-base": "npm:^1.26.0"
     "@opentelemetry/semantic-conventions": "npm:^1.27.0"
     "@prisma/instrumentation": "npm:5.19.1"
-    "@sentry/core": "npm:8.30.0"
-    "@sentry/opentelemetry": "npm:8.30.0"
-    "@sentry/types": "npm:8.30.0"
-    "@sentry/utils": "npm:8.30.0"
+    "@sentry/core": "npm:8.32.0"
+    "@sentry/opentelemetry": "npm:8.32.0"
+    "@sentry/types": "npm:8.32.0"
+    "@sentry/utils": "npm:8.32.0"
     import-in-the-middle: "npm:^1.11.0"
-  checksum: 10/28c843ead7100b01c7a9a4b46e536200fa6e015bab89c72153e43b4e170a725fe76698cb2bddd295292fea363ad668ea3edb18515591af10c9444d4e29e4df2f
+  checksum: 10/9ea1e5d7daaf29382ba63fd03c9b2a18c38a2112cf76feb3439e6ffac831447c68be60e5d9164622394f7978b482f40fba1983dad7fc4c5b8787e168d42e46fd
   languageName: node
   linkType: hard
 
-"@sentry/opentelemetry@npm:8.30.0":
-  version: 8.30.0
-  resolution: "@sentry/opentelemetry@npm:8.30.0"
+"@sentry/opentelemetry@npm:8.32.0":
+  version: 8.32.0
+  resolution: "@sentry/opentelemetry@npm:8.32.0"
   dependencies:
-    "@sentry/core": "npm:8.30.0"
-    "@sentry/types": "npm:8.30.0"
-    "@sentry/utils": "npm:8.30.0"
+    "@sentry/core": "npm:8.32.0"
+    "@sentry/types": "npm:8.32.0"
+    "@sentry/utils": "npm:8.32.0"
   peerDependencies:
     "@opentelemetry/api": ^1.9.0
     "@opentelemetry/core": ^1.25.1
     "@opentelemetry/instrumentation": ^0.53.0
     "@opentelemetry/sdk-trace-base": ^1.26.0
     "@opentelemetry/semantic-conventions": ^1.27.0
-  checksum: 10/f83ea42a51f1bcbcdfccffcdfbc8a479263dcee129f66cb4b107e2fdd4d19c51ebc9defbca242cedd0a3fecb6bb636e4f55187fe7342887581137b621a01312a
+  checksum: 10/018b93207c71401f7e0f2cf7cdcd07d68b71855c37525c26561208cea41adbabb1f7036577b5e932e2b84b0d9eede01cf43212040328058f12eb9f210b1800f3
   languageName: node
   linkType: hard
 
-"@sentry/types@npm:8.30.0":
-  version: 8.30.0
-  resolution: "@sentry/types@npm:8.30.0"
-  checksum: 10/ebd3769877f2ea070bd017304c94fa9b47b9724dd63724a8d82810de1de45dac168c1fbe74c104ae7a65e33c0c6e2ee3d55cbde02f161b362f1c94a7fda2f1a2
+"@sentry/types@npm:8.32.0":
+  version: 8.32.0
+  resolution: "@sentry/types@npm:8.32.0"
+  checksum: 10/71ab7273f01d2545f80c36076bd9db9e060a2e41a8abaefd92354583d994f5b5fd8f224b8048be8162769e4a2f3a0ec43a1750130b72583adf88608d1e2c9a96
   languageName: node
   linkType: hard
 
-"@sentry/utils@npm:8.30.0":
-  version: 8.30.0
-  resolution: "@sentry/utils@npm:8.30.0"
+"@sentry/utils@npm:8.32.0":
+  version: 8.32.0
+  resolution: "@sentry/utils@npm:8.32.0"
   dependencies:
-    "@sentry/types": "npm:8.30.0"
-  checksum: 10/130c1f1ed2dfddc99f273316e3e775dd01c25cc3a296cb5fab62e7fa2f1a67c6b205b540c38f073136825ee93b98ee5586836c3c2261bc8c87656decc77ca4b3
+    "@sentry/types": "npm:8.32.0"
+  checksum: 10/a8110e19ec54b922e5320e4d8b0b788defa532b39cc09a6743862c4f696034e78487c45fe634f0dcc372ae66cc5bc20e21f00a1d2c1917860bbaf5e933446c33
   languageName: node
   linkType: hard
 
@@ -1885,7 +1911,7 @@ __metadata:
     "@discordjs/builders": "npm:^1.9.0"
     "@discordjs/collection": "npm:^1.5.3"
     "@favware/cliff-jumper": "npm:^4.1.0"
-    "@sentry/node": "npm:^8.30.0"
+    "@sentry/node": "npm:^8.32.0"
     "@skyra/env-utilities": "workspace:^"
     "@skyra/http-framework": "workspace:^"
     "@skyra/http-framework-i18n": "workspace:^"
