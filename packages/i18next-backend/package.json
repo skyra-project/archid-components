@@ -32,7 +32,7 @@
 		"tslib": "^2.8.0"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^4.1.0",
+		"@favware/cliff-jumper": "^5.0.0",
 		"@types/node": "20.14.8",
 		"i18next": "^22.5.1",
 		"tsup": "^8.3.5",
