@@ -60,7 +60,7 @@
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^4.1.0",
-		"tsup": "^8.3.0",
+		"tsup": "^8.3.5",
 		"typescript": "~5.4.5"
 	}
 }
