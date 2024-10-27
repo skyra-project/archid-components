@@ -6,4 +6,5 @@ identifierBase: false
 pushTag: true
 githubRelease: true
 githubReleaseLatest: true
-githubRepo: skyra-project/archid-components
+gitRepo: skyra-project/archid-components
+gitHostVariant: github
