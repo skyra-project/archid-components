@@ -53,8 +53,8 @@
 	},
 	"dependencies": {
 		"@discordjs/formatters": "^0.5.0",
-		"@sapphire/result": "^2.7.1",
-		"@sapphire/utilities": "^3.18.0",
+		"@sapphire/result": "^2.7.2",
+		"@sapphire/utilities": "^3.18.1",
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/safe-fetch": "workspace:^",
 		"he": "^1.2.0"
