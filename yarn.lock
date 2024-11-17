@@ -1855,7 +1855,7 @@ __metadata:
     "@favware/cliff-jumper": "npm:^5.0.0"
     "@vitest/coverage-v8": "npm:^2.1.5"
     dotenv: "npm:^16.4.5"
-    dotenv-expand: "npm:^11.0.7"
+    dotenv-expand: "npm:^12.0.0"
     esbuild-plugin-version-injector: "npm:^1.2.1"
     tsup: "npm:^8.3.5"
     typescript: "npm:~5.4.5"
@@ -3380,12 +3380,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv-expand@npm:^11.0.7":
-  version: 11.0.7
-  resolution: "dotenv-expand@npm:11.0.7"
+"dotenv-expand@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "dotenv-expand@npm:12.0.0"
   dependencies:
     dotenv: "npm:^16.4.5"
-  checksum: 10/1cd981e2b925e746919e9fca16fa5e953955d021b5d5fea0a4ae96dc61fcc76bc95874e7730f8ceca22f5e3df5a47eb1fc626c3f45e98019ceba54fd58521971
+  checksum: 10/2c9af07c5acc9a2f7950b7093e74029f7377824d8ddddad6f9609e29977c2c731a633547d8d5e81ba55a883cf9fd6a5fff983717c13c85b1e43d4ff690f3cbbb
   languageName: node
   linkType: hard
 
