@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@2.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@2.1.0...@skyra/http-framework@2.2.0) - (2024-11-17)
+
+## 🐛 Bug Fixes
+
+- Possible race condition leading to 404s ([4d41316](https://github.com/skyra-project/archid-components/commit/4d41316db9480304ad1253aa4d2c26ebf620ff56)) ([#390](https://github.com/skyra-project/archid-components/pull/390) by @Bobby-McBobface)
+- **deps:** Update all non-major dependencies ([d38f55b](https://github.com/skyra-project/archid-components/commit/d38f55b0db2d86ae8958d0d8669ca519f1085874)) ([#391](https://github.com/skyra-project/archid-components/pull/391) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([4baa8d0](https://github.com/skyra-project/archid-components/commit/4baa8d09c102ccee3442f10dbd58f1801cca8a3c)) ([#389](https://github.com/skyra-project/archid-components/pull/389) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([b1b6cde](https://github.com/skyra-project/archid-components/commit/b1b6cde63d5918e309fc2ded9a409550ac27fa8b)) ([#388](https://github.com/skyra-project/archid-components/pull/388) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([2a3232b](https://github.com/skyra-project/archid-components/commit/2a3232beae5666062e46703d9cf8807582ed9cf5)) ([#387](https://github.com/skyra-project/archid-components/pull/387) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([a92e0a3](https://github.com/skyra-project/archid-components/commit/a92e0a34b0fb9c443c035b9e592f529f045eeced)) ([#382](https://github.com/skyra-project/archid-components/pull/382) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([8741937](https://github.com/skyra-project/archid-components/commit/8741937544a6a605e4e45fc2e45e435873aaba11)) ([#377](https://github.com/skyra-project/archid-components/pull/377) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([fe68090](https://github.com/skyra-project/archid-components/commit/fe68090e102ce3d90bb546995a11ae483dfaf34d)) ([#374](https://github.com/skyra-project/archid-components/pull/374) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([c4958f3](https://github.com/skyra-project/archid-components/commit/c4958f309705129b84bba7b67bcb54dca3fc3736)) ([#372](https://github.com/skyra-project/archid-components/pull/372) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([82777f2](https://github.com/skyra-project/archid-components/commit/82777f26300ab5358d5038fa141e7304b3df4e32))
+- **deps:** Update all non-major dependencies ([d92605d](https://github.com/skyra-project/archid-components/commit/d92605decc5fb0961a5fe476189acded1763fcc7)) ([#368](https://github.com/skyra-project/archid-components/pull/368) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([ff7c30d](https://github.com/skyra-project/archid-components/commit/ff7c30dd2e601b656767fe7180ea28a4d1d2f8d8)) ([#366](https://github.com/skyra-project/archid-components/pull/366) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([7edd912](https://github.com/skyra-project/archid-components/commit/7edd9126c38916fd3aeca65c8ac4a7c0673f2b90))
+- **deps:** Update all non-major dependencies ([2f5749d](https://github.com/skyra-project/archid-components/commit/2f5749d8af23344f2b573fc0f1c13fca7a24c180)) ([#363](https://github.com/skyra-project/archid-components/pull/363) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([ac48314](https://github.com/skyra-project/archid-components/commit/ac4831401349f7b755c0ebd5c532e61e60562d8b)) ([#360](https://github.com/skyra-project/archid-components/pull/360) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([db00bdd](https://github.com/skyra-project/archid-components/commit/db00bddb3e527e4575ad62abcb57e8bc93f78d27)) ([#359](https://github.com/skyra-project/archid-components/pull/359) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([5670607](https://github.com/skyra-project/archid-components/commit/5670607946b7db9ac7dfc13eeae4c598cb5829c6)) ([#358](https://github.com/skyra-project/archid-components/pull/358) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([7832e89](https://github.com/skyra-project/archid-components/commit/7832e89dc9de5733a511040755969e669130fd4e))
+- **deps:** Update all non-major dependencies ([f6f86c3](https://github.com/skyra-project/archid-components/commit/f6f86c316aabf8b375b74e6ac7ef62b1aadd807f)) ([#353](https://github.com/skyra-project/archid-components/pull/353) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([cd4137c](https://github.com/skyra-project/archid-components/commit/cd4137c4469680b55cd6eae3af9453cb9f9da6bc)) ([#344](https://github.com/skyra-project/archid-components/pull/344) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([42cfd84](https://github.com/skyra-project/archid-components/commit/42cfd844eb66239dd29f96692e6808d8be6cae55)) ([#337](https://github.com/skyra-project/archid-components/pull/337) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([f6d7625](https://github.com/skyra-project/archid-components/commit/f6d76256a14598cf18427dc6f282dfcc535710f8)) ([#336](https://github.com/skyra-project/archid-components/pull/336) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([faab5bb](https://github.com/skyra-project/archid-components/commit/faab5bbfc00899feb34cec53314c5758b1454c8a)) ([#331](https://github.com/skyra-project/archid-components/pull/331) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([1ca90e9](https://github.com/skyra-project/archid-components/commit/1ca90e97cda951d8f383cb9cb98b77e5aa266815)) ([#324](https://github.com/skyra-project/archid-components/pull/324) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([c1c4cfe](https://github.com/skyra-project/archid-components/commit/c1c4cfeaa9f8aa576c2a178de35ee0c232b40d92)) ([#322](https://github.com/skyra-project/archid-components/pull/322) by @renovate[bot])
+
+## 🚀 Features
+
+- Add new API fields to `BaseInteraction` ([dae9cc5](https://github.com/skyra-project/archid-components/commit/dae9cc5f68f877e743e78d27f4531a3630b53a22)) ([#356](https://github.com/skyra-project/archid-components/pull/356) by @kyranet)
+
 # [@skyra/http-framework@2.1.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@2.1.0...@skyra/http-framework@2.1.0) - (2024-01-10)
 
 ## 🏠 Refactor
