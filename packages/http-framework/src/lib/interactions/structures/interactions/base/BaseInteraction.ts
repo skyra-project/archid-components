@@ -245,7 +245,12 @@ export abstract class BaseInteraction<T extends BaseInteractionType = BaseIntera
 		if (response.writableEnded) throw new Error('Cannot send response, the request has already been replied.');
 
 		response.statusCode = HttpCodes.OK;
-		return new Promise<void>((resolve) => response.end(JSON.stringify(data), resolve));
+		return new Promise<void>((resolve) => {
+			response.on('close', () => {
+				resolve();
+			});
+			response.end(JSON.stringify(data));
+		});
 	}
 }
 
