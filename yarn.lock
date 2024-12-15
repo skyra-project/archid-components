@@ -62,12 +62,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.20.6":
-  version: 7.24.5
-  resolution: "@babel/runtime@npm:7.24.5"
+"@babel/runtime@npm:^7.23.2":
+  version: 7.26.0
+  resolution: "@babel/runtime@npm:7.26.0"
   dependencies:
     regenerator-runtime: "npm:^0.14.0"
-  checksum: 10/e0f4f4d4503f7338749d1dd92361ad132d683bde64e6b61d6c855e100dcd01592295fcfdcc960c946b85ef7908dc2f501080da58447c05812cf3cd80c599bb62
+  checksum: 10/9f4ea1c1d566c497c052d505587554e782e021e6ccd302c2ad7ae8291c8e16e3f19d4a7726fb64469e057779ea2081c28b7dbefec6d813a22f08a35712c0f699
   languageName: node
   linkType: hard
 
@@ -1854,7 +1854,7 @@ __metadata:
     "@sapphire/utilities": "npm:^3.18.1"
     "@skyra/i18next-backend": "workspace:^"
     discord-api-types: "npm:^0.37.98"
-    i18next: "npm:^22.5.1"
+    i18next: "npm:^24.1.0"
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.3.5"
     typescript: "npm:~5.4.5"
@@ -1888,7 +1888,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^5.0.0"
     "@types/node": "npm:20.14.8"
-    i18next: "npm:^22.5.1"
+    i18next: "npm:^24.1.0"
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.3.5"
     typescript: "npm:~5.4.5"
@@ -4449,12 +4449,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^22.5.1":
-  version: 22.5.1
-  resolution: "i18next@npm:22.5.1"
+"i18next@npm:^24.1.0":
+  version: 24.1.0
+  resolution: "i18next@npm:24.1.0"
   dependencies:
-    "@babel/runtime": "npm:^7.20.6"
-  checksum: 10/ab1a0adee97911917fc46fb4216b8eb7c4ec0a243966609dda6a384e4b22acd25386a817dc51146328d5272ce1c6133558361788ebc4a36fbca250b8b3e90bd1
+    "@babel/runtime": "npm:^7.23.2"
+  peerDependencies:
+    typescript: ^5
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10/3a71b5052d84388a9097b594c2b8dc8bfba3f3198d1ca89217e5fb4836d528aa1aee54432269ae092c439e2a12bb71c2abe05abc03cd3e657a001fe5e6883b51
   languageName: node
   linkType: hard
 
