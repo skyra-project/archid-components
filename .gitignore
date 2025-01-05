@@ -22,6 +22,7 @@ docs/
 test_out/
 .swc/
 *.tsbuildinfo
+tsup.config.bundled*.mjs
 *.zip
 *.tar
 *.tar.xz
