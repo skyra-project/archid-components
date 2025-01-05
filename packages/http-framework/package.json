@@ -26,9 +26,9 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "^1.9.0",
+		"@discordjs/builders": "^1.10.0",
 		"@discordjs/collection": "^1.5.3",
-		"@discordjs/rest": "^2.4.0",
+		"@discordjs/rest": "^2.4.2",
 		"@discordjs/util": "^1.1.1",
 		"@sapphire/pieces": "^4.3.1",
 		"@sapphire/result": "^2.7.2",
