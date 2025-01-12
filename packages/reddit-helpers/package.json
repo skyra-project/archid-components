@@ -60,7 +60,7 @@
 		"he": "^1.2.0"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^5.0.0",
+		"@favware/cliff-jumper": "^6.0.0",
 		"@types/he": "^1.2.3",
 		"esbuild-plugin-version-injector": "^1.2.1",
 		"tsup": "^8.3.5",
