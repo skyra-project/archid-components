@@ -249,7 +249,7 @@ describe('CommandRouter', () => {
 				}
 
 				expect(() => makeCommand(UserCommand)).toThrow(
-					new TypeError(`The command 'test' has a subcommand named 'sub' that was already linked to 'runGroup'`)
+					new Error(`The command 'test' has a subcommand named 'sub' that was already linked to 'runGroup'`)
 				);
 			});
 		});
