@@ -9,16 +9,31 @@
 	"types": "dist/cjs/index.d.cts",
 	"type": "module",
 	"exports": {
-		"import": {
-			"types": "./dist/esm/index.d.ts",
-			"default": "./dist/esm/index.js"
+		".": {
+			"import": {
+				"types": "./dist/esm/index.d.ts",
+				"default": "./dist/esm/index.js"
+			},
+			"require": {
+				"types": "./dist/cjs/index.d.cts",
+				"default": "./dist/cjs/index.cjs"
+			}
 		},
-		"require": {
-			"types": "./dist/cjs/index.d.cts",
-			"default": "./dist/cjs/index.cjs"
+		"./setup": {
+			"import": {
+				"types": "./dist/esm/setup.d.ts",
+				"default": "./dist/esm/setup.js"
+			},
+			"require": {
+				"types": "./dist/cjs/setup.d.cts",
+				"default": "./dist/cjs/setup.cjs"
+			}
 		}
 	},
-	"sideEffects": false,
+	"sideEffects": [
+		"./dist/esm/setup.js",
+		"./dist/cjs/setup.cjs"
+	],
 	"scripts": {
 		"test": "vitest run",
 		"build": "tsup",
