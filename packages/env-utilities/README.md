@@ -16,6 +16,11 @@ import { setup } from '@skyra/env-utilities';
 setup(new URL('.env', import.meta.url));
 ```
 
+Alternatively, if you do not need to provide any custom options you can import it as a side effect:
+```typescript
+import '@skyra/env-utilities/setup';
+```
+
 You can also pass a `string` or if you want to define other options, you may use `EnvSetupOptions`. Optionally, you may configure dotenv via environment variables:
 
 -   `DOTENV_DEBUG`: configures `EnvSetupOptions.debug`. If enabled, the library will log to help debug why certain keys or values are not being set as expected.
