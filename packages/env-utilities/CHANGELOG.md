@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/env-utilities@2.0.0](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.3.0...@skyra/env-utilities@2.0.0) - (2025-03-13)
+
+## 🐛 Bug Fixes
+
+- **deps:** Update all non-major dependencies ([5393a0c](https://github.com/skyra-project/archid-components/commit/5393a0c28285f0ebd4a0d6b17d60f9a96b99a93a)) ([#397](https://github.com/skyra-project/archid-components/pull/397) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([b222bb6](https://github.com/skyra-project/archid-components/commit/b222bb697cadc02ac5997f66f679a87678aae7fa)) ([#396](https://github.com/skyra-project/archid-components/pull/396) by @renovate[bot])
+- **deps:** Update dependency dotenv-expand to v12 ([c4cb7ee](https://github.com/skyra-project/archid-components/commit/c4cb7eed6163a67ea7996a6d7868832e3a07952c)) ([#393](https://github.com/skyra-project/archid-components/pull/393) by @renovate[bot])
+  - 💥 **Co-authored-by:** renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+- **deps:** Update all non-major dependencies ([d38f55b](https://github.com/skyra-project/archid-components/commit/d38f55b0db2d86ae8958d0d8669ca519f1085874)) ([#391](https://github.com/skyra-project/archid-components/pull/391) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([b1b6cde](https://github.com/skyra-project/archid-components/commit/b1b6cde63d5918e309fc2ded9a409550ac27fa8b)) ([#388](https://github.com/skyra-project/archid-components/pull/388) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([2a3232b](https://github.com/skyra-project/archid-components/commit/2a3232beae5666062e46703d9cf8807582ed9cf5)) ([#387](https://github.com/skyra-project/archid-components/pull/387) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([a92e0a3](https://github.com/skyra-project/archid-components/commit/a92e0a34b0fb9c443c035b9e592f529f045eeced)) ([#382](https://github.com/skyra-project/archid-components/pull/382) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([fe68090](https://github.com/skyra-project/archid-components/commit/fe68090e102ce3d90bb546995a11ae483dfaf34d)) ([#374](https://github.com/skyra-project/archid-components/pull/374) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([c4958f3](https://github.com/skyra-project/archid-components/commit/c4958f309705129b84bba7b67bcb54dca3fc3736)) ([#372](https://github.com/skyra-project/archid-components/pull/372) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([7edd912](https://github.com/skyra-project/archid-components/commit/7edd9126c38916fd3aeca65c8ac4a7c0673f2b90))
+- **deps:** Update all non-major dependencies ([ac48314](https://github.com/skyra-project/archid-components/commit/ac4831401349f7b755c0ebd5c532e61e60562d8b)) ([#360](https://github.com/skyra-project/archid-components/pull/360) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([f6f86c3](https://github.com/skyra-project/archid-components/commit/f6f86c316aabf8b375b74e6ac7ef62b1aadd807f)) ([#353](https://github.com/skyra-project/archid-components/pull/353) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([f6d7625](https://github.com/skyra-project/archid-components/commit/f6d76256a14598cf18427dc6f282dfcc535710f8)) ([#336](https://github.com/skyra-project/archid-components/pull/336) by @renovate[bot])
+- **deps:** Update dependency dotenv-expand to ^11.0.6 ([a3d99b1](https://github.com/skyra-project/archid-components/commit/a3d99b1634df6c275406dd10f3a111364b89b5f8)) ([#335](https://github.com/skyra-project/archid-components/pull/335) by @renovate[bot])
+- **deps:** Update dependency dotenv-expand to v11 ([d255fc5](https://github.com/skyra-project/archid-components/commit/d255fc57848ba63796eb5f5d11b2494a865412cc)) ([#332](https://github.com/skyra-project/archid-components/pull/332) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([faab5bb](https://github.com/skyra-project/archid-components/commit/faab5bbfc00899feb34cec53314c5758b1454c8a)) ([#331](https://github.com/skyra-project/archid-components/pull/331) by @renovate[bot])
+- **env-utilities:** Ensure that dotenvPath can never be an array ([ca5930a](https://github.com/skyra-project/archid-components/commit/ca5930ab5cb606318ac2eeb992904fec5b530c7b))
+- **deps:** Update all non-major dependencies ([1ca90e9](https://github.com/skyra-project/archid-components/commit/1ca90e97cda951d8f383cb9cb98b77e5aa266815)) ([#324](https://github.com/skyra-project/archid-components/pull/324) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([c1c4cfe](https://github.com/skyra-project/archid-components/commit/c1c4cfeaa9f8aa576c2a178de35ee0c232b40d92)) ([#322](https://github.com/skyra-project/archid-components/pull/322) by @renovate[bot])
+
+## 📝 Documentation
+
+- **env-utilities:** Add note about using /setup ([07a19fa](https://github.com/skyra-project/archid-components/commit/07a19fa90c17d9803397c97261ca3e695ce0d95a))
+
+## 🚀 Features
+
+- **env-utilities:** Add support for @skyra/env-utilities/setup ([295c963](https://github.com/skyra-project/archid-components/commit/295c963b90711f0e4f02633eeda7f9a04bd30a7f)) ([#406](https://github.com/skyra-project/archid-components/pull/406) by @SerenModz21)
+
 # [@skyra/env-utilities@1.3.0](https://github.com/skyra-project/archid-components/compare/@skyra/env-utilities@1.3.0...@skyra/env-utilities@1.3.0) - (2023-12-27)
 
 ## 🏠 Refactor
