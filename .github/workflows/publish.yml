@@ -12,6 +12,8 @@ jobs:
     name: Publish @skyra/${{ github.event.inputs.package}}
     runs-on: ubuntu-latest
     if: github.repository_owner == 'skyra-project'
+    permissions:
+      id-token: write
     steps:
       - name: Checkout Project
         uses: actions/checkout@v4
