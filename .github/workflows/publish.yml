@@ -14,6 +14,7 @@ jobs:
     if: github.repository_owner == 'skyra-project'
     permissions:
       id-token: write
+      contents: write
     steps:
       - name: Checkout Project
         uses: actions/checkout@v4
