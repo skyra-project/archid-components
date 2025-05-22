@@ -1,61 +1,61 @@
 {
-	"name": "@skyra/start-banner",
-	"version": "2.0.1",
-	"description": "A banner generator utility for your CLI",
-	"author": "@skyra",
-	"license": "Apache-2.0",
-	"main": "dist/esm/index.js",
-	"module": "dist/esm/index.js",
-	"types": "dist/esm/index.d.ts",
-	"type": "module",
-	"exports": {
-		"import": {
-			"types": "./dist/esm/index.d.ts",
-			"default": "./dist/esm/index.js"
-		}
-	},
-	"sideEffects": false,
-	"scripts": {
-		"test": "vitest run",
-		"build": "tsup",
-		"watch": "tsup --watch",
-		"typecheck": "tsc -p tsconfig.eslint.json",
-		"lint": "eslint src --ext ts --fix -c ../../package.json",
-		"prepack": "yarn build",
-		"bump": "cliff-jumper",
-		"check-update": "cliff-jumper --dry-run"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/skyra-project/archid-components.git",
-		"directory": "packages/start-banner"
-	},
-	"files": [
-		"dist/"
-	],
-	"engines": {
-		"node": ">=18"
-	},
-	"keywords": [
-		"discord",
-		"api",
-		"http",
-		"skyra",
-		"typescript",
-		"ts",
-		"yarn"
-	],
-	"bugs": {
-		"url": "https://github.com/skyra-project/archid-components/issues"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"devDependencies": {
-		"@favware/cliff-jumper": "^6.0.0",
-		"@vitest/coverage-v8": "^3.0.2",
-		"tsup": "^8.3.5",
-		"typescript": "~5.4.5",
-		"vitest": "^3.0.2"
-	}
+  "name": "@skyra/start-banner",
+  "version": "2.0.1",
+  "description": "A banner generator utility for your CLI",
+  "author": "@skyra",
+  "license": "Apache-2.0",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "type": "module",
+  "exports": {
+    "import": {
+      "types": "./dist/esm/index.d.ts",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "typecheck": "tsc -p tsconfig.eslint.json",
+    "lint": "eslint src --ext ts --fix -c ../../package.json",
+    "prepack": "yarn build",
+    "bump": "cliff-jumper",
+    "check-update": "cliff-jumper --dry-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skyra-project/archid-components.git",
+    "directory": "packages/start-banner"
+  },
+  "files": [
+    "dist/"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "discord",
+    "api",
+    "http",
+    "skyra",
+    "typescript",
+    "ts",
+    "yarn"
+  ],
+  "bugs": {
+    "url": "https://github.com/skyra-project/archid-components/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@favware/cliff-jumper": "^6.0.0",
+    "@vitest/coverage-v8": "^3.1.4",
+    "tsup": "^8.5.0",
+    "typescript": "~5.8.3",
+    "vitest": "^3.1.4"
+  }
 }

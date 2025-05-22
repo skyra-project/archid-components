@@ -1,67 +1,67 @@
 {
-	"name": "@skyra/i18next-backend",
-	"version": "2.0.5",
-	"description": "A fast and modern filesystem-based i18next backend for Node.js.",
-	"author": "@skyra",
-	"license": "Apache-2.0",
-	"main": "dist/cjs/index.cjs",
-	"module": "dist/esm/index.js",
-	"types": "dist/cjs/index.d.cts",
-	"type": "module",
-	"exports": {
-		"import": {
-			"types": "./dist/esm/index.d.ts",
-			"default": "./dist/esm/index.js"
-		},
-		"require": {
-			"types": "./dist/cjs/index.d.cts",
-			"default": "./dist/cjs/index.cjs"
-		}
-	},
-	"sideEffects": false,
-	"scripts": {
-		"build": "tsup",
-		"watch": "tsup --watch",
-		"typecheck": "tsc -p tsconfig.eslint.json",
-		"lint": "eslint src --ext ts --fix -c ../../package.json",
-		"prepack": "yarn build",
-		"bump": "cliff-jumper",
-		"check-update": "cliff-jumper --dry-run"
-	},
-	"dependencies": {
-		"tslib": "^2.8.1"
-	},
-	"devDependencies": {
-		"@favware/cliff-jumper": "^6.0.0",
-		"@types/node": "20.14.8",
-		"i18next": "^22.5.1",
-		"tsup": "^8.3.5",
-		"typescript": "~5.4.5"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/skyra-project/archid-components.git",
-		"directory": "packages/i18next-backend"
-	},
-	"files": [
-		"dist/"
-	],
-	"engines": {
-		"node": ">=18"
-	},
-	"keywords": [
-		"discord",
-		"api",
-		"http",
-		"skyra",
-		"typescript",
-		"ts",
-		"yarn"
-	],
-	"bugs": {
-		"url": "https://github.com/skyra-project/archid-components/issues"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@skyra/i18next-backend",
+  "version": "2.0.5",
+  "description": "A fast and modern filesystem-based i18next backend for Node.js.",
+  "author": "@skyra",
+  "license": "Apache-2.0",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/cjs/index.d.cts",
+  "type": "module",
+  "exports": {
+    "import": {
+      "types": "./dist/esm/index.d.ts",
+      "default": "./dist/esm/index.js"
+    },
+    "require": {
+      "types": "./dist/cjs/index.d.cts",
+      "default": "./dist/cjs/index.cjs"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "typecheck": "tsc -p tsconfig.eslint.json",
+    "lint": "eslint src --ext ts --fix -c ../../package.json",
+    "prepack": "yarn build",
+    "bump": "cliff-jumper",
+    "check-update": "cliff-jumper --dry-run"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@favware/cliff-jumper": "^6.0.0",
+    "@types/node": "22.15.21",
+    "i18next": "^25.2.0",
+    "tsup": "^8.5.0",
+    "typescript": "~5.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skyra-project/archid-components.git",
+    "directory": "packages/i18next-backend"
+  },
+  "files": [
+    "dist/"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "discord",
+    "api",
+    "http",
+    "skyra",
+    "typescript",
+    "ts",
+    "yarn"
+  ],
+  "bugs": {
+    "url": "https://github.com/skyra-project/archid-components/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }
