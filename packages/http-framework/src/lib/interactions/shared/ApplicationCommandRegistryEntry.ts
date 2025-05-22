@@ -1,6 +1,10 @@
 import { Collection } from '@discordjs/collection';
 import type { JSONEncodable } from '@discordjs/util';
-import type { RESTPostAPIApplicationCommandsJSONBody, Snowflake } from 'discord-api-types/v10';
+import type {
+	RESTPostAPIApplicationCommandsJSONBody,
+	RESTPostAPIPrimaryEntryPointApplicationCommandJSONBody,
+	Snowflake
+} from 'discord-api-types/v10';
 import { ChatInputCommandResolver } from '../resolvers/ChatInputCommandResolver.js';
 import { ContextMenuCommandResolver } from '../resolvers/ContextMenuCommandResolver.js';
 
@@ -121,5 +125,5 @@ export class ApplicationCommandRegistryEntry implements JSONEncodable<Applicatio
 }
 
 export namespace ApplicationCommandRegistryEntry {
-	export type Command = RESTPostAPIApplicationCommandsJSONBody;
+	export type Command = Exclude<RESTPostAPIApplicationCommandsJSONBody, RESTPostAPIPrimaryEntryPointApplicationCommandJSONBody>;
 }

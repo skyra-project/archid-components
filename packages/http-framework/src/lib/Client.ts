@@ -2,7 +2,7 @@ import { REST, type RESTOptions } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { isNullishOrEmpty } from '@sapphire/utilities';
 import { AsyncEventEmitter } from '@vladfrangu/async_event_emitter';
-import { InteractionType, type APIInteraction } from 'discord-api-types/v10';
+import { InteractionType, type APIInteraction, type APIPrimaryEntryPointCommandInteraction } from 'discord-api-types/v10';
 import { createServer, type IncomingMessage, type Server, type ServerOptions, type ServerResponse } from 'node:http';
 import type { ListenOptions as NetListenOptions } from 'node:net';
 import type { MappedClientEvents } from './ClientEvents.js';
@@ -124,10 +124,13 @@ export class Client extends AsyncEventEmitter<MappedClientEvents> {
 			return response.end(ErrorMessages.InvalidSignature);
 		}
 
-		return this.handleHttpMessage(JSON.parse(body) as APIInteraction, response);
+		return this.handleHttpMessage(JSON.parse(body) as Exclude<APIInteraction, APIPrimaryEntryPointCommandInteraction>, response);
 	}
 
-	protected async handleHttpMessage(interaction: APIInteraction, response: ServerResponse): Promise<ServerResponse> {
+	protected async handleHttpMessage(
+		interaction: Exclude<APIInteraction, APIPrimaryEntryPointCommandInteraction>,
+		response: ServerResponse
+	): Promise<ServerResponse> {
 		if (interaction.type === InteractionType.Ping) {
 			response.statusCode = HttpCodes.OK;
 			return response.end(Payloads.Pong);

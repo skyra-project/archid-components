@@ -39,6 +39,8 @@ export function makeInteraction(response: ServerResponse, interaction: BaseInter
 					return new UserContextMenuCommandInteraction(response, interaction as APIUserApplicationCommandInteraction);
 				case ApplicationCommandType.Message:
 					return new MessageContextMenuCommandInteraction(response, interaction as APIMessageApplicationCommandInteraction);
+				case ApplicationCommandType.PrimaryEntryPoint:
+					throw new Error('PrimaryEntryPoint is not supported');
 			}
 		}
 		case InteractionType.MessageComponent:
