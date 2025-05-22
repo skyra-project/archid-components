@@ -7,6 +7,21 @@ on:
       package:
         description: The package to release, this should be the path segment after packages/, without the @sapphire/ prefix
         required: true
+        type: choice
+        options:
+          - env-utilities
+          - http-framework
+          - http-framework-i18n
+          - i18next-backend
+          - influx-utilities
+          - logger
+          - reddit-helpers
+          - safe-fetch
+          - shared-http-pieces
+          - shared-influx-pieces
+          - start-banner
+          - twitch-helpers
+          - weather-helpers
 
 jobs:
   PublishPackage:
