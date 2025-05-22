@@ -33,7 +33,7 @@
 	"dependencies": {
 		"@discordjs/builders": "^1.11.2",
 		"@discordjs/collection": "^2.1.1",
-		"@sentry/node": "^8.47.0",
+		"@sentry/node": "^8.55.0",
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
