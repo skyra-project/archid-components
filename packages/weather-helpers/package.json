@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/weather-helpers",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Very basic weather helper functions used across several ArchId bots",
 	"author": "@skyra",
 	"license": "Apache-2.0",
