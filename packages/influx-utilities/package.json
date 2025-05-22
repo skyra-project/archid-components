@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/influx-utilities",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "A tiny opinionated abstraction layer for InfluxDB for interacting with a single organization",
 	"author": "@skyra",
 	"license": "Apache-2.0",
