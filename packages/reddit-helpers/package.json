@@ -52,9 +52,9 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@discordjs/formatters": "^0.6.0",
+		"@discordjs/formatters": "^0.6.1",
 		"@sapphire/result": "^2.7.2",
-		"@sapphire/utilities": "^3.18.1",
+		"@sapphire/utilities": "^3.18.2",
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/safe-fetch": "workspace:^",
 		"he": "^1.2.0"
