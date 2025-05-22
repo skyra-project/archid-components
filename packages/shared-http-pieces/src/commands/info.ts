@@ -6,8 +6,8 @@ import {
 	ComponentType,
 	MessageFlags,
 	type APIActionRowComponent,
-	type APIEmbedField,
-	type APIMessageActionRowComponent
+	type APIComponentInMessageActionRow,
+	type APIEmbedField
 } from 'discord-api-types/v10';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 import { LanguageKeys } from '../lib/i18n/LanguageKeys.js';
@@ -63,11 +63,11 @@ export class SharedCommand extends Command {
 		return data;
 	}
 
-	private getActionRow(...components: APIMessageActionRowComponent[]): APIActionRowComponent<APIMessageActionRowComponent> {
+	private getActionRow(...components: APIComponentInMessageActionRow[]): APIActionRowComponent<APIComponentInMessageActionRow> {
 		return { type: ComponentType.ActionRow, components };
 	}
 
-	private getSupportComponent(t: TFunction): APIMessageActionRowComponent {
+	private getSupportComponent(t: TFunction): APIComponentInMessageActionRow {
 		return {
 			type: ComponentType.Button,
 			style: ButtonStyle.Link,
@@ -77,7 +77,7 @@ export class SharedCommand extends Command {
 		};
 	}
 
-	private getInviteComponent(t: TFunction, url: string): APIMessageActionRowComponent {
+	private getInviteComponent(t: TFunction, url: string): APIComponentInMessageActionRow {
 		return {
 			type: ComponentType.Button,
 			style: ButtonStyle.Link,
@@ -87,7 +87,7 @@ export class SharedCommand extends Command {
 		};
 	}
 
-	private getGitHubComponent(t: TFunction): APIMessageActionRowComponent {
+	private getGitHubComponent(t: TFunction): APIComponentInMessageActionRow {
 		return {
 			type: ComponentType.Button,
 			style: ButtonStyle.Link,
@@ -97,7 +97,7 @@ export class SharedCommand extends Command {
 		};
 	}
 
-	private getDonateComponent(t: TFunction): APIMessageActionRowComponent {
+	private getDonateComponent(t: TFunction): APIComponentInMessageActionRow {
 		return {
 			type: ComponentType.Button,
 			style: ButtonStyle.Link,
