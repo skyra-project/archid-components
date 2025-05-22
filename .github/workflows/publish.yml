@@ -55,6 +55,8 @@ jobs:
           GITHUB_USER: github-actions[bot]
           GITHUB_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build
+        run: yarn turbo run build --filter @skyra/${{ github.event.inputs.package }}
       - name: Bump Versions and make release
         run: yarn bump
         working-directory: packages/${{ github.event.inputs.package }}
