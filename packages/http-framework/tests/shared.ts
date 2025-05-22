@@ -3,9 +3,12 @@ import {
 	ComponentType,
 	GuildMemberFlags,
 	InteractionType,
+	Locale,
 	MessageType,
 	type APIApplicationCommandAutocompleteInteraction,
+	type APIAuthorizingIntegrationOwnersMap,
 	type APIChatInputApplicationCommandInteraction,
+	type APIEntitlement,
 	type APIInteractionGuildMember,
 	type APIMessage,
 	type APIMessageApplicationCommandInteraction,
@@ -13,10 +16,7 @@ import {
 	type APIModalSubmitInteraction,
 	type APIUser,
 	type APIUserApplicationCommandInteraction,
-	type LocaleString,
-	type Permissions,
-	type APIEntitlement,
-	type APIAuthorizingIntegrationOwnersMap
+	type Permissions
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
 import { Writable } from 'node:stream';
@@ -67,7 +67,7 @@ export const MessageData: Readonly<APIMessage> = {
 };
 
 export const PermissionsData: Permissions = '8';
-export const LocaleData: LocaleString = 'en-US';
+export const LocaleData: Locale = Locale.EnglishUS;
 
 export const BaseInteractionData = {
 	id: '254360814063058944',
@@ -80,7 +80,8 @@ export const BaseInteractionData = {
 	guild_locale: LocaleData,
 	guild_id: '737141877803057244',
 	entitlements: [] as APIEntitlement[],
-	authorizing_integration_owners: {} as APIAuthorizingIntegrationOwnersMap
+	authorizing_integration_owners: {} as APIAuthorizingIntegrationOwnersMap,
+	attachment_size_limit: Number.MAX_SAFE_INTEGER
 } as const;
 
 export const ApplicationCommandAutocompleteInteractionData: APIApplicationCommandAutocompleteInteraction = {
