@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@skyra/http-framework@2.2.1](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@2.2.0...@skyra/http-framework@2.2.1) - (2025-05-22)
+
+## 🐛 Bug Fixes
+
+- **shared:** Update locale type and add attachment size limit ([9143271](https://github.com/skyra-project/archid-components/commit/9143271f522b9d69c6b811282e48950868a8d9f4)) ([#402](https://github.com/skyra-project/archid-components/pull/402) by @favna)
+- **hfx:** Update for latest discordjs, exclude PrimaryEntrypoint ([70a963c](https://github.com/skyra-project/archid-components/commit/70a963c84bd3932f0ea1d38bc048acab7b2ce83e))
+- **hfx:** Bump discordjs and sapphire dependencies ([9d0891c](https://github.com/skyra-project/archid-components/commit/9d0891c943e54c84cffb353b7a1ce433963f9e90))
+- **deps:** Update all non-major dependencies ([57f11b2](https://github.com/skyra-project/archid-components/commit/57f11b2f334c7cfe9a35ae95e55bbeaee9e06fe2))
+- **deps:** Update all non-major dependencies ([5393a0c](https://github.com/skyra-project/archid-components/commit/5393a0c28285f0ebd4a0d6b17d60f9a96b99a93a)) ([#397](https://github.com/skyra-project/archid-components/pull/397) by @renovate[bot])
+- **deps:** Update all non-major dependencies ([b222bb6](https://github.com/skyra-project/archid-components/commit/b222bb697cadc02ac5997f66f679a87678aae7fa)) ([#396](https://github.com/skyra-project/archid-components/pull/396) by @renovate[bot])
+
 # [@skyra/http-framework@2.2.0](https://github.com/skyra-project/archid-components/compare/@skyra/http-framework@2.1.0...@skyra/http-framework@2.2.0) - (2024-11-17)
 
 ## 🐛 Bug Fixes
