@@ -5,7 +5,8 @@ import {
 	ApplicationCommandType,
 	type APIApplicationCommandAutocompleteInteraction,
 	type APIApplicationCommandInteraction,
-	type APIApplicationCommandInteractionData
+	type APIApplicationCommandInteractionData,
+	type APIPrimaryEntryPointCommandInteraction
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
 import { HttpCodes } from '../api/HttpCodes.js';
@@ -41,7 +42,10 @@ export class CommandStore extends Store<Command, 'commands'> {
 	 * @param interaction - The API application command interaction object.
 	 * @returns A promise that resolves to the server response.
 	 */
-	public async runApplicationCommand(response: ServerResponse, interaction: APIApplicationCommandInteraction): Promise<ServerResponse> {
+	public async runApplicationCommand(
+		response: ServerResponse,
+		interaction: Exclude<APIApplicationCommandInteraction, APIPrimaryEntryPointCommandInteraction>
+	): Promise<ServerResponse> {
 		const command = this.router.get(interaction);
 		if (!command) {
 			container.client.emit('commandNameUnknown', interaction, response);
