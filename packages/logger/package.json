@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/logger",
-	"version": "2.0.3",
+	"version": "2.0.4",
 	"description": "A lightweight logger system with level support",
 	"author": "@skyra",
 	"license": "Apache-2.0",
