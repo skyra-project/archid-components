@@ -1,4 +1,5 @@
 name: Publish
+run-name: Publish @skyra/${{ github.event.inputs.package }}
 
 on:
   workflow_dispatch:
@@ -9,7 +10,7 @@ on:
 
 jobs:
   PublishPackage:
-    name: Publish @skyra/${{ github.event.inputs.package}}
+    name: Publish @skyra/${{ github.event.inputs.package }}
     runs-on: ubuntu-latest
     if: github.repository_owner == 'skyra-project'
     permissions:
