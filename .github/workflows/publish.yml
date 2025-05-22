@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       package:
-        description: The package to release, this should be the path segment after packages/, without the @sapphire/ prefix
+        description: The package to release
         required: true
         type: choice
         options:
