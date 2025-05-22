@@ -53,7 +53,7 @@
 	},
 	"dependencies": {
 		"@sapphire/result": "^2.7.2",
-		"@sapphire/utilities": "^3.18.1",
+		"@sapphire/utilities": "^3.18.2",
 		"@skyra/safe-fetch": "workspace:^"
 	},
 	"devDependencies": {
