@@ -51,10 +51,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.20.6, @babel/runtime@npm:^7.27.1":
-  version: 7.27.1
-  resolution: "@babel/runtime@npm:7.27.1"
-  checksum: 10/34cefcbf781ea5a4f1b93f8563327b9ac82694bebdae91e8bd9d7f58d084cbe5b9a6e7f94d77076e15b0bcdaa0040a36cb30737584028df6c4673b4c67b2a31d
+"@babel/runtime@npm:^7.20.6, @babel/runtime@npm:^7.27.6":
+  version: 7.27.6
+  resolution: "@babel/runtime@npm:7.27.6"
+  checksum: 10/cc957a12ba3781241b83d528eb69ddeb86ca5ac43179a825e83aa81263a6b3eb88c57bed8a937cdeacfc3192e07ec24c73acdfea4507d0c0428c8e23d6322bfe
   languageName: node
   linkType: hard
 
@@ -1681,7 +1681,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@vitest/coverage-v8": "npm:^3.2.4"
-    dotenv: "npm:^17.0.0"
+    dotenv: "npm:^17.0.1"
     dotenv-expand: "npm:^12.0.2"
     esbuild-plugin-version-injector: "npm:^1.2.1"
     tsup: "npm:^8.5.0"
@@ -1733,7 +1733,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@types/node": "npm:22.15.21"
-    i18next: "npm:^25.2.1"
+    i18next: "npm:^25.3.1"
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.5.0"
     typescript: "npm:~5.8.3"
@@ -1866,90 +1866,90 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@swc/core-darwin-arm64@npm:1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core-darwin-arm64@npm:1.12.7"
+"@swc/core-darwin-arm64@npm:1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core-darwin-arm64@npm:1.12.9"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core-darwin-x64@npm:1.12.7"
+"@swc/core-darwin-x64@npm:1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core-darwin-x64@npm:1.12.9"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.12.7"
+"@swc/core-linux-arm-gnueabihf@npm:1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.12.9"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.12.7"
+"@swc/core-linux-arm64-gnu@npm:1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.12.9"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core-linux-arm64-musl@npm:1.12.7"
+"@swc/core-linux-arm64-musl@npm:1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core-linux-arm64-musl@npm:1.12.9"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core-linux-x64-gnu@npm:1.12.7"
+"@swc/core-linux-x64-gnu@npm:1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core-linux-x64-gnu@npm:1.12.9"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core-linux-x64-musl@npm:1.12.7"
+"@swc/core-linux-x64-musl@npm:1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core-linux-x64-musl@npm:1.12.9"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.12.7"
+"@swc/core-win32-arm64-msvc@npm:1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.12.9"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.12.7"
+"@swc/core-win32-ia32-msvc@npm:1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.12.9"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core-win32-x64-msvc@npm:1.12.7"
+"@swc/core-win32-x64-msvc@npm:1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core-win32-x64-msvc@npm:1.12.9"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.12.7":
-  version: 1.12.7
-  resolution: "@swc/core@npm:1.12.7"
+"@swc/core@npm:^1.12.9":
+  version: 1.12.9
+  resolution: "@swc/core@npm:1.12.9"
   dependencies:
-    "@swc/core-darwin-arm64": "npm:1.12.7"
-    "@swc/core-darwin-x64": "npm:1.12.7"
-    "@swc/core-linux-arm-gnueabihf": "npm:1.12.7"
-    "@swc/core-linux-arm64-gnu": "npm:1.12.7"
-    "@swc/core-linux-arm64-musl": "npm:1.12.7"
-    "@swc/core-linux-x64-gnu": "npm:1.12.7"
-    "@swc/core-linux-x64-musl": "npm:1.12.7"
-    "@swc/core-win32-arm64-msvc": "npm:1.12.7"
-    "@swc/core-win32-ia32-msvc": "npm:1.12.7"
-    "@swc/core-win32-x64-msvc": "npm:1.12.7"
+    "@swc/core-darwin-arm64": "npm:1.12.9"
+    "@swc/core-darwin-x64": "npm:1.12.9"
+    "@swc/core-linux-arm-gnueabihf": "npm:1.12.9"
+    "@swc/core-linux-arm64-gnu": "npm:1.12.9"
+    "@swc/core-linux-arm64-musl": "npm:1.12.9"
+    "@swc/core-linux-x64-gnu": "npm:1.12.9"
+    "@swc/core-linux-x64-musl": "npm:1.12.9"
+    "@swc/core-win32-arm64-msvc": "npm:1.12.9"
+    "@swc/core-win32-ia32-msvc": "npm:1.12.9"
+    "@swc/core-win32-x64-msvc": "npm:1.12.9"
     "@swc/counter": "npm:^0.1.3"
     "@swc/types": "npm:^0.1.23"
   peerDependencies:
@@ -1978,7 +1978,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 10/728699086f5a2ac57e54e710508fafb83f4e9063099f50d02cae91702bfc0a02abe0f83bd02cc2ac68ff32f418ca862fb15282245707e3c98da7b1cd1ac62458
+  checksum: 10/1f05a8f9550c979c8e4f2161356f30e441e0b369b504797b60bd5740f08d5e8e5f78faf542ea407d2c6e197c6a4fd932026fb448b88e2227656f35440a5fd983
   languageName: node
   linkType: hard
 
@@ -2503,7 +2503,7 @@ __metadata:
     "@sapphire/eslint-config": "npm:^5.0.6"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@sapphire/ts-config": "npm:^5.0.1"
-    "@swc/core": "npm:^1.12.7"
+    "@swc/core": "npm:^1.12.9"
     "@types/node": "npm:22.15.21"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.13.1"
@@ -3210,10 +3210,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^17.0.0":
-  version: 17.0.0
-  resolution: "dotenv@npm:17.0.0"
-  checksum: 10/31ef3618e19d6db7d5be3a8831147f10995b2ab18dce038588050160f780c6e0bdaece3d2b866a0138b860db1eb14f1da9e1fcf0493ee0bb7264664bac075c69
+"dotenv@npm:^17.0.1":
+  version: 17.0.1
+  resolution: "dotenv@npm:17.0.1"
+  checksum: 10/050987c31eff3089a09358390c95cfb0fb2d66bb85b8e868d8aac3551d2dd81f963719dcb9103f7af5ea84c4aff446b39ebaa812d7fd03d9adf2402535877cd7
   languageName: node
   linkType: hard
 
@@ -4236,17 +4236,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^25.2.1":
-  version: 25.2.1
-  resolution: "i18next@npm:25.2.1"
+"i18next@npm:^25.3.1":
+  version: 25.3.1
+  resolution: "i18next@npm:25.3.1"
   dependencies:
-    "@babel/runtime": "npm:^7.27.1"
+    "@babel/runtime": "npm:^7.27.6"
   peerDependencies:
     typescript: ^5
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/7abc9dedee928d23c926917fcc640ff45e22320c814f3f254ade74bc255247edd78e8dd58c835bbfe1898489f6cb2e874e547f9fa68a1a6820409c1306dec28c
+  checksum: 10/f5f38af0f7b7c0055e607d4017dade5aedd1c75c44e091473b4d01537f0849e21a7ae7f66397719a2557fc53767cf9ea96a4da34127b906d3fe5ce21db895224
   languageName: node
   linkType: hard
 
