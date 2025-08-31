@@ -1733,7 +1733,7 @@ __metadata:
   dependencies:
     "@favware/cliff-jumper": "npm:^6.0.0"
     "@types/node": "npm:22.15.21"
-    i18next: "npm:^25.4.1"
+    i18next: "npm:^25.4.2"
     tslib: "npm:^2.8.1"
     tsup: "npm:^8.5.0"
     typescript: "npm:~5.8.3"
@@ -1866,90 +1866,90 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@swc/core-darwin-arm64@npm:1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core-darwin-arm64@npm:1.13.4"
+"@swc/core-darwin-arm64@npm:1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core-darwin-arm64@npm:1.13.5"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core-darwin-x64@npm:1.13.4"
+"@swc/core-darwin-x64@npm:1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core-darwin-x64@npm:1.13.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.13.4"
+"@swc/core-linux-arm-gnueabihf@npm:1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.13.5"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.13.4"
+"@swc/core-linux-arm64-gnu@npm:1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.13.5"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core-linux-arm64-musl@npm:1.13.4"
+"@swc/core-linux-arm64-musl@npm:1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core-linux-arm64-musl@npm:1.13.5"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core-linux-x64-gnu@npm:1.13.4"
+"@swc/core-linux-x64-gnu@npm:1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core-linux-x64-gnu@npm:1.13.5"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core-linux-x64-musl@npm:1.13.4"
+"@swc/core-linux-x64-musl@npm:1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core-linux-x64-musl@npm:1.13.5"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.13.4"
+"@swc/core-win32-arm64-msvc@npm:1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.13.5"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.13.4"
+"@swc/core-win32-ia32-msvc@npm:1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.13.5"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core-win32-x64-msvc@npm:1.13.4"
+"@swc/core-win32-x64-msvc@npm:1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core-win32-x64-msvc@npm:1.13.5"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.13.4":
-  version: 1.13.4
-  resolution: "@swc/core@npm:1.13.4"
+"@swc/core@npm:^1.13.5":
+  version: 1.13.5
+  resolution: "@swc/core@npm:1.13.5"
   dependencies:
-    "@swc/core-darwin-arm64": "npm:1.13.4"
-    "@swc/core-darwin-x64": "npm:1.13.4"
-    "@swc/core-linux-arm-gnueabihf": "npm:1.13.4"
-    "@swc/core-linux-arm64-gnu": "npm:1.13.4"
-    "@swc/core-linux-arm64-musl": "npm:1.13.4"
-    "@swc/core-linux-x64-gnu": "npm:1.13.4"
-    "@swc/core-linux-x64-musl": "npm:1.13.4"
-    "@swc/core-win32-arm64-msvc": "npm:1.13.4"
-    "@swc/core-win32-ia32-msvc": "npm:1.13.4"
-    "@swc/core-win32-x64-msvc": "npm:1.13.4"
+    "@swc/core-darwin-arm64": "npm:1.13.5"
+    "@swc/core-darwin-x64": "npm:1.13.5"
+    "@swc/core-linux-arm-gnueabihf": "npm:1.13.5"
+    "@swc/core-linux-arm64-gnu": "npm:1.13.5"
+    "@swc/core-linux-arm64-musl": "npm:1.13.5"
+    "@swc/core-linux-x64-gnu": "npm:1.13.5"
+    "@swc/core-linux-x64-musl": "npm:1.13.5"
+    "@swc/core-win32-arm64-msvc": "npm:1.13.5"
+    "@swc/core-win32-ia32-msvc": "npm:1.13.5"
+    "@swc/core-win32-x64-msvc": "npm:1.13.5"
     "@swc/counter": "npm:^0.1.3"
     "@swc/types": "npm:^0.1.24"
   peerDependencies:
@@ -1978,7 +1978,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 10/1e3eee5b1d7fed1f6ebe401c1f39a73f2f5aca01c704ff10c0706bd634ba978c65036150bef233cab16d21097ac26618066a5948b98259002dd5f0e9c3f8c32c
+  checksum: 10/75b44c5008cd043ca2aa33697aee677b3a30792c7e844d1b636d30fe8f865cbc95e606d396969c4bea9b95eb00bd3fc183b3359ec77d9c6a6f737c473ec2146e
   languageName: node
   linkType: hard
 
@@ -2503,7 +2503,7 @@ __metadata:
     "@sapphire/eslint-config": "npm:^5.0.6"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@sapphire/ts-config": "npm:^5.0.1"
-    "@swc/core": "npm:^1.13.4"
+    "@swc/core": "npm:^1.13.5"
     "@types/node": "npm:22.15.21"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.13.1"
@@ -4236,9 +4236,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^25.4.1":
-  version: 25.4.1
-  resolution: "i18next@npm:25.4.1"
+"i18next@npm:^25.4.2":
+  version: 25.4.2
+  resolution: "i18next@npm:25.4.2"
   dependencies:
     "@babel/runtime": "npm:^7.27.6"
   peerDependencies:
@@ -4246,7 +4246,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10/b5fee6bfbc20a7710e247d98d74e60b87e412cd42d8151289f00e727725b35efc3d3e4a16deb71de6ebc46d11f90f3c7c5d905f7e61a150424aa46250c773c11
+  checksum: 10/510034e490f17e3deb6564a3d06c1ac1cc74db38b4809beb581759f487d8d49c8665e825937273a8c8bdfadcdad2cf967bf58207f2f59468b111994d585f79ca
   languageName: node
   linkType: hard
 
