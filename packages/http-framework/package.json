@@ -31,7 +31,7 @@
 		"@discordjs/rest": "^2.6.0",
 		"@discordjs/util": "^1.1.1",
 		"@sapphire/pieces": "^4.4.1",
-		"@sapphire/result": "^2.7.2",
+		"@sapphire/result": "^2.7.3",
 		"@sapphire/utilities": "^3.18.2",
 		"@vladfrangu/async_event_emitter": "^2.4.6",
 		"discord-api-types": "^0.38.8"

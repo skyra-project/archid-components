@@ -52,7 +52,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@sapphire/result": "^2.7.2",
+		"@sapphire/result": "^2.7.3",
 		"@sapphire/utilities": "^3.18.2",
 		"@skyra/safe-fetch": "workspace:^"
 	},
