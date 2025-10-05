@@ -33,7 +33,7 @@
 		"@sapphire/pieces": "^4.4.1",
 		"@sapphire/result": "^2.7.3",
 		"@sapphire/utilities": "^3.18.2",
-		"@vladfrangu/async_event_emitter": "^2.4.6",
+		"@vladfrangu/async_event_emitter": "^2.4.7",
 		"discord-api-types": "^0.38.8"
 	},
 	"devDependencies": {
