@@ -31,7 +31,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "^1.11.3",
+		"@discordjs/builders": "^1.12.2",
 		"@discordjs/collection": "^2.1.1",
 		"@sentry/node": "^8.55.0",
 		"@skyra/env-utilities": "workspace:^",
