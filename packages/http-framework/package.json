@@ -31,17 +31,17 @@
 		"@discordjs/rest": "^2.6.0",
 		"@discordjs/util": "^1.1.1",
 		"@sapphire/pieces": "^4.4.1",
-		"@sapphire/result": "^2.7.3",
+		"@sapphire/result": "^2.8.0",
 		"@sapphire/utilities": "^3.18.2",
 		"@vladfrangu/async_event_emitter": "^2.4.7",
 		"discord-api-types": "^0.38.8"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.0.0",
-		"@vitest/coverage-v8": "^4.0.6",
+		"@vitest/coverage-v8": "^4.0.8",
 		"tsup": "^8.5.0",
 		"typescript": "~5.8.3",
-		"vitest": "^4.0.6"
+		"vitest": "^4.0.8"
 	},
 	"repository": {
 		"type": "git",
