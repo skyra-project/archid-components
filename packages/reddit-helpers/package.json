@@ -52,7 +52,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@discordjs/formatters": "^0.6.1",
+		"@discordjs/formatters": "^0.6.2",
 		"@sapphire/result": "^2.8.0",
 		"@sapphire/utilities": "^3.18.2",
 		"@skyra/env-utilities": "workspace:^",
@@ -63,7 +63,7 @@
 		"@favware/cliff-jumper": "^6.0.0",
 		"@types/he": "^1.2.3",
 		"esbuild-plugin-version-injector": "^1.2.1",
-		"tsup": "^8.5.0",
+		"tsup": "^8.5.1",
 		"typescript": "~5.8.3"
 	}
 }
