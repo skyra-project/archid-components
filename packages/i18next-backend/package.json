@@ -34,8 +34,8 @@
   "devDependencies": {
     "@favware/cliff-jumper": "^6.0.0",
     "@types/node": "22.15.21",
-    "i18next": "^25.6.1",
-    "tsup": "^8.5.0",
+    "i18next": "^25.7.1",
+    "tsup": "^8.5.1",
     "typescript": "~5.8.3"
   },
   "repository": {
