@@ -1,3 +1,4 @@
+import type { RawFile } from '@discordjs/rest';
 import {
 	ApplicationCommandType,
 	ComponentType,
@@ -188,8 +189,43 @@ export const ModalSubmitInteractionData: APIModalSubmitInteraction = {
 	message: MessageData
 };
 
+export const MultipleFilesData: RawFile[] = [
+	{
+		data: 'file content',
+		name: 'test.txt',
+		key: 'files[0]',
+		contentType: 'text/plain'
+	},
+	{
+		data: Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
+		name: 'file1.png',
+		key: 'files[1]',
+		contentType: 'image/png'
+	},
+	{
+		data: 0xdeadbeef,
+		name: 'file2.txt',
+		key: 'files[2]'
+	},
+	{
+		data: true,
+		name: 'file3.txt',
+		key: 'files[3]'
+	}
+];
+
 export function makeResponse() {
-	const response = new Writable();
+	const response = new Writable() as ServerResponse;
+
+	// Mock header functions
+	const headers: Record<string, string> = {};
+	response.setHeader = (name: string, value: string) => {
+		headers[name] = value;
+		return response;
+	};
+	response.getHeader = (name: string) => {
+		return headers[name];
+	};
 	response._write = (_chunk: any, _encoding: BufferEncoding, callback: (error?: Error | null) => void) => callback();
-	return response as ServerResponse;
+	return response;
 }

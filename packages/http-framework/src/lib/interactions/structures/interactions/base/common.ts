@@ -13,7 +13,7 @@ export type AutocompleteResponseData = APIApplicationCommandAutocompleteResponse
 export type AutocompleteResponseOptions = AutocompleteResponseData['data'];
 
 export type MessageResponseData = APIInteractionResponseChannelMessageWithSource;
-export type MessageResponseOptions = MessageResponseData['data'];
+export type MessageResponseOptions = AddFiles<MessageResponseData['data']>;
 export type DeferResponseData = APIInteractionResponseDeferredChannelMessageWithSource;
 export type DeferResponseOptions = DeferResponseData['data'];
 export type ModalResponseData = APIModalInteractionResponse;
@@ -22,4 +22,4 @@ export type FollowupOptions = AddFiles<RESTPostAPIInteractionFollowupJSONBody>;
 
 export type DeferUpdateResult = APIInteractionResponseDeferredMessageUpdate;
 export type UpdateData = APIInteractionResponseUpdateMessage;
-export type UpdateOptions = UpdateData['data'];
+export type UpdateOptions = AddFiles<UpdateData['data']>;

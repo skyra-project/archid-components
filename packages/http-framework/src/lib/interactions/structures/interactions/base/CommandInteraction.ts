@@ -29,11 +29,12 @@ export type BaseCommandInteractionType =
 export class CommandInteraction<T extends BaseCommandInteractionType> extends BaseInteraction<T> {
 	/**
 	 * Responds to the interaction with a message.
-	 * @param data The data to be sent.
+	 * @param options The data to be sent.
 	 */
-	public async reply(data: MessageResponseOptions): Promise<PartialMessage<this>> {
+	public async reply(options: MessageResponseOptions): Promise<PartialMessage<this>> {
+		const { files, ...data } = options;
 		const body: MessageResponseData = { type: InteractionResponseType.ChannelMessageWithSource, data };
-		await this._sendReply(body);
+		await this._sendReply(body, files);
 		return new PartialMessage(this);
 	}
 

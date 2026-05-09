@@ -1,6 +1,8 @@
+import type { RawFile } from '@discordjs/rest';
 import { container } from '@sapphire/pieces';
 import { Result, err } from '@sapphire/result';
 import { isNullish, isNullishOrEmpty, type NonNullObject } from '@sapphire/utilities';
+import { FormDataEncoder } from 'form-data-encoder';
 import {
 	Routes,
 	type APIChannel,
@@ -11,6 +13,7 @@ import {
 	type RESTGetAPIGuildResult
 } from 'discord-api-types/v10';
 import type { ServerResponse } from 'node:http';
+import { Readable, pipeline } from 'node:stream';
 import { HttpCodes } from '../../../../api/HttpCodes.js';
 import type { DiscordResult } from '../../../utils/util-types.js';
 import { resultFromDiscord } from '../../../utils/util.js';
@@ -240,15 +243,48 @@ export abstract class BaseInteraction<T extends BaseInteractionType = BaseIntera
 		return resultFromDiscord(container.rest.get(Routes.guild(this.guildId)) as Promise<RESTGetAPIGuildResult>);
 	}
 
-	protected _sendReply(data: NonNullObject) {
+	protected _sendReply(data: NonNullObject, files?: RawFile[]) {
 		const response = this[Response];
 		if (response.writableEnded) throw new Error('Cannot send response, the request has already been replied.');
 
 		response.statusCode = HttpCodes.OK;
-		return new Promise<void>((resolve) => {
-			response.on('close', () => {
-				resolve();
+
+		if (files?.length) {
+			const form = new FormData();
+
+			for (const [index, file] of files.entries()) {
+				let buf;
+				if (Buffer.isBuffer(file.data)) {
+					buf = file.data;
+				} else if (file.data instanceof ArrayBuffer) {
+					buf = Buffer.from(file.data);
+				} else {
+					buf = Buffer.from(String(file.data), 'utf8');
+				}
+
+				form.append(file.key ?? `files[${index}]`, new Blob([buf], { type: file.contentType }), file.name);
+			}
+
+			form.append('payload_json', new Blob([JSON.stringify(data)], { type: 'application/json' }));
+
+			const encoder = new FormDataEncoder(form);
+			response.setHeader('Content-Type', encoder.headers['Content-Type']);
+
+			if (encoder.headers['Content-Length']) {
+				response.setHeader('Content-Length', encoder.headers['Content-Length']);
+			}
+
+			const readable = Readable.from(encoder);
+			return new Promise<void>((resolve, reject) => {
+				response.on('close', resolve).on('error', reject);
+				pipeline(readable, response, (err) => {
+					if (err) return reject(err);
+				});
 			});
+		}
+
+		return new Promise<void>((resolve, reject) => {
+			response.on('close', resolve).on('error', reject);
 			response.end(JSON.stringify(data));
 		});
 	}

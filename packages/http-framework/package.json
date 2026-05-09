@@ -34,7 +34,8 @@
 		"@sapphire/result": "^2.8.0",
 		"@sapphire/utilities": "^3.18.2",
 		"@vladfrangu/async_event_emitter": "^2.4.7",
-		"discord-api-types": "^0.38.8"
+		"discord-api-types": "^0.38.8",
+		"form-data-encoder": "^4.1.0"
 	},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^6.0.0",

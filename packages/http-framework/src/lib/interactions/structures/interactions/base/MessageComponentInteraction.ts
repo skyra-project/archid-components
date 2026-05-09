@@ -44,22 +44,24 @@ export abstract class MessageComponentInteraction<T extends MessageComponentInte
 	}
 
 	/**
-	 * ACK an interaction and edit a response later. The user sees a loading state.
-	 * @param data The data to be sent, if any.
+	 * Edits the original interaction message.
+	 * @param options The data to be sent.
 	 */
-	public async update(data?: UpdateOptions): Promise<PartialMessage<this>> {
+	public async update(options: UpdateOptions): Promise<PartialMessage<this>> {
+		const { files, ...data } = options;
 		const body: UpdateData = { type: InteractionResponseType.UpdateMessage, data };
-		await this._sendReply(body);
+		await this._sendReply(body, files);
 		return new PartialMessage(this);
 	}
 
 	/**
 	 * Responds to the interaction with a message.
-	 * @param data The data to be sent.
+	 * @param options The data to be sent.
 	 */
-	public async reply(data: MessageResponseOptions): Promise<PartialMessage<this>> {
+	public async reply(options: MessageResponseOptions): Promise<PartialMessage<this>> {
+		const { files, ...data } = options;
 		const body: MessageResponseData = { type: InteractionResponseType.ChannelMessageWithSource, data };
-		await this._sendReply(body);
+		await this._sendReply(body, files);
 		return new PartialMessage(this);
 	}
 
