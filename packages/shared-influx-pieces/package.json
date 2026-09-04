@@ -63,7 +63,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^6.0.0",
+		"@favware/cliff-jumper": "^6.1.0",
 		"typescript": "~5.8.3"
 	}
 }
