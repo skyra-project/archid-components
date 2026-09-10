@@ -45,7 +45,7 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"dotenv": "^17.2.3",
+		"dotenv": "^17.4.2",
 		"dotenv-expand": "^12.0.3"
 	},
 	"repository": {
@@ -75,11 +75,11 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^6.0.0",
-		"@vitest/coverage-v8": "^4.0.8",
+		"@favware/cliff-jumper": "^6.1.0",
+		"@vitest/coverage-v8": "^4.1.11",
 		"esbuild-plugin-version-injector": "^1.2.1",
-		"tsup": "^8.5.0",
+		"tsup": "^8.5.1",
 		"typescript": "~5.8.3",
-		"vitest": "^4.0.8"
+		"vitest": "^4.1.11"
 	}
 }
