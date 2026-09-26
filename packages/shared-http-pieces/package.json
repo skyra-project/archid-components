@@ -31,9 +31,9 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/builders": "^1.13.0",
+		"@discordjs/builders": "^1.14.1",
 		"@discordjs/collection": "^2.1.1",
-		"@sentry/node": "^8.55.0",
+		"@sentry/node": "^8.55.2",
 		"@skyra/env-utilities": "workspace:^",
 		"@skyra/http-framework": "workspace:^",
 		"@skyra/http-framework-i18n": "workspace:^",
@@ -69,7 +69,7 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@favware/cliff-jumper": "^6.0.0",
+		"@favware/cliff-jumper": "^6.1.0",
 		"typescript": "~5.8.3"
 	}
 }
